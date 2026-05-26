@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architectural Design - smART Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pkg-blue: #0E3B66;
+            --pkg-gold: #C09553;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; overflow: hidden; background: #000; }
+
+        /* --- 1. HEADER --- */
+        .top-nav {
+            position: fixed; top: 0; left: 0; width: 100%;
+            padding: 25px 5%; display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; transition: opacity 0.5s ease;
+        }
+        
+        .logo-group { display: flex; align-items: center; text-decoration: none; }
+        /* Đã bỏ filter để giữ màu gốc của logo */
+        .logo-group img { height: 45px; transition: 0.5s; }
+
+        .back-icon-btn { 
+            width: 45px; height: 45px; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            color: #fff; background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px); transition: 0.4s; text-decoration: none;
+        }
+        .back-icon-btn:hover { background: #fff; color: var(--pkg-blue); transform: scale(1.1); }
+
+        /* --- 2. SPLIT LAYOUT --- */
+        .architecture-container { display: flex; width: 100%; height: 100vh; }
+
+        .design-column {
+            flex: 1; position: relative; overflow: hidden;
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer; border-right: 1px solid rgba(255,255,255,0.05);
+            text-decoration: none;
+            z-index: 5;
+        }
+
+        .column-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover; background-position: center;
+            transition: transform 1.2s ease; z-index: 1;
+        }
+        
+        .design-column::after {
+            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(14, 59, 102, 0.7));
+            z-index: 2; transition: 0.5s;
+        }
+
+        .design-column:hover { flex: 1.8; }
+        .design-column:hover .column-bg { transform: scale(1.05); }
+        .design-column:hover::after { background: rgba(14, 59, 102, 0.2); }
+
+        /* Trạng thái khi click để chuyển page */
+        .design-column.expanded {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw !important;
+            height: 100vh !important;
+            z-index: 10000;
+            flex: none;
+        }
+
+        /* --- 3. TEXT & CONTENT --- */
+        .column-content {
+            position: absolute; bottom: 80px; left: 40px; right: 40px;
+            z-index: 10; color: #fff; pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .column-content h2 {
+            font-size: clamp(14px, 1.5vw, 20px); font-weight: 800;
+            line-height: 1.2; text-transform: uppercase; letter-spacing: 2px;
+        }
+
+        /* TIÊU ĐỀ TRUNG TÂM */
+        .main-overlay-title {
+            position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%);
+            z-index: 20; text-align: center; pointer-events: none; width: 100%;
+            transition: opacity 0.5s ease;
+        }
+
+        .main-overlay-title h1 {
+            font-size: clamp(40px, 9vw, 110px); font-weight: 800;
+            color: transparent; -webkit-text-stroke: 1.5px rgba(255,255,255,0.7);
+            text-transform: uppercase; line-height: 0.85;
+            animation: floating 4s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .newsletter-btn {
+            display: inline-block; margin-top: 40px;
+            padding: 14px 40px; border-radius: 50px; background: #fff;
+            color: var(--pkg-blue); font-weight: 700; font-size: 13px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3); pointer-events: auto;
+            text-decoration: none; transition: 0.4s;
+        }
+        .newsletter-btn:hover { background: var(--pkg-gold); color: #fff; transform: translateY(-5px); }
+
+        /* Hiệu ứng ẩn khi bắt đầu chuyển cảnh */
+        body.is-switching .top-nav, 
+        body.is-switching .main-overlay-title,
+        body.is-switching .column-content {
+            opacity: 0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="top-nav">
+        <a href="../../index.html" class="logo-group">
+            <img src="../../assets/images/Logo_SHLL_long.png" alt="Logo">
+        </a>
+        <div class="nav-actions">
+            <a href="index.html" class="back-icon-btn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            </a>
+        </div>
+    </header>
+
+    <div class="main-overlay-title">
+        <h1>ARCHITECTURAL<br>DESIGN</h1>
+        <a href="#" class="newsletter-btn">Sent Us Your Newsletter</a>
+    </div>
+
+    <main class="architecture-container">
+        
+        <a href="architectural-layout.html" class="design-column" onclick="transitionPage(event, this)">
+            <div class="column-bg" style="background-image: url('../../assets/images/package2/Architecture/bia1.png');"></div>
+            <div class="column-content">
+                <h2>ARCHITECTURAL<br>LAYOUT DESIGN</h2>
+            </div>
+        </a>
+
+        <a href="passive-interventions.html" class="design-column" onclick="transitionPage(event, this)">
+            <div class="column-bg" style="background-image: url('../../assets/images/package2/Architecture/bia2.png');"></div>
+            <div class="column-content">
+                <h2>PASSIVE<br>INTERVENTIONS</h2>
+            </div>
+        </a>
+
+        <a href="spatial-assessment.html" class="design-column" onclick="transitionPage(event, this)">
+            <div class="column-bg" style="background-image: url('../../assets/images/package2/Architecture/bia3.png');"></div>
+            <div class="column-content">
+                <h2>BEFORE - AFTER<br>SPATIAL ASSESSMENT</h2>
+            </div>
+        </a>
+
+    </main>
+
+    <script>
+        function transitionPage(e, element) {
+            e.preventDefault();
+            const targetUrl = element.getAttribute('href');
+            
+            document.body.classList.add('is-switching');
+            element.classList.add('expanded');
+
+            setTimeout(() => {
+                window.location.href = targetUrl;
+            }, 800);
+        }
+    </script>
+
+</body>
+</html>

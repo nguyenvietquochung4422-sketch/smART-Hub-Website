@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Package 2 - Glocal Design</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* --- 1. RESET & TỔNG THỂ --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* --- 2. HEADER --- */
+        .header-wrapper { 
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 40px 5% 20px 5%; 
+            display: flex; 
+            flex-direction: column; 
+            background: transparent;
+            z-index: 100;
+        }
+        .header-top-frame { 
+            display: flex; 
+            align-items: center; 
+            gap: 20px; 
+            width: 100%; 
+        }
+        .logo-left img { 
+            height: 30px; 
+            display: block; 
+        }
+        .header-middle { 
+            flex-grow: 1; 
+            display: flex; 
+            flex-direction: column; 
+        }
+        .horizontal-line { 
+            width: 100%; 
+            height: 1px; 
+            background-color: rgba(14, 59, 102, 0.15); 
+        }
+        .logo-right img { 
+            height: 35px; 
+            display: block; 
+        }
+
+        /* --- 3. HERO & SIDE NAV --- */
+        .hero-section {
+            width: 100%; height: 100vh; position: relative;
+            display: flex; align-items: flex-end; justify-content: center;
+            background-color: #fff; overflow: hidden;
+        }
+        .hero-title-container {
+            position: relative; width: 100%; display: flex; justify-content: center; align-items: flex-end; padding-bottom: 60px;
+        }
+        .hero-bg-overlay {
+            position: absolute; bottom: 120px; width: 100%; height: auto; z-index: 1; pointer-events: none;
+        }
+        .hero-title {
+            font-size: clamp(60px, 11vw, 130px); font-weight: 800; color: #43616b; 
+            text-transform: uppercase; letter-spacing: -3px; text-align: center;
+            position: relative; z-index: 2; line-height: 0.8; margin: 0; display: flex; gap: 25px;
+        }
+        .char { display: inline-block; transition: transform 0.3s; cursor: default; }
+        .char:hover { transform: translateY(-35px); opacity: 0.8; }
+
+        .side-nav { position: fixed; left: 30px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 15px; z-index: 999; }
+        .side-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(0,0,0,0.1); transition: 0.5s; cursor: pointer; text-decoration: none;}
+        .side-dot.active { width: 35px; height: 12px; border-radius: 20px; background: #5d7a8c; }
+        
+        .back-to-top {
+            position: fixed; bottom: 40px; right: 40px; width: 50px; height: 50px;
+            background: #5d7a8c; color: white; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            z-index: 1000; transition: 0.4s; opacity: 0; visibility: hidden;
+            cursor: pointer; border: none;
+        }
+        .back-to-top.show { opacity: 1; visibility: visible; }
+        .back-to-top:hover { transform: translateY(-5px); background: #0E3B66; }
+        
+        /* --- 4. CONTENT & DESIGN --- */
+        .content-container { max-width: 1100px; margin: 120px auto; padding: 0 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 60px; }
+        .text-column { font-size: 11px; line-height: 1.8; color: #444; text-align: justify; }
+        .text-column strong { display: block; margin-bottom: 8px; font-weight: 700; color: #333; }
+        
+        .design-section { max-width: 1200px; margin: 0 auto 150px; padding: 0 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+        .design-item { text-align: center; text-decoration: none; display: block; }
+        .design-item img { width: 100%; height: 280px; object-fit: contain; margin-bottom: 25px; transition: 0.6s; filter: grayscale(1); opacity: 0.7; }
+        .design-item:hover img { transform: scale(1.05); filter: grayscale(0); opacity: 1; }
+        .design-label { font-size: 14px; font-weight: 700; color: #0E3B66; text-transform: uppercase; letter-spacing: 1px; }
+        
+        /* --- 5. ABOUT US --- */
+        #about-us { 
+            position: relative;
+            background: url('../../assets/images/package2/background2_package2.png') no-repeat center center; 
+            background-size: cover; 
+            padding: 120px 8%; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .about-title-main { position: relative; z-index: 2; font-size: 24px; font-weight: 700; color: #5d7a8c; text-transform: uppercase; margin-bottom: 60px; letter-spacing: 1px; }
+        .about-minimal-grid { position: relative; z-index: 2; display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 80px; width: 100%; max-width: 1400px; }
+        .about-column h3 { font-size: 18px; font-weight: 700; color: #0E3B66; margin-bottom: 30px; opacity: 0.9; }
+        .about-content { font-size: 13px; line-height: 1.8; color: #333; }
+        .pub-item { margin-bottom: 25px; text-align: justify; }
+        .pub-item a { color: #0E3B66; text-decoration: underline; font-weight: 600; }
+        .press-link { display: block; margin-bottom: 10px; color: #0E3B66; font-weight: 600; text-decoration: underline; }
+        .people-names b { display: block; font-size: 14px; color: #000; margin-bottom: 4px; }
+        .dept-info { font-size: 12px; color: #555; font-style: italic; line-height: 1.4; display: block; margin-top: 8px; }
+        .org-info { margin-top: 40px; font-size: 13px; color: #0E3B66; font-weight: 700; line-height: 1.5; }
+        .org-info span { font-weight: 400; color: #333; display: block; }
+
+        /* ANIMATION FOR LOGO BELT */
+        @keyframes loop {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* --- 6. FOOTER (MATCHING INDEX) --- */
+        .footer-container { 
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 40px 10% 60px 10%; 
+            margin-top: 40px;
+            position: relative;
+            z-index: 10;
+            background: #050d0a !important;
+            color: white;
+            width: 100%;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1.5fr 1.5fr 1.5fr;
+            gap: 30px;
+            align-items: start;
+        }
+        .footer-col-logo {
+            font-size: 16px;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            color: #ffffff;
+            text-align: left;
+        }
+        .footer-col-logo .logo-light { font-weight: 300; opacity: 0.8; }
+        .footer-col-logo .logo-bold { font-weight: 700; }
+        .footer-col-desc {
+            font-size: 11px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.75);
+            text-align: left;
+        }
+        .footer-col-address {
+            font-size: 11px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.75);
+            text-align: left;
+        }
+        .footer-col-address strong { color: #ffffff; font-weight: 600; }
+        .footer-col-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.75);
+            text-align: left;
+        }
+        .footer-col-contact .contact-item { display: flex; align-items: center; gap: 8px; }
+        .footer-col-contact .contact-icon { width: 12px; height: 12px; fill: currentColor; flex-shrink: 0; }
+        .footer-col-contact a { color: inherit; text-decoration: none; }
+        .footer-col-contact a:hover { color: #d76a28 !important; text-decoration: underline; }
+
+        @media (max-width: 900px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                row-gap: 30px;
+            }
+        }
+        @media (max-width: 600px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <button class="back-to-top" id="topBtn" onclick="scrollToTop()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+    </button>
+
+    <nav class="side-nav" id="sideNav">
+        <a href="#hero" class="side-dot active"></a>
+        <a href="#content" class="side-dot"></a>
+        <a href="#design" class="side-dot"></a>
+        <a href="#about-us" class="side-dot"></a>
+        <a href="#contact" class="side-dot"></a>
+    </nav>
+
+    <div class="header-wrapper">
+        <div class="header-top-frame">
+            <div class="logo-left">
+                <a href="../../index.html"><img src="../../assets/images/Logo_SHLL_long.png" alt="SHL Logo"></a>
+            </div>
+            <div class="header-middle">
+                <div class="horizontal-line"></div>
+            </div>
+            <div class="logo-right">
+                <img src="../../assets/images/index/logo1.png" alt="UEH">
+            </div>
+        </div>
+    </div>
+
+    <section class="hero-section" id="hero">
+        <div class="hero-title-container" data-aos="zoom-out" data-aos-duration="2000">
+            <img src="../../assets/images/package2/backgound_package2.png" alt="Background" class="hero-bg-overlay">
+            <h1 class="hero-title" data-aos="fade-up" data-aos-delay="300">
+                <!-- Chữ G đã được đổi màu style="color: #8fa0a3" -->
+                <div class="word"><span class="char" style="color: #8fa0a3;">G</span><span class="char">L</span><span class="char">O</span><span class="char">C</span><span class="char">A</span><span class="char">L</span></div>
+                <div class="word"><span class="char">D</span><span class="char">E</span><span class="char">S</span><span class="char">I</span><span class="char">G</span><span class="char">N</span></div>
+            </h1>
+        </div>
+    </section>
+
+    <main class="content-container" id="content">
+        <div class="text-column" data-aos="fade-up" data-aos-delay="100">
+            <strong>1. NSUP – “No Single-Use Plastic Journey”</strong>
+            A campaign to shift perceptions around plastic waste through The Zero Pledge commitment, built upon two key pillars: #ReduceForMore and #SortingForChange. The initiative aspires for every individual on campus to become an active link in the journey toward eliminating single-use plastics.
+        </div>
+        <div class="text-column" data-aos="fade-up" data-aos-delay="200">
+            <strong>2. Glocal Design (Internationalizing Indigenous Knowledge)</strong>
+            Applying The Glocal Toolkit to standardize local experiences and solutions into internationally adaptable models, addressing sustainable urban challenges through locally rooted yet globally responsive approaches.
+        </div>
+        <div class="text-column" data-aos="fade-up" data-aos-delay="300">
+            <strong>3. Towards Net Zero</strong>
+            Developing a Digital Twin of Campus V. Through a real-time data dashboard powered by a sensor network and a sustainable audit system.
+        </div>
+    </main>
+
+    <section class="design-section" id="design">
+        <a href="architectural-design.html" class="design-item" data-aos="fade-up" data-aos-delay="100">
+            <img src="../../assets/images/package2/icon1_package2.png" alt="Architectural Design">
+            <p class="design-label">Architectural Design</p>
+        </a>
+        <a href="landscape-design.html" class="design-item" data-aos="fade-up" data-aos-delay="200">
+            <img src="../../assets/images/package2/icon2_package2.png" alt="Landscape Design">
+            <p class="design-label">Landscape Design</p>
+        </a>
+        <a href="research.html" class="design-item" data-aos="fade-up" data-aos-delay="300">
+            <img src="../../assets/images/package2/icon3_package2.png" alt="Research">
+            <p class="design-label">Research</p>
+        </a>
+    </section>
+
+    <section id="about-us">
+        <div class="about-title-main" data-aos="fade-right">ABOUT US</div>
+        <div class="about-minimal-grid">
+            <div class="about-column" data-aos="fade-up" data-aos-delay="100">
+                <h3>Publication</h3>
+                <div class="about-content">
+                    <div class="pub-item">
+                        Tufano, M., Duarte, F., Mazzarello, M., Eshtiyagh, J., Ratti, C. and Camps, G., 2025. 
+                        <a href="#">Data-Driven Nutritional Assessment of Urban Food Landscapes: Insights from Boston, London, and Dubai.</a> Scientific Reports.
+                    </div>
+                    <div class="pub-item">
+                        Su, R., Eshtiyagh, J., Santi, P., Hu, S., Duarte, F., Mazzarello, M. and Ratti, C., 2025. 
+                        <a href="#">Determinants of the localized behavior of individual food delivery choices.</a> Transportation Research Part C.
+                    </div>
+                </div>
+            </div>
+            <div class="about-column" data-aos="fade-up" data-aos-delay="200">
+                <h3>People</h3>
+                <div class="about-content">
+                    <p style="margin-bottom: 25px; font-weight: 500; color: #0E3B66;">Glocal Design</p>
+                    <div class="people-names">
+                        <b>Dang The Hien, PhD</b>
+                        <b>Nguyen Quynh Tram</b>
+                        <b>Luu Pham Thanh Binh</b>
+                        <span class="dept-info">Institute of Smart City & Management</span>
+                    </div>
+                    <div class="org-info">smART HUB Living Labs<br><span>UEH University</span></div>
+                </div>
+            </div>
+            <div class="about-column" data-aos="fade-up" data-aos-delay="300">
+                <h3>Press</h3>
+                <div class="about-content">
+                    <span class="press-link">Press Material</span>
+                    <p>The material on this website can be used freely in any publication provided that it is duly credited as a project by the smART HUB Living Labs.</p>
+                    <p style="margin-top: 15px; font-size: 12px; font-style: italic;">Please send a PDF copy of the publication to smarthub@ueh.edu.vn</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-container">
+        <div class="footer-grid">
+            <!-- Col 1: Logo Text -->
+            <div class="footer-col-logo">
+                <span class="logo-light">smART HUB</span> <span class="logo-bold">LIVING LABS</span>
+            </div>
+            
+            <!-- Col 2: Info Desc -->
+            <div class="footer-col-desc">
+                For more information of the smART Hub Living Labs.
+            </div>
+            
+            <!-- Col 3: Address -->
+            <div class="footer-col-address">
+                <strong>smART HUB Living Labs</strong><br>
+                UEH, Campus V<br>
+                232/6 Vo Thi Sau, Xuan Hoa Ward<br>
+                Ho Chi Minh City, Vietnam
+            </div>
+            
+            <!-- Col 4: Contacts with Icons -->
+            <div class="footer-col-contact">
+                <div class="contact-item">
+                    <svg class="contact-icon" viewBox="0 0 24 24"><path d="M6.62 10.79a15.149 15.149 0 0 0 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                    <span>+84 937 516 101</span>
+                </div>
+                <div class="contact-item">
+                    <svg class="contact-icon" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                    <span><a href="https://greencampus.ueh.edu.vn/" target="_blank">greencampus.ueh.edu.vn</a></span>
+                </div>
+                <div class="contact-item">
+                    <svg class="contact-icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    <span><a href="mailto:smarthub@ueh.edu.vn">smarthub@ueh.edu.vn</a></span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true, offset: 120, easing: 'ease-in-out' });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.onscroll = function() {
+            var topBtn = document.getElementById("topBtn");
+            var currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 500) topBtn.classList.add("show");
+            else topBtn.classList.remove("show");
+
+            const sections = document.querySelectorAll('section, main, footer');
+            sections.forEach(sec => {
+                const offset = sec.offsetTop - 350;
+                const height = sec.offsetHeight;
+                const id = sec.getAttribute('id');
+                if (currentScroll >= offset && currentScroll < offset + height) {
+                    document.querySelectorAll('.side-dot').forEach(dot => {
+                        dot.classList.remove('active');
+                        if(dot.getAttribute('href') === '#' + id) dot.classList.add('active');
+                    });
+                }
+            });
+        };
+    </script>
+</body>
+</html>

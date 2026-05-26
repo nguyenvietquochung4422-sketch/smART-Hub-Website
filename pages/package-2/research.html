@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Lab - smART Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --pkg-blue: #4183a3;
+            --text-dark: #333;
+            /* Màu vàng nhạt đồng bộ với nền hình ảnh */
+            --bg-cream: #f9f7f2; 
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Montserrat', sans-serif; background: var(--bg-cream); color: var(--text-dark); overflow-x: hidden; }
+
+        /* --- 1. HERO SECTION --- */
+        .research-hero {
+            width: 100%; height: 100vh;
+            background-image: url('../../assets/images/package2/Research/bia_research.png');
+            background-size: cover; background-position: center;
+            display: flex; justify-content: center; align-items: center;
+            position: relative;
+        }
+
+        .top-nav { position: fixed; top: 0; left: 0; width: 100%; padding: 30px 5%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; }
+        
+        .logo-group { display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--text-dark); }
+        .logo-group img { height: 42px; }
+        .logo-text-box { display: flex; flex-direction: column; line-height: 1; }
+        .logo-main { font-weight: 800; font-size: 19px; }
+        .logo-sub { font-weight: 400; font-size: 13px; opacity: 0.8; }
+
+        .back-icon-btn { 
+            width: 45px; height: 45px; border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            color: var(--text-dark); background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(10px); 
+            transition: 0.4s; text-decoration: none; border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        .back-icon-btn:hover { background: #fff; transform: scale(1.1); }
+
+        .main-title { text-align: center; color: var(--text-dark); z-index: 10; animation: fadeIn 1.5s ease-out; }
+        .main-title h1 { font-size: clamp(40px, 8vw, 100px); font-weight: 800; text-transform: uppercase; line-height: 0.9; display: flex; flex-direction: column; align-items: center; }
+        .title-lab { font-weight: 400; letter-spacing: 15px; margin-top: 10px; }
+
+        /* Ô tròn Spatial Exploration - Đặt vị trí tránh chèn chữ */
+        .spatial-circle-wrapper { 
+            position: absolute; bottom: 10%; right: 5%; z-index: 50; width: 180px; height: 180px; 
+        }
+        .circle-image { width: 100%; height: 100%; border-radius: 50%; border: 2px solid #fff; overflow: hidden; background: url('../../assets/images/package2/Research/Sod_Culture_2026.png'); background-size: cover; }
+        .circle-text { position: absolute; width: 100%; height: 100%; top: 0; left: 0; animation: rotateText 15s linear infinite; }
+        @keyframes rotateText { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .circle-text svg { width: 100%; height: 100%; fill: var(--text-dark); }
+        .circle-text text { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 4px; }
+
+        /* --- 2. CONTENT SECTION --- */
+        .content-section { padding: 120px 8%; background: var(--bg-cream); }
+        .section-header { margin-bottom: 60px; text-align: left; }
+        .section-header h2 { font-size: 32px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; }
+
+        .testbed-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: flex-start;
+        }
+
+        .testbed-item { display: flex; flex-direction: column; gap: 20px; }
+        .testbed-item h3 { font-size: 20px; font-weight: 700; color: var(--pkg-blue); }
+        
+        .img-wrap { width: 100%; overflow: hidden; }
+        .img-wrap img { 
+            width: 100%; height: auto; object-fit: contain; 
+            cursor: zoom-in; transition: 0.4s; 
+        }
+        .img-wrap img:hover { opacity: 0.8; }
+
+        /* --- 3. BACK TO TOP --- */
+        .back-to-top {
+            position: fixed; bottom: 30px; right: 30px; width: 55px; height: 55px;
+            background: #fff; border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            cursor: pointer; z-index: 1000; opacity: 0; visibility: hidden; transition: 0.4s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(0,0,0,0.05);
+        }
+        .back-to-top.show { opacity: 1; visibility: visible; }
+        .back-to-top svg { width: 22px; height: 22px; color: var(--pkg-blue); }
+
+        /* --- 4. LIGHTBOX --- */
+        #lightbox {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9);
+            display: none; justify-content: center; align-items: center; z-index: 10000; cursor: zoom-out;
+        }
+        #lightbox img { max-width: 95%; max-height: 95%; object-fit: contain; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media (max-width: 992px) {
+            .testbed-grid { grid-template-columns: 1fr; }
+            .spatial-circle-wrapper { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="lightbox" onclick="this.style.display='none'"><img id="lightbox-img" src=""></div>
+
+    <button class="back-to-top" id="topBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+    </button>
+
+    <header class="top-nav">
+        <a href="../../index.html" class="logo-group">
+            <img src="../../assets/images/index/Asset 1@3x.png" alt="Logo">
+            <div class="logo-text-box">
+                <span class="logo-main">smART hub</span>
+                <span class="logo-sub">living labs.</span>
+            </div>
+        </a>
+        <a href="index.html" class="back-icon-btn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        </a>
+    </header>
+
+    <section class="research-hero">
+        <div class="main-title">
+            <h1><span>RESEARCH</span><span class="title-lab">LAB</span></h1>
+        </div>
+
+        <div class="spatial-circle-wrapper" data-aos="zoom-in" data-aos-delay="500">
+            <div class="circle-text">
+                <svg viewBox="0 0 200 200">
+                    <path id="circlePath" d="M 100, 100 m -80, 0 a 80,80 0 1,1 160,0 a 80,80 0 1,1 -160,0" fill="transparent"/>
+                    <text><textPath href="#circlePath">SPATIAL EXPLORATION • SPATIAL EXPLORATION • </textPath></text>
+                </svg>
+            </div>
+            <div class="circle-image"></div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Sod Culture Testbed</h2>
+        </div>
+
+        <div class="testbed-grid">
+            <div class="testbed-item" data-aos="fade-up">
+                <h3>2025</h3>
+                <div class="img-wrap">
+                    <img src="../../assets/images/package2/Research/Sod_Culture_2025.png" onclick="openLightbox(this.src)" alt="Sod Culture 2025">
+                </div>
+            </div>
+
+            <div class="testbed-item" data-aos="fade-up" data-aos-delay="200">
+                <h3>2026</h3>
+                <div class="img-wrap">
+                    <img src="../../assets/images/package2/Research/Sod_Culture_2026.png" onclick="openLightbox(this.src)" alt="Sod Culture 2026">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+
+        window.onscroll = function() {
+            var btn = document.getElementById("topBtn");
+            if (window.pageYOffset > 600) btn.classList.add("show");
+            else btn.classList.remove("show");
+        };
+
+        function openLightbox(src) {
+            document.getElementById("lightbox-img").src = src;
+            document.getElementById("lightbox").style.display = "flex";
+        }
+    </script>
+</body>
+</html>

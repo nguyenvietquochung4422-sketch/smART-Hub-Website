@@ -41,7 +41,7 @@ document.querySelectorAll('.mit-acc-header').forEach(header => {
     });
 });
 
-// 3. Tương tác Menu Năm/Tháng & Bộ lọc Tin tức (Sort/Filter News)
+// 3. Tương tác Menu Năm/Tháng & Bộ lọc Tin tức
 document.querySelectorAll('.year-toggle').forEach(toggle => {
     toggle.addEventListener('click', () => {
         const block = toggle.parentElement;
@@ -52,9 +52,9 @@ document.querySelectorAll('.year-toggle').forEach(toggle => {
         
         if (!isActive) {
             block.classList.add('active');
-            filterNews(selectedYear, null); // Lọc theo năm khi click vào năm
+            filterNews(selectedYear, null);
         } else {
-            filterNews(null, null); // Hiển thị lại tất cả khi đóng tab năm
+            filterNews(null, null);
         }
     });
 });
@@ -62,33 +62,22 @@ document.querySelectorAll('.year-toggle').forEach(toggle => {
 document.querySelectorAll('.month-link').forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
-        
-        // Cập nhật trạng thái active cho tháng được chọn
         document.querySelectorAll('.month-link').forEach(m => m.classList.remove('active'));
         link.classList.add('active');
-        
         const parentYear = link.closest('.year-block').querySelector('.year-toggle').textContent.trim();
         const selectedMonth = link.textContent.trim();
-        
-        filterNews(parentYear, selectedMonth); // Lọc chính xác theo cả Năm và Tháng
+        filterNews(parentYear, selectedMonth);
     });
 });
 
-// Hàm cốt lõi để phân loại và ẩn/hiển thị tin tức
 function filterNews(year, month) {
     const cards = document.querySelectorAll('.mit-project-card');
-    
     cards.forEach(card => {
         const cardYear = card.getAttribute('data-year');
         const cardMonth = card.getAttribute('data-month');
-        
         let matchYear = year ? (cardYear === year) : true;
         let matchMonth = month ? (cardMonth === month) : true;
-        
-        if (matchYear && matchMonth) {
-            card.classList.remove('hidden');
-        } else {
-            card.classList.add('hidden');
-        }
+        if (matchYear && matchMonth) card.classList.remove('hidden');
+        else card.classList.add('hidden');
     });
 }

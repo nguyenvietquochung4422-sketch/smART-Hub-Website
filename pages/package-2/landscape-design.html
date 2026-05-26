@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landscape Design - smART Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --pkg-blue: #5d7a8c;
+            --text-dark: #333;
+            --bg-cream: #fdfdfd; 
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Montserrat', sans-serif; background: var(--bg-cream); color: var(--text-dark); overflow-x: hidden; }
+
+        /* --- 1. HERO SECTION --- */
+        .landscape-hero {
+            width: 100%; height: 100vh;
+            background-image: url('../../assets/images/package2/Landscape/bia_LD.png');
+            background-size: cover; background-position: center;
+            display: flex; justify-content: center; align-items: center;
+            position: relative;
+        }
+
+        /* NAVIGATION & LOGO */
+        .top-nav { 
+            position: fixed; top: 0; left: 0; width: 100%; 
+            padding: 30px 5%; display: flex; 
+            justify-content: space-between; align-items: center; 
+            z-index: 1000; 
+        }
+        
+        .logo-group { display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--text-dark); }
+        .logo-group img { height: 42px; }
+        .logo-text-box { display: flex; flex-direction: column; line-height: 1; }
+        .logo-main { font-weight: 800; font-size: 19px; }
+        .logo-sub { font-weight: 400; font-size: 13px; opacity: 0.8; }
+
+        .back-icon-btn { 
+            width: 45px; height: 45px; border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            color: var(--text-dark); background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(10px); 
+            transition: 0.4s; text-decoration: none; border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        .back-icon-btn:hover { background: #fff; color: var(--pkg-blue); transform: scale(1.1); }
+
+        .main-title { text-align: center; color: var(--pkg-blue); z-index: 10; animation: fadeIn 1.5s ease-out; }
+        .main-title h1 { font-size: clamp(40px, 8vw, 100px); font-weight: 800; text-transform: uppercase; line-height: 0.9; display: flex; flex-direction: column; align-items: center; }
+        .title-design { margin-left: 150px; font-weight: 400; }
+
+        /* --- 2. OUR PHILOSOPHY --- */
+        .philosophy-section { padding: 100px 10%; text-align: center; }
+        .outline-title { 
+            font-size: clamp(28px, 4vw, 48px); font-weight: 800; color: transparent; 
+            -webkit-text-stroke: 1.2px var(--pkg-blue); text-transform: uppercase; margin-bottom: 30px; 
+        }
+        .philosophy-text { 
+            font-family: 'Inter', sans-serif; max-width: 700px; margin: 0 auto; 
+            font-size: 14px; line-height: 1.8; color: #666; 
+        }
+
+        /* --- 3. LAYOUT DESIGN & LEGEND --- */
+        .layout-section { padding: 60px 8% 120px 8%; }
+        .layout-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: flex-start; }
+        .layout-block, .legend-block { display: flex; flex-direction: column; align-items: center; gap: 25px; }
+        .layout-block h3, .legend-block h3 { font-size: 20px; font-weight: 700; color: var(--pkg-blue); text-transform: uppercase; letter-spacing: 1px; }
+        .img-wrap { width: 85%; max-width: 500px; }
+        .layout-grid img { width: 100%; height: auto; object-fit: contain; cursor: zoom-in; transition: 0.4s; }
+        .layout-grid img:hover { transform: scale(1.02); opacity: 0.9; }
+
+        /* --- 4. BACK TO TOP --- */
+        .back-to-top {
+            position: fixed; bottom: 30px; right: 30px; width: 55px; height: 55px;
+            background: #fff; border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            cursor: pointer; z-index: 1000; opacity: 0; visibility: hidden; transition: 0.4s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(0,0,0,0.05);
+        }
+        .back-to-top.show { opacity: 1; visibility: visible; }
+        .back-to-top svg { width: 20px; height: 20px; color: var(--pkg-blue); }
+
+        /* --- 5. LIGHTBOX --- */
+        #lightbox {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(14, 59, 102, 0.95);
+            display: none; justify-content: center; align-items: center; z-index: 10000; cursor: zoom-out;
+            backdrop-filter: blur(10px);
+        }
+        #lightbox img { max-width: 90%; max-height: 90%; object-fit: contain; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media (max-width: 992px) {
+            .layout-grid { grid-template-columns: 1fr; }
+            .img-wrap { width: 100%; }
+            .title-design { margin-left: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="lightbox" onclick="this.style.display='none'"><img id="lightbox-img" src=""></div>
+
+    <button class="back-to-top" id="topBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+    </button>
+
+    <header class="top-nav">
+        <a href="../../index.html" class="logo-group">
+            <img src="../../assets/images/index/Asset 1@3x.png" alt="Logo">
+            <div class="logo-text-box">
+                <span class="logo-main">smART hub</span>
+                <span class="logo-sub">living labs.</span>
+            </div>
+        </a>
+        <a href="index.html" class="back-icon-btn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        </a>
+    </header>
+
+    <section class="landscape-hero">
+        <div class="main-title">
+            <h1><span>LANDSCAPE</span><span class="title-design">DESIGN</span></h1>
+        </div>
+    </section>
+
+    <section class="philosophy-section" data-aos="fade-up">
+        <h2 class="outline-title">OUR PHILOSOPHY</h2>
+        <div class="philosophy-text">
+            A campaign to shift perceptions around plastic waste through <br>
+            <strong>The Zero Pledge commitment</strong>, built upon two key pillars: <strong>#ReduceForMore</strong> and 
+            The initiative aspires for every individual to reconnect with the urban environment.
+        </div>
+    </section>
+
+    <section class="layout-section">
+        <div class="layout-grid">
+            <div class="layout-block" data-aos="fade-right">
+                <h3>Layout Design</h3>
+                <div class="img-wrap">
+                    <img src="../../assets/images/package2/Landscape/mat_bang_cq_V.png" onclick="openLightbox(this.src)" alt="Layout Design">
+                </div>
+            </div>
+            <div class="legend-block" data-aos="fade-left">
+                <h3>Legend</h3>
+                <div class="img-wrap">
+                    <img src="../../assets/images/package2/Landscape/legend_cay.png" onclick="openLightbox(this.src)" alt="Legend">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+        window.onscroll = function() {
+            var btn = document.getElementById("topBtn");
+            if (window.pageYOffset > 600) btn.classList.add("show");
+            else btn.classList.remove("show");
+        };
+        function openLightbox(src) {
+            document.getElementById("lightbox-img").src = src;
+            document.getElementById("lightbox").style.display = "flex";
+        }
+    </script>
+</body>
+</html>

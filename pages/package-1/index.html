@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Package 1 - No Single-Use Plastic Journey</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --pkg-gold: #C09553;
+            --pkg-blue: #0E3B66;
+            --bg-light: #FDF9F3;
+            --action-orange: #D37333;
+            --action-green: #6B8A71;
+            --action-yellow: #D9A426;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg-light); font-family: 'Montserrat', sans-serif; color: #333; overflow-x: hidden; }
+
+        /* --- 1. HEADER --- */
+        .header-wrapper { 
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 40px 5% 20px 5%; 
+            display: flex; 
+            flex-direction: column; 
+            background: transparent;
+            z-index: 100;
+        }
+        .header-top-frame { 
+            display: flex; 
+            align-items: center; 
+            gap: 20px; 
+            width: 100%; 
+        }
+        .logo-left img { 
+            height: 30px; 
+            display: block; 
+        }
+        .header-middle { 
+            flex-grow: 1; 
+            display: flex; 
+            flex-direction: column; 
+        }
+        .horizontal-line { 
+            width: 100%; 
+            height: 1px; 
+            background-color: rgba(14, 59, 102, 0.15); 
+        }
+        .logo-right img { 
+            height: 35px; 
+            display: block; 
+        }
+
+        /* --- 2. SIDE NAVIGATION & BACK TO TOP --- */
+        .side-nav { position: fixed; left: 30px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 12px; z-index: 1000; }
+        .side-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(0,0,0,0.1); transition: 0.5s; cursor: pointer; text-decoration: none; }
+        .side-dot.active { width: 35px; height: 12px; border-radius: 20px; background: var(--pkg-gold); }
+
+        .back-to-top {
+            position: fixed; bottom: 40px; right: 40px; width: 50px; height: 50px;
+            background: var(--pkg-gold); color: white; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            text-decoration: none; z-index: 9991; transition: 0.4s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); opacity: 0; visibility: hidden;
+            cursor: pointer; border: none; outline: none;
+        }
+        .back-to-top.show { opacity: 1; visibility: visible; }
+        .back-to-top:hover { transform: translateY(-5px); background: var(--pkg-blue); }
+
+        /* --- 3. SECTIONS --- */
+        section { min-height: 100vh; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; padding: 100px 10%; }
+        #cover { padding: 0; overflow: hidden; }
+        #cover img { width: 100%; height: 100vh; object-fit: cover; }
+
+        #intro h1 { font-size: clamp(48px, 6vw, 76px); color: var(--pkg-gold); margin-bottom: 35px; line-height: 1.05; font-weight: 800; text-align: center; }
+        #intro .description { max-width: 850px; font-size: 19px; line-height: 1.9; color: var(--pkg-blue); font-weight: 500; text-align: center; }
+
+        .achievements-title { font-size: 24px; font-weight: 700; color: var(--pkg-gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 80px; }
+        .stats-container { display: flex; justify-content: center; width: 100%; max-width: 1200px; gap: 60px; flex-wrap: wrap; }
+        .stat-item { display: flex; flex-direction: column; align-items: center; text-align: center; min-width: 150px; }
+        .stat-number { font-size: 72px; font-weight: 700; color: #555; line-height: 1; margin-bottom: 10px; }
+        .stat-label { font-size: 12px; font-weight: 700; color: var(--pkg-gold); text-transform: uppercase; line-height: 1.4; }
+
+        .split-container { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 60px; width: 100%; }
+        .split-image img { width: 100%; height: auto; border-radius: 15px; }
+        .split-content h2 { font-size: 32px; color: var(--pkg-gold); margin-bottom: 20px; font-weight: 800; text-transform: uppercase; }
+        .split-content p { font-size: 14px; line-height: 1.6; color: var(--pkg-blue); margin-bottom: 20px; text-align: justify; }
+
+        /* MARQUEE */
+        #events { overflow: visible; background: #fff; }
+        .marquee-container { display: flex; width: 100%; overflow: visible; mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); padding: 60px 0; }
+        .marquee-content { display: flex; gap: 25px; animation: scrollInfinite 60s linear infinite; }
+        .marquee-content img { height: 280px; border-radius: 15px; border: 4px solid white; box-shadow: 0 10px 20px rgba(0,0,0,0.1); cursor: pointer; transition: 0.4s; position: relative; z-index: 1;}
+        .marquee-content img:hover { transform: translateY(-40px) scale(1.1); box-shadow: 0 25px 50px rgba(0,0,0,0.2); border-color: var(--pkg-gold); z-index: 100; }
+        @keyframes scrollInfinite { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+        /* PILE ACTION */
+        #action { flex-direction: row; justify-content: space-between; padding: 0 10%; position: relative; }
+        .action-left h2 { font-size: 56px; color: var(--pkg-gold); font-weight: 800; }
+        .action-left p { font-size: 18px; color: var(--pkg-blue); font-style: italic; font-weight: 600; margin-top: 10px; }
+        .action-right { flex: 1.2; display: flex; justify-content: flex-end; align-items: center; z-index: 5; }
+        .action-pile-wrapper { position: relative; width: 400px; height: 400px; cursor: pointer; }
+        .action-pile-card {
+            position: absolute; width: 135px; height: 135px; border-radius: 15px; overflow: hidden;
+            display: flex; justify-content: center; align-items: center; box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+        }
+        .action-pile-card img { width: 100%; height: 100%; object-fit: contain; }
+        .action-pile-wrapper:hover { width: 520px; height: 520px; }
+        .action-pile-wrapper:hover .action-pile-card { top: auto; left: auto; transform: translate(0,0); }
+        .action-pile-wrapper:hover .action-pile-card:nth-child(1) { left: 0; top: 0; }
+        .action-pile-wrapper:hover .action-pile-card:nth-child(2) { left: 50%; transform: translateX(-50%); top: 0; }
+        .action-pile-wrapper:hover .action-pile-card:nth-child(3) { right: 0; top: 0; }
+        .action-pile-wrapper:hover .action-pile-card:nth-child(4) { left: 0; top: 50%; transform: translateY(-50%); }
+        .action-pile-wrapper:hover .action-pile-card:nth-child(5) { left: 50%; top: 50%; transform: translate(-50%, -50%); }
+        .action-pile-wrapper:hover .action-pile-card:nth-child(6) { right: 0; top: 50%; transform: translateY(-50%); }
+        .action-pile-wrapper:hover .action-pile-card:nth-child(7) { left: 0; bottom: 0; }
+        .action-pile-wrapper:hover .action-pile-card:nth-child(8) { left: 50%; transform: translateX(-50%); bottom: 0; }
+        .action-pile-wrapper:hover .action-pile-card:nth-child(9) { right: 0; bottom: 0; }
+
+        /* --- 4. ABOUT US --- */
+        #about { background-color: var(--bg-light); padding: 120px 8%; display: flex; flex-direction: column; align-items: flex-start; min-height: auto; }
+        .about-title-main { font-size: 24px; font-weight: 700; color: var(--pkg-gold); text-transform: uppercase; margin-bottom: 60px; letter-spacing: 1px; }
+        .about-minimal-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 80px; width: 100%; max-width: 1400px; }
+        .about-column h3 { font-size: 18px; font-weight: 700; color: var(--pkg-blue); margin-bottom: 30px; opacity: 0.9; }
+        .about-content { font-family: 'Inter', sans-serif; font-size: 13px; line-height: 1.8; color: #555; }
+        .pub-item { margin-bottom: 25px; text-align: justify; }
+        .pub-item a { color: var(--pkg-blue); text-decoration: underline; font-weight: 500; }
+        .people-names b { display: block; font-size: 14px; color: #333; margin-bottom: 4px; }
+        .dept-info { font-size: 12px; color: #777; font-style: italic; line-height: 1.4; display: block; margin-top: 8px; }
+        .org-info { margin-top: 40px; font-size: 13px; color: var(--pkg-blue); font-weight: 700; line-height: 1.5; }
+        .org-info span { font-weight: 400; color: #555; display: block; }
+
+        /* LIGHTBOX */
+        #global-lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(14, 59, 102, 0.9); display: none; justify-content: center; align-items: center; z-index: 10000; cursor: zoom-out; backdrop-filter: blur(8px); }
+        #global-lightbox img { width: 550px; max-width: 90%; border-radius: 15px; border: 4px solid white; animation: zoomIn 0.3s ease; }
+        @keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+        /* ANIMATION FOR LOGO BELT */
+        @keyframes loop {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* --- 5. FOOTER (MATCHING INDEX) --- */
+        .footer-container { 
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 40px 10% 60px 10%; 
+            margin-top: 40px;
+            position: relative;
+            z-index: 10;
+            background: #050d0a !important;
+            color: white;
+            width: 100%;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1.5fr 1.5fr 1.5fr;
+            gap: 30px;
+            align-items: start;
+        }
+        .footer-col-logo {
+            font-size: 16px;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            color: #ffffff;
+            text-align: left;
+        }
+        .footer-col-logo .logo-light { font-weight: 300; opacity: 0.8; }
+        .footer-col-logo .logo-bold { font-weight: 700; }
+        .footer-col-desc {
+            font-size: 11px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.75);
+            text-align: left;
+        }
+        .footer-col-address {
+            font-size: 11px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.75);
+            text-align: left;
+        }
+        .footer-col-address strong { color: #ffffff; font-weight: 600; }
+        .footer-col-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.75);
+            text-align: left;
+        }
+        .footer-col-contact .contact-item { display: flex; align-items: center; gap: 8px; }
+        .footer-col-contact .contact-icon { width: 12px; height: 12px; fill: currentColor; flex-shrink: 0; }
+        .footer-col-contact a { color: inherit; text-decoration: none; }
+        .footer-col-contact a:hover { color: #d76a28 !important; text-decoration: underline; }
+
+        @media (max-width: 900px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                row-gap: 30px;
+            }
+        }
+        @media (max-width: 600px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="back-to-top" id="topBtn" onclick="scrollToTop()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+    </button>
+
+    <div id="global-lightbox" onclick="this.style.display='none'; document.body.style.overflow='auto'"><img id="global-img" src=""></div>
+
+    <nav class="side-nav">
+        <a href="#cover" class="side-dot active"></a>
+        <a href="#intro" class="side-dot"></a>
+        <a href="#achievements" class="side-dot"></a>
+        <a href="#platform" class="side-dot"></a>
+        <a href="#events" class="side-dot"></a>
+        <a href="#action" class="side-dot"></a>
+        <a href="#station" class="side-dot"></a>
+        <a href="#aitrash" class="side-dot"></a>
+        <a href="#about" class="side-dot"></a>
+        <a href="#contact" class="side-dot"></a>
+    </nav>
+
+    <div class="header-wrapper">
+        <div class="header-top-frame">
+            <div class="logo-left">
+                <a href="../../index.html"><img src="../../assets/images/Logo_SHLL_long.png" alt="SHL Logo"></a>
+            </div>
+            <div class="header-middle">
+                <div class="horizontal-line"></div>
+            </div>
+            <div class="logo-right">
+                <img src="../../assets/images/index/logo1.png" alt="UEH">
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <section id="cover" data-aos="zoom-out" data-aos-duration="2000">
+            <img src="../../assets/images/package1/Tranh_Campus_A.png" alt="Trang Bìa">
+        </section>
+
+        <section id="intro">
+            <h1 data-aos="fade-up">NO SINGLE-USE<br>PLASTIC JOURNEY</h1>
+            <p class="description" data-aos="fade-up" data-aos-delay="200">A campaign to shift perceptions around plastic waste through The Zero Pledge commitment, built upon hai trụ cột chính: #ReduceForMore and #SortingForChange.</p>
+        </section>
+
+        <section id="achievements">
+            <h2 class="achievements-title" data-aos="fade-down">ACHIEVEMENTS</h2>
+            <div class="stats-container">
+                <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+                    <span class="stat-number">100+</span><span class="stat-label">EVENTS</span>
+                </div>
+                <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+                    <span class="stat-number">2500+</span><span class="stat-label">PEOPLE INVOLVED</span>
+                </div>
+                <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+                    <span class="stat-number">25</span><span class="stat-label">TONS WASTE SORTED</span>
+                </div>
+                <div class="stat-item" data-aos="fade-up" data-aos-delay="400">
+                    <span class="stat-number">50+</span><span class="stat-label">PARTNERS</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="platform">
+            <div class="split-container">
+                <div class="split-image" data-aos="fade-right">
+                    <img src="../../assets/images/package1/Platform_change.png" alt="Platform Change" style="width: 50%;">
+                </div>
+                <div class="split-content" data-aos="fade-left">
+                    <h2>PLATFORM FOR GREEN FAIR</h2>
+                    <p>Building a sustainable community through green exchange platforms and plastic-free initiatives. NSUP – "No Single-Use Plastic Journey".</p>
+                    <div class="qr-group" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="qr-code" style="width: 80px; margin-bottom: 10px;"><img src="../../assets/images/package1/qr-code.png" alt="QR" style="width:100%"></div>
+                        <div class="qr-links" style="font-size: 13px;">UEH Campus V<br><a href="mailto:smarthub@ueh.edu.vn" style="color:var(--pkg-blue); text-decoration:none; font-weight:600">smarthub@ueh.edu.vn</a></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="events" data-aos="fade-up">
+            <h2 style="color:var(--pkg-gold); margin-bottom: 20px; font-weight: 800;">EVENT SERIES</h2>
+            <div class="marquee-container">
+                <div class="marquee-content">
+                    <img src="../../assets/images/package2/social1.png" onclick="openGlobalLB(this)">
+                    <img src="../../assets/images/package2/social2.png" onclick="openGlobalLB(this)">
+                    <img src="../../assets/images/package2/social3.jpg" onclick="openGlobalLB(this)">
+                    <img src="../../assets/images/package2/social4.png" onclick="openGlobalLB(this)">
+                    <img src="../../assets/images/package2/social5.png" onclick="openGlobalLB(this)">
+                    <img src="../../assets/images/package2/social6.jpg" onclick="openGlobalLB(this)">
+                    <img src="../../assets/images/package2/social7.jpg" onclick="openGlobalLB(this)">
+                    <img src="../../assets/images/package2/social9.png" onclick="openGlobalLB(this)">
+                    <img src="../../assets/images/package2/social10.jpg" onclick="openGlobalLB(this)">
+                    <img src="../../assets/images/package2/social1.png" onclick="openGlobalLB(this)">
+                    <img src="../../assets/images/package2/social2.png" onclick="openGlobalLB(this)">
+                    <img src="../../assets/images/package2/social3.jpg" onclick="openGlobalLB(this)">
+                </div>
+            </div>
+        </section>
+
+        <section id="action">
+            <div class="action-left" data-aos="fade-right">
+                <h2>9 ACTIONS</h2>
+                <p>#ReduceForMore<br>#SortingForChange</p>
+            </div>
+            <div class="action-right" data-aos="zoom-in-left">
+                <div class="action-pile-wrapper">
+                    <div class="action-pile-card" style="background:var(--action-orange)" onclick="zoomAction(this)"><img src="../../assets/images/package2/1@3x.png"></div>
+                    <div class="action-pile-card" style="background:var(--action-green)" onclick="zoomAction(this)"><img src="../../assets/images/package2/2@3x.png"></div>
+                    <div class="action-pile-card" style="background:var(--action-yellow)" onclick="zoomAction(this)"><img src="../../assets/images/package2/3@3x.png"></div>
+                    <div class="action-pile-card" style="background:var(--action-orange)" onclick="zoomAction(this)"><img src="../../assets/images/package2/4@3x.png"></div>
+                    <div class="action-pile-card" style="background:var(--action-green)" onclick="zoomAction(this)"><img src="../../assets/images/package2/2@3x.png"></div>
+                    <div class="action-pile-card" style="background:var(--action-yellow)" onclick="zoomAction(this)"><img src="../../assets/images/package2/6@3x.png"></div>
+                    <div class="action-pile-card" style="background:var(--action-orange)" onclick="zoomAction(this)"><img src="../../assets/images/package2/7@3x.png"></div>
+                    <div class="action-pile-card" style="background:var(--action-green)" onclick="zoomAction(this)"><img src="../../assets/images/package2/8@3x.png"></div>
+                    <div class="action-pile-card" style="background:var(--action-yellow)" onclick="zoomAction(this)"><img src="../../assets/images/package2/9@3x.png"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="station">
+            <div class="split-container">
+                <div class="split-content" data-aos="fade-right">
+                    <h2>UEHGC - ZEEN AI SCAN</h2>
+                    <p>"UEHGC - Zeen AI Scan" is an application (App) that identifies, classifies, and provides educational information about waste using Artificial Intelligence (AI).<br><br>This tool is designed to educate on consumer responsibility and facilitate quick and efficient waste segregation at the source.</p>
+                    <div class="qr-group" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="qr-code" style="width: 80px; margin-bottom: 10px;"><img src="../../assets/images/package1/qr-code.png" alt="QR" style="width:100%"></div>
+                        <div class="qr-links" style="font-size: 13px;">Link: <a href="https://greencampus.ueh.edu.vn/">UEH Green Campus</a><br>Mail: <a href="mailto:smarthub@ueh.edu.vn">smarthub@ueh.edu.vn</a></div>
+                    </div>
+                </div>
+                <div class="split-image" data-aos="fade-left">
+                    <img src="../../assets/images/package1/Free_Wooden.png" alt="Zeen AI Scan" style="width: 50%;">
+                </div>
+            </div>
+        </section>
+
+        <section id="aitrash">
+            <div class="split-container">
+                <div class="split-image" data-aos="fade-up-right">
+                    <img src="../../assets/images/package1/AI_Trash_Bin.png" alt="AI Trash Bin">
+                </div>
+                <div class="split-content" style="text-align: right;" data-aos="fade-up-left">
+                    <h2>AI TRASH BIN</h2>
+                    <p>The initiative aspires for every individual on campus to become an active link in the journey toward eliminating single-use plastics.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="about-title-main" data-aos="fade-right">ABOUT US</div>
+            <div class="about-minimal-grid">
+                <div class="about-column" data-aos="fade-up" data-aos-delay="100">
+                    <h3>Publication</h3>
+                    <div class="about-content">
+                        <div class="pub-item">
+                            Tufano, M., Duarte, F., Mazzarello, M., Eshtiyagh, J., Ratti, C. and Camps, G., 2025. 
+                            <a href="#">Data-Driven Nutritional Assessment of Urban Food Landscapes.</a> Scientific Reports.
+                        </div>
+                        <div class="pub-item">
+                            Su, R., Eshtiyagh, J., Santi, P., Hu, S., Duarte, F., Mazzarello, M. and Ratti, C., 2025. 
+                            <a href="#">Determinants of the localized behavior of individual food delivery choices.</a> TR Part C.
+                        </div>
+                    </div>
+                </div>
+                <div class="about-column" data-aos="fade-up" data-aos-delay="200">
+                    <h3>People</h3>
+                    <div class="about-content">
+                        <p style="margin-bottom: 25px; font-weight: 500; color: var(--pkg-blue);">No Single-Use Plastic Journey</p>
+                        <div class="people-names">
+                            <b>Dang The Hien, PhD</b>
+                            <b>Nguyen Quynh Tram</b>
+                            <b>Luu Pham Thanh Binh</b>
+                            <span class="dept-info">Institute of Smart City & Management</span>
+                        </div>
+                        <div class="org-info">smART HUB Living Labs<br><span>UEH University</span></div>
+                    </div>
+                </div>
+                <div class="about-column" data-aos="fade-up" data-aos-delay="300">
+                    <h3>Publication</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER: Updated to match Index.html -->
+        <!-- FOOTER: Updated to match Index.html -->
+        <footer class="footer-container">
+            <div class="footer-grid">
+                <!-- Col 1: Logo Text -->
+                <div class="footer-col-logo">
+                    <span class="logo-light">smART HUB</span> <span class="logo-bold">LIVING LABS</span>
+                </div>
+                
+                <!-- Col 2: Info Desc -->
+                <div class="footer-col-desc">
+                    For more information of the smART Hub Living Labs.
+                </div>
+                
+                <!-- Col 3: Address -->
+                <div class="footer-col-address">
+                    <strong>smART HUB Living Labs</strong><br>
+                    UEH, Campus V<br>
+                    232/6 Vo Thi Sau, Xuan Hoa Ward<br>
+                    Ho Chi Minh City, Vietnam
+                </div>
+                
+                <!-- Col 4: Contacts with Icons -->
+                <div class="footer-col-contact">
+                    <div class="contact-item">
+                        <svg class="contact-icon" viewBox="0 0 24 24"><path d="M6.62 10.79a15.149 15.149 0 0 0 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        <span>+84 937 516 101</span>
+                    </div>
+                    <div class="contact-item">
+                        <svg class="contact-icon" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                        <span><a href="https://greencampus.ueh.edu.vn/" target="_blank">greencampus.ueh.edu.vn</a></span>
+                    </div>
+                    <div class="contact-item">
+                        <svg class="contact-icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                        <span><a href="mailto:smarthub@ueh.edu.vn">smarthub@ueh.edu.vn</a></span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true, offset: 120, easing: 'ease-in-out' });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function openGlobalLB(img) {
+            document.getElementById("global-img").src = img.src;
+            document.getElementById("global-lightbox").style.display = "flex";
+            document.body.style.overflow = "hidden";
+        }
+
+        function zoomAction(card) {
+            document.getElementById("global-img").src = card.querySelector('img').src;
+            document.getElementById("global-lightbox").style.display = "flex";
+            document.body.style.overflow = "hidden";
+        }
+
+        window.onscroll = function() {
+            const topBtn = document.getElementById("topBtn");
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll > 600) topBtn.classList.add("show");
+            else topBtn.classList.remove("show");
+
+            const sections = document.querySelectorAll('section, footer');
+            sections.forEach(sec => {
+                const offset = sec.offsetTop - 350;
+                const height = sec.offsetHeight;
+                const id = sec.getAttribute('id');
+                if (currentScroll >= offset && currentScroll < offset + height) {
+                    document.querySelectorAll('.side-dot').forEach(dot => {
+                        dot.classList.remove('active');
+                        if(dot.getAttribute('href') === '#' + id) dot.classList.add('active');
+                    });
+                }
+            });
+        };
+    </script>
+</body>
+</html>

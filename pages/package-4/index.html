@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Package 4 - Art For All</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        /* --- 1. RESET & NỀN --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a392e; 
+            background-image: url('../../assets/images/index/gradiant noise 5.jpg'); 
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .sync-arrow {
+            width: 1em; height: 1em;
+            fill: none; stroke: currentColor; stroke-width: 2;
+            stroke-linecap: round; stroke-linejoin: round;
+        }
+
+        /* --- 2. HEADER --- */
+        .header-wrapper { 
+            padding: 40px 5% 20px 5%; 
+            display: flex; 
+            flex-direction: column; 
+            width: 100%;
+            background: transparent;
+        }
+        .header-top-frame { 
+            display: flex; 
+            align-items: center; 
+            gap: 20px; 
+            width: 100%; 
+        }
+        .logo-left img { 
+            height: 30px; 
+            display: block; 
+        }
+        .header-middle { 
+            flex-grow: 1; 
+            display: flex; 
+            flex-direction: column; 
+        }
+        .horizontal-line { 
+            width: 100%; 
+            height: 1px; 
+            background-color: rgba(255, 255, 255, 0.15); 
+        }
+        .logo-right img { 
+            height: 35px; 
+            display: block; 
+        }
+
+        /* --- 3. SIDE NAVIGATION & BACK TO TOP --- */
+        .side-nav {
+            position: fixed; left: 25px; top: 50%; transform: translateY(-50%);
+            display: flex; flex-direction: column; gap: 15px; z-index: 1000;
+        }
+        .side-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, 0.3); transition: 0.5s; cursor: pointer; text-decoration: none; }
+        .side-dot.active { width: 35px; height: 10px; border-radius: 20px; background: white; }
+
+        .back-to-top {
+            position: fixed; bottom: 30px; right: 30px; width: 45px; height: 45px;
+            background: #ffffff; color: #1a392e; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            text-decoration: none; z-index: 1000; opacity: 0; visibility: hidden; transition: 0.3s;
+            cursor: pointer; border: none; outline: none;
+        }
+        .back-to-top.show { opacity: 1; visibility: visible; }
+
+        /* --- 4. GRID --- */
+        .main-grid-wrapper {
+            max-width: 1200px; 
+            margin: 0 auto;
+            padding: 160px 20px 80px 20px;
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 15px;
+        }
+
+        .square-box {
+            width: 100%; aspect-ratio: 1 / 1; 
+            background-color: rgba(255, 255, 255, 0.12); border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            backdrop-filter: blur(4px);
+        }
+        .square-box:hover { transform: scale(1.05); background-color: rgba(255, 255, 255, 0.25); }
+        .box-transparent { background-color: transparent; box-shadow: none; backdrop-filter: none; }
+
+        .huge-title-block { grid-column: span 2; display: flex; flex-direction: column; justify-content: center; }
+        .huge-title-block h2 { font-size: clamp(20px, 3.5vw, 48px); font-weight: 800; line-height: 0.9; text-transform: uppercase; }
+        .grid-arrow-icon { font-size: 50px; margin-top: 5px; }
+
+        .text-outline {
+            font-size: clamp(28px, 5vw, 85px); font-weight: 800;
+            color: transparent; -webkit-text-stroke: 1.2px white; text-transform: uppercase;
+        }
+
+        /* --- 5. WELCOME --- */
+        .welcome-section { max-width: 1200px; margin: 0 auto; padding: 40px 20px 100px 20px; display: flex; flex-direction: column; gap: 80px; }
+        .welcome-content-split { display: grid; grid-template-columns: 1fr 1.4fr; gap: 60px; align-items: start; }
+        .welcome-text-side h2 { font-size: clamp(35px, 5vw, 55px); font-weight: 800; margin-bottom: 25px; }
+        .welcome-desc { font-size: 13px; line-height: 1.7; margin-bottom: 40px; opacity: 0.9; }
+        
+        .opening-contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 50px; }
+        .info-sub-block h4 { font-size: 14px; font-weight: 700; margin-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 5px; }
+        .info-sub-block p { font-size: 11px; line-height: 1.6; opacity: 0.8; }
+
+        .newsletter-box h3 { font-size: 20px; font-weight: 700; margin-bottom: 25px; }
+        .form-row { display: flex; gap: 15px; margin-bottom: 15px; }
+        .input-line { background: transparent; border: none; border-bottom: 1px solid rgba(255,255,255,0.4); color: white; padding: 10px 0; font-size: 12px; flex: 1; outline: none; }
+        .btn-newsletter { margin-top: 15px; background: transparent; border: 1px solid white; color: white; padding: 10px 30px; border-radius: 30px; font-size: 12px; cursor: pointer; transition: 0.3s; font-weight: 600; }
+        .btn-newsletter:hover { background: white; color: #1a392e; }
+        .featured-display-img { width: 100%; border-radius: 15px; box-shadow: 0 15px 40px rgba(0,0,0,0.3); }
+
+        /* ANIMATION FOR LOGO BELT */
+        @keyframes loop {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* --- FOOTER (MATCHING INDEX) --- */
+        .footer-container { 
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 40px 10% 60px 10%; 
+            margin-top: 40px;
+            position: relative;
+            z-index: 10;
+            background: #050d0a !important;
+            color: white;
+            width: 100%;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1.5fr 1.5fr 1.5fr;
+            gap: 30px;
+            align-items: start;
+        }
+        .footer-col-logo {
+            font-size: 16px;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            color: #ffffff;
+            text-align: left;
+        }
+        .footer-col-logo .logo-light { font-weight: 300; opacity: 0.8; }
+        .footer-col-logo .logo-bold { font-weight: 700; }
+        .footer-col-desc {
+            font-size: 11px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.75);
+            text-align: left;
+        }
+        .footer-col-address {
+            font-size: 11px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.75);
+            text-align: left;
+        }
+        .footer-col-address strong { color: #ffffff; font-weight: 600; }
+        .footer-col-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.75);
+            text-align: left;
+        }
+        .footer-col-contact .contact-item { display: flex; align-items: center; gap: 8px; }
+        .footer-col-contact .contact-icon { width: 12px; height: 12px; fill: currentColor; flex-shrink: 0; }
+        .footer-col-contact a { color: inherit; text-decoration: none; }
+        .footer-col-contact a:hover { color: #d76a28 !important; text-decoration: underline; }
+
+        @media (max-width: 900px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                row-gap: 30px;
+            }
+        }
+        @media (max-width: 600px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="back-to-top" id="topBtn" onclick="scrollToTop()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+    </button>
+
+    <nav class="side-nav">
+        <a href="#main-art-grid" class="side-dot active"></a>
+        <a href="#welcome" class="side-dot"></a>
+        <a href="#contact" class="side-dot"></a>
+    </nav>
+
+    <div class="header-wrapper">
+        <div class="header-top-frame">
+            <div class="logo-left">
+                <a href="../../index.html"><img src="../../assets/images/Logo_SHLL_long.png" alt="SHL Logo"></a>
+            </div>
+            <div class="header-middle">
+                <div class="horizontal-line"></div>
+            </div>
+            <div class="logo-right">
+                <img src="../../assets/images/index/logo1.png" alt="UEH">
+            </div>
+        </div>
+    </div>
+
+    <main class="main-grid-wrapper" id="main-art-grid">
+        <div class="square-box" data-aos="zoom-in" data-aos-delay="100"></div>
+        <div class="square-box" data-aos="zoom-in" data-aos-delay="150"></div>
+        <div class="square-box box-transparent" data-aos="fade-down"><span class="text-outline">ART</span></div>
+        <div class="square-box" data-aos="zoom-in" data-aos-delay="200"></div>
+        <div class="square-box" data-aos="zoom-in" data-aos-delay="250"></div>
+        <div class="square-box" data-aos="zoom-in" data-aos-delay="300"></div>
+        <div class="square-box" data-aos="zoom-in" data-aos-delay="350"></div>
+
+        <div class="huge-title-block" data-aos="fade-right">
+            <h2>CURRENT<br>EXHIBITIONS</h2>
+            <svg class="sync-arrow grid-arrow-icon" viewBox="0 0 24 24"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </div>
+        <div class="square-box" data-aos="zoom-in" data-aos-delay="400"></div>
+        <div class="square-box" data-aos="zoom-in" data-aos-delay="450"></div>
+        <div class="square-box box-transparent" data-aos="fade-down" data-aos-delay="500"><span class="text-outline">FOR</span></div>
+        <div class="square-box" data-aos="zoom-in" data-aos-delay="550"></div>
+        <div class="square-box" data-aos="zoom-in" data-aos-delay="600"></div>
+
+        <div class="square-box" data-aos="zoom-in"></div>
+        <div class="square-box" data-aos="zoom-in"><span style="font-size: clamp(28px, 5vw, 65px); font-weight: 800;">ALL</span></div>
+        <div class="square-box" data-aos="zoom-in"></div><div class="square-box" data-aos="zoom-in"></div><div class="square-box" data-aos="zoom-in"></div><div class="square-box" data-aos="zoom-in"></div><div class="square-box" data-aos="zoom-in"></div>
+        <div class="square-box" data-aos="zoom-in"></div><div class="square-box" data-aos="zoom-in"></div><div class="square-box" data-aos="zoom-in"></div><div class="square-box" data-aos="zoom-in"></div><div class="square-box" data-aos="zoom-in"></div><div class="square-box" data-aos="zoom-in"></div><div class="square-box" data-aos="zoom-in"></div>
+
+        <div class="huge-title-block" data-aos="fade-right"><h2>COMING<br>EVENTS</h2></div>
+        <div class="huge-title-block" style="grid-column: span 1;" data-aos="zoom-in">
+            <svg class="sync-arrow grid-arrow-icon" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+        <div class="square-box" data-aos="zoom-in"></div><div class="square-box" data-aos="zoom-in"></div><div class="square-box" data-aos="zoom-in"></div><div class="square-box" data-aos="zoom-in"></div>
+        <div class="square-box" data-aos="zoom-in"></div><div class="square-box" data-aos="zoom-in"></div><div class="square-box" data-aos="zoom-in"></div><div class="square-box" data-aos="zoom-in"></div><div class="square-box" data-aos="zoom-in"></div><div class="square-box" data-aos="zoom-in"></div><div class="square-box" data-aos="zoom-in"></div>
+
+        <div class="square-box" data-aos="zoom-in"></div><div class="square-box" data-aos="zoom-in"></div><div class="square-box" data-aos="zoom-in"></div><div class="square-box" data-aos="zoom-in"></div>
+        <div class="huge-title-block" style="grid-column: span 1;" data-aos="zoom-in">
+            <svg class="sync-arrow grid-arrow-icon" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </div>
+        <div class="huge-title-block" style="text-align: right;" data-aos="fade-left"><h2>PAST<br>EVENTS</h2></div>
+        <div class="square-box" data-aos="zoom-in"></div><div class="square-box" data-aos="zoom-in"></div><div class="square-box" data-aos="zoom-in"></div><div class="square-box" data-aos="zoom-in"></div><div class="square-box" data-aos="zoom-in"></div><div class="square-box" data-aos="zoom-in"></div><div class="square-box" data-aos="zoom-in"></div>
+    </main>
+
+    <section class="welcome-section" id="welcome">
+        <div class="welcome-content-split">
+            <div class="welcome-text-side" data-aos="fade-right">
+                <h2>Welcome!</h2>
+                <p class="welcome-desc">After four months of continuous work, the theses clearly reflected a rigorous, disciplined, and creative academic process.</p>
+                <div class="opening-contact-grid">
+                    <div class="info-sub-block"><h4>Opening times</h4><p>Sun - Fri &nbsp; 8.am - 6.pm<br>Sat &nbsp;&nbsp;&nbsp;&nbsp; 10.am - 6.pm</p></div>
+                    <div class="info-sub-block"><h4>Contact</h4><p><strong>Email</strong> smarthub@ueh.edu.vn<br><strong>Address</strong> 232/6 Vo Thi Sau Str,<br>District 3, HCMC.</p></div>
+                </div>
+                <div class="newsletter-box">
+                    <h3>Art & Ideas into your inbox</h3>
+                    <div class="form-row"><input type="text" class="input-line" placeholder="First Name"><input type="text" class="input-line" placeholder="Last Name"></div>
+                    <input type="email" class="input-line" placeholder="Your Email" style="width: 100%;">
+                    <button class="btn-newsletter">Subscribe</button>
+                </div>
+            </div>
+            <div class="welcome-visual-side" data-aos="fade-left">
+                <h2 style="font-size: 32px; font-weight: 800; text-align: right; margin-bottom: 20px;">ART WITHOUT<br>BORDERS</h2>
+                <!-- CẬP NHẬT: Đổi từ featured-display.jpg thành art.webp -->
+                <img src="../../assets/images/package4/art.webp" class="featured-display-img" alt="Exhibition">
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-container">
+        <div class="footer-grid">
+            <!-- Col 1: Logo Text -->
+            <div class="footer-col-logo">
+                <span class="logo-light">smART HUB</span> <span class="logo-bold">LIVING LABS</span>
+            </div>
+            
+            <!-- Col 2: Info Desc -->
+            <div class="footer-col-desc">
+                For more information of the smART Hub Living Labs.
+            </div>
+            
+            <!-- Col 3: Address -->
+            <div class="footer-col-address">
+                <strong>smART HUB Living Labs</strong><br>
+                UEH, Campus V<br>
+                232/6 Vo Thi Sau, Xuan Hoa Ward<br>
+                Ho Chi Minh City, Vietnam
+            </div>
+            
+            <!-- Col 4: Contacts with Icons -->
+            <div class="footer-col-contact">
+                <div class="contact-item">
+                    <svg class="contact-icon" viewBox="0 0 24 24"><path d="M6.62 10.79a15.149 15.149 0 0 0 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                    <span>+84 937 516 101</span>
+                </div>
+                <div class="contact-item">
+                    <svg class="contact-icon" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                    <span><a href="https://greencampus.ueh.edu.vn/" target="_blank">greencampus.ueh.edu.vn</a></span>
+                </div>
+                <div class="contact-item">
+                    <svg class="contact-icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    <span><a href="mailto:smarthub@ueh.edu.vn">smarthub@ueh.edu.vn</a></span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true, offset: 50, easing: 'ease-in-out' });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.onscroll = function() {
+            var btt = document.getElementById("topBtn");
+            const currentPos = window.pageYOffset;
+
+            if (currentPos > 500) btt.classList.add("show");
+            else btt.classList.remove("show");
+
+            const sections = document.querySelectorAll('main, section, footer');
+            sections.forEach(sec => {
+                const offset = sec.offsetTop - 350;
+                const height = sec.offsetHeight;
+                const id = sec.getAttribute('id');
+                if (currentPos >= offset && currentPos < offset + height) {
+                    document.querySelectorAll('.side-dot').forEach(dot => {
+                        dot.classList.remove('active');
+                        if(dot.getAttribute('href') === '#' + id) dot.classList.add('active');
+                    });
+                }
+            });
+        };
+    </script>
+</body>
+</html>
