@@ -15,23 +15,50 @@
         body { font-family: 'Montserrat', sans-serif; overflow: hidden; background: #000; }
 
         /* --- 1. HEADER --- */
-        .top-nav {
-            position: fixed; top: 0; left: 0; width: 100%;
-            padding: 25px 5%; display: flex; justify-content: space-between; align-items: center;
-            z-index: 1000; transition: opacity 0.5s ease;
+        .header-wrapper { 
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 40px 5% 20px 5%; 
+            display: flex; 
+            flex-direction: column; 
+            background: transparent;
+            z-index: 1000;
+            transition: opacity 0.5s ease;
         }
-        
-        .logo-group { display: flex; align-items: center; text-decoration: none; }
-        /* Đã bỏ filter để giữ màu gốc của logo */
-        .logo-group img { height: 45px; transition: 0.5s; }
-
+        .header-top-frame { 
+            display: flex; 
+            align-items: center; 
+            gap: 20px; 
+            width: 100%; 
+        }
+        .logo-left img { 
+            height: 30px; 
+            display: block; 
+        }
+        .header-middle { 
+            flex-grow: 1; 
+            display: flex; 
+            flex-direction: column; 
+        }
+        .horizontal-line { 
+            width: 100%; 
+            height: 1px; 
+            background-color: rgba(255, 255, 255, 0.15); 
+        }
+        .logo-right { 
+            display: flex;
+            align-items: center; 
+        }
         .back-icon-btn { 
-            width: 45px; height: 45px; border-radius: 50%;
-            display: flex; justify-content: center; align-items: center;
-            color: #fff; background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px); transition: 0.4s; text-decoration: none;
+            width: 35px; height: 35px; border-radius: 50%; display: flex; justify-content: center; align-items: center; 
+            color: #fff; background: rgba(255, 255, 255, 0.1); transition: 0.4s; text-decoration: none; 
+            border: 1px solid rgba(255, 255, 255, 0.2); font-size: 14px; font-weight: bold;
         }
-        .back-icon-btn:hover { background: #fff; color: var(--pkg-blue); transform: scale(1.1); }
+        .back-icon-btn:hover { 
+            background: #d76a28; border-color: #d76a28; color: #fff; transform: scale(1.1); 
+        }
 
         /* --- 2. SPLIT LAYOUT --- */
         .architecture-container { display: flex; width: 100%; height: 100vh; }
@@ -110,7 +137,7 @@
         .newsletter-btn:hover { background: var(--pkg-gold); color: #fff; transform: translateY(-5px); }
 
         /* Hiệu ứng ẩn khi bắt đầu chuyển cảnh */
-        body.is-switching .top-nav, 
+        body.is-switching .header-wrapper, 
         body.is-switching .main-overlay-title,
         body.is-switching .column-content {
             opacity: 0;
@@ -120,16 +147,19 @@
 </head>
 <body>
 
-    <header class="top-nav">
-        <a href="../../index.html" class="logo-group">
-            <img src="../../assets/images/Logo_SHLL_long.png" alt="Logo">
-        </a>
-        <div class="nav-actions">
-            <a href="index.html" class="back-icon-btn">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-            </a>
+    <div class="header-wrapper">
+        <div class="header-top-frame">
+            <div class="logo-left">
+                <a href="../../index.html"><img src="../../assets/images/Logo_SHLL_long.png" alt="SHL Logo"></a>
+            </div>
+            <div class="header-middle">
+                <div class="horizontal-line"></div>
+            </div>
+            <div class="logo-right">
+                <a href="index.html"><img src="../../assets/images/index/logo1.png" alt="UEH" style="height: 30px; width: auto; display: block;"></a>
+            </div>
         </div>
-    </header>
+    </div>
 
     <div class="main-overlay-title">
         <h1>ARCHITECTURAL<br>DESIGN</h1>

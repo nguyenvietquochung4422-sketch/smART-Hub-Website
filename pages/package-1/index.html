@@ -53,26 +53,20 @@
             height: 1px; 
             background-color: rgba(14, 59, 102, 0.15); 
         }
-        .logo-right img { 
-            height: 35px; 
-            display: block; 
+        .logo-right { 
+            display: flex;
+            align-items: center; 
+        }
+        .back-icon-btn { 
+            width: 35px; height: 35px; border-radius: 50%; display: flex; justify-content: center; align-items: center; 
+            color: #333; background: rgba(0, 0, 0, 0.05); transition: 0.4s; text-decoration: none; 
+            border: 1px solid rgba(0, 0, 0, 0.1); font-size: 14px; font-weight: bold;
+        }
+        .back-icon-btn:hover { 
+            background: #d76a28; border-color: #d76a28; color: #fff; transform: scale(1.1); 
         }
 
-        /* --- 2. SIDE NAVIGATION & BACK TO TOP --- */
-        .side-nav { position: fixed; left: 30px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 12px; z-index: 1000; }
-        .side-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(0,0,0,0.1); transition: 0.5s; cursor: pointer; text-decoration: none; }
-        .side-dot.active { width: 35px; height: 12px; border-radius: 20px; background: var(--pkg-gold); }
 
-        .back-to-top {
-            position: fixed; bottom: 40px; right: 40px; width: 50px; height: 50px;
-            background: var(--pkg-gold); color: white; border-radius: 50%;
-            display: flex; justify-content: center; align-items: center;
-            text-decoration: none; z-index: 9991; transition: 0.4s;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1); opacity: 0; visibility: hidden;
-            cursor: pointer; border: none; outline: none;
-        }
-        .back-to-top.show { opacity: 1; visibility: visible; }
-        .back-to-top:hover { transform: translateY(-5px); background: var(--pkg-blue); }
 
         /* --- 3. SECTIONS --- */
         section { min-height: 100vh; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; padding: 100px 10%; }
@@ -152,89 +146,100 @@
 
         /* --- 5. FOOTER (MATCHING INDEX) --- */
         .footer-container { 
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
-            padding: 40px 10% 60px 10%; 
+            border-top: none;
+            padding: 40px 2% 60px 2%; 
             margin-top: 40px;
             position: relative;
             z-index: 10;
-            background: #050d0a !important;
-            color: white;
+            background: transparent !important;
+            color: var(--pkg-blue, #0E3B66);
             width: 100%;
         }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 1.5fr 1.5fr 1.5fr;
-            gap: 30px;
-            align-items: start;
+        .footer-contact-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
         }
-        .footer-col-logo {
-            font-size: 16px;
+        .footer-contact-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--pkg-blue, #0E3B66);
             letter-spacing: 0.5px;
-            white-space: nowrap;
-            color: #ffffff;
-            text-align: left;
         }
-        .footer-col-logo .logo-light { font-weight: 300; opacity: 0.8; }
-        .footer-col-logo .logo-bold { font-weight: 700; }
-        .footer-col-desc {
-            font-size: 11px;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.75);
-            text-align: left;
+        .footer-contact-line {
+            flex-grow: 1;
+            height: 1px;
+            background-color: rgba(14, 59, 102, 0.15);
         }
-        .footer-col-address {
-            font-size: 11px;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.75);
-            text-align: left;
+        .footer-content-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 30px;
         }
-        .footer-col-address strong { color: #ffffff; font-weight: 600; }
-        .footer-col-contact {
+        .footer-left-col {
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            font-size: 11px;
-            color: rgba(255, 255, 255, 0.75);
+            gap: 10px;
             text-align: left;
+            max-width: 50%;
         }
-        .footer-col-contact .contact-item { display: flex; align-items: center; gap: 8px; }
-        .footer-col-contact .contact-icon { width: 12px; height: 12px; fill: currentColor; flex-shrink: 0; }
-        .footer-col-contact a { color: inherit; text-decoration: none; }
-        .footer-col-contact a:hover { color: #d76a28 !important; text-decoration: underline; }
-
-        @media (max-width: 900px) {
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-                row-gap: 30px;
+        .footer-left-col .info-text {
+            font-size: 11px;
+            font-style: italic;
+            color: #555555;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+        .footer-left-col .email-link {
+            font-size: 11px;
+            color: var(--pkg-blue, #0E3B66);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+        .footer-left-col .email-link:hover {
+            color: var(--pkg-gold, #C09553);
+            text-decoration: underline;
+        }
+        .footer-right-col {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            text-align: right;
+            max-width: 50%;
+        }
+        .footer-right-col .brand-text {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--pkg-blue, #0E3B66);
+            letter-spacing: 0.5px;
+        }
+        .footer-right-col .address-text {
+            font-size: 11px;
+            color: #555555;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+        @media (max-width: 768px) {
+            .footer-left-col, .footer-right-col {
+                max-width: 100%;
             }
-        }
-        @media (max-width: 600px) {
-            .footer-grid {
-                grid-template-columns: 1fr;
+            .footer-right-col {
+                text-align: left;
             }
         }
     </style>
 </head>
 <body>
 
-    <button class="back-to-top" id="topBtn" onclick="scrollToTop()">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
-    </button>
+
 
     <div id="global-lightbox" onclick="this.style.display='none'; document.body.style.overflow='auto'"><img id="global-img" src=""></div>
 
-    <nav class="side-nav">
-        <a href="#cover" class="side-dot active"></a>
-        <a href="#intro" class="side-dot"></a>
-        <a href="#achievements" class="side-dot"></a>
-        <a href="#platform" class="side-dot"></a>
-        <a href="#events" class="side-dot"></a>
-        <a href="#action" class="side-dot"></a>
-        <a href="#station" class="side-dot"></a>
-        <a href="#aitrash" class="side-dot"></a>
-        <a href="#about" class="side-dot"></a>
-        <a href="#contact" class="side-dot"></a>
-    </nav>
+
 
     <div class="header-wrapper">
         <div class="header-top-frame">
@@ -245,7 +250,7 @@
                 <div class="horizontal-line"></div>
             </div>
             <div class="logo-right">
-                <img src="../../assets/images/index/logo1.png" alt="UEH">
+                <a href="../../index.html"><img src="../../assets/images/index/logo1.png" alt="UEH" style="height: 30px; width: auto; display: block;"></a>
             </div>
         </div>
     </div>
@@ -400,39 +405,18 @@
         <!-- FOOTER: Updated to match Index.html -->
         <!-- FOOTER: Updated to match Index.html -->
         <footer class="footer-container">
-            <div class="footer-grid">
-                <!-- Col 1: Logo Text -->
-                <div class="footer-col-logo">
-                    <span class="logo-light">smART HUB</span> <span class="logo-bold">LIVING LABS</span>
+            <div class="footer-contact-header">
+                <span class="footer-contact-title">Contact</span>
+                <div class="footer-contact-line"></div>
+            </div>
+            <div class="footer-content-row">
+                <div class="footer-left-col">
+                    <span class="info-text">For more information of the smART Hub Living Labs.</span>
+                    <a href="mailto:smarthub@ueh.edu.vn" class="email-link">smarthub@ueh.edu.vn</a>
                 </div>
-                
-                <!-- Col 2: Info Desc -->
-                <div class="footer-col-desc">
-                    For more information of the smART Hub Living Labs.
-                </div>
-                
-                <!-- Col 3: Address -->
-                <div class="footer-col-address">
-                    <strong>smART HUB Living Labs</strong><br>
-                    UEH, Campus V<br>
-                    232/6 Vo Thi Sau, Xuan Hoa Ward<br>
-                    Ho Chi Minh City, Vietnam
-                </div>
-                
-                <!-- Col 4: Contacts with Icons -->
-                <div class="footer-col-contact">
-                    <div class="contact-item">
-                        <svg class="contact-icon" viewBox="0 0 24 24"><path d="M6.62 10.79a15.149 15.149 0 0 0 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                        <span>+84 937 516 101</span>
-                    </div>
-                    <div class="contact-item">
-                        <svg class="contact-icon" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-                        <span><a href="https://greencampus.ueh.edu.vn/" target="_blank">greencampus.ueh.edu.vn</a></span>
-                    </div>
-                    <div class="contact-item">
-                        <svg class="contact-icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-                        <span><a href="mailto:smarthub@ueh.edu.vn">smarthub@ueh.edu.vn</a></span>
-                    </div>
+                <div class="footer-right-col">
+                    <span class="brand-text">smART HUB Living Labs</span>
+                    <span class="address-text">UEH, Campus V 232/6 Vo Thi Sau, Xuan Hoa Ward, Ho Chi Minh City.</span>
                 </div>
             </div>
         </footer>
@@ -441,10 +425,6 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 1000, once: true, offset: 120, easing: 'ease-in-out' });
-
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
 
         function openGlobalLB(img) {
             document.getElementById("global-img").src = img.src;
@@ -457,27 +437,6 @@
             document.getElementById("global-lightbox").style.display = "flex";
             document.body.style.overflow = "hidden";
         }
-
-        window.onscroll = function() {
-            const topBtn = document.getElementById("topBtn");
-            const currentScroll = window.pageYOffset;
-
-            if (currentScroll > 600) topBtn.classList.add("show");
-            else topBtn.classList.remove("show");
-
-            const sections = document.querySelectorAll('section, footer');
-            sections.forEach(sec => {
-                const offset = sec.offsetTop - 350;
-                const height = sec.offsetHeight;
-                const id = sec.getAttribute('id');
-                if (currentScroll >= offset && currentScroll < offset + height) {
-                    document.querySelectorAll('.side-dot').forEach(dot => {
-                        dot.classList.remove('active');
-                        if(dot.getAttribute('href') === '#' + id) dot.classList.add('active');
-                    });
-                }
-            });
-        };
     </script>
 </body>
 </html>
