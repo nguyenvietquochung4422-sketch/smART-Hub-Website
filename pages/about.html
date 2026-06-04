@@ -166,7 +166,7 @@
 
         /* --- SLIDE 1: VISION --- */
         #vision {
-            background: transparent;
+            background: radial-gradient(circle at center, rgba(255, 239, 219, 0.18) 0%, rgba(8, 18, 14, 0) 65%);
             position: relative;
             overflow: hidden;
             display: flex;
@@ -176,6 +176,112 @@
             width: 100%;
             padding: 120px 8% 80px 8%;
         }
+
+        /* Interactive background containers */
+        .vision-bg-container {
+            position: absolute;
+            width: 100vw;
+            height: calc(100vw * 800 / 2500); /* 32vw aspect ratio */
+            left: 0;
+            overflow: visible;
+            pointer-events: auto; /* detect hover within actual visual height boundary */
+            z-index: 1;
+        }
+
+        .vision-bg-container.top-decor {
+            top: 0;
+        }
+
+        .vision-bg-container.bottom-decor {
+            bottom: 0;
+        }
+
+        /* Inner container that holds the 2500px width layout and scaling transform */
+        .vision-bg-inner {
+            position: absolute;
+            width: 2500px;
+            height: 800px;
+            left: 50%;
+            margin-left: -980px;
+            pointer-events: none; /* let parent container handle hover */
+            transform: scale(calc(100vw / 2500));
+            transition: transform 0.3s ease;
+        }
+
+        .top-decor .vision-bg-inner {
+            top: 0;
+            transform-origin: 980px top;
+        }
+
+        .bottom-decor .vision-bg-inner {
+            bottom: 0;
+            transform-origin: 980px bottom;
+            transform: scale(calc(100vw / 2500)) scaleY(-1);
+        }
+
+        .img-box {
+            position: absolute;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.65;
+            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease; 
+        }
+
+        .flipped {
+            transform: matrix(-1, 0, 0, 1, 0, 0);
+        }
+
+        /* STATE 1 - VỊ TRÍ BAN ĐẦU */
+        .image-149 { width: 158px; height: 450px; left: 103px; top: 0px; background-image: url('../assets/images/About/vision/image 149.png'); }
+        .image-150 { width: 436px; height: 424px; left: 1677px; top: 59px; background-image: url('../assets/images/About/vision/image 150.png'); }
+        .image-151 { width: 617px; height: 255px; left: 1216px; top: 270px; background-image: url('../assets/images/About/vision/image 151.png'); }
+        .image-154 { width: 159px; height: 187px; left: 1344px; top: 73px; background-image: url('../assets/images/About/vision/image 154.png'); }
+        .image-156 { width: 153px; height: 247px; left: 1073px; top: 0px; background-image: url('../assets/images/About/vision/image 156.png'); }
+        .image-157 { width: 377px; height: 259px; left: 643px; top: 268px; background-image: url('../assets/images/About/vision/image 157.png'); }
+        .image-158 { width: 355px; height: 280px; left: 103px; top: 247px; background-image: url('../assets/images/About/vision/image 158.png'); }
+        .image-159 { width: 344px; height: 247px; left: 292px; top: 0px; background-image: url('../assets/images/About/vision/image 159.png'); }
+        .image-160 { width: 162px; height: 162px; left: -107px; top: 85px; background-image: url('../assets/images/About/vision/image 160.png'); }
+        .image-161 { width: 355px; height: 166px; left: 459px; top: 188px; background-image: url('../assets/images/About/vision/image 161.png'); }
+        .image-162 { width: 265px; height: 166px; left: -209px; top: 188px; background-image: url('../assets/images/About/vision/image 162.png'); }
+        .image-163 { width: 92px; height: 107px; left: 716px; top: 87px; background-image: url('../assets/images/About/vision/image 163.png'); }
+        .image-164 { width: 92px; height: 107px; left: 2367px; top: 219px; background-image: url('../assets/images/About/vision/image 164.png'); }
+        .image-165 { width: 92px; height: 107px; left: 1067px; top: 333px; background-image: url('../assets/images/About/vision/image 165.png'); }
+        .image-166 { width: 92px; height: 107px; left: 2275px; top: 420px; background-image: url('../assets/images/About/vision/image 166.png'); }
+        .image-167 { width: 92px; height: 107px; left: 2128px; top: 159px; background-image: url('../assets/images/About/vision/image 167.png'); }
+        
+        /* Nhóm Flipped */
+        .image-168 { width: 92px; height: 107px; left: 1566px; top: 85px; background-image: url('../assets/images/About/vision/image 168.png'); }
+        .image-169 { width: 92px; height: 107px; left: -436px; top: 217px; background-image: url('../assets/images/About/vision/image 169.png'); }
+        .image-170 { width: 92px; height: 107px; left: -25px; top: 418px; background-image: url('../assets/images/About/vision/image 170.png'); }
+        .image-171 { width: 92px; height: 107px; left: 464px; top: 343px; background-image: url('../assets/images/About/vision/image 171.png'); }
+        .image-172 { width: 92px; height: 107px; left: 927px; top: 157px; background-image: url('../assets/images/About/vision/image 172.png'); }
+
+        /* STATE 2 - HOVER EFFECT */
+        .vision-bg-container:hover .img-box {
+            opacity: 0.85;
+        }
+        .vision-bg-container:hover .image-149 { left: 997px; top: 4px; }
+        .vision-bg-container:hover .image-150 { left: 991px; top: 59px; }
+        .vision-bg-container:hover .image-151 { left: 996px; top: 270px; }
+        .vision-bg-container:hover .image-154 { width: 159px; height: 450px; left: 1268px; top: 7px; }
+        .vision-bg-container:hover .image-156 { width: 144px; height: 247px; left: 826px; top: 0px; }
+        .vision-bg-container:hover .image-157 { left: 600px; top: 268px; }
+        .vision-bg-container:hover .image-158 { left: 252px; top: 247px; }
+        .vision-bg-container:hover .image-159 { left: 252px; top: 0px; }
+        .vision-bg-container:hover .image-160 { left: 615px; top: 85px; }
+        .vision-bg-container:hover .image-161 { width: 355px; height: 143px; left: 617px; top: 188px; }
+        .vision-bg-container:hover .image-162 { left: 331px; top: 184px; }
+        .vision-bg-container:hover .image-163 { left: 1679px; top: 85px; }
+        .vision-bg-container:hover .image-164 { left: 1778px; top: 217px; }
+        .vision-bg-container:hover .image-165 { left: 1686px; top: 331px; }
+        .vision-bg-container:hover .image-166 { left: 1798px; top: 418px; }
+        .vision-bg-container:hover .image-167 { left: 1880px; top: 157px; }
+        
+        .vision-bg-container:hover .image-168 { left: 94px; top: 85px; }
+        .vision-bg-container:hover .image-169 { left: -5px; top: 217px; }
+        .vision-bg-container:hover .image-170 { left: -25px; top: 418px; }
+        .vision-bg-container:hover .image-171 { left: 87px; top: 331px; }
+        .vision-bg-container:hover .image-172 { left: -107px; top: 157px; }
 
         .vision-center-content {
             position: relative;
@@ -202,22 +308,6 @@
             font-weight: 500;
             color: rgba(255, 255, 255, 0.7);
             text-align: center;
-        }
-
-        .vision-decor-svg {
-            position: absolute;
-            width: 92px;
-            height: 107px;
-            top: 217px;
-            left: -436px;
-            transform: rotate(-180deg);
-            opacity: 1;
-            z-index: 1;
-            transition: left 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        #vision:hover .vision-decor-svg {
-            left: -5px;
         }
 
 
@@ -1383,16 +1473,61 @@
 
     <!-- SLIDE 1: VISION -->
     <section id="vision" class="about-slide">
-        <!-- Background Decor SVG -->
-        <svg class="vision-decor-svg" width="92" height="107" viewBox="0 0 92 107" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-            <rect width="92" height="107" transform="matrix(-1 0 0 1 92 0)" fill="url(#pattern0_850_265)"/>
-            <defs>
-                <pattern id="pattern0_850_265" patternContentUnits="objectBoundingBox" width="1" height="1">
-                    <use xlink:href="#image0_850_265" transform="matrix(0.00303446 0 0 0.00261005 -6.4496 -0.42053)"/>
-                </pattern>
-                <image id="image0_850_265" width="2455" height="498" preserveAspectRatio="none" xlink:href="../assets/images/About/vision_decor.png"/>
-            </defs>
-        </svg>
+        <!-- Top Mirrored Background Decor -->
+        <div class="vision-bg-container top-decor">
+            <div class="vision-bg-inner">
+                <div class="img-box image-149"></div>
+                <div class="img-box image-150"></div>
+                <div class="img-box image-151"></div>
+                <div class="img-box image-154"></div>
+                <div class="img-box image-156"></div>
+                <div class="img-box image-157"></div>
+                <div class="img-box image-158"></div>
+                <div class="img-box image-159"></div>
+                <div class="img-box image-160"></div>
+                <div class="img-box image-161"></div>
+                <div class="img-box image-162"></div>
+                <div class="img-box image-163"></div>
+                <div class="img-box image-164"></div>
+                <div class="img-box image-165"></div>
+                <div class="img-box image-166"></div>
+                <div class="img-box image-167"></div>
+                
+                <div class="img-box flipped image-168"></div>
+                <div class="img-box flipped image-169"></div>
+                <div class="img-box flipped image-170"></div>
+                <div class="img-box flipped image-171"></div>
+                <div class="img-box flipped image-172"></div>
+            </div>
+        </div>
+
+        <!-- Bottom Mirrored Background Decor -->
+        <div class="vision-bg-container bottom-decor">
+            <div class="vision-bg-inner">
+                <div class="img-box image-149"></div>
+                <div class="img-box image-150"></div>
+                <div class="img-box image-151"></div>
+                <div class="img-box image-154"></div>
+                <div class="img-box image-156"></div>
+                <div class="img-box image-157"></div>
+                <div class="img-box image-158"></div>
+                <div class="img-box image-159"></div>
+                <div class="img-box image-160"></div>
+                <div class="img-box image-161"></div>
+                <div class="img-box image-162"></div>
+                <div class="img-box image-163"></div>
+                <div class="img-box image-164"></div>
+                <div class="img-box image-165"></div>
+                <div class="img-box image-166"></div>
+                <div class="img-box image-167"></div>
+                
+                <div class="img-box flipped image-168"></div>
+                <div class="img-box flipped image-169"></div>
+                <div class="img-box flipped image-170"></div>
+                <div class="img-box flipped image-171"></div>
+                <div class="img-box flipped image-172"></div>
+            </div>
+        </div>
 
         <!-- Content Container -->
         <div class="vision-center-content" data-aos="fade-up">
@@ -1838,71 +1973,11 @@
             };
             
             const pts = {
-                s: getRelativePoint(document.getElementById('node-s').querySelector('.pm-smart-desc')),
-                m: getRelativePoint(document.getElementById('node-m').querySelector('.pm-smart-desc')),
-                a: getRelativePoint(document.getElementById('node-a').querySelector('.pm-smart-desc')),
-                r: getRelativePoint(document.getElementById('node-r').querySelector('.pm-smart-desc')),
-                t: getRelativePoint(document.getElementById('node-t').querySelector('.pm-smart-desc')),
-                p1: getRelativePoint(p1),
-                p2: getRelativePoint(p2),
-                p3: getRelativePoint(p3),
-                p4: getRelativePoint(p4)
-            };
-            
-            // Add a small offset to start lines at the right edge of descriptors and left edge of packages
-            pts.s.x += document.getElementById('node-s').querySelector('.pm-smart-desc').offsetWidth;
-            pts.m.x += document.getElementById('node-m').querySelector('.pm-smart-desc').offsetWidth;
-            pts.a.x += document.getElementById('node-a').querySelector('.pm-smart-desc').offsetWidth;
-            pts.r.x += document.getElementById('node-r').querySelector('.pm-smart-desc').offsetWidth;
-            pts.t.x += document.getElementById('node-t').querySelector('.pm-smart-desc').offsetWidth;
-            
-            const paths = overlay.querySelectorAll('path');
-            
-            const drawCurve = (pStart, pEnd) => {
-                const midX = (pStart.x + pEnd.x) / 2;
-                return `M ${pStart.x},${pStart.y} C ${midX},${pStart.y} ${midX},${pEnd.y} ${pEnd.x},${pEnd.y}`;
-            };
-            
-            paths[0].setAttribute('d', drawCurve(pts.s, pts.p1));
-            paths[1].setAttribute('d', drawCurve(pts.r, pts.p1));
-            paths[2].setAttribute('d', drawCurve(pts.t, pts.p2));
-            paths[3].setAttribute('d', drawCurve(pts.m, pts.p3));
-            paths[4].setAttribute('d', drawCurve(pts.a, pts.p4));
-        }
-
-        // SVG lines recalculate on resize for connection curves
-        function adjustSvgLines() {
-            const overlay = document.querySelector('.pm-svg-overlay');
-            if (!overlay || window.innerWidth <= 1024) return;
-            
-            const rect = overlay.getBoundingClientRect();
-            
-            // Nodes middle
-            const s = document.getElementById('node-s').getBoundingClientRect();
-            const m = document.getElementById('node-m').getBoundingClientRect();
-            const a = document.getElementById('node-a').getBoundingClientRect();
-            const r = document.getElementById('node-r').getBoundingClientRect();
-            const t = document.getElementById('node-t').getBoundingClientRect();
-            
-            // Packages right
-            const p1 = document.getElementById('pkg-1').getBoundingClientRect();
-            const p2 = document.getElementById('pkg-2').getBoundingClientRect();
-            const p3 = document.getElementById('pkg-3').getBoundingClientRect();
-            const p4 = document.getElementById('pkg-4').getBoundingClientRect();
-            
-            const getRelativePoint = (elRect) => {
-                return {
-                    x: elRect.left - rect.left,
-                    y: elRect.top - rect.top + elRect.height / 2
-                };
-            };
-            
-            const pts = {
-                s: getRelativePoint(document.getElementById('node-s').querySelector('.pm-smart-desc')),
-                m: getRelativePoint(document.getElementById('node-m').querySelector('.pm-smart-desc')),
-                a: getRelativePoint(document.getElementById('node-a').querySelector('.pm-smart-desc')),
-                r: getRelativePoint(document.getElementById('node-r').querySelector('.pm-smart-desc')),
-                t: getRelativePoint(document.getElementById('node-t').querySelector('.pm-smart-desc')),
+                s: getRelativePoint(document.getElementById('node-s').querySelector('.pm-smart-desc').getBoundingClientRect()),
+                m: getRelativePoint(document.getElementById('node-m').querySelector('.pm-smart-desc').getBoundingClientRect()),
+                a: getRelativePoint(document.getElementById('node-a').querySelector('.pm-smart-desc').getBoundingClientRect()),
+                r: getRelativePoint(document.getElementById('node-r').querySelector('.pm-smart-desc').getBoundingClientRect()),
+                t: getRelativePoint(document.getElementById('node-t').querySelector('.pm-smart-desc').getBoundingClientRect()),
                 p1: getRelativePoint(p1),
                 p2: getRelativePoint(p2),
                 p3: getRelativePoint(p3),
