@@ -204,9 +204,10 @@
             left: 50%;
             margin-left: -980px;
             pointer-events: none; /* let parent container handle hover */
-            transform: scale(calc(0.34 * 100vw / 2500));
-            transition: transform 0.3s ease;
+            transform: scale(calc(0.17 * 100vw / 2500));
+            transition: transform 0.3s ease, opacity 0.8s ease;
             top: 0;
+            opacity: 0.35;
         }
 
         .top-decor .vision-bg-inner {
@@ -215,15 +216,15 @@
 
         .bottom-decor .vision-bg-inner {
             transform-origin: 980px 400px;
-            transform: scale(calc(0.34 * 100vw / 2500)) scaleY(-1);
+            transform: scale(calc(0.17 * 100vw / 2500)) scaleY(-1);
         }
 
         .img-box {
             position: absolute;
             background-size: cover;
             background-position: center;
-            opacity: 0.35;
-            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease; 
+            opacity: 1;
+            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1); 
         }
 
         .flipped {
@@ -256,7 +257,7 @@
         .image-172 { width: 92px; height: 107px; left: 927px; top: 157px; background-image: url('../assets/images/About/vision/image 172.png'); }
 
         /* STATE 2 - HOVER EFFECT */
-        .vision-bg-container:hover .img-box {
+        .vision-bg-container:hover .vision-bg-inner {
             opacity: 0.65;
         }
         .vision-bg-container:hover .image-149 { left: 997px; top: 4px; }
