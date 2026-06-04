@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHLL Interactive Showcase</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            background-color: #0d211a; /* Dark forest green backdrop */
+            overflow: hidden;
+            position: relative;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Full screen overlay mesh & lighting */
+        .glass-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(0, 242, 195, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 180, 216, 0.05) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* image 169 */
+        .img-169 {
+            position: absolute;
+            width: 46px;
+            height: 53.5px;
+            top: 108.5px;
+            left: -218px;
+            transform: matrix(-1, 0, 0, 1, 0, 0);
+            opacity: 1;
+            z-index: 9999;
+            transition: left 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+            filter: drop-shadow(0 0 5px rgba(0, 242, 195, 0.2));
+        }
+
+        /* image 162 */
+        .img-162 {
+            position: absolute;
+            width: 132.5px;
+            height: 83px;
+            top: 94px;
+            left: -104.5px;
+            opacity: 1;
+            z-index: 9998;
+            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+            filter: drop-shadow(0 0 6px rgba(0, 242, 195, 0.15));
+        }
+
+        /* image 150 */
+        .img-150 {
+            position: absolute;
+            width: 218px;
+            height: 212px;
+            top: 29.5px;
+            left: 838.5px;
+            opacity: 1;
+            z-index: 9997;
+            transition: left 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+            filter: drop-shadow(0 0 7.5px rgba(0, 242, 195, 0.12));
+        }
+
+        /* Trigger movements when hovering over the body */
+        body:hover .img-169 {
+            left: -2.5px;
+        }
+
+        body:hover .img-162 {
+            top: 92px;
+            left: 165.5px;
+        }
+
+        body:hover .img-150 {
+            left: 495.5px;
+        }
+
+        /* Centered aesthetic interface elements */
+        .branding-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 8px;
+            color: #ffffff;
+            text-transform: uppercase;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            font-size: 0.95rem;
+            font-weight: 400;
+            letter-spacing: 5px;
+            color: #00f2c3;
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
+
+        /* Hint instruction at the bottom */
+        .hint-text {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            color: rgba(255, 255, 255, 0.4);
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        body:hover .hint-text {
+            color: #00f2c3;
+            text-shadow: 0 0 10px rgba(0, 242, 195, 0.5);
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glass-overlay"></div>
+
+    <!-- SVG 1: image 169 (Logo SHLL shape, 92x107, using local PNG) -->
+    <svg class="img-169" viewBox="0 0 92 107" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <rect width="92" height="107" transform="matrix(-1 0 0 1 92 0)" fill="url(#pattern0_850_265)"/>
+        <defs>
+            <pattern id="pattern0_850_265" patternContentUnits="objectBoundingBox" width="1" height="1">
+                <use xlink:href="#image0_850_265" transform="matrix(0.00303446 0 0 0.00261005 -6.4496 -0.42053)"/>
+            </pattern>
+            <image id="image0_850_265" width="2455" height="498" preserveAspectRatio="none" xlink:href="assets/images/extracted_image_2.png"/>
+        </defs>
+    </svg>
+
+    <!-- SVG 2: image 162 (Horizontal panel, 265x166, using local PNG) -->
+    <svg class="img-162" viewBox="0 0 265 166" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <rect width="265" height="166" fill="url(#pattern0_818_670)"/>
+        <defs>
+            <pattern id="pattern0_818_670" patternContentUnits="objectBoundingBox" width="1" height="1">
+                <use xlink:href="#image0_818_670" transform="matrix(0.00186423 0 0 0.00297043 0.0500229 0.0461065)"/>
+            </pattern>
+            <image id="image0_818_670" width="2261" height="305" preserveAspectRatio="none" xlink:href="assets/images/extracted_image_3.png"/>
+        </defs>
+    </svg>
+
+    <!-- SVG 3: image 150 (Double squares panel, 436x424, using local PNG) -->
+    <svg class="img-150" viewBox="0 0 436 424" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <rect width="436" height="424" fill="url(#pattern0_818_641)"/>
+        <defs>
+            <pattern id="pattern0_818_641" patternContentUnits="objectBoundingBox" width="1" height="1">
+                <use xlink:href="#image0_818_641" transform="matrix(0.00110576 0 0 0.00113615 -1.50013 0.326391)"/>
+            </pattern>
+            <image id="image0_818_641" width="2261" height="305" preserveAspectRatio="none" xlink:href="assets/images/extracted_image_3.png"/>
+        </defs>
+    </svg>
+
+    <!-- Branding Context -->
+    <div class="branding-container">
+        <h1 class="title">SHLL Effect</h1>
+        <p class="subtitle">Interactive Showcase</p>
+    </div>
+
+    <div class="hint-text">Rê chuột vào màn hình để kích hoạt hiệu ứng</div>
+
+</body>
+</html>
