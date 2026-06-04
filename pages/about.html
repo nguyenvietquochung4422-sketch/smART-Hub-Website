@@ -204,6 +204,22 @@
             text-align: center;
         }
 
+        .vision-decor-svg {
+            position: absolute;
+            width: 92px;
+            height: 107px;
+            top: 217px;
+            left: -436px;
+            transform: rotate(-180deg);
+            opacity: 1;
+            z-index: 1;
+            transition: left 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        #vision:hover .vision-decor-svg {
+            left: -5px;
+        }
+
 
 
         /* --- SLIDE 2: HISTORY --- */
@@ -1367,8 +1383,17 @@
 
     <!-- SLIDE 1: VISION -->
     <section id="vision" class="about-slide">
+        <!-- Background Decor SVG -->
+        <svg class="vision-decor-svg" width="92" height="107" viewBox="0 0 92 107" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <rect width="92" height="107" transform="matrix(-1 0 0 1 92 0)" fill="url(#pattern0_850_265)"/>
+            <defs>
+                <pattern id="pattern0_850_265" patternContentUnits="objectBoundingBox" width="1" height="1">
+                    <use xlink:href="#image0_850_265" transform="matrix(0.00303446 0 0 0.00261005 -6.4496 -0.42053)"/>
+                </pattern>
+                <image id="image0_850_265" width="2455" height="498" preserveAspectRatio="none" xlink:href="../assets/images/About/vision_decor.png"/>
+            </defs>
+        </svg>
 
-        
         <!-- Content Container -->
         <div class="vision-center-content" data-aos="fade-up">
             <h2 class="vision-main-title">OUR VISION</h2>
