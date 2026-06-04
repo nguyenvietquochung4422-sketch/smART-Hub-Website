@@ -204,7 +204,8 @@
             left: 50%;
             margin-left: -980px;
             pointer-events: none; /* let parent container handle hover */
-            transform: scale(calc(0.17 * 100vw / 2500));
+            transform: scale(0.13); /* Fallback for older browsers */
+            transform: scale(calc(0.17 * 100vw / 2500px));
             transition: transform 0.3s ease, opacity 0.8s ease;
             top: 0;
             opacity: 0.35;
@@ -216,7 +217,8 @@
 
         .bottom-decor .vision-bg-inner {
             transform-origin: 980px 400px;
-            transform: scale(calc(0.17 * 100vw / 2500)) scaleY(-1);
+            transform: scale(0.13) scaleY(-1); /* Fallback for older browsers */
+            transform: scale(calc(0.17 * 100vw / 2500px)) scaleY(-1);
         }
 
         .img-box {
