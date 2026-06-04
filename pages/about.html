@@ -196,8 +196,6 @@
 
         .vision-bg-container.bottom-decor {
             bottom: 90px;
-            mask-image: linear-gradient(to top, transparent 0%, black 150px);
-            -webkit-mask-image: linear-gradient(to top, transparent 0%, black 150px);
         }
 
         /* Inner container that holds the 2500px width layout and scaling transform */
@@ -221,8 +219,8 @@
 
         .bottom-decor .vision-bg-inner {
             transform-origin: 980px 400px;
-            transform: scale(0.65) scaleY(-1); /* Fallback for older browsers */
-            transform: scale(calc(0.85 * 100vw / 2500px)) scaleY(-1);
+            transform: scale(0.65); /* Fallback for older browsers */
+            transform: scale(calc(0.85 * 100vw / 2500px));
         }
 
         .img-box {
@@ -231,6 +229,8 @@
             background-position: center;
             opacity: 1;
             transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1); 
+            border-radius: 35px;
+            overflow: hidden;
         }
 
         .flipped {
