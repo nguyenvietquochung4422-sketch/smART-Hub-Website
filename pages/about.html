@@ -189,11 +189,11 @@
         }
 
         .vision-bg-container.top-decor {
-            top: 0;
+            top: -120px;
         }
 
         .vision-bg-container.bottom-decor {
-            bottom: 0;
+            bottom: -120px;
         }
 
         /* Inner container that holds the 2500px width layout and scaling transform */
@@ -204,26 +204,25 @@
             left: 50%;
             margin-left: -980px;
             pointer-events: none; /* let parent container handle hover */
-            transform: scale(calc(100vw / 2500));
+            transform: scale(calc(0.68 * 100vw / 2500));
             transition: transform 0.3s ease;
+            top: 0;
         }
 
         .top-decor .vision-bg-inner {
-            top: 0;
-            transform-origin: 980px top;
+            transform-origin: 980px 400px;
         }
 
         .bottom-decor .vision-bg-inner {
-            bottom: 0;
-            transform-origin: 980px bottom;
-            transform: scale(calc(100vw / 2500)) scaleY(-1);
+            transform-origin: 980px 400px;
+            transform: scale(calc(0.68 * 100vw / 2500)) scaleY(-1);
         }
 
         .img-box {
             position: absolute;
             background-size: cover;
             background-position: center;
-            opacity: 0.65;
+            opacity: 0.35;
             transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease; 
         }
 
@@ -258,7 +257,7 @@
 
         /* STATE 2 - HOVER EFFECT */
         .vision-bg-container:hover .img-box {
-            opacity: 0.85;
+            opacity: 0.65;
         }
         .vision-bg-container:hover .image-149 { left: 997px; top: 4px; }
         .vision-bg-container:hover .image-150 { left: 991px; top: 59px; }
