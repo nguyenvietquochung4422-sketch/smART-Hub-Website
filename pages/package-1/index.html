@@ -21,13 +21,17 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background-color: var(--bg-light); font-family: 'Montserrat', sans-serif; color: #333; overflow-x: hidden; }
 
+        .header-wrapper, .footer-container {
+            font-family: 'Inter', sans-serif !important;
+        }
+
         /* --- 1. HEADER --- */
         .header-wrapper { 
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            padding: 40px 5% 20px 5%; 
+            padding: 40px 2% 20px 2%; 
             display: flex; 
             flex-direction: column; 
             background: transparent;
@@ -286,21 +290,6 @@
             </div>
         </section>
 
-        <section id="platform">
-            <div class="split-container">
-                <div class="split-image" data-aos="fade-right">
-                    <img src="../../assets/images/package1/Platform_change.png" alt="Platform Change" style="width: 50%;">
-                </div>
-                <div class="split-content" data-aos="fade-left">
-                    <h2>PLATFORM FOR GREEN FAIR</h2>
-                    <p>The Platform for Green Fair is a space for students to exchange used items, promoting reuse habits to reduce waste generation. This is a practical circular economy initiative that enables the student community to actively participate and co-create solutions to achieve the Net Zero Campus 2026 goal.</p>
-                    <div class="qr-group" data-aos="zoom-in" data-aos-delay="300">
-                        <div class="qr-code" style="width: 80px; margin-bottom: 10px;"><img src="../../assets/images/package1/QR_Form_dang_ky.png" alt="QR" style="width:100%"></div>
-                        <div class="qr-links" style="font-size: 13px;">UEH, Campus V<br><a href="mailto:smarthub@ueh.edu.vn" style="color:var(--pkg-blue); text-decoration:none; font-weight:600">smarthub@ueh.edu.vn</a></div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <section id="events" data-aos="fade-up">
             <h2 style="color:var(--pkg-gold); margin-bottom: 20px; font-weight: 800;">EVENT SERIES</h2>
@@ -343,7 +332,7 @@
             </div>
         </section>
 
-        <section id="station">
+        <section id="ai-solutions" style="display: flex; flex-direction: column; gap: 100px; padding: 100px 10%;">
             <div class="split-container">
                 <div class="split-content" data-aos="fade-right">
                     <h2>UEHGC - ZEEN AI SCAN</h2>
@@ -353,55 +342,34 @@
                         <div class="qr-links" style="font-size: 13px;">Link: <a href="https://greencampus.ueh.edu.vn/" style="color:var(--pkg-blue); text-decoration:none; font-weight:600">UEH Green Campus</a><br>Mail: <a href="mailto:smarthub@ueh.edu.vn" style="color:var(--pkg-blue); text-decoration:none; font-weight:600">smarthub@ueh.edu.vn</a></div>
                     </div>
                 </div>
-                <div class="split-image" data-aos="fade-left">
-                    <img src="../../assets/images/package1/Free_Wooden.png" alt="Zeen AI Scan" style="width: 50%;">
+                <div class="split-image" data-aos="fade-left" style="display: flex; justify-content: center;">
+                    <img src="../../assets/images/package1/Free_Wooden.png" alt="Zeen AI Scan" style="width: 70%; height: auto;">
                 </div>
             </div>
-        </section>
 
-        <section id="aitrash">
             <div class="split-container">
-                <div class="split-image" data-aos="fade-up-right">
-                    <img src="../../assets/images/package1/AI_Trash_Bin.png" alt="AI Trash Bin">
+                <div class="split-image" data-aos="fade-right" style="display: flex; justify-content: center;">
+                    <img src="../../assets/images/package1/AI_Trash_Bin.png" alt="AI Trash Bin" style="width: 70%; height: auto;">
                 </div>
-                <div class="split-content" style="text-align: right;" data-aos="fade-up-left">
+                <div class="split-content" style="text-align: right;" data-aos="fade-left">
                     <h2>AI TRASH BIN</h2>
                     <p>AI Trash Bin is a flagship initiative, designed to catalyze a circular economy at Campus V. This patented device utilizes AI-driven visual recognition to accurately classify seven waste categories, while integrating weight sensors to feed real-time data into the Digital Twin for emissions tracking.</p>
                 </div>
             </div>
         </section>
 
-        <section id="about">
-            <div class="about-title-main" data-aos="fade-right">ABOUT US</div>
-            <div class="about-minimal-grid">
-                <div class="about-column" data-aos="fade-up" data-aos-delay="100">
-                    <h3>Publication</h3>
-                    <div class="about-content">
-                        <div class="pub-item">
-                            Tufano, M., Duarte, F., Mazzarello, M., Eshtiyagh, J., Ratti, C. and Camps, G., 2025. 
-                            <a href="#">Data-Driven Nutritional Assessment of Urban Food Landscapes.</a> Scientific Reports.
-                        </div>
-                        <div class="pub-item">
-                            Su, R., Eshtiyagh, J., Santi, P., Hu, S., Duarte, F., Mazzarello, M. and Ratti, C., 2025. 
-                            <a href="#">Determinants of the localized behavior of individual food delivery choices.</a> TR Part C.
-                        </div>
-                    </div>
+        <section id="platform">
+            <div class="split-container">
+                <div class="split-image" data-aos="fade-right" style="display: flex; justify-content: center;">
+                    <img src="../../assets/images/package1/Platform_change.png" alt="Platform Change" style="width: 70%; height: auto;">
                 </div>
-                <div class="about-column" data-aos="fade-up" data-aos-delay="200">
-                    <h3>People</h3>
-                    <div class="about-content">
-                        <p style="margin-bottom: 25px; font-weight: 500; color: var(--pkg-blue);">No Single-Use Plastic Journey</p>
-                        <div class="people-names">
-                            <b>Dang The Hien, PhD</b>
-                            <b>Nguyen Quynh Tram</b>
-                            <b>Luu Pham Thanh Binh</b>
-                            <span class="dept-info">Institute of Smart City & Management</span>
-                        </div>
-                        <div class="org-info">smART HUB Living Labs<br><span>UEH University</span></div>
+                <div class="split-content" data-aos="fade-left">
+                    <h2>PLATFORM FOR GREEN FAIR</h2>
+                    <p>The Platform for Green Fair is a space for students to exchange used items, promoting reuse habits to reduce waste generation. This is a practical circular economy initiative that enables the student community to actively participate and co-create solutions to achieve the Net Zero Campus 2026 goal.</p>
+                    <div class="qr-group" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="qr-code" style="width: 80px; margin-bottom: 10px;"><img src="../../assets/images/package1/QR_Form_dang_ky.png" alt="QR" style="width:100%"></div>
+                        <div class="qr-links" style="font-size: 13px;">UEH, Campus V<br><a href="mailto:smarthub@ueh.edu.vn" style="color:var(--pkg-blue); text-decoration:none; font-weight:600">smarthub@ueh.edu.vn</a></div>
                     </div>
-                </div>
-                <div class="about-column" data-aos="fade-up" data-aos-delay="300">
-                    <h3>Publication</h3>
                 </div>
             </div>
         </section>
