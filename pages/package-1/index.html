@@ -76,8 +76,8 @@
 
         /* --- 3. SECTIONS --- */
         section { min-height: 100vh; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; padding: 100px 10%; }
-        #cover { padding: 0; overflow: hidden; }
-        #cover img { width: 100%; height: 100vh; object-fit: cover; }
+        #cover { padding: 0; overflow: hidden; min-height: auto; height: auto; }
+        #cover img { width: 100%; height: auto; display: block; }
 
         #intro h1 { font-size: clamp(48px, 6vw, 76px); color: var(--pkg-gold); margin-bottom: 35px; line-height: 1.05; font-weight: 800; text-align: center; }
         #intro .description { max-width: 850px; font-size: 15px; line-height: 1.8; color: var(--pkg-blue); font-weight: 500; text-align: center; }
