@@ -271,15 +271,38 @@
         }
 
         .event-card {
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 15px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            background: rgba(255, 255, 255, 0.05);
             text-align: left;
-            margin-bottom: 20px;
+            aspect-ratio: 1 / 1;
+            justify-content: space-between;
+            transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.65);
+            background: rgba(255, 255, 255, 0.10);
         }
 
         .event-img-soft {
             width: 100%;
-            border-radius: 18px;
+            height: 70%;
+            border-radius: 10px;
             object-fit: cover;
             margin-bottom: 8px;
+        }
+
+        .event-text-italic {
+            font-size: 11px;
+            line-height: 1.4;
+            font-style: italic;
+            text-align: left;
+            margin-top: auto;
         }
 
         .nav-arrows-row {
@@ -548,8 +571,8 @@
         }
 
         .package-image-box img {
-            width: 60%;
-            max-width: 180px;
+            width: 85%;
+            max-width: 240px;
             margin: 0 auto;
             display: block;
             filter: brightness(0) invert(1);
@@ -830,46 +853,22 @@
         <div class="left-grid-system">
             <div style="grid-column: 1;">
                 <h2 class="section-title">About smART Hub</h2>
-                <p class="content-p">smART Hub is a Living Labs ecosystem — an intersection where the boldest ideas in
-                    technology, policy, and art are taken off the page to “live” and “breathe” in real-world contexts.
-                    It is where four streams — University – Government – Business – Community — converge to
-                    collaboratively decode complex urban challenges.</p>
-                <p class="content-p" style="margin-bottom: 5px;">The smART Hub space is positioned as:</p>
-                <ul class="bullet-list">
-                    <li>A platform for implementing “Co-creation for a Net Zero Campus” initiatives.</li>
-                    <li>A coordinating hub for Living Labs and urban environmental policy experimentation across the
-                        entire UEH system.</li>
-                </ul>
-                <p class="content-p" style="margin-bottom: 5px;">smART Hub is the experimental “heart” of the UEH Living
-                    Labs network, where a distinctive operational formula is established: <br><strong>smART Hub = Living
-                        Labs + Art + Net Zero Campus.</strong></p>
-                <a href="pages/about.html" class="mit-readmore-link">→ Read more</a>
+                <p class="content-p">smART Hub Living Labs at Campus V is a vibrant socio-technical nexus where technology and artistic expression converge to drive smart innovation. Positioned as a "regulatory sandbox," it transforms a historic site into an experimental hub to validate sustainability policies through evidence-based co-creation. Following the S.M.A.R.T. Framework, the project integrates AI-driven sorting, Digital Twin monitoring, and adaptive "Glocal" design to achieve a Net Zero Campus by 2026. By bridging academic theory and real-world implementation, we empower a Quadruple Helix network to foster a profound transition toward a sustainable, carbon-neutral future.</p>
+                <p class="content-p" style="margin-top: 15px; margin-bottom: 5px;">smART Hub is the experimental “heart” of the UEH Living Labs network, where a distinctive operational formula is established: <br><strong>smART Hub = Living Labs + Art + Net Zero Campus.</strong></p>
+                <a href="pages/about.html" class="mit-readmore-link">Learn more →</a>
             </div>
             <div style="grid-column: 2 / 4;">
                 <h2 class="section-title">4 Package Workspace</h2>
-                <p class="content-p"><strong>1. NSUP – “No Single-Use Plastic Journey”</strong><br>A campaign to shift
-                    perceptions around plastic waste through The Zero Pledge commitment, built upon two key pillars:
-                    #ReduceForMore and #SortingForChange. The initiative aspires for every individual on campus to
-                    become an active link in the journey toward eliminating single-use plastics.</p>
-                <p class="content-p"><strong>2. Glocal Design (Internationalizing Indigenous
-                        Knowledge)</strong><br>Applying The Glocal Toolkit to standardize local experiences and
-                    solutions into internationally adaptable models, addressing sustainable urban challenges through
-                    locally rooted yet globally responsive approaches.</p>
-                <p class="content-p"><strong>3. Towards Net Zero</strong><br>Developing a Digital Twin of Campus V.
-                    Through a real-time data dashboard powered by a sensor network and a sustainable audit system, the
-                    project enables intelligent energy and emissions management while providing feedback loops to inform
-                    and optimize design solutions.</p>
-                <p class="content-p"><strong>4. Art for all</strong><br><em>Art for Inspiration (The Power of
-                        Inspiration)</em><br>At smART Hub, art is not merely decorative—it is a transformative tool that
-                    awakens emotion, making sustainable lifestyles more beautiful, relatable, and desirable.</p>
+                <p class="content-p"><strong>WP1 - No Single-Use Plastic Journey (NSUP):</strong> This package catalyzes a transition to a circular resource economy at Campus V through smart infrastructure and community behavioral shifts. A flagship initiative is the patented AI Trash Bin, which classifies seven distinct waste categories, supported by engagement campaigns like "No Plastic Wednesday" to foster sustainable lifestyles.</p>
+                <p class="content-p"><strong>WP2 - Glocal Design:</strong> This initiative reconciles global urban standards with indigenous wisdom using the Research-by-Design (RBD) methodology. By utilizing the campus as a "regulatory sandbox," it validates adaptive solutions like Sod Culture and Bioswales to optimize thermal resilience and ecological water management in high-density tropical contexts.</p>
+                <p class="content-p"><strong>WP3 - Towards Net Zero:</strong> This module establishes a data-driven Digital Twin integrated with a real-time sensor network. This digital infrastructure provides critical empirical evidence for carbon-neutral decision-making, transforming raw environmental data into actionable insights for both policy validation and international scientific publication.</p>
+                <p class="content-p"><strong>WP4 - Art for Inspiration:</strong> This package employs "ArtTech Fusion" to translate technical environmental metrics into vivid community engagement. Through Hologram exhibitions and Acting Labs, art acts as an emotional bridge, sustaining the long-term commitment of the Quadruple Helix network toward a sustainable, carbon-neutral future.</p>
             </div>
 
             <div style="grid-column: 1;">
-                <h2 class="section-title">Consortium</h2>
-                <p class="content-p" style="font-size: 10px;">More information on joining our research efforts, through
-                    the smART Hub Living Labs Consortium can be found <strong>here</strong>. Current and past members of
-                    the Consortium include:</p>
-
+                <h2 class="section-title">Co-Creation Platform</h2>
+                <p class="content-p">smART Hub Living Labs is not just a project, but an ecosystem operated under the Quadruple Helix model. Our journey toward a Net Zero Campus by 2026 is made possible thanks to the enthusiastic contributions of Academia, Government, Industry, and the Community.</p>
+ 
                 <div class="mit-accordion">
                     <div class="mit-acc-item">
                         <div class="mit-acc-header"><span class="mit-arrow">→</span> Present Members</div>
@@ -902,10 +901,15 @@
                         </div>
                     </div>
                 </div>
+
+                <p class="content-p" style="margin-top: 25px; font-size: 11px; line-height: 1.5; opacity: 0.9;">
+                    We welcome experts and researchers to contribute their professional knowledge to the project’s core working groups. Become part of our governance and innovation structure.<br>
+                    <strong>Contact Email:</strong> <a href="mailto:smarthub@ueh.edu.vn" class="mit-readmore-link" style="margin-top: 5px;">smarthub@ueh.edu.vn</a>
+                </p>
             </div>
 
             <div style="grid-column: 2 / 4;">
-                <h2 class="section-title">Team</h2>
+                <h2 class="section-title">Teams</h2>
 
                 <div class="mit-accordion">
                     <div class="mit-acc-item">
