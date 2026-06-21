@@ -27,8 +27,12 @@
             padding: 20px 2% 15px 2%; 
             display: flex; 
             flex-direction: column; 
-            background: transparent;
+            background: transparent !important;
             z-index: 1000;
+        
+            background: transparent !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
         }
         .header-top-frame { 
             display: flex; 
@@ -219,14 +223,15 @@
             gap:clamp(12px,2.14vw,40px); align-items:flex-start;
         }
 
-        /* ── 12. BOTTOM DECORATIVE ──
-           Figma: Glocal Design 3 at h:1006/w:1874 → aspect ratio 1874:1006 ≈ 1.86:1
-        */
+        /* ── 12. BOTTOM DECORATIVE ── */
         .ld-bottom-deco {
-            width:100%;
-            aspect-ratio:1874 / 1006;
-            background:url('../../assets/images/package2/figma/glocal_design_6.png')
-                        no-repeat center center / cover;
+            width: 100%;
+            line-height: 0;
+        }
+        .ld-bottom-deco img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
         /* ── 13. LIGHTBOX ── */
@@ -323,11 +328,11 @@
     <div class="ld-master-grid">
         <div data-aos="fade-up">
             <img src="../../assets/images/package2/Landscape/landscape_01.png"
-                 alt="Landscape master plan" class="ld-img zoom"
+                 alt="Landscape master plan" class="ld-img zoom">
         </div>
         <div data-aos="fade-up" data-aos-delay="150">
             <img src="../../assets/images/package2/Landscape/landscape_02.png"
-                 alt="Master plan legend" class="ld-img-fit zoom"
+                 alt="Master plan legend" class="ld-img-fit zoom">
         </div>
     </div>
 </section>
@@ -362,7 +367,7 @@
                 Native fruit-bearing plants are integrated to create a balance between a global spatial
                 identity and the preservation of local vegetation systems.
             </p>
-            <img src="../../assets/images/package2/Landscape/figma/landscape_11.jpg"
+            <img src="../../assets/images/package2/Landscape/landscape_11.png"
                  alt="Campus planting elevation plan" class="ld-img zoom"
                  onclick="openLightbox(this.src)">
         </div>
@@ -370,12 +375,12 @@
     <div class="ld-plant-bot">
         <div data-aos="fade-up" style="margin-top:clamp(6px,0.64vw,12px)">
             <p class="ld-legend">Legend</p>
-            <img src="../../assets/images/package2/Landscape/figma/landscape_12.png"
+            <img src="../../assets/images/package2/Landscape/landscape_12.png"
                  alt="Planting legend" class="ld-img-fit zoom"
                  onclick="openLightbox(this.src)">
         </div>
         <div data-aos="fade-up" data-aos-delay="120">
-            <img src="../../assets/images/package2/Landscape/figma/landscape_13.png"
+            <img src="../../assets/images/package2/Landscape/landscape_13.png"
                  alt="Planting elevation detailed plan" class="ld-img zoom"
                  onclick="openLightbox(this.src)">
         </div>
@@ -387,26 +392,26 @@
     <h2 class="ld-sec-title" data-aos="fade-up">Green Roof</h2>
     <div class="ld-green-grid">
         <div data-aos="fade-up">
-            <img src="../../assets/images/package2/Landscape/figma/landscape_14.png"
-                 alt="Green roof campus gate" class="ld-img zoom"
-                 onclick="openLightbox(this.src)">
-        </div>
-        <div class="ld-green-right" data-aos="fade-up" data-aos-delay="120">
-            <p class="ld-body">
+            <p class="ld-body" style="margin-bottom: 20px;">
                 The new gate proposal — featuring a green roof — not only increases shaded areas
                 for the campus, but also promotes sustainable landscape development, expands diverse
                 planting areas, and preserves native vegetation to help reduce heat across the
                 university campus.
             </p>
-            <img src="../../assets/images/package2/Landscape/figma/landscape_15.png"
-                 alt="Green roof render" class="ld-img zoom"
+            <img src="../../assets/images/package2/Landscape/landscape_14.png"
+                 alt="Green roof campus gate" class="ld-img zoom"
                  onclick="openLightbox(this.src)">
-            <div>
-                <p class="ld-legend">Legend</p>
-                <img src="../../assets/images/package2/Landscape/figma/landscape_16.png"
+        </div>
+        <div class="ld-green-right" data-aos="fade-up" data-aos-delay="120" style="display: grid; grid-template-columns: 1fr 2.5fr; gap: 20px; align-items: center;">
+            <div style="display: flex; flex-direction: column;">
+                <p class="ld-legend" style="margin-bottom: 12px;">Legend</p>
+                <img src="../../assets/images/package2/Landscape/landscape_16.png"
                      alt="Green roof legend" class="ld-img-fit zoom"
                      onclick="openLightbox(this.src)">
             </div>
+            <img src="../../assets/images/package2/Landscape/landscape_15.png"
+                 alt="Green roof render" class="ld-img zoom"
+                 onclick="openLightbox(this.src)">
         </div>
     </div>
 </section>
@@ -416,14 +421,14 @@
     <h2 class="ld-sec-title" data-aos="fade-up">Sod Culture</h2>
     <div class="ld-sod-grid">
         <div data-aos="fade-up">
-            <img src="../../assets/images/package2/Landscape/figma/landscape_17.png"
+            <img src="../../assets/images/package2/Landscape/landscape_17.png"
                  alt="Sod culture landscape render" class="ld-img zoom"
                  onclick="openLightbox(this.src)">
         </div>
         <div class="ld-sod-right" data-aos="fade-up" data-aos-delay="120">
             <div>
                 <p class="ld-legend">Legend</p>
-                <img src="../../assets/images/package2/Landscape/figma/landscape_18.png"
+                <img src="../../assets/images/package2/Landscape/landscape_18.png"
                      alt="Sod culture plan" class="ld-img-fit zoom"
                      onclick="openLightbox(this.src)">
             </div>
@@ -440,37 +445,60 @@
 <!-- ── BIORETENTION SWALE ──────────────────────────────────────────── -->
 <section class="ld-sec">
     <h2 class="ld-sec-title" data-aos="fade-up">BioRetention Swale</h2>
-    <div class="ld-bio-top">
+    <div class="ld-sod-grid">
         <div data-aos="fade-up">
-            <img src="../../assets/images/package2/Landscape/figma/landscape_19.png"
+            <img src="../../assets/images/package2/Landscape/landscape_19.png"
                  alt="BioRetention swale photo" class="ld-img zoom"
                  onclick="openLightbox(this.src)">
         </div>
-        <div data-aos="fade-up" data-aos-delay="120">
-            <img src="../../assets/images/package2/Landscape/figma/landscape_20.png"
+        <div data-aos="fade-up" data-aos-delay="120" style="display: flex; flex-direction: column; gap: 20px;">
+            <img src="../../assets/images/package2/Landscape/landscape_20.png"
                  alt="BioRetention swale plan" class="ld-img zoom"
                  onclick="openLightbox(this.src)">
+            <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 20px; align-items: flex-start; margin-top: 10px;">
+                <p class="ld-body">
+                    Green infrastructure and ecological water management are core components of the
+                    Glocal Design package, addressing chronic flooding issues on campus through
+                    ecological drainage strategies.
+                </p>
+                <div>
+                    <p class="ld-legend">Legend</p>
+                    <img src="../../assets/images/package2/Landscape/landscape_21.png"
+                         alt="BioRetention legend" class="ld-img-fit zoom"
+                         onclick="openLightbox(this.src)">
+                </div>
+            </div>
         </div>
     </div>
-    <div class="ld-bio-bot">
+</section>
+
+<!-- ── BACKGROUND ──────────────────────────────────────────────────── -->
+<section class="ld-sec">
+    <h2 class="ld-sec-title" data-aos="fade-up">Background</h2>
+    <div class="ld-bg-grid">
         <div data-aos="fade-up">
-            <p class="ld-body">
-                Green infrastructure and ecological water management are core components of the
-                Glocal Design package, addressing chronic flooding issues on campus through
-                ecological drainage strategies.
-            </p>
-        </div>
-        <div data-aos="fade-up" data-aos-delay="120">
-            <p class="ld-legend">Legend</p>
-            <img src="../../assets/images/package2/Landscape/LD_end.png"
-                 alt="BioRetention legend" class="ld-img-fit zoom"
+            <img src="../../assets/images/package2/Landscape/landscape_22.jpg"
+                 alt="Background perspective render" class="ld-img zoom"
                  onclick="openLightbox(this.src)">
+        </div>
+        <div data-aos="fade-up" data-aos-delay="120" style="display: flex; flex-direction: column; gap: clamp(14px,1.5vw,28px);">
+            <img src="../../assets/images/package2/Landscape/landscape_23.png"
+                 alt="Background plan" class="ld-img zoom"
+                 onclick="openLightbox(this.src)">
+            <div>
+                <p class="ld-legend">Legend</p>
+                <img src="../../assets/images/package2/Landscape/landscape_24.png"
+                     alt="Background legend" class="ld-img-fit zoom"
+                     onclick="openLightbox(this.src)">
+            </div>
         </div>
     </div>
 </section>
 
 <!-- ── BOTTOM DECORATIVE ────────────────────────────────────────────── -->
-<div class="ld-bottom-deco"></div>
+<div class="ld-bottom-deco">
+    <img src="../../assets/images/package2/Landscape/landscape_end.png" alt="Landscape End">
+</div>
 
 <!-- ── FOOTER ──────────────────────────────────────────────────────── -->
 <footer class="footer-container">

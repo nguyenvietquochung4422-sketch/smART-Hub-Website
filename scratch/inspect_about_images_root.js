@@ -1,0 +1,18 @@
+const fs = require('fs');
+const path = require('path');
+
+const dir = 'assets/images/About';
+if (fs.existsSync(dir)) {
+    const files = fs.readdirSync(dir);
+    console.log(`Found ${files.length} items in ${dir}:`);
+    files.forEach(file => {
+        const stats = fs.statSync(path.join(dir, file));
+        if (stats.isDirectory()) {
+            console.log(`- [DIR] ${file}`);
+        } else {
+            console.log(`- ${file} (${stats.size} bytes)`);
+        }
+    });
+} else {
+    console.log(`Directory ${dir} does not exist!`);
+}

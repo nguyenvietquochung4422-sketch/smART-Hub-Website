@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About — smART Hub Living Labs</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        *{box-sizing:border-box;}
+        html,body{margin:0;padding:0;overflow-x:hidden;max-width:100vw;font-family:'Inter',sans-serif;background:#0d3325;}
+
+        /* ── full-bleed clip container ─────────────────────── */
+        .about-clip{position:relative;width:100%;overflow:hidden;}
+
+        /* ── Figma outer wrapper: full-width, transparent ─── */
+        .About{
+            position:absolute!important;
+            left:0!important;top:0!important;
+            width:100%!important;
+            background:transparent!important;
+        }
+
+        /* ── Figma canvas — left/top zeroed; background image applied ── */
+        .Model{
+            left:0!important;
+            top:0!important;
+            background-image:url('../assets/images/About/background_about.jpg')!important;
+            background-size:cover!important;
+            background-position:center!important;
+            background-repeat:no-repeat!important;
+        }
+
+        /* ── Enforce Inter everywhere ──────────────────────── */
+        .Model *{font-family:'Inter',sans-serif!important;}
+
+        /* ── Clean Up Backgrounds ──────────────────────────── */
+        .NNBackgroundBA1 {
+            display: none !important;
+        }
+        .Rectangle114 {
+            background: transparent !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+        }
+        .Image42 {
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            box-shadow: none !important;
+        }
+        /* Make OUR VISION text white for readability on dark background */
+        .OurVision {
+            color: #FFFFFF !important;
+        }
+        .AVibrantCulturalHubThatPromotesArtDesignAndInnovationInASmartWayWhileEmbodyingSustainabilityAndCommunityEngagementTowardsNetZero {
+            color: #FFFFFF !important;
+        }
+
+        /* ── Heading Typography Rules ──────────────────────── */
+        .our-history-heading { /* Apply to OUR HISTORY */
+            font-size: 128px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            line-height: 185.60px;
+            letter-spacing: 19.20px;
+            word-wrap: break-word;
+        }
+
+        .procedure-model-heading { /* Apply to LIVING LAB PROCEDURE, CO-CREATION MODEL, and PACKAGE MODEL */
+            font-size: 70px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            line-height: 101.50px;
+            letter-spacing: 12.60px;
+            word-wrap: break-word;
+        }
+
+        /* ── GIVING TO UEH: white outlined text container ──── */
+        .GivingToUeh{
+            color:transparent!important;
+            -webkit-text-stroke:2.5px rgba(255,255,255,0.85)!important;
+            text-stroke:2.5px rgba(255,255,255,0.85)!important;
+            text-shadow:none!important;
+            position:absolute!important;
+            width:1800px!important;
+            height:800px!important;
+            overflow:hidden!important;
+        }
+
+        /* ── SHLL Effect 2 — watermark N inside GivingToUeh parent ── */
+        .giving-n-effect{
+            position:absolute!important;
+            bottom:0!important;
+            right:0!important;
+            width:500px!important;
+            height:500px!important;
+            transform:scale(1.6)!important;
+            transform-origin:bottom right!important;
+            pointer-events:none!important;
+            z-index:4!important;
+            opacity:0.85!important;
+        }
+        .giving-n-effect .rect-box{
+            position:absolute;
+            background-color:#FFF;
+            background-size:cover;
+            background-position:center;
+            border-radius:20px;
+            z-index:2;
+            animation-duration:24s;
+            animation-timing-function:cubic-bezier(0.4,0,0.2,1);
+            animation-iteration-count:infinite;
+        }
+        .giving-n-effect .rect-99 {background-image:url('../SHLL effect/image1/Rectangle 99.png'); animation-name:anim99;}
+        .giving-n-effect .rect-100{background-image:url('../SHLL effect/image1/Rectangle 100.png');animation-name:anim100;}
+        .giving-n-effect .rect-101{background-image:url('../SHLL effect/image1/Rectangle 101.png');animation-name:anim101;}
+        .giving-n-effect .rect-102{background-image:url('../SHLL effect/image1/Rectangle 102.png');animation-name:anim102;}
+        .giving-n-effect .rect-103{background-image:url('../SHLL effect/image1/Rectangle 103.png');animation-name:anim103;}
+        .giving-n-effect .rect-104{background-image:url('../SHLL effect/image1/Rectangle 104.png');animation-name:anim104;}
+        .giving-n-effect .rect-105{background-image:url('../SHLL effect/image1/Rectangle 105.png');animation-name:anim105;}
+        .giving-n-effect .rect-106{background-image:url('../SHLL effect/image1/Rectangle 106.png');animation-name:anim106;}
+        .giving-n-effect .rect-107{background-image:url('../SHLL effect/image1/Rectangle 107.png');animation-name:anim107;}
+        .giving-n-effect .rect-108{background-image:url('../SHLL effect/image1/Rectangle 108.png');animation-name:anim108;}
+
+        /* ── Effect 2 keyframes ── */
+        @keyframes anim99{
+            0%,3%,100%{width:92px;height:93px;left:242px;top:109px;transform:rotate(0deg);}
+            12.5%,15.5%{width:92px;height:93px;left:183px;top:121px;transform:rotate(0deg);}
+            25%,28%{width:91px;height:92px;left:210px;top:121px;transform:rotate(90deg);}
+            37.5%,40.5%{width:92px;height:91px;left:171px;top:252px;transform:rotate(-90deg);}
+            50%,53%{width:90px;height:91px;left:244px;top:189px;transform:rotate(-90deg);}
+            62.5%,65.5%{width:93px;height:94px;left:153px;top:250px;transform:rotate(-90deg);}
+            75%,78%{width:94px;height:94px;left:186px;top:155px;transform:rotate(-90deg);}
+            87.5%,90.5%{width:92px;height:92px;left:186px;top:58px;transform:rotate(-90deg);}
+        }
+        @keyframes anim100{
+            0%,3%,100%{width:91px;height:92px;left:185px;top:213px;transform:rotate(90deg);}
+            12.5%,15.5%{width:92px;height:93px;left:120px;top:121px;transform:rotate(90deg);}
+            25%,28%{width:91px;height:93px;left:0px;top:120px;transform:rotate(0deg);}
+            37.5%,40.5%{width:92px;height:92px;left:143px;top:252px;transform:rotate(90deg);}
+            50%,53%{width:91px;height:92px;left:244px;top:149px;transform:rotate(90deg);}
+            62.5%,65.5%{width:94px;height:95px;left:132px;top:250px;transform:rotate(90deg);}
+            75%,78%{width:94px;height:96px;left:247px;top:-2px;transform:rotate(90deg);}
+            87.5%,90.5%{width:92px;height:93px;left:185px;top:118px;transform:rotate(90deg);}
+        }
+        @keyframes anim101{
+            0%,3%,100%{width:92px;height:92px;left:0px;top:242px;transform:rotate(90deg);}
+            12.5%,15.5%{width:92px;height:92px;left:61px;top:243px;transform:rotate(90deg);}
+            25%,28%{width:91px;height:92px;left:0px;top:243px;transform:rotate(0deg);}
+            37.5%,40.5%{width:91px;height:89px;left:33px;top:194px;transform:rotate(90deg);}
+            50%,53%{width:91px;height:90px;left:74px;top:243px;transform:rotate(90deg);}
+            62.5%,65.5%{width:94px;height:93px;left:33px;top:190px;transform:rotate(90deg);}
+            75%,78%{width:94px;height:95px;left:-2px;top:190px;transform:rotate(90deg);}
+            87.5%,90.5%{width:92px;height:93px;left:56px;top:178px;transform:rotate(90deg);}
+        }
+        @keyframes anim102{
+            0%,3%,100%{width:91px;height:93px;left:242px;top:242px;transform:rotate(-90deg);}
+            12.5%,15.5%{width:91px;height:93px;left:182px;top:182px;transform:rotate(-90deg);}
+            25%,28%{width:91px;height:93px;left:150px;top:182px;transform:rotate(-90deg);}
+            37.5%,40.5%{width:89px;height:90px;left:33px;top:65px;transform:rotate(180deg);}
+            50%,53%{width:89px;height:90px;left:33px;top:65px;transform:rotate(180deg);}
+            62.5%,65.5%{width:93px;height:92px;left:33px;top:67px;transform:rotate(180deg);}
+            75%,78%{width:91px;height:92px;left:126px;top:35px;transform:rotate(180deg);}
+            87.5%,90.5%{width:92px;height:93px;left:186px;top:243px;transform:rotate(180deg);}
+        }
+        @keyframes anim103{
+            0%,3%,100%{width:92px;height:92px;left:60px;top:242px;transform:rotate(-90deg);}
+            12.5%,15.5%{width:92px;height:92px;left:121px;top:243px;transform:rotate(-90deg);}
+            25%,28%{width:92px;height:92px;left:242px;top:243px;transform:rotate(0deg);}
+            37.5%,40.5%{width:92px;height:91px;left:97px;top:252px;transform:rotate(-90deg);}
+            50%,53%{width:92px;height:91px;left:244px;top:148px;transform:rotate(-90deg);}
+            62.5%,65.5%{width:94px;height:94px;left:167px;top:250px;transform:rotate(-90deg);}
+            75%,78%{width:94px;height:94px;left:123px;top:250px;transform:rotate(-90deg);}
+            87.5%,90.5%{width:92px;height:93px;left:56px;top:244px;transform:rotate(-90deg);}
+        }
+        @keyframes anim104{
+            0%,3%,100%{width:92px;height:89px;left:242px;top:0px;transform:rotate(0deg);}
+            12.5%,15.5%{width:91px;height:90px;left:182px;top:0px;transform:rotate(0deg);}
+            25%,28%{width:92px;height:90px;left:242px;top:0px;transform:rotate(0deg);}
+            37.5%,40.5%{width:89px;height:88px;left:33px;top:31px;transform:rotate(0deg);}
+            50%,53%{width:89px;height:88px;left:33px;top:31px;transform:rotate(0deg);}
+            62.5%,65.5%{width:93px;height:91px;left:33px;top:32px;transform:rotate(0deg);}
+            75%,78%{width:91px;height:91px;left:126px;top:-1px;transform:rotate(0deg);}
+            87.5%,90.5%{width:92px;height:91px;left:186px;top:-5px;transform:rotate(0deg);}
+        }
+        @keyframes anim105{
+            0%,3%,100%{width:91px;height:89px;left:0px;top:0px;transform:rotate(0deg);}
+            12.5%,15.5%{width:91px;height:90px;left:61px;top:0px;transform:rotate(0deg);}
+            25%,28%{width:91px;height:90px;left:0px;top:0px;transform:rotate(0deg);}
+            37.5%,40.5%{width:91px;height:89px;left:33px;top:-2px;transform:rotate(0deg);}
+            50%,53%{width:91px;height:89px;left:33px;top:-2px;transform:rotate(90deg);}
+            62.5%,65.5%{width:94px;height:93px;left:33px;top:-2px;transform:rotate(90deg);}
+            75%,78%{width:94px;height:93px;left:-1px;top:-2px;transform:rotate(90deg);}
+            87.5%,90.5%{width:92px;height:91px;left:56px;top:54px;transform:rotate(90deg);}
+        }
+        @keyframes anim106{
+            0%,3%,100%{width:91px;height:91px;left:61px;top:63px;transform:rotate(0deg);}
+            12.5%,15.5%{width:91px;height:90px;left:61px;top:64px;transform:rotate(0deg);}
+            25%,28%{width:91px;height:90px;left:93px;top:64px;transform:rotate(0deg);}
+            37.5%,40.5%{width:90px;height:90px;left:127px;top:254px;transform:rotate(0deg);}
+            50%,53%{width:90px;height:90px;left:182px;top:-2px;transform:rotate(0deg);}
+            62.5%,65.5%{width:93px;height:93px;left:33px;top:127px;transform:rotate(0deg);}
+            75%,78%{width:94px;height:93px;left:32px;top:127px;transform:rotate(0deg);}
+            87.5%,90.5%{width:92px;height:92px;left:122px;top:118px;transform:rotate(0deg);}
+        }
+        @keyframes anim107{
+            0%,3%,100%{width:91px;height:90px;left:0px;top:181px;transform:rotate(0deg);}
+            12.5%,15.5%{width:92px;height:90px;left:118px;top:0px;transform:rotate(0deg);}
+            25%,28%{width:92px;height:90px;left:30px;top:0px;transform:rotate(0deg);}
+            37.5%,40.5%{width:89px;height:89px;left:33px;top:106px;transform:rotate(0deg);}
+            50%,53%{width:89px;height:89px;left:30px;top:181px;transform:rotate(0deg);}
+            62.5%,65.5%{width:93px;height:94px;left:97px;top:250px;transform:rotate(0deg);}
+            75%,78%{width:94px;height:92px;left:-2px;top:192px;transform:rotate(0deg);}
+            87.5%,90.5%{width:92px;height:90px;left:56px;top:124px;transform:rotate(0deg);}
+        }
+        @keyframes anim108{
+            0%,3%,100%{width:91px;height:90px;left:0px;top:-1px;transform:rotate(0deg);}
+            12.5%,15.5%{width:92px;height:90px;left:136px;top:0px;transform:rotate(0deg);}
+            25%,28%{width:91px;height:90px;left:210px;top:0px;transform:rotate(0deg);}
+            37.5%,40.5%{width:89px;height:90px;left:33px;top:155px;transform:rotate(0deg);}
+            50%,53%{width:92px;height:90px;left:181px;top:120px;transform:rotate(0deg);}
+            62.5%,65.5%{width:94px;height:93px;left:136px;top:250px;transform:rotate(0deg);}
+            75%,78%{width:94px;height:94px;left:249px;top:155px;transform:rotate(0deg);}
+            87.5%,90.5%{width:92px;height:91px;left:186px;top:178px;transform:rotate(0deg);}
+        }
+
+        /* ── SHLL Effect 1 interactive band ─────────────────── */
+        .shll-band-interactive{
+            position:absolute;overflow:visible;z-index:3;
+        }
+        .shll-band-interactive .band-container{
+            position:relative;width:2500px;height:800px;
+        }
+        .img-box{
+            position:absolute;background-size:cover;background-position:center;
+            transition:all 0.8s cubic-bezier(0.25,1,0.5,1);
+        }
+        .flipped{transform:matrix(-1,0,0,1,0,0);}
+
+        /* State 1 — scattered */
+        .image-149{width:158px;height:450px;left:103px;top:0px;   background-image:url('../assets/images/shll_effect_1.png');background-size:2455px 498px;background-position:-103px 0px;}
+        .image-150{width:436px;height:424px;left:1677px;top:59px; background-image:url('../assets/images/shll_effect_1.png');background-size:2455px 498px;background-position:-1677px -59px;}
+        .image-151{width:617px;height:255px;left:1216px;top:270px;background-image:url('../assets/images/shll_effect_1.png');background-size:2455px 498px;background-position:-1216px -270px;}
+        .image-154{width:159px;height:187px;left:1344px;top:73px; background-image:url('../assets/images/shll_effect_1.png');background-size:2455px 498px;background-position:-1344px -73px;}
+        .image-156{width:153px;height:247px;left:1073px;top:0px;  background-image:url('../assets/images/shll_effect_1.png');background-size:2455px 498px;background-position:-1073px 0px;}
+        .image-157{width:377px;height:259px;left:643px;top:268px; background-image:url('../assets/images/shll_effect_1.png');background-size:2455px 498px;background-position:-643px -268px;}
+        .image-158{width:355px;height:280px;left:103px;top:247px; background-image:url('../assets/images/shll_effect_1.png');background-size:2455px 498px;background-position:-103px -247px;}
+        .image-159{width:344px;height:247px;left:292px;top:0px;   background-image:url('../assets/images/shll_effect_1.png');background-size:2455px 498px;background-position:-292px 0px;}
+        .image-160{width:162px;height:162px;left:-107px;top:85px; background-image:url('../assets/images/shll_effect_1.png');background-size:2455px 498px;background-position:107px -85px;}
+        .image-161{width:355px;height:166px;left:459px;top:188px; background-image:url('../assets/images/shll_effect_1.png');background-size:2455px 498px;background-position:-459px -188px;}
+        .image-162{width:265px;height:166px;left:-209px;top:188px;background-image:url('../assets/images/shll_effect_1.png');background-size:2455px 498px;background-position:209px -188px;}
+        .image-163{width:92px;height:107px;left:716px;top:87px;   background-image:url('../assets/images/shll_effect_1.png');background-size:2455px 498px;background-position:-716px -87px;}
+        .image-164{width:92px;height:107px;left:2367px;top:219px; background-image:url('../assets/images/shll_effect_1.png');background-size:2455px 498px;background-position:-2367px -219px;}
+        .image-165{width:92px;height:107px;left:1067px;top:333px; background-image:url('../assets/images/shll_effect_1.png');background-size:2455px 498px;background-position:-1067px -333px;}
+        .image-166{width:92px;height:107px;left:2275px;top:420px; background-image:url('../assets/images/shll_effect_1.png');background-size:2455px 498px;background-position:-2275px -420px;}
+        .image-167{width:92px;height:107px;left:2128px;top:159px; background-image:url('../assets/images/shll_effect_1.png');background-size:2455px 498px;background-position:-2128px -159px;}
+        .image-168{width:92px;height:107px;left:1566px;top:85px;  background-image:url('../assets/images/shll_effect_1.png');background-size:2455px 498px;background-position:-1566px -85px;}
+        .image-169{width:92px;height:107px;left:-436px;top:217px; background-image:url('../assets/images/shll_effect_1.png');background-size:2455px 498px;background-position:436px -217px;}
+        .image-170{width:92px;height:107px;left:-25px;top:418px;  background-image:url('../assets/images/shll_effect_1.png');background-size:2455px 498px;background-position:25px -418px;}
+        .image-171{width:92px;height:107px;left:464px;top:343px;  background-image:url('../assets/images/shll_effect_1.png');background-size:2455px 498px;background-position:-464px -343px;}
+        .image-172{width:92px;height:107px;left:927px;top:157px;  background-image:url('../assets/images/shll_effect_1.png');background-size:2455px 498px;background-position:-927px -157px;}
+
+        /* State 2 — hover / grouped */
+        .shll-band-interactive:hover .image-149{left:997px;top:4px;}
+        .shll-band-interactive:hover .image-150{left:991px;top:59px;}
+        .shll-band-interactive:hover .image-151{left:996px;top:270px;}
+        .shll-band-interactive:hover .image-154{width:159px;height:450px;left:1268px;top:7px;}
+        .shll-band-interactive:hover .image-156{width:144px;height:247px;left:826px;top:0px;}
+        .shll-band-interactive:hover .image-157{left:600px;top:268px;}
+        .shll-band-interactive:hover .image-158{left:252px;top:247px;}
+        .shll-band-interactive:hover .image-159{left:252px;top:0px;}
+        .shll-band-interactive:hover .image-160{left:615px;top:85px;}
+        .shll-band-interactive:hover .image-161{width:355px;height:143px;left:617px;top:188px;}
+        .shll-band-interactive:hover .image-162{left:331px;top:184px;}
+        .shll-band-interactive:hover .image-163{left:1679px;top:85px;}
+        .shll-band-interactive:hover .image-164{left:1778px;top:217px;}
+        .shll-band-interactive:hover .image-165{left:1686px;top:331px;}
+        .shll-band-interactive:hover .image-166{left:1798px;top:418px;}
+        .shll-band-interactive:hover .image-167{left:1880px;top:157px;}
+        .shll-band-interactive:hover .image-168{left:94px;top:85px;}
+        .shll-band-interactive:hover .image-169{left:-5px;top:217px;}
+        .shll-band-interactive:hover .image-170{left:-25px;top:418px;}
+        .shll-band-interactive:hover .image-171{left:87px;top:331px;}
+        .shll-band-interactive:hover .image-172{left:-107px;top:157px;}
+    </style>
+</head>
+<body>
+<div class="about-clip">
+<div data-layer="/About" class="About" style="width: 100%; height: 0; position: absolute; left: 0; top: 0; background: transparent">
+  <div data-layer="Model" class="Model" style="width: 1874px; height: 6965px; left: 0; top: 0; position: absolute; background: linear-gradient(0deg, #F6F3EE 0%, #F6F3EE 100%), white; overflow: hidden">
+    <!-- SHLL Effect 1 — Band 1 (OUR VISION background, top:169px) -->
+    <div class="shll-band-interactive" style="left:-14px;top:169px;width:2477px;height:527px;opacity:0.40;box-shadow:9px 9px 9px,0px 4px 4px rgba(0,0,0,0.75);filter:blur(4.50px);">
+      <div class="band-container">
+        <div class="img-box image-149"></div>
+        <div class="img-box image-150"></div>
+        <div class="img-box image-151"></div>
+        <div class="img-box image-154"></div>
+        <div class="img-box image-156"></div>
+        <div class="img-box image-157"></div>
+        <div class="img-box image-158"></div>
+        <div class="img-box image-159"></div>
+        <div class="img-box image-160"></div>
+        <div class="img-box image-161"></div>
+        <div class="img-box image-162"></div>
+        <div class="img-box image-163"></div>
+        <div class="img-box image-164"></div>
+        <div class="img-box image-165"></div>
+        <div class="img-box image-166"></div>
+        <div class="img-box image-167"></div>
+        <div class="img-box flipped image-168"></div>
+        <div class="img-box flipped image-169"></div>
+        <div class="img-box flipped image-170"></div>
+        <div class="img-box flipped image-171"></div>
+        <div class="img-box flipped image-172"></div>
+      </div>
+    </div>
+    <!-- SHLL Effect 1 — Band 2 (top:934px) -->
+    <div class="shll-band-interactive" style="left:-24px;top:934px;width:2477px;height:527px;opacity:0.40;box-shadow:9px 9px 9px,0px 4px 4px rgba(0,0,0,0.75);filter:blur(4.50px);">
+      <div class="band-container">
+        <div class="img-box image-149"></div>
+        <div class="img-box image-150"></div>
+        <div class="img-box image-151"></div>
+        <div class="img-box image-154"></div>
+        <div class="img-box image-156"></div>
+        <div class="img-box image-157"></div>
+        <div class="img-box image-158"></div>
+        <div class="img-box image-159"></div>
+        <div class="img-box image-160"></div>
+        <div class="img-box image-161"></div>
+        <div class="img-box image-162"></div>
+        <div class="img-box image-163"></div>
+        <div class="img-box image-164"></div>
+        <div class="img-box image-165"></div>
+        <div class="img-box image-166"></div>
+        <div class="img-box image-167"></div>
+        <div class="img-box flipped image-168"></div>
+        <div class="img-box flipped image-169"></div>
+        <div class="img-box flipped image-170"></div>
+        <div class="img-box flipped image-171"></div>
+        <div class="img-box flipped image-172"></div>
+      </div>
+    </div>
+    <img data-layer="Nền background BÌA 2" class="NNBackgroundBA2" style="width: 3465px; height: 1940px; left: -33px; top: 6811px; position: absolute; transform: rotate(-90deg); transform-origin: top left" src="[BASE64_DATA]" />
+    <img data-layer="Nền background BÌA 3" class="NNBackgroundBA3" style="width: 178px; height: 1874px; left: 1874px; top: 6787px; position: absolute; transform: rotate(90deg); transform-origin: top left" src="[BASE64_DATA]" />
+    <img data-layer="Nền background BÌA 1" class="NNBackgroundBA1" style="width: 3352px; height: 1874px; left: 1874px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: top left" src="[BASE64_DATA]" />
+    <div data-layer="Frame 194" data-property-1="Default" class="Frame194" style="width: 2477px; height: 527px; left: -24px; top: 934px; position: absolute; opacity: 0.40; box-shadow: 9px 9px 9px , 0px 4px 4px rgba(0, 0, 0, 0.75); filter: blur(4.50px)">
+      <img data-layer="image 151" class="Image151" style="width: 617px; height: 255px; left: 1216px; top: 270px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 149" class="Image149" style="width: 158px; height: 450px; left: 103px; top: 0px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 154" class="Image154" style="width: 159px; height: 187px; left: 1344px; top: 73px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 150" class="Image150" style="width: 436px; height: 424px; left: 1677px; top: 59px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 163" class="Image163" style="width: 92px; height: 107px; left: 716px; top: 87px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 164" class="Image164" style="width: 92px; height: 107px; left: 2367px; top: 219px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 166" class="Image166" style="width: 92px; height: 107px; left: 2275px; top: 420px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 165" class="Image165" style="width: 92px; height: 107px; left: 1067px; top: 333px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 167" class="Image167" style="width: 92px; height: 107px; left: 2128px; top: 159px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 157" class="Image157" style="width: 377px; height: 259px; left: 643px; top: 268px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 160" class="Image160" style="width: 162px; height: 162px; left: -107px; top: 85px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 161" class="Image161" style="width: 355px; height: 166px; left: 459px; top: 188px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 156" class="Image156" style="width: 153px; height: 247px; left: 1073px; top: 0px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 158" class="Image158" style="width: 355px; height: 280px; left: 103px; top: 247px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 168" class="Image168" style="width: 92px; height: 107px; left: 1658px; top: 192px; position: absolute; transform: rotate(180deg); transform-origin: top left" src="[BASE64_DATA]" />
+      <img data-layer="image 169" class="Image169" style="width: 92px; height: 107px; left: -344px; top: 324px; position: absolute; transform: rotate(180deg); transform-origin: top left" src="[BASE64_DATA]" />
+      <img data-layer="image 170" class="Image170" style="width: 92px; height: 107px; left: 67px; top: 525px; position: absolute; transform: rotate(180deg); transform-origin: top left" src="[BASE64_DATA]" />
+      <img data-layer="image 171" class="Image171" style="width: 92px; height: 107px; left: 556px; top: 450px; position: absolute; transform: rotate(180deg); transform-origin: top left" src="[BASE64_DATA]" />
+      <img data-layer="image 172" class="Image172" style="width: 92px; height: 107px; left: 1019px; top: 264px; position: absolute; transform: rotate(180deg); transform-origin: top left" src="[BASE64_DATA]" />
+      <img data-layer="image 159" class="Image159" style="width: 344px; height: 247px; left: 292px; top: 0px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 162" class="Image162" style="width: 265px; height: 166px; left: -209px; top: 188px; position: absolute" src="[BASE64_DATA]" />
+    </div>
+    <div data-layer="Rectangle 110" class="Rectangle110" style="width: 1892px; height: 915px; left: -9px; top: 4918px; position: absolute; opacity: 0.40; background: rgba(255, 255, 255, 0.46); box-shadow: 10px 10px 10px , 0px 4px 4px rgba(0, 0, 0, 0.75); filter: blur(5px)"></div>
+    <div data-layer="Rectangle 111" class="Rectangle111" style="width: 557px; height: 727px; left: 73px; top: 5032px; position: absolute; opacity: 0.40; background: rgba(255, 255, 255, 0.31); box-shadow: 10px 10px 10px; filter: blur(5px)"></div>
+    <div data-layer="Rectangle 112" class="Rectangle112" style="width: 792px; height: 851px; left: 73px; top: 3863px; position: absolute; opacity: 0.40; background: rgba(255, 255, 255, 0.31); box-shadow: 10px 10px 10px; filter: blur(5px)"></div>
+    <div data-layer="Hiệu ứng SHLL" data-property-1="Default" class="HiUNgShll" style="width: 2477px; height: 527px; left: -14px; top: 169px; position: absolute; opacity: 0.40; box-shadow: 9px 9px 9px , 0px 4px 4px rgba(0, 0, 0, 0.75); filter: blur(4.50px)">
+      <img data-layer="image 151" class="Image151" style="width: 617px; height: 255px; left: 1216px; top: 270px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 149" class="Image149" style="width: 158px; height: 450px; left: 103px; top: 0px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 154" class="Image154" style="width: 159px; height: 187px; left: 1344px; top: 73px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 150" class="Image150" style="width: 436px; height: 424px; left: 1677px; top: 59px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 163" class="Image163" style="width: 92px; height: 107px; left: 716px; top: 87px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 164" class="Image164" style="width: 92px; height: 107px; left: 2367px; top: 219px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 166" class="Image166" style="width: 92px; height: 107px; left: 2275px; top: 420px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 165" class="Image165" style="width: 92px; height: 107px; left: 1067px; top: 333px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 167" class="Image167" style="width: 92px; height: 107px; left: 2128px; top: 159px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 157" class="Image157" style="width: 377px; height: 259px; left: 643px; top: 268px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 160" class="Image160" style="width: 162px; height: 162px; left: -107px; top: 85px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 161" class="Image161" style="width: 355px; height: 166px; left: 459px; top: 188px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 156" class="Image156" style="width: 153px; height: 247px; left: 1073px; top: 0px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 158" class="Image158" style="width: 355px; height: 280px; left: 103px; top: 247px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 168" class="Image168" style="width: 92px; height: 107px; left: 1658px; top: 192px; position: absolute; transform: rotate(180deg); transform-origin: top left" src="[BASE64_DATA]" />
+      <img data-layer="image 169" class="Image169" style="width: 92px; height: 107px; left: -344px; top: 324px; position: absolute; transform: rotate(180deg); transform-origin: top left" src="[BASE64_DATA]" />
+      <img data-layer="image 170" class="Image170" style="width: 92px; height: 107px; left: 67px; top: 525px; position: absolute; transform: rotate(180deg); transform-origin: top left" src="[BASE64_DATA]" />
+      <img data-layer="image 171" class="Image171" style="width: 92px; height: 107px; left: 556px; top: 450px; position: absolute; transform: rotate(180deg); transform-origin: top left" src="[BASE64_DATA]" />
+      <img data-layer="image 172" class="Image172" style="width: 92px; height: 107px; left: 1019px; top: 264px; position: absolute; transform: rotate(180deg); transform-origin: top left" src="[BASE64_DATA]" />
+      <img data-layer="image 159" class="Image159" style="width: 344px; height: 247px; left: 292px; top: 0px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 162" class="Image162" style="width: 265px; height: 166px; left: -209px; top: 188px; position: absolute" src="[BASE64_DATA]" />
+    </div>
+    <div data-layer="Frame 27" data-property-1="Default" class="Frame27" style="width: 2477px; height: 527px; left: -24px; top: 934px; position: absolute; opacity: 0.40; box-shadow: 9px 9px 9px , 0px 4px 4px rgba(0, 0, 0, 0.75); filter: blur(4.50px)">
+      <img data-layer="image 151" class="Image151" style="width: 617px; height: 255px; left: 1216px; top: 270px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 149" class="Image149" style="width: 158px; height: 450px; left: 103px; top: 0px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 154" class="Image154" style="width: 159px; height: 187px; left: 1344px; top: 73px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 150" class="Image150" style="width: 436px; height: 424px; left: 1677px; top: 59px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 163" class="Image163" style="width: 92px; height: 107px; left: 716px; top: 87px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 164" class="Image164" style="width: 92px; height: 107px; left: 2367px; top: 219px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 166" class="Image166" style="width: 92px; height: 107px; left: 2275px; top: 420px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 165" class="Image165" style="width: 92px; height: 107px; left: 1067px; top: 333px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 167" class="Image167" style="width: 92px; height: 107px; left: 2128px; top: 159px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 157" class="Image157" style="width: 377px; height: 259px; left: 643px; top: 268px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 160" class="Image160" style="width: 162px; height: 162px; left: -107px; top: 85px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 161" class="Image161" style="width: 355px; height: 166px; left: 459px; top: 188px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 156" class="Image156" style="width: 153px; height: 247px; left: 1073px; top: 0px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 158" class="Image158" style="width: 355px; height: 280px; left: 103px; top: 247px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 168" class="Image168" style="width: 92px; height: 107px; left: 1658px; top: 192px; position: absolute; transform: rotate(180deg); transform-origin: top left" src="[BASE64_DATA]" />
+      <img data-layer="image 169" class="Image169" style="width: 92px; height: 107px; left: -344px; top: 324px; position: absolute; transform: rotate(180deg); transform-origin: top left" src="[BASE64_DATA]" />
+      <img data-layer="image 170" class="Image170" style="width: 92px; height: 107px; left: 67px; top: 525px; position: absolute; transform: rotate(180deg); transform-origin: top left" src="[BASE64_DATA]" />
+      <img data-layer="image 171" class="Image171" style="width: 92px; height: 107px; left: 556px; top: 450px; position: absolute; transform: rotate(180deg); transform-origin: top left" src="[BASE64_DATA]" />
+      <img data-layer="image 172" class="Image172" style="width: 92px; height: 107px; left: 1019px; top: 264px; position: absolute; transform: rotate(180deg); transform-origin: top left" src="[BASE64_DATA]" />
+      <img data-layer="image 159" class="Image159" style="width: 344px; height: 247px; left: 292px; top: 0px; position: absolute" src="[BASE64_DATA]" />
+      <img data-layer="image 162" class="Image162" style="width: 265px; height: 166px; left: -209px; top: 188px; position: absolute" src="[BASE64_DATA]" />
+    </div>
+    <img data-layer="image 39" class="Image39" style="width: 966px; height: 755px; left: 112px; top: 2810px; position: absolute" src="[BASE64_DATA]" />
+    <img data-layer="SC_CC_ENG_NewVer2@4x 1" class="ScCcEngNewver24x1" style="width: 876px; height: 845px; left: 937px; top: 3862px; position: absolute" src="[BASE64_DATA]" />
+    <div data-layer="FOR A MORE SUSTAINABLE FUTURE" class="ForAMoreSustainableFuture" style="width: 613px; left: 50px; top: 6096px; position: absolute; color: white; font-size: 33px; font-family: Inter; font-weight: 700; line-height: 47.85px; letter-spacing: 0.33px; word-wrap: break-word">FOR A MORE SUSTAINABLE FUTURE</div>
+    <div data-svg-wrapper data-layer="Vector 2" class="Vector2" style="left: 128px; top: 6884px; position: absolute">
+      <svg width="1707" height="2" viewBox="0 0 1707 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0.650391L1707 0.65054" stroke="white" stroke-width="1.3"/>
+      </svg>
+    </div>
+    <div data-layer="smarthub@ueh.edu.vn" class="SmarthubUehEduVn" style="width: 158px; left: 39px; top: 6919px; position: absolute; color: white; font-size: 14px; font-family: Inter; font-weight: 500; line-height: 20.30px; word-wrap: break-word">smarthub@ueh.edu.vn<br/></div>
+    <div data-layer="smART HUB Living Labs UEH, Campus V 232/6 Vo Thi Sau, Xuan Hoa Ward, Ho Chi Minh City." class="SmartHubLivingLabsUehCampusV2326VoThiSauXuanHoaWardHoChiMinhCity" style="width: 465px; left: 1370px; top: 6897px; position: absolute; text-align: right; color: white; font-size: 14px; font-family: Inter; font-weight: 500; line-height: 20.30px; word-wrap: break-word">smART HUB Living Labs<br/>UEH, Campus V 232/6 Vo Thi Sau, Xuan Hoa Ward, Ho Chi Minh City.</div>
+    <div data-layer="For more information of the smART Hub Living Labs." class="ForMoreInformationOfTheSmartHubLivingLabs" style="width: 349px; left: 40px; top: 6897px; position: absolute; color: white; font-size: 14px; font-family: Inter; font-style: italic; font-weight: 500; line-height: 20.30px; word-wrap: break-word">For more information of the smART Hub Living Labs.</div>
+    <div data-layer="Contact" class="Contact" style="width: 100px; left: 40px; top: 6872px; position: absolute; color: white; font-size: 16px; font-family: Inter; font-weight: 600; line-height: 23.20px; word-wrap: break-word">Contact</div>
+    <div data-layer="Text" class="Text" style="width: 748px; left: 553px; top: 774px; position: absolute; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
+      <div data-layer="A VIBRANT CULTURAL HUB THAT PROMOTES ART, DESIGN, AND INNOVATION IN A SMART WAY WHILE EMBODYING SUSTAINABILITY AND COMMUNITY ENGAGEMENT TOWARDS NET ZERO." class="AVibrantCulturalHubThatPromotesArtDesignAndInnovationInASmartWayWhileEmbodyingSustainabilityAndCommunityEngagementTowardsNetZero" style="width: 784px; text-align: center; color: #323232; font-size: 24px; font-family: Inter; font-weight: 400; text-transform: capitalize; line-height: 34.80px; word-wrap: break-word">A VIBRANT CULTURAL HUB THAT PROMOTES ART, DESIGN, AND INNOVATION IN A SMART WAY WHILE EMBODYING SUSTAINABILITY AND COMMUNITY ENGAGEMENT TOWARDS NET ZERO.</div>
+    </div>
+    <div data-layer="OUR VISION" class="OurVision" style="width: 222px; left: 816px; top: 712px; position: absolute; text-align: center; color: #323232; font-size: 32px; font-family: Inter; font-weight: 700; line-height: 46.40px; word-wrap: break-word">OUR VISION</div>
+    <div data-layer="OUR HISTORY" class="OurHistory our-history-heading" style="width: 1094px; left: 162px; top: 1536px; position: absolute; transform: rotate(90deg); transform-origin: top left">OUR HISTORY</div>
+    <div data-layer="Hiệu ứng đồng hồ" data-property-1="Default" class="HiUNgNgH" style="width: 749px; height: 907.50px; left: 1087px; top: 1669px; position: absolute">
+      <div data-layer="Text" class="Text" style="width: 561px; left: 91px; top: 820.50px; position: absolute; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
+        <div data-layer="Where actions for “Co-creation for net zero campus” took place, the coordinating campus for living labs and experiment for urban environmental policy." class="WhereActionsForCoCreationForNetZeroCampusTookPlaceTheCoordinatingCampusForLivingLabsAndExperimentForUrbanEnvironmentalPolicy" style="align-self: stretch; text-align: right; color: white; font-size: 20px; font-family: Inter; font-weight: 400; text-transform: capitalize; line-height: 29px; word-wrap: break-word">Where actions for “Co-creation for net zero campus” took place, the coordinating campus for living labs and experiment for urban environmental policy.</div>
+      </div>
+      <div data-layer="Text" class="Text" style="width: 413px; left: 336px; top: 502.50px; position: absolute; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
+        <div data-layer="CÔNG BỐ CÁC PLATFORM" class="CNgBCCPlatform" style="width: 413px; color: white; font-size: 18px; font-family: Inter; font-weight: 400; text-transform: capitalize; line-height: 26.10px; word-wrap: break-word">CÔNG BỐ CÁC PLATFORM</div>
+      </div>
+      <div data-layer="CÔNG BỐ bỘ nHẬN DIỆN" class="CNgBBNhNDiN" style="width: 413px; left: 336px; top: 597.50px; position: absolute; color: white; font-size: 18px; font-family: Inter; font-weight: 400; text-transform: capitalize; line-height: 26.10px; word-wrap: break-word">CÔNG BỐ bỘ nHẬN DIỆN</div>
+      <div data-layer="OUR MISSION" class="OurMission" style="width: 222px; left: 430px; top: 758.50px; position: absolute; text-align: right; font-size: 32px; font-family: Inter; font-weight: 700; line-height: 46.40px; word-wrap: break-word">OUR MISSION</div>
+      <div data-layer="OPERATION" class="Operation" style="width: 222px; left: 202px; top: 432.50px; position: absolute; font-size: 28px; font-family: Inter; font-weight: 700; line-height: 40.60px; word-wrap: break-word">OPERATION</div>
+      <div data-layer="15_04" class="04" style="width: 110px; left: 203px; top: 497.50px; position: absolute; text-align: right; color: white; font-size: 28px; font-family: Inter; font-weight: 500; line-height: 40.60px; word-wrap: break-word">15_04</div>
+      <div data-layer="30_04" class="04" style="width: 116px; left: 197px; top: 592.50px; position: absolute; text-align: right; color: white; font-size: 28px; font-family: Inter; font-weight: 500; line-height: 40.60px; word-wrap: break-word">30_04</div>
+      <div data-layer="TOWARD NET ZERO" class="TowardNetZero" style="width: 362px; height: 149px; left: 233px; top: 35.50px; position: absolute"><span style="color: black; font-size: 59px; font-family: Inter; font-weight: 600; line-height: 67.85px; letter-spacing: 0.59px; word-wrap: break-word">TOWARD<br/></span><span style="color: black; font-size: 64px; font-family: Inter; font-weight: 600; line-height: 73.60px; word-wrap: break-word">NET ZERO</span></div>
+      <img data-layer="image 176" class="Image176" style="width: 386px; height: 379px; left: 7px; top: 0px; position: absolute" src="[BASE64_DATA]" />
+      <div data-layer="Rectangle 84" class="Rectangle84" style="width: 6px; height: 106px; left: 198px; top: 84.50px; position: absolute; background: black"></div>
+      <div data-svg-wrapper data-layer="Ellipse 31" class="Ellipse31" style="left: 196px; top: 184.50px; position: absolute">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="5" cy="5" r="5" fill="black"/>
+        </svg>
+      </div>
+      <div data-layer="Text" class="Text" style="width: 461px; left: 233px; top: 207.50px; position: absolute; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
+        <div data-layer="A vibrant cultural hub that promotes art, design, and innovation in a smart way while embodying sustainability and community engagement." class="AVibrantCulturalHubThatPromotesArtDesignAndInnovationInASmartWayWhileEmbodyingSustainabilityAndCommunityEngagement" style="width: 413px; color: #323232; font-size: 20px; font-family: Inter; font-weight: 400; text-transform: capitalize; line-height: 29px; word-wrap: break-word">A vibrant cultural hub that promotes art, design, and innovation in a smart way while embodying sustainability and community engagement.</div>
+      </div>
+    </div>
+    <img data-layer="package model 1" class="PackageModel1" style="width: 278px; height: 768px; left: 925px; top: 5012px; position: absolute; box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25)" src="[BASE64_DATA]" />
+    <img data-layer="image 151" class="Image151" style="width: 617px; height: 255px; left: 22px; top: 6578px; position: absolute" src="[BASE64_DATA]" />
+    <img data-layer="image 149" class="Image149" style="width: 158px; height: 450px; left: -1091px; top: 6308px; position: absolute" src="[BASE64_DATA]" />
+    <img data-layer="image 154" class="Image154" style="width: 159px; height: 187px; left: 150px; top: 6381px; position: absolute" src="[BASE64_DATA]" />
+    <img data-layer="image 150" class="Image150" style="width: 436px; height: 424px; left: 483px; top: 6367px; position: absolute" src="[BASE64_DATA]" />
+    <img data-layer="image 190" class="Image190" style="width: 92px; height: 107px; left: -478px; top: 6395px; position: absolute" src="[BASE64_DATA]" />
+    <img data-layer="image 191" class="Image191" style="width: 92px; height: 107px; left: 1173px; top: 6527px; position: absolute" src="[BASE64_DATA]" />
+    <img data-layer="image 199" class="Image199" style="width: 92px; height: 107px; left: 703px; top: 6308px; position: absolute" src="[BASE64_DATA]" />
+    <img data-layer="image 192" class="Image192" style="width: 92px; height: 107px; left: 1081px; top: 6728px; position: absolute" src="[BASE64_DATA]" />
+    <img data-layer="image 193" class="Image193" style="width: 92px; height: 107px; left: -127px; top: 6641px; position: absolute" src="[BASE64_DATA]" />
+    <img data-layer="image 194" class="Image194" style="width: 92px; height: 107px; left: 934px; top: 6467px; position: absolute" src="[BASE64_DATA]" />
+    <img data-layer="image 157" class="Image157" style="width: 377px; height: 259px; left: -551px; top: 6576px; position: absolute" src="[BASE64_DATA]" />
+    <img data-layer="image 160" class="Image160" style="width: 162px; height: 162px; left: -1301px; top: 6393px; position: absolute" src="[BASE64_DATA]" />
+    <img data-layer="image 161" class="Image161" style="width: 355px; height: 166px; left: -735px; top: 6496px; position: absolute" src="[BASE64_DATA]" />
+    <img data-layer="image 156" class="Image156" style="width: 153px; height: 247px; left: -121px; top: 6308px; position: absolute" src="[BASE64_DATA]" />
+    <img data-layer="image 158" class="Image158" style="width: 355px; height: 280px; left: -1091px; top: 6555px; position: absolute" src="[BASE64_DATA]" />
+    <img data-layer="image 195" class="Image195" style="width: 92px; height: 107px; left: 464px; top: 6500px; position: absolute; transform: rotate(180deg); transform-origin: top left" src="[BASE64_DATA]" />
+    <img data-layer="image 196" class="Image196" style="width: 92px; height: 107px; left: -1538px; top: 6632px; position: absolute; transform: rotate(180deg); transform-origin: top left" src="[BASE64_DATA]" />
+    <img data-layer="image 170" class="Image170" style="width: 92px; height: 107px; left: -1127px; top: 6833px; position: absolute; transform: rotate(180deg); transform-origin: top left" src="[BASE64_DATA]" />
+    <img data-layer="image 197" class="Image197" style="width: 92px; height: 107px; left: -638px; top: 6758px; position: absolute; transform: rotate(180deg); transform-origin: top left" src="[BASE64_DATA]" />
+    <img data-layer="image 198" class="Image198" style="width: 92px; height: 107px; left: -175px; top: 6572px; position: absolute; transform: rotate(180deg); transform-origin: top left" src="[BASE64_DATA]" />
+    <img data-layer="image 159" class="Image159" style="width: 344px; height: 247px; left: -902px; top: 6308px; position: absolute" src="[BASE64_DATA]" />
+    <img data-layer="image 162" class="Image162" style="width: 265px; height: 166px; left: -1403px; top: 6496px; position: absolute" src="[BASE64_DATA]" />
+    <img data-layer="image 42" class="Image42" style="width: 245px; height: 245px; left: 194px; top: 6590px; position: absolute; box-shadow: 0px 0px 200px 1px rgba(255, 255, 255, 0.60); backdrop-filter: blur(2px)" src="[BASE64_DATA]" />
+    <div data-layer="Link: UEH Green Campus    Mail: smarthub@ueh.edu.vn" class="LinkUehGreenCampusMailSmarthubUehEduVn" style="width: 244px; left: 439px; top: 6776px; position: absolute"><span style="color: white; font-size: 14px; font-family: Inter; font-weight: 500; line-height: 20.30px; word-wrap: break-word">Link: UEH Green Campus    Mail: </span><span style="color: white; font-size: 14px; font-family: Inter; font-weight: 500; line-height: 20.30px; word-wrap: break-word">smarthub@ueh.edu.vn</span></div>
+    <div data-layer="GIVING TO UEH" class="GivingToUeh" style="width: 1181px; left: 40px; top: 5899px; position: absolute; font-size: 136px; font-family: Inter; font-weight: 700; line-height: 197.20px; letter-spacing: 6.80px; word-wrap: break-word; text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)">GIVING TO UEH
+    <div class="giving-n-effect">
+        <div class="rect-box rect-99"></div>
+        <div class="rect-box rect-100"></div>
+        <div class="rect-box rect-101"></div>
+        <div class="rect-box rect-102"></div>
+        <div class="rect-box rect-103"></div>
+        <div class="rect-box rect-104"></div>
+        <div class="rect-box rect-105"></div>
+        <div class="rect-box rect-106"></div>
+        <div class="rect-box rect-107"></div>
+        <div class="rect-box rect-108"></div>
+    </div></div>
+    <div data-layer="Frame 193" data-property-1="Default" class="Frame193" style="width: 472px; height: 1022px; left: 171px; top: 1599px; position: absolute">
+      <img data-layer="image 201" class="Image201" style="width: 159px; height: 159px; left: 0px; top: 285px; position: absolute; border-radius: 184px; border: 0.30px white solid" src="[BASE64_DATA]" />
+      <img data-layer="image 199" class="Image199" style="width: 97px; height: 101px; left: 63px; top: 0px; position: absolute; border-radius: 103px; border: 0.30px white solid" src="[BASE64_DATA]" />
+      <img data-layer="image 200" class="Image200" style="width: 99px; height: 99px; left: 59px; top: 149px; position: absolute; border-radius: 114px; border: 0.30px white solid" src="[BASE64_DATA]" />
+      <img data-layer="image 202" class="Image202" style="width: 130px; height: 134px; left: 173px; top: 385px; position: absolute; border-radius: 145.50px; border: 0.30px white solid" src="[BASE64_DATA]" />
+      <img data-layer="image 203" class="Image203" style="width: 95px; height: 93px; left: 176px; top: 652px; position: absolute; border-radius: 99.50px; border: 0.30px white solid" src="[BASE64_DATA]" />
+      <img data-layer="image 204" class="Image204" style="width: 144px; height: 141px; left: 18px; top: 728px; position: absolute; border-radius: 161px; border: 0.30px white solid" src="[BASE64_DATA]" />
+      <div data-svg-wrapper data-layer="Line 1" class="Line1" style="left: 168px; top: 22px; position: absolute">
+        <svg width="15" height="966" viewBox="0 0 15 966" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6.65686 965.707C7.04739 966.098 7.68055 966.098 8.07108 965.707L14.435 959.343C14.8256 958.953 14.8256 958.319 14.435 957.929C14.0445 957.538 13.4114 957.538 13.0208 957.929L7.36397 963.586L1.70712 957.929C1.31659 957.538 0.683428 957.538 0.292904 957.929C-0.0976204 958.319 -0.0976204 958.953 0.292904 959.343L6.65686 965.707ZM7.36401 0L6.36401 -4.37114e-08L6.36397 965L7.36397 965L8.36397 965L8.36401 4.37114e-08L7.36401 0Z" fill="white"/>
+        </svg>
+      </div>
+      <div data-layer="FRENCH VILLA BIỆT THỰ PHÁP" class="FrenchVillaBiTThPhP" style="width: 167px; height: 36px; left: 193px; top: 34px; position: absolute"><span style="color: white; font-size: 14px; font-family: Inter; font-weight: 700; line-height: 20.30px; word-wrap: break-word">FRENCH VILLA<br/></span><span style="color: white; font-size: 14px; font-family: Inter; font-weight: 400; line-height: 20.30px; word-wrap: break-word">BIỆT THỰ PHÁP</span></div>
+      <div data-layer="UEH OFFICIALLY ACQUIRED CAMPUS V UEH TIẾP NHẬN CƠ SỞ V" class="UehOfficiallyAcquiredCampusVUehTiPNhNCSV" style="width: 272px; height: 36px; left: 200px; top: 183px; position: absolute"><span style="color: white; font-size: 14px; font-family: Inter; font-weight: 700; line-height: 20.30px; word-wrap: break-word">UEH OFFICIALLY ACQUIRED CAMPUS V<br/></span><span style="color: white; font-size: 14px; font-family: Inter; font-weight: 400; line-height: 20.30px; word-wrap: break-word">UEH TIẾP NHẬN CƠ SỞ V</span></div>
+      <div data-layer="FULBRIGHT ECONOMICS CT KINH TẾ FULBRIGHT" class="FulbrightEconomicsCtKinhTFulbright" style="width: 272px; height: 36px; left: 200px; top: 340px; position: absolute"><span style="color: white; font-size: 14px; font-family: Inter; font-weight: 700; line-height: 20.30px; word-wrap: break-word">FULBRIGHT ECONOMICS<br/></span><span style="color: white; font-size: 14px; font-family: Inter; font-weight: 400; line-height: 20.30px; word-wrap: break-word">CT KINH TẾ FULBRIGHT</span></div>
+      <div data-layer="ESTABLISHMENT OF UII UII THÀNH LẬP" class="EstablishmentOfUiiUiiThNhLP" style="width: 272px; height: 36px; left: 200px; top: 589px; position: absolute"><span style="color: white; font-size: 14px; font-family: Inter; font-weight: 700; line-height: 20.30px; word-wrap: break-word">ESTABLISHMENT OF UII<br/></span><span style="color: white; font-size: 14px; font-family: Inter; font-weight: 400; line-height: 20.30px; word-wrap: break-word">UII THÀNH LẬP</span></div>
+      <div data-layer="ESTABLISHMENT OF ISCM, UEH HOTEL ISCM, UEH HOTEL THÀNH LẬP" class="EstablishmentOfIscmUehHotelIscmUehHotelThNhLP" style="width: 272px; height: 36px; left: 200px; top: 750px; position: absolute"><span style="color: white; font-size: 14px; font-family: Inter; font-weight: 700; line-height: 20.30px; word-wrap: break-word">ESTABLISHMENT OF ISCM, UEH HOTEL<br/></span><span style="color: white; font-size: 14px; font-family: Inter; font-weight: 400; line-height: 20.30px; word-wrap: break-word">ISCM, UEH HOTEL THÀNH LẬP</span></div>
+      <div data-layer="Start living labs" class="StartLivingLabs" style="width: 272px; height: 36px; left: 200px; top: 919px; position: absolute; color: white; font-size: 14px; font-family: Inter; font-weight: 700; line-height: 20.30px; word-wrap: break-word">Start living labs</div>
+      <div data-layer="2025" style="width: 44px; height: 21px; left: 197px; top: 908px; position: absolute; transform: rotate(90deg); transform-origin: top left; text-align: center; color: white; font-size: 15px; font-family: Inter; font-weight: 700; line-height: 21.75px; word-wrap: break-word">2025</div>
+      <div data-layer="2020" style="width: 44px; height: 21px; left: 197px; top: 746px; position: absolute; transform: rotate(90deg); transform-origin: top left; text-align: center; color: white; font-size: 15px; font-family: Inter; font-weight: 700; line-height: 21.75px; word-wrap: break-word">2020</div>
+      <div data-layer="2019" style="width: 44px; height: 21px; left: 197px; top: 585px; position: absolute; transform: rotate(90deg); transform-origin: top left; text-align: center; color: white; font-size: 15px; font-family: Inter; font-weight: 700; line-height: 21.75px; word-wrap: break-word">2019</div>
+      <div data-layer="1994" style="width: 44px; height: 21px; left: 197px; top: 341px; position: absolute; transform: rotate(90deg); transform-origin: top left; text-align: center; color: white; font-size: 15px; font-family: Inter; font-weight: 700; line-height: 21.75px; word-wrap: break-word">1994</div>
+      <div data-layer="1989" style="width: 44px; height: 21px; left: 197px; top: 175px; position: absolute; transform: rotate(90deg); transform-origin: top left; text-align: center; color: white; font-size: 15px; font-family: Inter; font-weight: 700; line-height: 21.75px; word-wrap: break-word">1989</div>
+      <div data-layer="Net Zero" class="NetZero" style="width: 272px; height: 20px; left: 150px; top: 1002px; position: absolute; color: white; font-size: 19px; font-family: Inter; font-weight: 700; line-height: 27.55px; word-wrap: break-word">Net Zero</div>
+      <div data-svg-wrapper data-layer="Ellipse 32" class="Ellipse32" style="left: 164px; top: 760px; position: absolute">
+        <svg width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="4.5" cy="4.5" r="4.5" fill="white"/>
+        </svg>
+      </div>
+      <div data-svg-wrapper data-layer="Ellipse 33" class="Ellipse33" style="left: 164px; top: 925px; position: absolute">
+        <svg width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="4.5" cy="4.5" r="4.5" fill="white"/>
+        </svg>
+      </div>
+      <div data-svg-wrapper data-layer="Ellipse 34" class="Ellipse34" style="left: 164px; top: 602px; position: absolute">
+        <svg width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="4.5" cy="4.5" r="4.5" fill="white"/>
+        </svg>
+      </div>
+      <div data-svg-wrapper data-layer="Ellipse 35" class="Ellipse35" style="left: 164px; top: 358px; position: absolute">
+        <svg width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="4.5" cy="4.5" r="4.5" fill="white"/>
+        </svg>
+      </div>
+      <div data-svg-wrapper data-layer="Ellipse 36" class="Ellipse36" style="left: 164px; top: 192px; position: absolute">
+        <svg width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="4.5" cy="4.5" r="4.5" fill="white"/>
+        </svg>
+      </div>
+      <div data-svg-wrapper data-layer="Ellipse 37" class="Ellipse37" style="left: 164px; top: 47px; position: absolute">
+        <svg width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="4.5" cy="4.5" r="4.5" fill="white"/>
+        </svg>
+      </div>
+    </div>
+    <div data-layer="Text" class="Text" style="width: 652px; height: 29px; left: 259px; top: 5061px; position: absolute"></div>
+    <div data-layer="NO SINGLE-USE PLASTIC JOURNEY" class="NoSingleUsePlasticJourney" style="width: 498px; left: 1211px; top: 5061px; position: absolute; color: white; font-size: 27px; font-family: Inter; font-weight: 500; text-transform: capitalize; line-height: 39.15px; word-wrap: break-word">NO SINGLE-USE PLASTIC JOURNEY</div>
+    <div data-layer="RANSITION TO GREEN" class="RansitionToGreen" style="width: 300px; left: 642px; top: 5687px; position: absolute; color: white; font-size: 27px; font-family: Inter; font-weight: 500; text-transform: capitalize; line-height: 39.15px; word-wrap: break-word">RANSITION TO GREEN</div>
+    <div data-layer="T" class="T" style="width: 65px; left: 553px; top: 5647px; position: absolute; text-align: right; color: white; font-size: 80px; font-family: Inter; font-weight: 600; text-transform: capitalize; line-height: 116px; word-wrap: break-word">T</div>
+    <div data-layer="EDUCE FOR MORE" class="EduceForMore" style="width: 283px; left: 642px; top: 5538px; position: absolute; color: white; font-size: 27px; font-family: Inter; font-weight: 500; text-transform: capitalize; line-height: 39.15px; word-wrap: break-word">EDUCE FOR MORE</div>
+    <div data-layer="R" class="R" style="width: 65px; left: 553px; top: 5500px; position: absolute; text-align: right; color: white; font-size: 80px; font-family: Inter; font-weight: 600; text-transform: capitalize; line-height: 116px; word-wrap: break-word">R</div>
+    <div data-layer="RT FOR INSPIRATION" class="RtForInspiration" style="width: 283px; left: 642px; top: 5376px; position: absolute; color: white; font-size: 27px; font-family: Inter; font-weight: 500; text-transform: capitalize; line-height: 39.15px; word-wrap: break-word">RT FOR INSPIRATION</div>
+    <div data-layer="A" class="A" style="width: 65px; left: 553px; top: 5338px; position: absolute; text-align: right; color: white; font-size: 80px; font-family: Inter; font-weight: 600; text-transform: capitalize; line-height: 116px; word-wrap: break-word">A</div>
+    <div data-layer="EASUREMENT FOR IMPROVEMENT" class="EasurementForImprovement" style="width: 283px; left: 642px; top: 5220px; position: absolute; color: white; font-size: 27px; font-family: Inter; font-weight: 500; text-transform: capitalize; line-height: 39.15px; word-wrap: break-word">EASUREMENT FOR IMPROVEMENT</div>
+    <div data-layer="M" class="M" style="width: 65px; left: 555px; top: 5201px; position: absolute; text-align: right; color: white; font-size: 80px; font-family: Inter; font-weight: 600; text-transform: capitalize; line-height: 116px; word-wrap: break-word">M</div>
+    <div data-layer="ORTING FOR CHANGE" class="OrtingForChange" style="width: 300px; left: 642px; top: 5105px; position: absolute; color: white; font-size: 27px; font-family: Inter; font-weight: 500; text-transform: capitalize; line-height: 39.15px; word-wrap: break-word">ORTING FOR CHANGE</div>
+    <div data-layer="S" class="S" style="width: 65px; left: 553px; top: 5067px; position: absolute; text-align: center; color: white; font-size: 80px; font-family: Inter; font-weight: 600; text-transform: capitalize; line-height: 116px; word-wrap: break-word">S</div>
+    <div data-layer="NSUP facilities Awareness - to - habit campaign" class="NsupFacilitiesAwarenessToHabitCampaign" style="width: 498px; left: 1211px; top: 5102px; position: absolute; color: white; font-size: 20px; font-family: Inter; font-weight: 400; text-transform: capitalize; line-height: 29px; word-wrap: break-word">NSUP facilities<br/>Awareness - to - habit campaign</div>
+    <div data-layer="FLOODING" class="Flooding" style="width: 328px; left: 112px; top: 5086px; position: absolute; color: white; font-size: 20px; font-family: Inter; font-weight: 400; text-transform: capitalize; line-height: 29px; word-wrap: break-word">FLOODING</div>
+    <div data-layer="OVERHEATED" class="Overheated" style="width: 328px; left: 112px; top: 5138px; position: absolute; color: white; font-size: 20px; font-family: Inter; font-weight: 400; text-transform: capitalize; line-height: 29px; word-wrap: break-word">OVERHEATED</div>
+    <div data-layer="INEFFICIENT MOVEMENT" class="InefficientMovement" style="width: 328px; left: 112px; top: 5201px; position: absolute; color: white; font-size: 20px; font-family: Inter; font-weight: 400; text-transform: capitalize; line-height: 29px; word-wrap: break-word">INEFFICIENT MOVEMENT</div>
+    <div data-layer="VENTILATION" class="Ventilation" style="width: 328px; left: 112px; top: 5264px; position: absolute; color: white; font-size: 20px; font-family: Inter; font-weight: 400; text-transform: capitalize; line-height: 29px; word-wrap: break-word">VENTILATION</div>
+    <div data-layer="WASTE/ PLASTIC USE" class="WastePlasticUse" style="width: 328px; left: 112px; top: 5327px; position: absolute; color: white; font-size: 20px; font-family: Inter; font-weight: 400; text-transform: capitalize; line-height: 29px; word-wrap: break-word">WASTE/ PLASTIC USE</div>
+    <div data-layer="EMISSION/ POLLUTANT" class="EmissionPollutant" style="width: 328px; left: 112px; top: 5390px; position: absolute; color: white; font-size: 20px; font-family: Inter; font-weight: 400; text-transform: capitalize; line-height: 29px; word-wrap: break-word">EMISSION/ POLLUTANT</div>
+    <div data-layer="MOLDY" class="Moldy" style="width: 328px; left: 112px; top: 5453px; position: absolute; color: white; font-size: 20px; font-family: Inter; font-weight: 400; text-transform: capitalize; line-height: 29px; word-wrap: break-word">MOLDY</div>
+    <div data-layer="HEAVILY FERTILIZED" class="HeavilyFertilized" style="width: 328px; left: 112px; top: 5516px; position: absolute; color: white; font-size: 20px; font-family: Inter; font-weight: 400; text-transform: capitalize; line-height: 29px; word-wrap: break-word">HEAVILY FERTILIZED</div>
+    <div data-layer="PLANTS" class="Plants" style="width: 328px; left: 112px; top: 5579px; position: absolute; color: white; font-size: 20px; font-family: Inter; font-weight: 400; text-transform: capitalize; line-height: 29px; word-wrap: break-word">PLANTS</div>
+    <div data-layer="NOT CLEAR IDENTITY" class="NotClearIdentity" style="width: 328px; left: 112px; top: 5642px; position: absolute; color: white; font-size: 20px; font-family: Inter; font-weight: 400; text-transform: capitalize; line-height: 29px; word-wrap: break-word">NOT CLEAR IDENTITY</div>
+    <div data-layer="INEFFICIENT USED AREA" class="InefficientUsedArea" style="width: 328px; left: 112px; top: 5705px; position: absolute; color: white; font-size: 20px; font-family: Inter; font-weight: 400; text-transform: capitalize; line-height: 29px; word-wrap: break-word">INEFFICIENT USED AREA</div>
+    <div data-layer="New co-working space New café & multipurpose lobby Passive interventions Local adaptive landscape testbed" class="NewCoWorkingSpaceNewCafMultipurposeLobbyPassiveInterventionsLocalAdaptiveLandscapeTestbed" style="width: 498px; left: 1211px; top: 5288px; position: absolute; color: white; font-size: 20px; font-family: Inter; font-weight: 400; text-transform: capitalize; line-height: 29px; word-wrap: break-word">New co-working space<br/>New café & multipurpose lobby<br/>Passive interventions<br/>Local adaptive landscape testbed</div>
+    <div data-layer="New co-working space New café & multipurpose lobby Passive interventions Local adaptive landscape testbed" class="NewCoWorkingSpaceNewCafMultipurposeLobbyPassiveInterventionsLocalAdaptiveLandscapeTestbed" style="width: 498px; left: 73px; top: 6177px; position: absolute; color: white; font-size: 20px; font-family: Inter; font-weight: 400; text-transform: capitalize; line-height: 29px; word-wrap: break-word">New co-working space<br/>New café & multipurpose lobby<br/>Passive interventions<br/>Local adaptive landscape testbed</div>
+    <div data-layer="New co-working space New café & multipurpose lobby Passive interventions Local adaptive landscape testbed" class="NewCoWorkingSpaceNewCafMultipurposeLobbyPassiveInterventionsLocalAdaptiveLandscapeTestbed" style="width: 342px; left: 1424px; top: 6724px; position: absolute; color: white; font-size: 20px; font-family: Inter; font-weight: 400; text-transform: capitalize; line-height: 29px; word-wrap: break-word">New co-working space<br/>New café & multipurpose lobby<br/>Passive interventions<br/>Local adaptive landscape testbed</div>
+    <div data-layer="Digital twin Data visualization research" class="DigitalTwinDataVisualizationResearch" style="width: 498px; left: 1211px; top: 5496px; position: absolute; color: white; font-size: 20px; font-family: Inter; font-weight: 400; text-transform: capitalize; line-height: 29px; word-wrap: break-word">Digital twin<br/>Data visualization research</div>
+    <div data-layer="Exhibition performing spaces" class="ExhibitionPerformingSpaces" style="width: 498px; left: 1211px; top: 5675px; position: absolute; color: white; font-size: 20px; font-family: Inter; font-weight: 400; text-transform: capitalize; line-height: 29px; word-wrap: break-word">Exhibition performing spaces</div>
+    <div data-layer="HUMAN-CENTRIC DESIGN" class="HumanCentricDesign" style="width: 498px; left: 1211px; top: 5247px; position: absolute; color: white; font-size: 27px; font-family: Inter; font-weight: 500; text-transform: capitalize; line-height: 39.15px; word-wrap: break-word">HUMAN-CENTRIC DESIGN</div>
+    <div data-layer="PACKAGE 1" class="Package1" style="width: 129px; left: 1757px; top: 5061px; position: absolute; transform: rotate(90deg); transform-origin: top left; text-align: center; color: white; font-size: 20px; font-family: Inter; font-weight: 400; text-transform: capitalize; line-height: 29px; word-wrap: break-word">PACKAGE 1</div>
+    <div data-layer="PACKAGE 2" class="Package2" style="width: 129px; left: 1757px; top: 5247px; position: absolute; transform: rotate(90deg); transform-origin: top left; text-align: center; color: white; font-size: 20px; font-family: Inter; font-weight: 400; text-transform: capitalize; line-height: 29px; word-wrap: break-word">PACKAGE 2</div>
+    <div data-layer="PACKAGE 3" class="Package3" style="width: 129px; left: 1757px; top: 5455px; position: absolute; transform: rotate(90deg); transform-origin: top left; text-align: center; color: white; font-size: 20px; font-family: Inter; font-weight: 400; text-transform: capitalize; line-height: 29px; word-wrap: break-word">PACKAGE 3</div>
+    <div data-layer="PACKAGE 4" class="Package4" style="width: 129px; left: 1757px; top: 5634px; position: absolute; transform: rotate(90deg); transform-origin: top left; text-align: center; color: white; font-size: 20px; font-family: Inter; font-weight: 400; text-transform: capitalize; line-height: 29px; word-wrap: break-word">PACKAGE 4</div>
+    <div data-layer="TOWARDS NET ZERO" class="TowardsNetZero" style="width: 498px; left: 1211px; top: 5455px; position: absolute; color: white; font-size: 27px; font-family: Inter; font-weight: 500; text-transform: capitalize; line-height: 39.15px; word-wrap: break-word">TOWARDS NET ZERO</div>
+    <div data-layer="aRT FOR ALL" class="ArtForAll" style="width: 498px; left: 1211px; top: 5634px; position: absolute; color: white; font-size: 27px; font-family: Inter; font-weight: 500; text-transform: capitalize; line-height: 39.15px; word-wrap: break-word">aRT FOR ALL</div>
+    <div data-layer="PACKAGE MODEL" class="PackageModel procedure-model-heading" style="width: 1728px; left: 73px; top: 4876px; position: absolute; text-align: center">PACKAGE MODEL</div>
+    <div data-layer="CO-CREATION MODEL" class="CoCreationModel procedure-model-heading" style="width: 1728px; left: 85px; top: 3690px; position: absolute; text-align: center">CO-CREATION MODEL</div>
+    <div data-layer="LIVING LAB PROCEDURE" class="LivingLabProcedure procedure-model-heading" style="width: 1728px; left: -302px; top: 2694px; position: absolute; text-align: center">LIVING LAB PROCEDURE</div>
+    <div data-layer="Frame 28" class="Frame28" style="height: 415px; padding: 10px; left: 1414px; top: 6257px; position: absolute; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+      <div data-layer="SHLL effect" class="ShllEffect" style="width: 353px; height: 353px; position: relative; opacity: 0.45; box-shadow: 9px 9px 9px; filter: blur(4.50px)">
+        <div data-layer="Rectangle 99" class="Rectangle99" style="width: 91px; height: 92px; left: 302px; top: 121px; position: absolute; transform: rotate(90deg); transform-origin: top left; background: white; border-radius: 20px"></div>
+        <div data-layer="Rectangle 100" class="Rectangle100" style="width: 91px; height: 93px; left: 0px; top: 120px; position: absolute; background: white; border-radius: 20px"></div>
+        <div data-layer="Rectangle 101" class="Rectangle101" style="width: 91px; height: 92px; left: 0px; top: 243px; position: absolute; background: white; border-radius: 20px"></div>
+        <div data-layer="Rectangle 102" class="Rectangle102" style="width: 91px; height: 93px; left: 150px; top: 273px; position: absolute; transform: rotate(-90deg); transform-origin: top left; background: white; border-radius: 20px"></div>
+        <div data-layer="Rectangle 108" class="Rectangle108" style="width: 91px; height: 90px; left: 210px; top: 0px; position: absolute; background: white; border-radius: 20px"></div>
+        <div data-layer="Rectangle 103" class="Rectangle103" style="width: 92px; height: 92px; left: 242px; top: 243px; position: absolute; background: white; border-radius: 20px"></div>
+        <div data-layer="Rectangle 104" class="Rectangle104" style="width: 92px; height: 90px; left: 242px; top: 0px; position: absolute; background: white; border-radius: 20px"></div>
+        <div data-layer="Rectangle 105" class="Rectangle105" style="width: 91px; height: 90px; left: 0px; top: 0px; position: absolute; background: white; border-radius: 20px"></div>
+        <div data-layer="Rectangle 106" class="Rectangle106" style="width: 91px; height: 90px; left: 93px; top: 64px; position: absolute; background: white; border-radius: 20px"></div>
+        <div data-layer="Rectangle 107" class="Rectangle107" style="width: 92px; height: 90px; left: 30px; top: 0px; position: absolute; background: white; border-radius: 20px"></div>
+      </div>
+    </div>
+    <div data-layer="smART Hub is a Living Labs ecosystem — an intersection where the boldest ideas in technology, policy, and art are taken off the page to “live” and “breathe” in real-world contexts. It is where four streams — University – Government – Business – Community — converge to collaboratively decode complex urban challenges. The smART Hub space is positioned as: A platform for implementing “Co-creation for a Net Zero Campus” initiatives. A coordinating hub for Living Labs and urban environmental policy experimentation across the entire UEH system." class="SmartHubIsALivingLabsEcosystemAnIntersectionWhereTheBoldestIdeasInTechnologyPolicyAndArtAreTakenOffThePageToLiveAndBreatheInRealWorldContextsItIsWhereFourStreamsUniversityGovernmentBusinessCommunityConvergeToCollaborativelyDecodeComplexUrbanChallengesTheSmartHubSpaceIsPositionedAsAPlatformForImplementingCoCreationForANetZeroCampusInitiativesACoordinatingHubForLivingLabsAndUrbanEnvironmentalPolicyExperimentationAcrossTheEntireUehSystem" style="width: 454px; left: 1285px; top: 2905px; position: absolute; color: white; font-size: 20px; font-family: Inter; font-weight: 400; text-transform: capitalize; line-height: 29px; word-wrap: break-word">smART Hub is a Living Labs ecosystem — an intersection where the boldest ideas in technology, policy, and art are taken off the page to “live” and “breathe” in real-world contexts. It is where four streams — University – Government – Business – Community — converge to collaboratively decode complex urban challenges.<br/>The smART Hub space is positioned as:<br/>A platform for implementing “Co-creation for a Net Zero Campus” initiatives.<br/>A coordinating hub for Living Labs and urban environmental policy experimentation across the entire UEH system.</div>
+    <img data-layer="image 207" class="Image207" style="width: 745px; height: 790px; left: 98px; top: 3890px; position: absolute; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)" src="[BASE64_DATA]" />
+    <div data-layer="⌂ Home" class="Home" style="left: 1757px; top: 58px; position: absolute; text-align: center; justify-content: center; display: flex; flex-direction: column; color: #F5F5F5; font-size: 18px; font-family: Inter; font-weight: 400; line-height: 26.10px; word-wrap: break-word">⌂ Home</div>
+    <div data-layer="Rectangle 114" class="Rectangle114" style="width: 1874px; height: 147px; left: 0px; top: 0px; position: absolute; background: linear-gradient(180deg, white 0%, rgba(41.31, 41.31, 41.31, 0) 100%); backdrop-filter: blur(7.50px)"></div>
+    <img data-layer="image 38" class="Image38" style="width: 244px; height: 43px; left: 40px; top: 37px; position: absolute; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.18)" src="[BASE64_DATA]" />
+    <div data-svg-wrapper data-layer="Vector 1" class="Vector1" style="left: 274px; top: 64px; position: absolute">
+      <svg width="1414" height="2" viewBox="0 0 1414 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0.75L1414 0.750124" stroke="white" stroke-width="1.5"/>
+      </svg>
+    </div>
+    <img data-layer="Logo UEH trắng 1" class="LogoUehTrNg1" style="width: 85.68px; height: 51.81px; left: 1704px; top: 37.59px; position: absolute" src="[BASE64_DATA]" />
+    <div data-svg-wrapper data-layer="logo SU  1" class="LogoSu1" style="left: 1787.84px; top: 41.36px; position: absolute">
+      <svg width="47" height="45" viewBox="0 0 47 45" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <rect width="46.1202" height="44.2754" fill="url(#pattern0_2350_1552)"/>
+      <defs>
+      <pattern id="pattern0_2350_1552" patternContentUnits="objectBoundingBox" width="1" height="1">
+      <use xlink:href="#image0_2350_1552" transform="matrix(0.000669923 0 0 0.000697837 -1.742 0)"/>
+      </pattern>
+      <image id="image0_2350_1552" width="4096" height="1433" preserveAspectRatio="none" xlink:href="[BASE64_DATA]"/>
+      </defs>
+      </svg>
+    </div>
+  </div>
+</div>
+</div><!-- /.about-clip -->
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({ duration: 1000, once: true, offset: 80, easing: 'ease-in-out' });
+  (function () {
+    var clip   = document.querySelector('.about-clip');
+    var canvas = document.querySelector('.Model');
+    if (!canvas || !clip) return;
+    var nw = 1874, nh = 6965;
+    function resize() {
+      var vw = document.documentElement.clientWidth;
+      var s  = vw / nw;
+      canvas.style.width           = nw + 'px';
+      canvas.style.height          = nh + 'px';
+      canvas.style.transform       = 'scale(' + s + ')';
+      canvas.style.transformOrigin = 'top left';
+      clip.style.height = Math.ceil(nh * s) + 'px';
+    }
+    resize();
+    window.addEventListener('resize', resize);
+  })();
+</script>
+</body>
+</html>
