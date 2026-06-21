@@ -3,271 +3,564 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Research Lab - smART Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Research — Package 2</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <style>
+        /* ── 0. TOKENS (Figma node 156:119, canvas 1874×7996px, bg #F6F3EE) ── */
         :root {
-            --pkg-blue: #4183a3;
-            --text-dark: #333;
-            /* Màu vàng nhạt đồng bộ với nền hình ảnh */
-            --bg-cream: #f9f7f2; 
+            --c-blue:     #5368a9;   /* headings, title, intro blue text */
+            --c-desc:     #5b5b5b;   /* main body text */
+            --c-side:     #828282;   /* condition side-panel text */
+            --c-sub:      #000000;   /* sub-headings: Past/Present Condition, month labels */
+            --c-bg:       #f6f3ee;   /* page background */
+            --pad-x:      clamp(40px, 5.66vw, 106px);   /* x=106 in Figma */
+            --sec-gap:    clamp(60px, 8vw, 150px);
+            --subsec-gap: clamp(32px, 4.28vw, 80px);
         }
 
+        /* ── 1. RESET ── */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Montserrat', sans-serif; background: var(--bg-cream); color: var(--text-dark); overflow-x: hidden; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--c-bg);
+            color: var(--c-desc);
+            overflow-x: hidden;
+        }
+        img { display: block; max-width: 100%; }
 
-        /* --- 1. HERO SECTION --- */
-        .research-hero {
-            width: 100%; height: 100vh;
-            background-image: url('../../assets/images/package2/Research/bia_research.png');
-            background-size: cover; background-position: center;
-            display: flex; justify-content: center; align-items: center;
-            position: relative;
+        /* ── 2. HEADER (transparent gradient, matches all pkg-2 sub-pages) ─── */
+        .header-wrapper {
+            position: absolute; top: 0; left: 0; width: 100%; z-index: 1000;
+            padding: clamp(18px,1.98vw,37px) clamp(20px,2.14vw,40px);
+            display: flex; align-items: center; gap: clamp(16px,2.14vw,40px);
+            background: linear-gradient(180deg, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0) 100%);
+        }
+        .logo-shll {
+            height: clamp(26px,2.29vw,43px); width: auto;
+            filter: drop-shadow(0 4px 4px rgba(0,0,0,0.18));
+        }
+        .header-line { flex: 1; height: 1px; background: rgba(255,255,255,0.35); }
+        .header-nav {
+            display: flex; align-items: center; gap: clamp(8px,1.07vw,20px);
+            font-size: clamp(11px,0.75vw,14px); font-weight: 600;
+        }
+        .header-nav a { color: rgba(255,255,255,0.9); text-decoration: none; transition: opacity 0.2s; }
+        .header-nav a:hover { opacity: 0.75; }
+        .logo-ueh { height: clamp(24px,2.77vw,52px); width: auto; }
+
+        /* ── 3. HERO SECTION ────────────────────────────────────────────────── */
+        /* Figma: botanical illustration (824×1160px) on left half,
+           "RESEARCH" 79px SemiBold + 3 intro text blocks on right half.
+           x=724 is the text start, which is 100px inside the 824px illustration
+           — in responsive HTML we align them cleanly without overlap.         */
+        .hero-section {
+            position: relative; width: 100%;
+            min-height: 100vh;
+            display: flex; align-items: stretch;
+            background: var(--c-bg);
+            overflow: hidden;
         }
 
-        /* NAVIGATION & LOGO */
-        .header-wrapper { 
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 40px 5% 20px 5%; 
-            display: flex; 
-            flex-direction: column; 
+        /* Left panel: botanical illustration, occupies 44% of canvas width    */
+        .hero-illustration {
+            flex: 0 0 clamp(160px, 43.97vw, 824px);
+            position: relative; overflow: hidden; min-height: 100vh;
+        }
+        .hero-illustration img {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover; object-position: center top;
+        }
+
+        /* Right panel: title + text columns                                    */
+        .hero-content {
+            flex: 1; min-width: 0;
+            padding: clamp(100px, 13.4vw, 250px) clamp(20px, 2.14vw, 40px)
+                     clamp(60px, 5.35vw, 100px) clamp(20px, 2.14vw, 40px);
+            display: flex; flex-direction: column;
+            gap: clamp(24px, 2.14vw, 40px);
+        }
+
+        /* "RESEARCH": 79px SemiBold on 1874px = 4.22vw                        */
+        .hero-research-title {
+            font-size: clamp(36px, 4.22vw, 79px);
+            font-weight: 600; color: var(--c-blue);
+            letter-spacing: clamp(-0.4px, -0.021vw, -0.395px);
+            line-height: 1.45;
+        }
+
+        /* Text below title: 2-column grid — Figma: left w=510, right w=481   */
+        .hero-text-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(20px, 2.83vw, 53px);
+            align-items: start;
+        }
+        /* First intro paragraph: 22px SemiBold, #5368a9 (blue)               */
+        .hero-intro-blue {
+            font-size: clamp(13px, 1.17vw, 22px);
+            font-weight: 600; color: var(--c-blue);
+            line-height: 1.45; letter-spacing: -0.11px;
+        }
+        /* Gray secondary paragraphs: 22px SemiBold, #5b5b5b                  */
+        .hero-intro-gray {
+            font-size: clamp(13px, 1.17vw, 22px);
+            font-weight: 600; color: var(--c-desc);
+            line-height: 1.45; letter-spacing: -0.11px;
+            text-align: justify;
+        }
+        .hero-col-left {
+            display: flex; flex-direction: column;
+            gap: clamp(16px, 2.14vw, 40px);
+        }
+
+        /* ── 4. SECTION COMMONS ─────────────────────────────────────────────── */
+        .research-section {
+            padding: var(--sec-gap) var(--pad-x);
+        }
+
+        /* Testbed headings: "Strata Garden", "Sod Culture Testbed"
+           Figma: 40px Bold, #5368a9                                           */
+        .testbed-heading {
+            font-size: clamp(22px, 2.13vw, 40px);
+            font-weight: 700; color: var(--c-blue);
+            letter-spacing: -0.2px;
+            margin-bottom: clamp(20px, 2.14vw, 40px);
+        }
+
+        /* Full-width research model diagram                                    */
+        .model-figure {
+            margin-bottom: clamp(32px, 3.74vw, 70px);
+        }
+        .model-figure img {
+            width: 100%; height: auto; display: block;
+            border-radius: 4px;
+        }
+
+        /* Main body text: 24px Regular, #5b5b5b, justified                   */
+        .testbed-body {
+            font-size: clamp(14px, 1.28vw, 24px);
+            font-weight: 400; color: var(--c-desc);
+            line-height: 1.45; letter-spacing: -0.12px;
+            text-align: justify;
+            margin-bottom: var(--subsec-gap);
+        }
+        .testbed-body p + p { margin-top: clamp(16px, 1.28vw, 24px); }
+        .testbed-body p:empty { margin-top: 0; display: none; }
+
+        /* ── 5. CONDITION SUB-SECTIONS ─────────────────────────────────────── */
+        .condition-subsection {
+            margin-bottom: var(--subsec-gap);
+        }
+
+        /* Sub-headings: "Past Condition 2025", "Present Condition 2026"
+           Figma: 30px SemiBold, #000, tracking=-0.15px                       */
+        .condition-heading {
+            font-size: clamp(18px, 1.60vw, 30px);
+            font-weight: 600; color: var(--c-sub);
+            letter-spacing: -0.15px;
+            margin-bottom: clamp(16px, 1.60vw, 30px);
+        }
+
+        /* 2-col grid: photo/diagram (left) + text (right)
+           Figma: photo left=135 w=985; text left=1188 w=580 on 1874px
+           After left pad (106px): inner widths 985 | ~gap | 580
+           Ratio: 985:580 ≈ 63:37, gap ≈ 68px = 3.63vw                       */
+        .condition-grid {
+            display: grid;
+            grid-template-columns: 63fr 37fr;
+            gap: clamp(20px, 3.63vw, 68px);
+            align-items: start;
+        }
+        .condition-grid img {
+            width: 100%; height: auto; display: block; border-radius: 4px;
+        }
+
+        /* Condition text panels: 24px SemiBold, #828282                       */
+        .condition-text {
+            font-size: clamp(14px, 1.28vw, 24px);
+            font-weight: 600; color: var(--c-side);
+            line-height: 1.45; letter-spacing: -0.12px;
+            text-align: justify;
+        }
+        .condition-text p + p { margin-top: clamp(12px, 1.07vw, 20px); }
+
+        /* Sod Culture Present: smaller image (840px vs 985px)
+           Ratio: 840:580 ≈ 59:41                                             */
+        .condition-grid.sod-present {
+            grid-template-columns: 59fr 41fr;
+        }
+
+        /* ── 6. MONTHLY MONITORING GRID ────────────────────────────────────── */
+        /* Figma: 3 photos each 503×527px, positions x=135,700,1265
+           Gap ≈ 62px = 3.31vw. Month labels above each photo.               */
+        .monitoring-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: clamp(16px, 3.31vw, 62px);
+            margin-top: clamp(24px, 2.14vw, 40px);
+        }
+        .monitoring-col {
+            display: flex; flex-direction: column; gap: clamp(8px, 0.85vw, 16px);
+        }
+
+        /* Month labels: 24px SemiBold, #000                                   */
+        .month-label {
+            display: block;
+            font-size: clamp(14px, 1.28vw, 24px);
+            font-weight: 600; color: var(--c-sub);
+            letter-spacing: -0.12px;
+        }
+        .monitoring-col img {
+            width: 100%; aspect-ratio: 503 / 527;
+            object-fit: cover; display: block; border-radius: 6px;
+        }
+
+        /* ── 7. FOOTER ─────────────────────────────────────────────────────── */
+        .footer-container {
+            padding: 40px var(--pad-x) 60px;
             background: transparent;
-            z-index: 1000;
-        }
-        .header-top-frame { 
-            display: flex; 
-            align-items: center; 
-            gap: 20px; 
-            width: 100%; 
-        }
-        .logo-left img { 
-            height: 30px; 
-            display: block; 
-        }
-        .header-middle { 
-            flex-grow: 1; 
-            display: flex; 
-            flex-direction: column; 
-        }
-        .horizontal-line { 
-            width: 100%; 
-            height: 1px; 
-            background-color: rgba(14, 59, 102, 0.15); 
-        }
-        .logo-right { 
-            display: flex;
-            align-items: center; 
-        }
-        .back-icon-btn { 
-            width: 35px; height: 35px; border-radius: 50%; display: flex; justify-content: center; align-items: center; 
-            color: #333; background: rgba(0, 0, 0, 0.05); transition: 0.4s; text-decoration: none; 
-            border: 1px solid rgba(0, 0, 0, 0.1); font-size: 14px; font-weight: bold;
-        }
-        .back-icon-btn:hover { 
-            background: #d76a28; border-color: #d76a28; color: #fff; transform: scale(1.1); 
-        }
-
-        .main-title { text-align: center; color: var(--text-dark); z-index: 10; animation: fadeIn 1.5s ease-out; }
-        .main-title h1 { font-size: clamp(40px, 8vw, 100px); font-weight: 800; text-transform: uppercase; line-height: 0.9; display: flex; flex-direction: column; align-items: center; }
-        .title-lab { font-weight: 400; letter-spacing: 15px; margin-top: 10px; }
-
-        /* Ô tròn Spatial Exploration - Đặt vị trí tránh chèn chữ */
-        .spatial-circle-wrapper { 
-            position: absolute; bottom: 10%; right: 5%; z-index: 50; width: 180px; height: 180px; 
-        }
-        .circle-image { width: 100%; height: 100%; border-radius: 50%; border: 2px solid #fff; overflow: hidden; background: url('../../assets/images/package2/Research/Sod_Culture_2026.png'); background-size: cover; }
-        .circle-text { position: absolute; width: 100%; height: 100%; top: 0; left: 0; animation: rotateText 15s linear infinite; }
-        @keyframes rotateText { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        .circle-text svg { width: 100%; height: 100%; fill: var(--text-dark); }
-        .circle-text text { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 4px; }
-
-        /* --- 2. CONTENT SECTION --- */
-        .content-section { padding: 120px 8%; background: var(--bg-cream); }
-        .section-header { margin-bottom: 60px; text-align: left; }
-        .section-header h2 { font-size: 32px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; }
-
-        .testbed-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: flex-start;
-        }
-
-        .testbed-item { display: flex; flex-direction: column; gap: 20px; }
-        .testbed-item h3 { font-size: 20px; font-weight: 700; color: var(--pkg-blue); }
-        
-        .img-wrap { width: 100%; overflow: hidden; }
-        .img-wrap img { 
-            width: 100%; height: auto; object-fit: contain; 
-            cursor: zoom-in; transition: 0.4s; 
-        }
-        .img-wrap img:hover { opacity: 0.8; }
-
-
-
-        /* --- 4. LIGHTBOX --- */
-        #lightbox {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9);
-            display: none; justify-content: center; align-items: center; z-index: 10000; cursor: zoom-out;
-        }
-        #lightbox img { max-width: 95%; max-height: 95%; object-fit: contain; }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        @media (max-width: 992px) {
-            .testbed-grid { grid-template-columns: 1fr; }
-            .spatial-circle-wrapper { display: none; }
-        }
-
-        /* --- CONTACT FOOTER --- */
-        .footer-container { 
-            border-top: none;
-            padding: 40px 2% 60px 2%; 
-            margin-top: 40px;
-            position: relative;
-            z-index: 10;
-            background: transparent !important;
-            color: #333333;
-            width: 100%;
         }
         .footer-contact-header {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 25px;
+            display: flex; align-items: center; gap: 20px; margin-bottom: 25px;
         }
         .footer-contact-title {
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--pkg-blue, #4183a3);
-            letter-spacing: 0.5px;
+            font-size: 14px; font-weight: 700; color: var(--c-blue); letter-spacing: 0.5px;
         }
-        .footer-contact-line {
-            flex-grow: 1;
-            height: 1px;
-            background-color: rgba(14, 59, 102, 0.15);
+        .footer-contact-line  { flex-grow: 1; height: 1px; background: rgba(0,0,0,0.12); }
+        .footer-content-row   { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 30px; }
+        .footer-left-col, .footer-right-col { display: flex; flex-direction: column; gap: 10px; max-width: 50%; }
+        .footer-right-col { text-align: right; }
+        .info-text    { font-size: 11px; font-style: italic; color: #555; font-weight: 300; line-height: 1.6; }
+        .email-link   { font-size: 11px; color: var(--c-blue); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+        .email-link:hover { color: #d76a28; text-decoration: underline; }
+        .brand-text   { font-size: 11px; font-weight: 600; color: var(--c-blue); letter-spacing: 0.5px; }
+        .address-text { font-size: 11px; color: #555; font-weight: 300; line-height: 1.6; }
+
+        /* ── 8. RESPONSIVE ─────────────────────────────────────────────────── */
+        @media (max-width: 960px) {
+            /* Hero stacks: illustration on top, content below */
+            .hero-section { flex-direction: column; min-height: auto; }
+            .hero-illustration { flex: 0 0 auto; min-height: 40vh; width: 100%; }
+            .hero-illustration img { position: relative; width: 100%; height: 40vh; object-fit: cover; }
+            .hero-content { padding-top: clamp(32px, 4vw, 60px); }
+            .hero-text-grid { grid-template-columns: 1fr; }
+
+            /* Condition grids stack */
+            .condition-grid,
+            .condition-grid.sod-present { grid-template-columns: 1fr; }
         }
-        .footer-content-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            gap: 30px;
+        @media (max-width: 600px) {
+            .monitoring-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-left-col, .footer-right-col { max-width: 100%; }
+            .footer-right-col { text-align: left; }
         }
-        .footer-left-col {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            text-align: left;
-            max-width: 50%;
-        }
-        .footer-left-col .info-text {
-            font-size: 11px;
-            font-style: italic;
-            color: #555555;
-            font-weight: 300;
-            line-height: 1.6;
-        }
-        .footer-left-col .email-link {
-            font-size: 11px;
-            color: var(--pkg-blue, #4183a3);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s ease;
-        }
-        .footer-left-col .email-link:hover {
-            color: #d76a28;
-            text-decoration: underline;
-        }
-        .footer-right-col {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            text-align: right;
-            max-width: 50%;
-        }
-        .footer-right-col .brand-text {
-            font-size: 11px;
-            font-weight: 600;
-            color: var(--pkg-blue, #4183a3);
-            letter-spacing: 0.5px;
-        }
-        .footer-right-col .address-text {
-            font-size: 11px;
-            color: #555555;
-            font-weight: 300;
-            line-height: 1.6;
-        }
-        @media (max-width: 768px) {
-            .footer-left-col, .footer-right-col {
-                max-width: 100%;
-            }
-            .footer-right-col {
-                text-align: left;
-            }
+        @media (max-width: 400px) {
+            .monitoring-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <div id="lightbox" onclick="this.style.display='none'"><img id="lightbox-img" src=""></div>
+    <!-- ── HEADER ──────────────────────────────────────────────────────── -->
+    <header class="header-wrapper">
+        <a href="../../index.html">
+            <img class="logo-shll"
+                 src="../../assets/images/package2/figma/image_38.png"
+                 alt="smART Hub Living Labs">
+        </a>
+        <div class="header-line"></div>
+        <nav class="header-nav">
+            <a href="../../index.html">⌂ Home</a>
+            <a href="index.html">← Back</a>
+        </nav>
+        <a href="../../index.html">
+            <img class="logo-ueh"
+                 src="../../assets/images/package2/figma/logo_ueh_tr_ng_1.png"
+                 alt="UEH University">
+        </a>
+    </header>
 
+    <!-- ── HERO ─────────────────────────────────────────────────────────── -->
+    <!-- Figma: botanical illustration (x=0, w=824, h=1160) fills left 44%.
+         Title "RESEARCH" at x=724 (38.6% from left) — in responsive HTML
+         we start right content at illustration's right edge for clarity.     -->
+    <section class="hero-section" id="hero">
 
-
-    <div class="header-wrapper">
-        <div class="header-top-frame">
-            <div class="logo-left">
-                <a href="../../index.html"><img src="../../assets/images/Logo_SHLL_long.png" alt="SHL Logo"></a>
-            </div>
-            <div class="header-middle">
-                <div class="horizontal-line"></div>
-            </div>
-            <div class="logo-right">
-                <a href="index.html"><img src="../../assets/images/index/logo1.png" alt="UEH" style="height: 30px; width: auto; display: block;"></a>
-            </div>
+        <!-- Left: botanical cover illustration (imgImage135) -->
+        <div class="hero-illustration">
+            <img src="../../assets/images/package2/Research/bia_research.png"
+                 alt="Research botanical illustration">
         </div>
-    </div>
 
-    <section class="research-hero">
-        <div class="main-title">
-            <h1><span>RESEARCH</span><span class="title-lab">LAB</span></h1>
-        </div>
+        <!-- Right: "RESEARCH" title + 2-column intro text -->
+        <div class="hero-content" data-aos="fade-left" data-aos-duration="1200">
+            <h1 class="hero-research-title">RESEARCH</h1>
 
-        <div class="spatial-circle-wrapper" data-aos="zoom-in" data-aos-delay="500">
-            <div class="circle-text">
-                <svg viewBox="0 0 200 200">
-                    <path id="circlePath" d="M 100, 100 m -80, 0 a 80,80 0 1,1 160,0 a 80,80 0 1,1 -160,0" fill="transparent"/>
-                    <text><textPath href="#circlePath">SPATIAL EXPLORATION • SPATIAL EXPLORATION • </textPath></text>
-                </svg>
+            <!-- Figma: left col (x=724, w=510): blue intro + gray Nhà vườn
+                        right col (x=1287, w=481): gray empirical testbeds    -->
+            <div class="hero-text-grid">
+                <div class="hero-col-left">
+                    <!-- Blue paragraph: "Landscape research at the smART Hub..." -->
+                    <p class="hero-intro-blue" data-aos="fade-up" data-aos-delay="100">
+                        Landscape research at the smART Hub Living Labs (SHLL) is fundamentally
+                        anchored in a Research-by-Design (RBD) methodology, positioning UEH
+                        Campus V as a critical &ldquo;regulatory sandbox&rdquo; for operationalizing
+                        Glocal Design&mdash;a strategic synthesis that translates Vietnamese
+                        indigenous knowledge into standardized, climate-resilient urban models.
+                    </p>
+                    <!-- Gray paragraph: "Moving beyond generic aesthetic..." -->
+                    <p class="hero-intro-gray" data-aos="fade-up" data-aos-delay="200">
+                        Moving beyond generic aesthetic interventions, this academic inquiry
+                        systematically codifies indigenous character by re-evaluating the
+                        Vietnamese Garden House (Nh&agrave; v&#432;&#7901;n) typology as a
+                        functional ecological gene bank rather than a purely ornamental space.
+                    </p>
+                </div>
+
+                <!-- Right column: empirical testbeds paragraph -->
+                <div data-aos="fade-up" data-aos-delay="150">
+                    <p class="hero-intro-gray">
+                        Through empirical testbeds such as Sod Culture and the intentional
+                        reintroduction of endemic species&mdash;including jackfruit
+                        (<em>Artocarpus heterophyllus</em>), tamarind
+                        (<em>Tamarindus indica</em>), and native ferns&mdash;the research
+                        quantifies the performance of vernacular vegetation in mitigating the
+                        tropical heat island effect and restoring urban biodiversity.
+                        By adopting a &ldquo;Fail-Forward&rdquo; philosophy, the lab treats
+                        real-world technical contingencies and hardware limitations as primary
+                        empirical data, refining climate-resilient design standards that are
+                        both culturally rooted and scientifically validated. Ultimately, these
+                        landscape experiments facilitate the transition from localized
+                        &ldquo;niche&rdquo; interventions to a systemic &ldquo;regime&rdquo;
+                        of sustainable innovation, providing a scalable blueprint for the
+                        authentic evolution of Net Zero campuses in the Global South.
+                    </p>
+                </div>
             </div>
-            <div class="circle-image"></div>
         </div>
     </section>
 
-    <section class="content-section">
-        <div class="section-header" data-aos="fade-up">
-            <h2>Sod Culture Testbed</h2>
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- STRATA GARDEN TESTBED                                              -->
+    <!-- Figma y=1284–5554, ~44% of total canvas height                    -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="research-section" id="strata-garden" data-aos="fade-up">
+
+        <!-- Section heading: 40px Bold, #5368a9 -->
+        <h2 class="testbed-heading">Strata Garden</h2>
+
+        <!-- Full-width Research model 1 diagram (1662×775 in Figma)           -->
+        <!-- Local: Sod_Culture_2026.png — the 2026 research diagram          -->
+        <figure class="model-figure" data-aos="fade-up" data-aos-delay="50">
+            <img src="../../assets/images/package2/Research/Sod_Culture_2026.png"
+                 alt="Strata Garden research model diagram">
+        </figure>
+
+        <!-- Body text: 24px Regular, #5b5b5b, full-width, justified           -->
+        <div class="testbed-body" data-aos="fade-up" data-aos-delay="100">
+            <p>The Strata Garden Testbed investigates how multi-layered planting systems can
+            enhance biodiversity, spatial complexity, and ecological resilience within a compact
+            urban environment. Emerging from an iterative Research-by-Design process at the
+            smART Hub Living Labs (SHLL), the project did not begin as a fixed design framework.
+            Instead, it evolved through continuous planting experiments, species adaptation, and
+            long-term observation, gradually revealing a naturally stratified ecological structure.</p>
+
+            <p>Inspired by the layered organization commonly found in tropical ecosystems, the
+            testbed documents the coexistence of vegetation across multiple ecological strata.
+            Groundcover species and spontaneous vegetation occupy the lowest layer, followed by
+            herbaceous flowering plants, ornamental shrubs, small palms, understory trees, and
+            canopy species. Climbing plants such as passionfruit vines further extend the vertical
+            dimension, while suspended kokedama installations and hanging ferns introduce an
+            intermediate aerial layer that increases habitat diversity and visual connectivity.</p>
+
+            <p>Beyond its spatial composition, the Strata Garden functions as a long-term
+            ecological monitoring platform. Plant growth, survival rates, seasonal responses,
+            species interactions, and maintenance requirements are systematically recorded through
+            weekly observations. Although the initial planting experiments began in late 2025,
+            construction activities and waterproofing maintenance works delayed consistent data
+            collection. Formal monitoring was therefore established in March 2026 and continues
+            to provide valuable insights into plant adaptation and ecological succession under
+            real-world campus conditions.</p>
+
+            <p>Through the lens of Glocal Design, the Strata Garden reinterprets the layered
+            vegetation patterns commonly found in Vietnamese home gardens and tropical landscapes
+            into a contemporary urban living laboratory. The research contributes to the
+            development of scalable planting models that maximize ecological performance,
+            biodiversity value, and climate resilience while maintaining a strong connection to
+            local environmental knowledge and cultural identity.</p>
         </div>
 
-        <div class="testbed-grid">
-            <div class="testbed-item" data-aos="fade-up">
-                <h3>2025</h3>
-                <div class="img-wrap">
-                    <img src="../../assets/images/package2/Research/Sod_Culture_2025.png" onclick="openLightbox(this.src)" alt="Sod Culture 2025">
+        <!-- ── Past Condition 2025 ───────────────────────────────────────── -->
+        <!-- Figma: imgImage136 (985×751, left=135) + text (left=1188, w=580)  -->
+        <div class="condition-subsection" data-aos="fade-up">
+            <h3 class="condition-heading">Past Condition 2025</h3>
+            <div class="condition-grid">
+                <div data-aos="fade-right" data-aos-delay="100">
+                    <img src="../../assets/images/package2/Research/Sod_Culture_2025.png"
+                         alt="Strata Garden — past condition 2025">
+                </div>
+                <div class="condition-text" data-aos="fade-left" data-aos-delay="100">
+                    <p>The Strata Garden originated in late 2025 as a series of exploratory
+                    planting experiments at UEH Campus V. Initially, vegetation was arranged in
+                    simple layers ranging from groundcovers and herbaceous species to shrubs and
+                    small trees. As new species were gradually introduced, including climbers,
+                    kokedama, and hanging ferns, the landscape began to naturally develop a
+                    multi-layered structure resembling tropical ecosystem stratification.</p>
+
+                    <p>During this period, the site remained highly dynamic due to ongoing
+                    construction activities and waterproofing maintenance works. While regular
+                    observations of plant growth and adaptation were conducted, systematic
+                    monitoring had not yet been established. These early experiments nevertheless
+                    revealed the ecological potential of layered planting systems and laid the
+                    foundation for the formal Strata Garden research initiated in March 2026.</p>
                 </div>
             </div>
+        </div>
 
-            <div class="testbed-item" data-aos="fade-up" data-aos-delay="200">
-                <h3>2026</h3>
-                <div class="img-wrap">
-                    <img src="../../assets/images/package2/Research/Sod_Culture_2026.png" onclick="openLightbox(this.src)" alt="Sod Culture 2026">
+        <!-- ── Present Condition 2026 (Strata Garden) ──────────────────────── -->
+        <!-- Figma: Research model 3 (1014×775, left=109) + text (left=1188, w=580) -->
+        <div class="condition-subsection" data-aos="fade-up">
+            <h3 class="condition-heading">Present Condition 2026</h3>
+            <div class="condition-grid">
+                <div data-aos="fade-right" data-aos-delay="100">
+                    <img src="../../assets/images/package2/Research/Sod_Culture_2026.png"
+                         alt="Strata Garden — present condition 2026">
                 </div>
+                <div class="condition-text" data-aos="fade-left" data-aos-delay="100">
+                    <p>Since March 2026, the Strata Garden has been formally monitored as a
+                    living landscape laboratory within SHLL. The planting system now consists of
+                    multiple vegetation layers, including groundcovers, herbaceous plants, shrubs,
+                    understory trees, canopy species, climbers, and suspended kokedama. Weekly
+                    observations are conducted to document plant health, growth performance,
+                    seasonal changes, and species interactions.</p>
+
+                    <p>As an ongoing Research-by-Design experiment, the testbed evaluates how
+                    layered planting systems contribute to biodiversity enhancement, microclimate
+                    improvement, and ecological resilience within a compact urban campus. The
+                    collected data informs future landscape strategies that integrate tropical
+                    ecological principles with Glocal Design approaches.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── Monthly monitoring grid: March | April | May (Strata Garden) ── -->
+        <!-- Figma: imgImage246/247/248 each 503×527px at x=135,700,1265       -->
+        <div class="monitoring-grid" data-aos="fade-up" data-aos-delay="50">
+            <div class="monitoring-col">
+                <span class="month-label">March</span>
+                <img src="../../assets/images/package2/Research/Strata Graden Testbed/T3_Testbed.png"
+                     alt="Strata Garden — March 2026 monitoring">
+            </div>
+            <div class="monitoring-col">
+                <span class="month-label">April</span>
+                <img src="../../assets/images/package2/Research/Strata Graden Testbed/T4_Boncay.png"
+                     alt="Strata Garden — April 2026 monitoring">
+            </div>
+            <div class="monitoring-col">
+                <span class="month-label">May</span>
+                <img src="../../assets/images/package2/Research/Strata Graden Testbed/T5_Testbed.png"
+                     alt="Strata Garden — May 2026 monitoring">
             </div>
         </div>
     </section>
 
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- SOD CULTURE TESTBED                                                -->
+    <!-- Figma y=5554–7996; no "Past Condition" sub-section                -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <section class="research-section" id="sod-culture" data-aos="fade-up">
+
+        <!-- Section heading: 40px Bold, #5368a9 -->
+        <h2 class="testbed-heading">Sod Culture Testbed</h2>
+
+        <!-- Body text: 24px Regular, #5b5b5b, full-width, justified           -->
+        <div class="testbed-body" data-aos="fade-up" data-aos-delay="50">
+            <p>The Sod Culture Testbed serves as a living experimental platform within the
+            smART Hub Living Labs (SHLL), investigating alternative landscape strategies for
+            biodiversity restoration and ecological resilience in tropical urban environments.
+            Rather than relying on conventional ornamental planting schemes, the research
+            adopts a process-oriented approach that enables vegetation communities to establish,
+            evolve, and self-regulate through natural ecological interactions.</p>
+
+            <p>Rooted in the principles of Glocal Design, the testbed draws inspiration from
+            indigenous landscape systems and traditional land stewardship practices, reinterpreting
+            them within a contemporary campus context. Native grasses, spontaneous vegetation,
+            and locally adapted species are intentionally introduced and monitored as part of a
+            dynamic ecological matrix. This strategy recognizes native flora not as weeds to be
+            removed, but as valuable ecological assets capable of supporting pollinators, insects,
+            microorganisms, birds, and other components of the urban ecosystem.</p>
+
+            <p>Through continuous observation and performance evaluation, the research examines
+            how sod-based vegetation communities contribute to microclimate regulation, soil
+            stabilization, stormwater infiltration, carbon sequestration, and habitat creation.
+            The testbed also documents succession patterns, species adaptation, and ecological
+            relationships that emerge over time, generating empirical data for the development
+            of climate-responsive landscape guidelines.</p>
+
+            <p>Adopting the SHLL &ldquo;Fail-Forward&rdquo; research philosophy, the Sod
+            Culture Testbed embraces uncertainty and ecological variability as essential sources
+            of knowledge. Seasonal fluctuations, unexpected species colonization, and maintenance
+            challenges are treated as research opportunities that inform adaptive management
+            strategies. In doing so, the project moves beyond static landscape aesthetics toward
+            a regenerative design framework, demonstrating how locally adaptive ecological systems
+            can become scalable models for biodiversity-positive and Net Zero urban development
+            in the Global South.</p>
+        </div>
+
+        <!-- ── Present Condition 2026 (Sod Culture) ────────────────────────── -->
+        <!-- Figma: Research model 2 (840×775, left=106) + text (left=1188, w=580)
+             59:41 grid ratio for the slightly narrower left image            -->
+        <div class="condition-subsection" data-aos="fade-up">
+            <h3 class="condition-heading">Present Condition 2026</h3>
+            <div class="condition-grid sod-present">
+                <div data-aos="fade-right" data-aos-delay="100">
+                    <img src="../../assets/images/package2/Research/Sod_Culture_2026.png"
+                         alt="Sod Culture — present condition 2026">
+                </div>
+                <div class="condition-text" data-aos="fade-left" data-aos-delay="100">
+                    <p>Since March 2026, the Sod Culture Testbed has been formally monitored
+                    as a living ecological research plot within SHLL. The site supports a
+                    diverse assemblage of native grasses, spontaneous vegetation, and locally
+                    adapted species, creating conditions for natural interactions among plants,
+                    insects, and other organisms. Weekly observations document species
+                    composition, growth patterns, ecological succession, and seasonal changes.</p>
+
+                    <p>As an ongoing Research-by-Design experiment, the testbed evaluates the
+                    role of naturally established vegetation communities in enhancing biodiversity,
+                    improving microclimatic conditions, and strengthening ecological resilience.
+                    The findings contribute to the development of locally adaptive landscape
+                    strategies rooted in Glocal Design principles and regenerative urban ecology.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── Monthly monitoring grid: March | April | May (Sod Culture) ──── -->
+        <!-- Figma: imgImage249/250/251 each 503×527px at x=106,670,1234       -->
+        <div class="monitoring-grid" data-aos="fade-up" data-aos-delay="50">
+            <div class="monitoring-col">
+                <span class="month-label">March</span>
+                <img src="../../assets/images/package2/Research/Sod Culture Testbed/T3_Boncay.png"
+                     alt="Sod Culture — March 2026 monitoring">
+            </div>
+            <div class="monitoring-col">
+                <span class="month-label">April</span>
+                <img src="../../assets/images/package2/Research/Sod Culture Testbed/T4_Testbed.png"
+                     alt="Sod Culture — April 2026 monitoring">
+            </div>
+            <div class="monitoring-col">
+                <span class="month-label">May</span>
+                <img src="../../assets/images/package2/Research/Sod Culture Testbed/T5_Boncay.png"
+                     alt="Sod Culture — May 2026 monitoring">
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FOOTER ───────────────────────────────────────────────────────── -->
     <footer class="footer-container">
         <div class="footer-contact-header">
             <span class="footer-contact-title">Contact</span>
@@ -287,14 +580,7 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 1000, once: true });
-
-
-
-        function openLightbox(src) {
-            document.getElementById("lightbox-img").src = src;
-            document.getElementById("lightbox").style.display = "flex";
-        }
+        AOS.init({ duration: 1000, once: true, offset: 80, easing: 'ease-in-out' });
     </script>
 </body>
 </html>
