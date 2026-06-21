@@ -3,433 +3,657 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spatial Assessment - smART Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Before–After Spatial Assessment - smART Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <style>
+        /* ── 0. DESIGN TOKENS  (Figma node 319:338) ── */
         :root {
-            --pkg-blue: #3E5B99; 
-            --pkg-gold: #C09553;
-            --bg-light: #f4f4f4;
-            --text-grey: #666;
+            --c-blue:   #5368a9;
+            --c-desc:   #6d6d6d;   /* section description text */
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Montserrat', sans-serif; background: var(--bg-light); color: var(--pkg-blue); overflow-x: hidden; }
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+        html  { scroll-behavior:smooth; }
+        body  { font-family:'Inter',sans-serif; background:#fff; overflow-x:hidden; }
 
-        /* --- 1. HEADER --- */
-        .header-wrapper { 
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 40px 5% 20px 5%; 
-            display: flex; 
-            flex-direction: column; 
-            background: transparent;
-            z-index: 1000;
+        /* ── 1. HERO SECTION ─────────────────────────────────────────────── */
+        .hero-section {
+            position:relative; width:100vw; height:100vh; overflow:hidden;
         }
-        .header-top-frame { 
-            display: flex; 
-            align-items: center; 
-            gap: 20px; 
-            width: 100%; 
+        .hero-bg {
+            position:absolute; inset:0;
+            background: url('../../assets/images/package2/Architecture/bia3.png')
+                        no-repeat center / cover;
         }
-        .logo-left img { 
-            height: 30px; 
-            display: block; 
-        }
-        .header-middle { 
-            flex-grow: 1; 
-            display: flex; 
-            flex-direction: column; 
-        }
-        .horizontal-line { 
-            width: 100%; 
-            height: 1px; 
-            background-color: rgba(255, 255, 255, 0.15); 
-        }
-        .logo-right { 
-            display: flex;
-            align-items: center; 
-        }
-        .back-icon-btn { 
-            width: 35px; height: 35px; border-radius: 50%; display: flex; justify-content: center; align-items: center; 
-            color: #fff; background: rgba(255, 255, 255, 0.1); transition: 0.4s; text-decoration: none; 
-            border: 1px solid rgba(255, 255, 255, 0.2); font-size: 14px; font-weight: bold;
-        }
-        .back-icon-btn:hover { 
-            background: var(--pkg-gold); border-color: var(--pkg-gold); color: #fff; transform: scale(1.1); 
+        /* Figma gradient rgba(255,255,255,0) at 47.024% → rgba(83,104,169,0.8) */
+        .hero-overlay {
+            position:absolute; inset:0;
+            background: linear-gradient(
+                to bottom,
+                rgba(255,255,255,0)   47%,
+                rgba(83,104,169,0.8) 100%
+            );
         }
 
-        /* --- 2. HERO SECTION --- */
-        .hero-container {
-            width: 100%; height: 100vh; position: relative;
-            background-image: url('../../assets/images/package2/Architecture/bia3.png');
-            background-size: cover; background-position: center;
-            display: flex; flex-direction: column; justify-content: space-between;
-            padding: 80px 6%; color: #fff;
+        /* ── HEADER ── */
+        .header-wrapper {
+            position:absolute; top:0; left:0; width:100%; z-index:100;
+            height: clamp(56px,12.5vh,147px);
+            display:flex; align-items:center;
+            padding: 0 clamp(16px,2.14vw,40px);
+            gap: clamp(10px,1.60vw,30px);
+            background: linear-gradient(180deg,rgba(0,0,0,0.32) 0%,rgba(0,0,0,0) 100%);
         }
-        .hero-container::before {
-            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, rgba(14, 59, 102, 0.6) 0%, rgba(14, 59, 102, 0.3) 100%);
-            z-index: 1;
+        .logo-shll {
+            height:clamp(22px,2.29vw,43px); width:auto; display:block; flex-shrink:0;
+            filter:drop-shadow(0 4px 4px rgba(0,0,0,0.18));
         }
-        
-        .top-content { position: relative; z-index: 100; align-self: flex-end; text-align: right; margin-top: 60px;}
-        .top-content h1 { font-size: clamp(40px, 6vw, 85px); font-weight: 800; line-height: 1; color: transparent; -webkit-text-stroke: 1.5px #fff; text-transform: uppercase; }
-        .newsletter-tag { display: inline-block; margin-top: 15px; padding: 8px 25px; background: rgba(255,255,255,0.9); color: var(--pkg-blue); border-radius: 50px; font-size: 11px; font-weight: 700; text-decoration: none; }
+        .header-line { flex:1; height:1px; background:rgba(255,255,255,0.35); }
+        .header-nav  { display:flex; align-items:center; gap:clamp(4px,0.85vw,16px); flex-shrink:0; }
+        .nav-btn {
+            display:flex; align-items:center; justify-content:center;
+            padding: clamp(4px,0.27vw,5px) clamp(6px,0.53vw,10px);
+            border-radius:4px;
+            font-size:clamp(10px,1.33vw,25px); font-weight:400; color:#f5f5f5;
+            text-decoration:none; white-space:nowrap;
+            filter:drop-shadow(0 4px 2px rgba(0,0,0,0.25)); transition:background 0.25s;
+        }
+        .nav-btn:hover { background:rgba(255,255,255,0.15); }
+        .header-logos { display:flex; align-items:center; gap:4px; flex-shrink:0; }
+        .header-logos img { height:clamp(24px,2.77vw,52px); width:auto; display:block; }
 
-        .spatial-circle-wrapper { position: absolute; top: 55%; right: 2%; z-index: 50; width: 220px; height: 220px; }
-        .circle-image { width: 100%; height: 100%; border-radius: 50%; border: 2px solid #fff; overflow: hidden; background: url('../../assets/images/package2/Architecture/bia1.png'); background-size: cover; }
-        .circle-text { position: absolute; width: 100%; height: 100%; top: 0; left: 0; animation: rotateText 15s linear infinite; }
-        @keyframes rotateText { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        .circle-text svg { width: 100%; height: 100%; fill: #fff; }
-        .circle-text text { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 4px; }
-        .hero-footer-title { position: relative; z-index: 100; font-size: 38px; font-weight: 700; text-transform: uppercase; }
-
-        /* --- 3. MAP SECTION --- */
-        .map-section { padding: 120px 8% 80px; background: #fff; min-height: 100vh; }
-        .section-header { text-align: center; margin-bottom: 80px; }
-        .section-header h2 { font-size: 42px; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; }
-        .section-header p { font-style: italic; color: var(--text-grey); font-size: 18px; }
-
-        .map-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 50px; align-items: start; }
-        .map-visual img { width: 100%; height: auto; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-
-        .legend-list { list-style: none; padding-left: 20px; }
-        .legend-list h3 { font-size: 26px; font-weight: 700; margin-bottom: 25px; }
-        .legend-item { display: flex; align-items: center; gap: 15px; font-size: 16px; font-weight: 600; color: var(--pkg-blue); text-decoration: none; margin-bottom: 12px; transition: 0.3s; }
-        .legend-item:hover { color: var(--pkg-gold); transform: translateX(8px); }
-        .num-pill { width: 28px; height: 28px; background: var(--pkg-blue); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
-
-        /* --- 4. ASSESSMENT DETAILS --- */
-        .assessment-details { padding: 100px 8%; background: #fff; }
-        .project-row { display: grid; grid-template-columns: 1fr 2fr; gap: 60px; margin-bottom: 180px; }
-        .row-text { text-align: right; }
-        .row-title { display: flex; align-items: center; justify-content: flex-end; gap: 20px; margin-bottom: 25px; }
-        .row-title h2 { font-size: 38px; font-weight: 400; color: var(--pkg-blue); }
-        .row-text p { font-size: 14px; line-height: 1.8; color: var(--text-grey); font-family: 'Inter', sans-serif; }
-
-        .row-images { display: flex; flex-direction: column; gap: 20px; }
-        .image-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
-        .image-grid img { width: 100%; height: 320px; object-fit: cover; border-radius: 4px; cursor: zoom-in; transition: 0.4s; }
-        .image-caption { color: var(--pkg-blue); font-size: 14px; font-weight: 700; border-top: 1px solid #eee; padding-top: 15px; }
-
-        /* ANIMATION FOR LOGO BELT */
-        @keyframes loop {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        /* Hero title: "ARCHITECTURAL DESIGN"
+           Figma: left:1001/1874=53.4%, top:169/1176=14.4%
+           Inter SemiBold 63px white, shadow -3px 1px 0 #5368a9               */
+        .hero-title {
+            position:absolute; left:53.4%; top:14.4%; width:31.2%;
+            font-size:clamp(22px,3.36vw,63px);
+            font-weight:600; color:#fff; line-height:1.45;
+            letter-spacing:-0.315px; text-transform:uppercase;
+            text-shadow:-3px 1px 0 var(--c-blue); z-index:20;
         }
 
-        #lightbox { position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); display:none; justify-content:center; align-items:center; z-index:10000; cursor:zoom-out; }
-        #lightbox img { max-width:90%; max-height:90%; }
+        /* Info box
+           Figma: left:999/1874=53.3%, top:796/1176=67.7%
+           w:461=24.6vw, h:116=9.9vh, border:#5368a9, radius:11px             */
+        .hero-infobox {
+            position:absolute;
+            left:53.3%; top:67.7%;
+            width:clamp(160px,24.6vw,461px);
+            padding: clamp(10px,1.07vw,20px) clamp(12px,1.17vw,22px);
+            background:#fff; border:1px solid var(--c-blue);
+            border-radius:11px; z-index:20;
+        }
+        /* Figma: Inter SemiBold 22px, color:#5368a9, tracking -0.11px          */
+        .hero-infobox p {
+            font-size:clamp(9px,1.17vw,22px);
+            font-weight:600; color:var(--c-blue);
+            line-height:1.5; letter-spacing:-0.11px;
+        }
 
-        @media (max-width: 992px) { .map-grid, .project-row { grid-template-columns: 1fr; } .row-text { text-align: left; } .row-title { justify-content: flex-start; } }
+        /* "BEFORE - AFTER SPATIAL ASSESSMENT" bottom-left label
+           Figma: left:43/1874=2.3%, top:981/1176=83.4% (bottom=1108 -translateY(-100%))
+           Inter Regular 40px white, shadow 0 -2px 0 #5368a9                   */
+        .hero-label {
+            position:absolute;
+            left:clamp(10px,2.29vw,43px); top:83.4%;
+            height:clamp(70px,10.8vh,127px);
+            display:flex; align-items:flex-end;
+            padding-bottom:clamp(4px,0.51vh,6px);
+            z-index:20;
+            font-size:clamp(16px,2.13vw,40px);
+            font-weight:400; color:#fff; line-height:1.45;
+            letter-spacing:-0.2px; text-transform:uppercase;
+            text-shadow:0 -2px 0 var(--c-blue);
+        }
 
-        /* --- FOOTER (MATCHING INDEX) --- */
-        .footer-container { 
-            border-top: none;
-            padding: 40px 2% 60px 2%; 
-            margin-top: 40px;
-            position: relative;
-            z-index: 10;
-            background: transparent !important;
-            color: var(--pkg-blue, #3E5B99);
-            width: 100%;
+        /* Scroll hint */
+        .scroll-hint {
+            position:absolute; right:clamp(16px,2.14vw,40px); bottom:clamp(16px,4vh,48px);
+            z-index:20; color:#fff; opacity:0.65; font-size:clamp(18px,1.60vw,30px);
+            animation:bounce 2s ease-in-out infinite;
         }
-        .footer-contact-header {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 25px;
+        @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+
+        /* ── 2. MAP SECTION ─────────────────────────────────────────────── */
+        .map-section {
+            padding: clamp(60px,7.49vw,140px) clamp(16px,2.29vw,43px) clamp(40px,4.28vw,80px);
+            background:#fff;
         }
-        .footer-contact-title {
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--pkg-blue, #3E5B99);
-            letter-spacing: 0.5px;
+        /* "SPATIAL EXPLORATION"
+           Figma: Inter SemiBold 48px, #5368a9, centered at x=981px            */
+        .map-heading {
+            text-align:center; margin-bottom:clamp(4px,0.27vw,5px);
+            font-size:clamp(24px,2.56vw,48px);
+            font-weight:600; color:var(--c-blue);
+            letter-spacing:-0.24px; text-transform:uppercase;
         }
-        .footer-contact-line {
-            flex-grow: 1;
-            height: 1px;
-            background-color: rgba(62, 91, 153, 0.15);
+        /* "Hover to explore": Inter Italic 28px, #5368a9                       */
+        .map-subhead {
+            text-align:center; margin-bottom:clamp(24px,3.74vw,70px);
+            font-size:clamp(14px,1.49vw,28px);
+            font-weight:400; color:var(--c-blue);
+            font-style:italic; letter-spacing:-0.14px;
         }
-        .footer-content-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            gap: 30px;
+        /* Map + legend: 2-column layout
+           Figma: map w=915px (48.8%), legend starts at left=1220px (65.1%)    */
+        .map-layout {
+            display:grid;
+            grid-template-columns: 55fr 38fr;
+            gap:clamp(24px,3.74vw,70px);
+            align-items:start;
         }
-        .footer-left-col {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            text-align: left;
-            max-width: 50%;
+        .map-visual img {
+            width:100%; height:auto; display:block;
+            border-radius:6px;
         }
-        .footer-left-col .info-text {
-            font-size: 11px;
-            font-style: italic;
-            color: var(--text-grey, #666);
-            font-weight: 300;
-            line-height: 1.6;
+
+        /* Legend */
+        .map-legend {}
+        /* "Legend": Inter SemiBold 30px, #5368a9                              */
+        .legend-title {
+            font-size:clamp(16px,1.60vw,30px);
+            font-weight:600; color:var(--c-blue);
+            letter-spacing:-0.15px;
+            margin-bottom:clamp(12px,1.28vw,24px);
         }
-        .footer-left-col .email-link {
-            font-size: 11px;
-            color: var(--pkg-blue, #3E5B99);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s ease;
+        .legend-list { list-style:none; display:flex; flex-direction:column; gap:clamp(6px,0.75vw,14px); }
+        .legend-item {
+            display:flex; align-items:center;
+            gap:clamp(10px,1.07vw,20px);
+            text-decoration:none;
+            /* Inter Regular 20px, #5368a9                                     */
+            font-size:clamp(12px,1.07vw,20px);
+            font-weight:400; color:var(--c-blue);
+            letter-spacing:-0.1px; transition:opacity 0.2s;
         }
-        .footer-left-col .email-link:hover {
-            color: var(--pkg-gold, #C09553);
-            text-decoration: underline;
+        .legend-item:hover { opacity:0.72; }
+        /* Small numbered dot (26px, outlined) */
+        .legend-dot {
+            width:clamp(18px,1.39vw,26px); height:clamp(18px,1.39vw,26px);
+            border-radius:50%; border:1.5px solid var(--c-blue);
+            display:flex; align-items:center; justify-content:center; flex-shrink:0;
+            font-size:clamp(9px,0.75vw,14px); font-weight:400; color:var(--c-blue);
         }
-        .footer-right-col {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            text-align: right;
-            max-width: 50%;
+
+        /* ── 3. CONTENT SECTIONS ────────────────────────────────────────── */
+        /* Layout: [text 30%] [gap] [images 67%]
+           Left column: right-aligned section name + numbered badge + desc text
+           Right column: 1 or 2 before/after pairs in a sub-grid               */
+        .sa-section {
+            border-top:1px solid rgba(83,104,169,0.10);
+            padding: clamp(32px,5.34vw,100px) clamp(16px,2.29vw,43px);
         }
-        .footer-right-col .brand-text {
-            font-size: 11px;
-            font-weight: 600;
-            color: var(--pkg-blue, #3E5B99);
-            letter-spacing: 0.5px;
+        .sa-row {
+            display:grid;
+            /* col 1: text; col 2: connector badge; col 3: images */
+            grid-template-columns: 27fr 5fr 66fr;
+            gap: 0;
+            align-items:center;
         }
-        .footer-right-col .address-text {
-            font-size: 11px;
-            color: var(--text-grey, #666);
-            font-weight: 300;
-            line-height: 1.6;
+
+        /* Text column */
+        .sa-text {
+            display:flex; flex-direction:column; align-items:flex-end;
+            gap:clamp(12px,1.28vw,24px);
+            padding-right:clamp(8px,0.85vw,16px);
         }
-        @media (max-width: 768px) {
-            .footer-left-col, .footer-right-col {
-                max-width: 100%;
-            }
-            .footer-right-col {
-                text-align: left;
-            }
+        /* Section label: Inter Regular 40px, #5368a9, right-aligned            */
+        .sa-title {
+            font-size:clamp(16px,2.13vw,40px);
+            font-weight:400; color:var(--c-blue);
+            text-align:right; line-height:1.45;
+            letter-spacing:-0.2px; text-transform:uppercase;
+        }
+        /* Description: Inter SemiBold 22px, #6d6d6d, right-aligned             */
+        .sa-desc {
+            font-size:clamp(10px,1.17vw,22px);
+            font-weight:600; color:var(--c-desc);
+            text-align:right; line-height:1.69;
+            letter-spacing:-0.11px;
+        }
+
+        /* Connector: numbered badge (38px filled circle)                       */
+        .sa-badge {
+            display:flex; align-items:center; justify-content:center;
+            width:clamp(26px,2.03vw,38px); height:clamp(26px,2.03vw,38px);
+            border-radius:50%; background:var(--c-blue); color:#fff;
+            font-size:clamp(14px,1.23vw,23px); font-weight:400;
+            flex-shrink:0; margin:0 auto;
+        }
+
+        /* Images column */
+        .sa-photos {
+            display:grid;
+            grid-template-columns: 1fr 1fr; /* two before/after pairs */
+            gap:clamp(8px,0.85vw,16px);
+            align-items:start;
+        }
+        /* For sections with only ONE pair, use full width or specific column   */
+        .sa-photos.single-left  { grid-template-columns:1fr 1fr; }
+        .sa-photos.single-right { grid-template-columns:1fr 1fr; }
+        .sa-photos.single-left .ba-wrap  { grid-column:1; }
+        .sa-photos.single-right .ba-wrap { grid-column:2; }
+
+        /* ── 4. BEFORE / AFTER SLIDER ───────────────────────────────────── */
+        /* Figma: Frame201 component, "Hover to explore"
+           After (new state) = right of divider; Before (original) = left.
+           img max-height ≈ 399/1874 = 21.3vw                                   */
+        .ba-wrap {
+            position:relative; overflow:hidden; border-radius:4px;
+            cursor:col-resize; user-select:none;
+            --split: 50%;
+        }
+        .ba-after {
+            display:block; width:100%; height:auto;
+            max-height:clamp(150px,21.3vw,399px); object-fit:cover;
+        }
+        /* Before image, clipped on the left of the divider */
+        .ba-before {
+            position:absolute; inset:0; overflow:hidden;
+            clip-path: inset(0 calc(100% - var(--split)) 0 0);
+        }
+        .ba-before img {
+            display:block; width:100%; height:100%; object-fit:cover;
+        }
+        /* Divider line */
+        .ba-divider {
+            position:absolute; top:0; bottom:0;
+            left:var(--split); width:2px;
+            background:rgba(255,255,255,0.9);
+            transform:translateX(-50%);
+            pointer-events:none;
+            box-shadow:0 0 6px rgba(0,0,0,0.35);
+        }
+        /* Label chips */
+        .ba-lbl {
+            position:absolute; bottom:clamp(5px,0.53vw,10px);
+            font-size:clamp(7px,0.53vw,10px); font-weight:700;
+            color:#fff; text-transform:uppercase;
+            text-shadow:0 1px 3px rgba(0,0,0,0.5); pointer-events:none;
+            background:rgba(0,0,0,0.25); border-radius:3px;
+            padding:2px clamp(4px,0.32vw,6px);
+        }
+        .ba-lbl-b { left:clamp(5px,0.53vw,10px); }
+        .ba-lbl-a { right:clamp(5px,0.53vw,10px); }
+
+        /* ── 5. LIGHTBOX ──────────────────────────────────────────────────── */
+        #lightbox {
+            position:fixed; inset:0; z-index:10000; cursor:zoom-out;
+            background:rgba(14,59,102,0.95); backdrop-filter:blur(10px);
+            display:none; justify-content:center; align-items:center;
+        }
+        #lightbox img { max-width:95%; max-height:95%; object-fit:contain; animation:zoomIn 0.3s ease; }
+        @keyframes zoomIn { from{transform:scale(0.8);opacity:0} to{transform:scale(1);opacity:1} }
+
+        /* ── 6. FOOTER ──────────────────────────────────────────────────── */
+        .footer-container {
+            padding:40px clamp(16px,2.14vw,40px) 60px;
+            background:transparent;
+        }
+        .footer-contact-header { display:flex; align-items:center; gap:20px; margin-bottom:25px; }
+        .footer-contact-title { font-size:14px; font-weight:700; color:var(--c-blue); letter-spacing:0.5px; }
+        .footer-rule { flex-grow:1; height:1px; background:rgba(83,104,169,0.2); }
+        .footer-content-row { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:30px; }
+        .footer-left  { display:flex; flex-direction:column; gap:10px; max-width:50%; }
+        .footer-right { display:flex; flex-direction:column; gap:10px; text-align:right; max-width:50%; }
+        .info-text    { font-size:11px; font-style:italic; color:#555; font-weight:300; line-height:1.6; }
+        .email-link   { font-size:11px; color:var(--c-blue); text-decoration:none; font-weight:500; transition:color 0.2s; }
+        .email-link:hover { color:#d76a28; text-decoration:underline; }
+        .brand-text   { font-size:11px; font-weight:600; color:var(--c-blue); letter-spacing:0.5px; }
+        .address-text { font-size:11px; color:#555; font-weight:300; line-height:1.6; }
+
+        /* ── 7. RESPONSIVE ──────────────────────────────────────────────── */
+        @media (max-width:900px) {
+            .sa-row            { grid-template-columns:1fr; }
+            .sa-text           { align-items:flex-start; }
+            .sa-title          { text-align:left; }
+            .sa-desc           { text-align:left; }
+            .sa-badge          { display:none; }
+            .sa-photos         { grid-template-columns:1fr; }
+            .sa-photos.single-left .ba-wrap,
+            .sa-photos.single-right .ba-wrap { grid-column:1; }
+            .map-layout        { grid-template-columns:1fr; }
+            .hero-title        { left:5%; width:90%; }
+            .hero-infobox      { left:5%; width:90%; }
+            .footer-left,
+            .footer-right      { max-width:100%; }
+            .footer-right      { text-align:left; }
+        }
+        @media (max-width:600px) {
+            .sa-photos { grid-template-columns:1fr; }
         }
     </style>
 </head>
 <body>
 
-    <div id="lightbox" onclick="this.style.display='none'"><img id="lightbox-img" src=""></div>
-
-    <div class="header-wrapper">
-        <div class="header-top-frame">
-            <div class="logo-left">
-                <a href="../../index.html"><img src="../../assets/images/Logo_SHLL_long.png" alt="SHL Logo"></a>
-            </div>
-            <div class="header-middle">
-                <div class="horizontal-line"></div>
-            </div>
-            <div class="logo-right">
-                <a href="architectural-design.html"><img src="../../assets/images/index/logo1.png" alt="UEH" style="height: 30px; width: auto; display: block;"></a>
-            </div>
-        </div>
+    <div id="lightbox" onclick="this.style.display='none'">
+        <img id="lb-img" src="" alt="">
     </div>
 
-    <section class="hero-container" id="hero">
-        <div class="top-content" data-aos="fade-left">
-            <h1>ARCHITECTURAL<br>DESIGN</h1>
-            <a href="#" class="newsletter-tag">Sent Us Your Newsletter</a>
-        </div>
-        <div class="spatial-circle-wrapper" data-aos="zoom-in" data-aos-delay="500">
-            <div class="circle-text">
-                <svg viewBox="0 0 200 200">
-                    <path id="circlePath" d="M 100, 100 m -80, 0 a 80,80 0 1,1 160,0 a 80,80 0 1,1 -160,0" fill="transparent"/>
-                    <text><textPath href="#circlePath">SPATIAL EXPLORATION • SPATIAL EXPLORATION • </textPath></text>
-                </svg>
+    <!-- ── HERO ──────────────────────────────────────────────────────────── -->
+    <section class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+
+        <div class="header-wrapper">
+            <a href="../../index.html">
+                <img src="../../assets/images/package2/figma/image_38.png"
+                     alt="smART Hub" class="logo-shll">
+            </a>
+            <div class="header-line"></div>
+            <nav class="header-nav">
+                <a href="../../index.html"          class="nav-btn">Home</a>
+                <a href="architectural-design.html" class="nav-btn">Back</a>
+            </nav>
+            <div class="header-logos">
+                <a href="../../index.html">
+                    <img src="../../assets/images/package2/figma/logo_ueh_tr_ng_1.png"
+                         alt="UEH University">
+                </a>
             </div>
-            <div class="circle-image"></div>
         </div>
-        <div class="hero-footer-title" data-aos="fade-right">
-            <h2>BEFORE - AFTER<br>SPATIAL ASSESSMENT</h2>
+
+        <!-- Title: same context label as other architectural sub-pages         -->
+        <!-- Figma: left:53.4%, top:14.4%; Inter SemiBold 63px, -3px 1px 0 shadow -->
+        <h1 class="hero-title">ARCHITECTURAL<br>DESIGN</h1>
+
+        <!-- Info box
+             Figma: left:53.3%, top:67.7%, 461×116px, border:#5368a9, radius:11px -->
+        <div class="hero-infobox">
+            <p>Existing to improved performance,<br>
+               identifying challenges and opportunities,<br>
+               transforming space through intervention</p>
+        </div>
+
+        <!-- Bottom-left label
+             Figma: left:2.3%, top:83.4%, Inter Regular 40px white, shadow 0 -2px 0 #5368a9 -->
+        <div class="hero-label">BEFORE - AFTER<br>SPATIAL ASSESSMENT</div>
+
+        <div class="scroll-hint" aria-hidden="true">↓</div>
+    </section>
+
+    <!-- ── MAP SECTION ───────────────────────────────────────────────────── -->
+    <!--
+        Figma: "SPATIAL EXPLORATION" centered at x=981px (Inter SemiBold 48px)
+               Map (image109): left:38, top:1459, w:915, h:802
+               Legend: left:1220, "Legend" SemiBold 30px, items Regular 20px
+    -->
+    <section class="map-section">
+        <h2 class="map-heading" data-aos="fade-up">Spatial Exploration</h2>
+        <p class="map-subhead" data-aos="fade-up">Hover to explore</p>
+
+        <div class="map-layout" data-aos="fade-up">
+            <!-- Campus site map (imgImage109) -->
+            <div class="map-visual">
+                <img src="../../assets/images/package2/Architecture/Spatial/figma/spatial_01.png"
+                     alt="Campus V site plan — numbered locations"
+                     onclick="openLB(this.src)">
+            </div>
+
+            <!-- Legend: numbered dots + location names -->
+            <div class="map-legend">
+                <p class="legend-title">Legend</p>
+                <ol class="legend-list">
+                    <li><a href="#sa-1" class="legend-item"><span class="legend-dot">1</span>Gate &amp; Hotel Lobby</a></li>
+                    <li><a href="#sa-2" class="legend-item"><span class="legend-dot">2</span>smART Cafe Yard</a></li>
+                    <li><a href="#sa-3" class="legend-item"><span class="legend-dot">3</span>smART Cafe</a></li>
+                    <li><a href="#sa-4" class="legend-item"><span class="legend-dot">4</span>Grounding Garden</a></li>
+                    <li><a href="#sa-5" class="legend-item"><span class="legend-dot">5</span>AI Trash Bin</a></li>
+                    <li><a href="#sa-6" class="legend-item"><span class="legend-dot">6</span>Sod Culture</a></li>
+                    <li><a href="#sa-7" class="legend-item"><span class="legend-dot">7</span>Strata Garden</a></li>
+                </ol>
+            </div>
         </div>
     </section>
 
-    <main class="map-section">
-        <div class="section-header" data-aos="fade-up">
-            <h2>SPATIAL EXPLORATION</h2>
-            <p>Hover to explore</p>
-        </div>
-        <div class="map-grid">
-            <div class="map-visual" data-aos="fade-right">
-                <img src="../../assets/images/package2/Architecture/Spatial/{87B1998A-8801-4AA0-9E63-EF63C0D83909}.jpg" alt="Master Plan Map">
+    <!-- ── SECTION 1: GATE & HOTEL LOBBY ────────────────────────────────── -->
+    <!--
+        Figma: 2 before/after pairs
+        Left pair  → Frame201 Variant3 at left:589  (image123=after / image125=before)
+        Right pair → image118=after / image119=before at left:1216
+        Text: left:555 (right edge), w:506, top:2606
+    -->
+    <section class="sa-section" id="sa-1" data-aos="fade-up">
+        <div class="sa-row">
+            <div class="sa-text">
+                <h2 class="sa-title">Gate &amp;<br>Hotel Lobby</h2>
+                <p class="sa-desc">The gate was upgraded to a bi-fold double-panel system for a more open entrance. The lobby was renovated with an accessibility ramp, improving access and creating a cleaner, more organized arrival space.</p>
             </div>
-            <div class="legend-list" data-aos="fade-left">
-                <h3>Legend</h3>
-                <a href="#item1" class="legend-item"><span class="num-pill">1</span> Gate</a>
-                <a href="#item2" class="legend-item"><span class="num-pill">2</span> Hotel Lobby</a>
-                <a href="#item3" class="legend-item"><span class="num-pill">3</span> Bio Swales</a>
-                <a href="#item4" class="legend-item"><span class="num-pill">4</span> smART Cafe Yard</a>
-                <a href="#item5" class="legend-item"><span class="num-pill">5</span> smART Cafe</a>
-                <a href="#item6" class="legend-item"><span class="num-pill">6</span> Multipurpose Space</a>
-                <a href="#item7" class="legend-item"><span class="num-pill">7</span> Grounding Garden</a>
-                <a href="#item8" class="legend-item"><span class="num-pill">8</span> Front Yard</a>
-                <a href="#item9" class="legend-item"><span class="num-pill">9</span> AI Trash Bin</a>
-                <a href="#item10" class="legend-item"><span class="num-pill">10</span> Sod Culture</a>
-                <a href="#item11" class="legend-item"><span class="num-pill">11</span> Flower Testbed</a>
-            </div>
-        </div>
-    </main>
-
-    <section class="assessment-details">
-        
-        <!-- 1. GATE -->
-        <div class="project-row" id="item1" data-aos="fade-up">
-            <div class="row-text">
-                <div class="row-title"><h2>Gate</h2><span class="num-pill" style="width:40px; height:40px;">1</span></div>
-                <p>The Zero Pledge commitment, built upon two key pillars: #ReduceForMore and The initiative aspires for every individual.</p>
-            </div>
-            <div class="row-images">
-                <div class="image-grid"><img src="../../assets/images/package2/Architecture/Spatial/{E9BF10FF-B3B6-43C7-BD05-203515958C65}.jpg" onclick="openLB(this.src)"></div>
-                <p class="image-caption">Move the cafe to the laundry room - vacant space.</p>
-            </div>
-        </div>
-
-        <!-- 2. HOTEL LOBBY -->
-        <div class="project-row" id="item2" data-aos="fade-up">
-            <div class="row-text">
-                <div class="row-title"><h2>Hotel Lobby</h2><span class="num-pill" style="width:35px; height:35px;">2</span></div>
-                <p>The bar counter was successfully relocated from its original position in the villa lobby to the former laundry room area.</p>
-            </div>
-            <div class="row-images">
-                <div class="image-grid"><img src="../../assets/images/package2/Architecture/Spatial/{5131ACC0-0BB8-418E-A219-D5D4F743C354}.jpg" onclick="openLB(this.src)"></div>
-                <p class="image-caption">Relocation of functionality to optimize vacant spaces.</p>
-            </div>
-        </div>
-
-        <!-- 3. BIO SWALES -->
-        <div class="project-row" id="item3" data-aos="fade-up">
-            <div class="row-text">
-                <div class="row-title"><h2>Bio Swales</h2><span class="num-pill" style="width:35px; height:35px;">3</span></div>
-                <p>The Zero Pledge commitment, built upon two key pillars: #ReduceForMore and The initiative aspires for every individual.</p>
-            </div>
-            <div class="row-images">
-                <div class="image-grid"><img src="../../assets/images/package2/Architecture/Spatial/bio_swale.jpg" onclick="openLB(this.src)"></div>
-                <p class="image-caption">Sustainable drainage solutions integrated into the landscape.</p>
-            </div>
-        </div>
-
-        <!-- 4. SMART CAFE YARD -->
-        <div class="project-row" id="item4" data-aos="fade-up">
-            <div class="row-text">
-                <div class="row-title"><h2>smART Cafe Yard</h2><span class="num-pill" style="width:35px; height:35px;">4</span></div>
-                <p>The Zero Pledge commitment, built upon two key pillars: #ReduceForMore and The initiative aspires for every individual.</p>
-            </div>
-            <div class="row-images">
-                <div class="image-grid">
-                    <img src="../../assets/images/package2/Architecture/Spatial/{EF610995-AB6C-44FC-B50B-27CE59868F0E}.jpg" onclick="openLB(this.src)">
-                    <img src="../../assets/images/package2/Architecture/Spatial/{5233DB25-7D09-4A0B-9754-D6F30DB00C37}.jpg" onclick="openLB(this.src)">
+            <div class="sa-badge" aria-hidden="true">1</div>
+            <div class="sa-photos">
+                <div class="ba-wrap">
+                    <img src="../../assets/images/package2/Architecture/Spatial/figma/spatial_05.jpg"
+                         class="ba-after" alt="Gate after">
+                    <div class="ba-before">
+                        <img src="../../assets/images/package2/Architecture/Spatial/figma/spatial_05.png"
+                             alt="Gate before">
+                    </div>
+                    <div class="ba-divider"></div>
+                    <span class="ba-lbl ba-lbl-b">Before</span>
+                    <span class="ba-lbl ba-lbl-a">After</span>
                 </div>
-                <p class="image-caption">Introduce permeable gravel to improve drainage.</p>
+                <div class="ba-wrap">
+                    <img src="../../assets/images/package2/Architecture/Spatial/figma/spatial_07.jpg"
+                         class="ba-after" alt="Hotel lobby after">
+                    <div class="ba-before">
+                        <img src="../../assets/images/package2/Architecture/Spatial/figma/spatial_07.png"
+                             alt="Hotel lobby before">
+                    </div>
+                    <div class="ba-divider"></div>
+                    <span class="ba-lbl ba-lbl-b">Before</span>
+                    <span class="ba-lbl ba-lbl-a">After</span>
+                </div>
             </div>
         </div>
-
-        <!-- 5. SMART CAFE -->
-        <div class="project-row" id="item5" data-aos="fade-up">
-            <div class="row-text">
-                <div class="row-title"><h2>smART Cafe</h2><span class="num-pill" style="width:35px; height:35px;">5</span></div>
-                <p>The bar counter was successfully relocated from its original position in the villa lobby to the former laundry room area.</p>
-            </div>
-            <div class="row-images">
-                <div class="image-grid"><img src="../../assets/images/package2/Architecture/Spatial/cafe_interior.jpg" onclick="openLB(this.src)"></div>
-                <p class="image-caption">Move the cafe to the laundry room - vacant space.</p>
-            </div>
-        </div>
-
-        <!-- 6. MULTIPURPOSE SPACE -->
-        <div class="project-row" id="item6" data-aos="fade-up">
-            <div class="row-text">
-                <div class="row-title"><h2>Multipurpose Space</h2><span class="num-pill" style="width:35px; height:35px;">6</span></div>
-                <p>The Zero Pledge commitment, built upon two key pillars: #ReduceForMore and The initiative aspires for every individual.</p>
-            </div>
-            <div class="row-images">
-                <div class="image-grid"><img src="../../assets/images/package2/Architecture/Spatial/multipurpose.jpg" onclick="openLB(this.src)"></div>
-                <p class="image-caption">Flexible space for workshops and co-creation activities.</p>
-            </div>
-        </div>
-
-        <!-- 7. GROUNDING GARDEN -->
-        <div class="project-row" id="item7" data-aos="fade-up">
-            <div class="row-text">
-                <div class="row-title"><h2>Grounding Garden</h2><span class="num-pill" style="width:35px; height:35px;">7</span></div>
-                <p>The Zero Pledge commitment, built upon two key pillars: #ReduceForMore and The initiative aspires for every individual.</p>
-            </div>
-            <div class="row-images">
-                <div class="image-grid"><img src="../../assets/images/package2/Architecture/Spatial/garden.jpg" onclick="openLB(this.src)"></div>
-                <p class="image-caption">Reconnecting with nature through localized landscape design.</p>
-            </div>
-        </div>
-
-        <!-- 8. FRONT YARD -->
-        <div class="project-row" id="item8" data-aos="fade-up">
-            <div class="row-text">
-                <div class="row-title"><h2>Front Yard</h2><span class="num-pill" style="width:35px; height:35px;">8</span></div>
-                <p>The Zero Pledge commitment, built upon two key pillars: #ReduceForMore and The initiative aspires for every individual.</p>
-            </div>
-            <div class="row-images">
-                <div class="image-grid"><img src="../../assets/images/package2/Architecture/Spatial/front_yard.jpg" onclick="openLB(this.src)"></div>
-                <p class="image-caption">Optimizing the entrance sequence for better accessibility.</p>
-            </div>
-        </div>
-
-        <!-- 9. AI TRASH BIN -->
-        <div class="project-row" id="item9" data-aos="fade-up">
-            <div class="row-text">
-                <div class="row-title"><h2>AI Trash Bin</h2><span class="num-pill" style="width:35px; height:35px;">9</span></div>
-                <p>The Zero Pledge commitment, built upon two key pillars: #ReduceForMore and The initiative aspires for every individual.</p>
-            </div>
-            <div class="row-images">
-                <div class="image-grid"><img src="../../assets/images/package2/Architecture/Spatial/{4EE27F29-7FBE-4DC0-85E6-3887688768BA}.jpg" onclick="openLB(this.src)"></div>
-                <p class="image-caption">Smart waste management system implementation.</p>
-            </div>
-        </div>
-
-        <!-- 10. SOD CULTURE -->
-        <div class="project-row" id="item10" data-aos="fade-up">
-            <div class="row-text">
-                <div class="row-title"><h2>Sod Culture</h2><span class="num-pill" style="width:35px; height:35px;">10</span></div>
-                <p>The Zero Pledge commitment, built upon two key pillars: #ReduceForMore and The initiative aspires for every individual.</p>
-            </div>
-            <div class="row-images">
-                <div class="image-grid"><img src="../../assets/images/package2/Architecture/Spatial/sod_culture.jpg" onclick="openLB(this.src)"></div>
-                <p class="image-caption">Promoting urban greenery and biodiversity testbeds.</p>
-            </div>
-        </div>
-
-        <!-- 11. FLOWER TESTBED -->
-        <div class="project-row" id="item11" data-aos="fade-up">
-            <div class="row-text">
-                <div class="row-title"><h2>Flower Testbed</h2><span class="num-pill" style="width:35px; height:35px;">11</span></div>
-                <p>The Zero Pledge commitment, built upon two key pillars: #ReduceForMore and The initiative aspires for every individual.</p>
-            </div>
-            <div class="row-images">
-                <div class="image-grid"><img src="../../assets/images/package2/Architecture/Spatial/{61879DA2-61DC-4D2E-92F7-37892B673698}.jpg" onclick="openLB(this.src)"></div>
-                <p class="image-caption">Experimental planting for urban micro-climates.</p>
-            </div>
-        </div>
-
     </section>
 
+    <!-- ── SECTION 2: SMART CAFE YARD ───────────────────────────────────── -->
+    <!--
+        Figma: 2 before/after pairs
+        Left pair  → image91=after / image92=before at left:589
+        Right pair → image93=after / image94=before at left:1216
+    -->
+    <section class="sa-section" id="sa-2" data-aos="fade-up">
+        <div class="sa-row">
+            <div class="sa-text">
+                <h2 class="sa-title">Smart Cafe<br>Yard</h2>
+                <p class="sa-desc">The Café yard was resurfaced with permeable gravel to improve stormwater drainage. Stone tabletops were replaced with recycled plastic surfaces, while the existing table bases and chairs were retained for continued use instead of being replaced.</p>
+            </div>
+            <div class="sa-badge" aria-hidden="true">2</div>
+            <div class="sa-photos">
+                <div class="ba-wrap">
+                    <img src="../../assets/images/package2/Architecture/Spatial/figma/spatial_08.jpg"
+                         class="ba-after" alt="Cafe yard after">
+                    <div class="ba-before">
+                        <img src="../../assets/images/package2/Architecture/Spatial/figma/spatial_08.png"
+                             alt="Cafe yard before">
+                    </div>
+                    <div class="ba-divider"></div>
+                    <span class="ba-lbl ba-lbl-b">Before</span>
+                    <span class="ba-lbl ba-lbl-a">After</span>
+                </div>
+                <div class="ba-wrap">
+                    <img src="../../assets/images/package2/Architecture/Spatial/figma/spatial_10.jpg"
+                         class="ba-after" alt="Cafe yard detail after">
+                    <div class="ba-before">
+                        <img src="../../assets/images/package2/Architecture/Spatial/figma/spatial_10.png"
+                             alt="Cafe yard detail before">
+                    </div>
+                    <div class="ba-divider"></div>
+                    <span class="ba-lbl ba-lbl-b">Before</span>
+                    <span class="ba-lbl ba-lbl-a">After</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── SECTION 3: SMART CAFE ─────────────────────────────────────────── -->
+    <!--
+        Figma: 1 before/after pair (left column)
+        image81=after / image84=before at left:589
+    -->
+    <section class="sa-section" id="sa-3" data-aos="fade-up">
+        <div class="sa-row">
+            <div class="sa-text">
+                <h2 class="sa-title">Smart Cafe</h2>
+                <p class="sa-desc">smART Cafe was relocated to repurpose previously underutilized space and free up a new area for multipurpose use. This transformation not only improves spatial organization but also reflects the intention to provide more space for community activities.</p>
+            </div>
+            <div class="sa-badge" aria-hidden="true">3</div>
+            <div class="sa-photos single-left">
+                <div class="ba-wrap">
+                    <img src="../../assets/images/package2/Architecture/Spatial/figma/spatial_11.jpg"
+                         class="ba-after" alt="Smart Cafe after">
+                    <div class="ba-before">
+                        <img src="../../assets/images/package2/Architecture/Spatial/figma/spatial_11.png"
+                             alt="Smart Cafe before">
+                    </div>
+                    <div class="ba-divider"></div>
+                    <span class="ba-lbl ba-lbl-b">Before</span>
+                    <span class="ba-lbl ba-lbl-a">After</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── SECTION 4: GROUNDING GARDENS ────────────────────────────────── -->
+    <!--
+        Figma: 2 before/after pairs
+        Left pair  → image121=after / image122=before at left:589
+        Right pair → image116=after / image117=before at left:1214
+    -->
+    <section class="sa-section" id="sa-4" data-aos="fade-up">
+        <div class="sa-row">
+            <div class="sa-text">
+                <h2 class="sa-title">Grounding<br>Gardens</h2>
+                <p class="sa-desc">The Grounding Gardens were redesigned as a space that fosters a physical connection between people and nature through barefoot walking on gravel surfaces, enhancing the campus's human-centered quality and cultural value.</p>
+            </div>
+            <div class="sa-badge" aria-hidden="true">4</div>
+            <div class="sa-photos">
+                <div class="ba-wrap">
+                    <img src="../../assets/images/package2/Architecture/Spatial/figma/spatial_12.jpg"
+                         class="ba-after" alt="Grounding Gardens after">
+                    <div class="ba-before">
+                        <img src="../../assets/images/package2/Architecture/Spatial/figma/spatial_12.png"
+                             alt="Grounding Gardens before">
+                    </div>
+                    <div class="ba-divider"></div>
+                    <span class="ba-lbl ba-lbl-b">Before</span>
+                    <span class="ba-lbl ba-lbl-a">After</span>
+                </div>
+                <div class="ba-wrap">
+                    <img src="../../assets/images/package2/Architecture/Spatial/figma/spatial_13.jpg"
+                         class="ba-after" alt="Grounding Gardens detail after">
+                    <div class="ba-before">
+                        <img src="../../assets/images/package2/Architecture/Spatial/figma/spatial_13.png"
+                             alt="Grounding Gardens detail before">
+                    </div>
+                    <div class="ba-divider"></div>
+                    <span class="ba-lbl ba-lbl-b">Before</span>
+                    <span class="ba-lbl ba-lbl-a">After</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── SECTION 5: AI TRASH BIN ──────────────────────────────────────── -->
+    <!--
+        Figma: 1 before/after pair (left column)
+        image97=after / image120=before at left:591
+    -->
+    <section class="sa-section" id="sa-5" data-aos="fade-up">
+        <div class="sa-row">
+            <div class="sa-text">
+                <h2 class="sa-title">AI Trash Bin</h2>
+                <p class="sa-desc">Conventional bins were upgraded into a smart waste management system using AI to sort and monitor waste volumes, while positively influencing users' waste separation habits.</p>
+            </div>
+            <div class="sa-badge" aria-hidden="true">5</div>
+            <div class="sa-photos single-left">
+                <div class="ba-wrap">
+                    <img src="../../assets/images/package2/Architecture/Spatial/figma/spatial_14.jpg"
+                         class="ba-after" alt="AI Trash Bin after">
+                    <div class="ba-before">
+                        <img src="../../assets/images/package2/Architecture/Spatial/figma/spatial_14.png"
+                             alt="AI Trash Bin before">
+                    </div>
+                    <div class="ba-divider"></div>
+                    <span class="ba-lbl ba-lbl-b">Before</span>
+                    <span class="ba-lbl ba-lbl-a">After</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── SECTION 6: SOD CULTURE ────────────────────────────────────────── -->
+    <!--
+        Figma: 1 before/after pair in the RIGHT column (left:1213)
+        image95=after / image96=before
+    -->
+    <section class="sa-section" id="sa-6" data-aos="fade-up">
+        <div class="sa-row">
+            <div class="sa-text">
+                <h2 class="sa-title">Sod Culture</h2>
+                <p class="sa-desc">Shaded areas and students' demand for seating were leveraged to transform a former parking space into a seating planter. This space now provides areas for rest and social interaction while serving as a small experimental garden for preserving and cultivating native Vietnamese plant species.</p>
+            </div>
+            <div class="sa-badge" aria-hidden="true">6</div>
+            <div class="sa-photos single-right">
+                <div class="ba-wrap">
+                    <img src="../../assets/images/package2/Architecture/Spatial/figma/spatial_15.jpg"
+                         class="ba-after" alt="Sod Culture after">
+                    <div class="ba-before">
+                        <img src="../../assets/images/package2/Architecture/Spatial/figma/spatial_15.png"
+                             alt="Sod Culture before">
+                    </div>
+                    <div class="ba-divider"></div>
+                    <span class="ba-lbl ba-lbl-b">Before</span>
+                    <span class="ba-lbl ba-lbl-a">After</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── SECTION 7: STRATA GARDEN ─────────────────────────────────────── -->
+    <!--
+        Figma: 1 before/after pair (left column)
+        image126=before / image127=after at left:589
+    -->
+    <section class="sa-section" id="sa-7" data-aos="fade-up">
+        <div class="sa-row">
+            <div class="sa-text">
+                <h2 class="sa-title">Strata Garden</h2>
+                <p class="sa-desc">The Zero Pledge commitment, built upon two key pillars: #ReduceForMore — the initiative aspires for every individual to reconnect with the urban environment through sustainable planting and layered green strata.</p>
+            </div>
+            <div class="sa-badge" aria-hidden="true">7</div>
+            <div class="sa-photos single-left">
+                <div class="ba-wrap">
+                    <img src="../../assets/images/package2/Architecture/Spatial/figma/spatial_16.jpg"
+                         class="ba-after" alt="Strata Garden after">
+                    <div class="ba-before">
+                        <img src="../../assets/images/package2/Architecture/Spatial/figma/spatial_16.png"
+                             alt="Strata Garden before">
+                    </div>
+                    <div class="ba-divider"></div>
+                    <span class="ba-lbl ba-lbl-b">Before</span>
+                    <span class="ba-lbl ba-lbl-a">After</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FOOTER ──────────────────────────────────────────────────────────── -->
     <footer class="footer-container">
         <div class="footer-contact-header">
             <span class="footer-contact-title">Contact</span>
-            <div class="footer-contact-line"></div>
+            <div class="footer-rule"></div>
         </div>
         <div class="footer-content-row">
-            <div class="footer-left-col">
+            <div class="footer-left">
                 <span class="info-text">For more information of the smART Hub Living Labs.</span>
                 <a href="mailto:smarthub@ueh.edu.vn" class="email-link">smarthub@ueh.edu.vn</a>
             </div>
-            <div class="footer-right-col">
+            <div class="footer-right">
                 <span class="brand-text">smART HUB Living Labs</span>
                 <span class="address-text">UEH, Campus V 232/6 Vo Thi Sau, Xuan Hoa Ward, Ho Chi Minh City.</span>
             </div>
@@ -438,13 +662,48 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 1000, once: true });
-        
+        AOS.init({ duration:900, once:true, offset:60, easing:'ease-in-out' });
 
+        /* ── Before / After slider ── */
+        document.querySelectorAll('.ba-wrap').forEach(wrap => {
+            function setPos(clientX) {
+                const r = wrap.getBoundingClientRect();
+                const pct = Math.max(5, Math.min(95, (clientX - r.left) / r.width * 100));
+                wrap.style.setProperty('--split', pct + '%');
+            }
+            function reset() { wrap.style.setProperty('--split', '50%'); }
+
+            wrap.addEventListener('mousemove', e => setPos(e.clientX));
+            wrap.addEventListener('mouseleave', reset);
+
+            /* Touch */
+            let touching = false;
+            wrap.addEventListener('touchstart', () => { touching = true; }, { passive: true });
+            wrap.addEventListener('touchmove', e => {
+                if (!touching) return;
+                e.preventDefault();
+                setPos(e.touches[0].clientX);
+            }, { passive: false });
+            wrap.addEventListener('touchend', reset);
+
+            /* Click image to open in lightbox (double-tap on mobile is handled via onclick) */
+            wrap.addEventListener('click', () => {
+                const after = wrap.querySelector('.ba-after');
+                if (after) openLB(after.src);
+            });
+        });
+
+        /* ── Lightbox ── */
         function openLB(src) {
-            document.getElementById('lightbox-img').src = src;
+            if (!src) return;
+            document.getElementById('lb-img').src = src;
             document.getElementById('lightbox').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
         }
+        document.getElementById('lightbox').addEventListener('click', () => {
+            document.getElementById('lightbox').style.display = 'none';
+            document.body.style.overflow = '';
+        });
     </script>
 </body>
 </html>
