@@ -20,14 +20,14 @@
         /* --- 1. HERO SECTION --- */
         .hero-container {
             width: 100%; height: 100vh; position: relative;
-            background-image: url('../../assets/images/package2/Architecture/bia1.png');
+            background-image: url('../../assets/images/package2/Architecture/Architectural_Layout_Design/Bia1.jpg');
             background-size: cover; background-position: center;
             display: flex; flex-direction: column; justify-content: space-between;
             padding: 80px 6%; color: #fff;
         }
         .hero-container::before {
             content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, rgba(14, 59, 102, 0.5) 0%, rgba(14, 59, 102, 0.2) 100%);
+            background: linear-gradient(135deg, rgba(100, 150, 190, 0.35) 0%, rgba(100, 150, 190, 0.15) 100%);
             z-index: 1;
         }
 
@@ -76,24 +76,33 @@
             background: var(--pkg-gold); border-color: var(--pkg-gold); color: #fff; transform: scale(1.1); 
         }
         
-        .top-content { position: relative; z-index: 100; align-self: flex-end; text-align: right; }
-        .top-content h1 { font-size: clamp(40px, 6vw, 85px); font-weight: 800; line-height: 1; color: transparent; -webkit-text-stroke: 1.5px #fff; text-transform: uppercase; }
+        .top-content { position: absolute; z-index: 100; top: 120px; right: 6%; text-align: right; }
+        .top-content h1 { font-size: clamp(40px, 6vw, 85px); font-weight: 800; line-height: 1; color: transparent; -webkit-text-stroke: 1.8px rgba(255, 255, 255, 0.95); text-transform: uppercase; }
         .newsletter-tag { display: inline-block; margin-top: 15px; padding: 8px 25px; background: rgba(255,255,255,0.9); color: var(--pkg-blue); border-radius: 50px; font-size: 11px; font-weight: 700; text-decoration: none; }
 
-        .spatial-circle-wrapper { 
-            position: absolute; 
-            top: 55%; 
-            right: 2%; 
-            z-index: 50; 
-            width: 220px; height: 220px; 
+        .hero-footer-title { position: absolute; z-index: 100; bottom: 80px; left: 6%; font-size: clamp(28px, 4vw, 48px); font-weight: 700; text-transform: uppercase; color: rgba(255, 255, 255, 0.95); }
+
+        .hero-info-box {
+            position: absolute;
+            bottom: 60px;
+            right: 6%;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(14, 59, 102, 0.2);
+            border-radius: 12px;
+            padding: 24px;
+            max-width: 320px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
         }
-        .circle-image { width: 100%; height: 100%; border-radius: 50%; border: 2px solid #fff; overflow: hidden; background: url('../../assets/images/package2/Architecture/bia3.png'); background-size: cover; }
-        .circle-text { position: absolute; width: 100%; height: 100%; top: 0; left: 0; animation: rotateText 15s linear infinite; }
-        @keyframes rotateText { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        .circle-text svg { width: 100%; height: 100%; fill: #fff; }
-        .circle-text text { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 4px; }
-        
-        .hero-footer-title { position: relative; z-index: 100; font-size: 38px; font-weight: 700; text-transform: uppercase; }
+        .hero-info-box p {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            line-height: 1.7;
+            color: var(--pkg-blue);
+            margin: 0;
+            text-align: left;
+        }
 
         /* --- 2. DETAILS SECTION --- */
         .details-section { padding: 120px 8%; background: #fff; position: relative; z-index: 10; }
@@ -253,21 +262,14 @@
     <section class="hero-container">
         <div class="top-content" data-aos="fade-left">
             <h1>ARCHITECTURAL<br>DESIGN</h1>
-            <a href="#" class="newsletter-tag">Sent Us Your Newsletter</a>
-        </div>
-
-        <div class="spatial-circle-wrapper" data-aos="zoom-in" data-aos-delay="500">
-            <div class="circle-text">
-                <svg viewBox="0 0 200 200">
-                    <path id="circlePath" d="M 100, 100 m -80, 0 a 80,80 0 1,1 160,0 a 80,80 0 1,1 -160,0" fill="transparent"/>
-                    <text><textPath href="#circlePath">SPATIAL EXPLORATION • SPATIAL EXPLORATION • </textPath></text>
-                </svg>
-            </div>
-            <div class="circle-image"></div>
         </div>
 
         <div class="hero-footer-title" data-aos="fade-right">
-            <h2>ARCHITECTURAL<br>LAYOUT DESIGN</h2>
+            ARCHITECTURAL<br>LAYOUT DESIGN
+        </div>
+
+        <div class="hero-info-box" data-aos="fade-up" data-aos-delay="200">
+            <p>Architectural Layout Design is a key component focused on translating adaptive solutions into detailed technical drawings and spatial diagrams at Campus V.</p>
         </div>
     </section>
 
@@ -278,16 +280,15 @@
                 <div class="col-left">
                     <h3 class="project-header-title">MASTER PLAN</h3>
                     <div class="img-small-wrap">
-                        <img src="../../assets/images/package2/Architecture/ARCHITECTURAL DESIGN/AD1.png" class="img-clickable" onclick="openLightbox(this.src)" alt="Master Plan AD1">
+                        <img src="../../assets/images/package2/Architecture/Architectural_Layout_Design/ISO_Masterplan.png" class="img-clickable" onclick="openLightbox(this.src)" alt="Master Plan AD1">
                     </div>
                     <div class="project-info">
-                        <b>Spatial Strategy</b>
-                        The Zero Pledge commitment, built upon two key pillars: #ReduceForMore and The initiative aspires for every individual to engage in a sustainable campus ecosystem.
+                        International design standards are harmonized with local knowledge through a Research-by-Design approach to address key spatial bottlenecks, focusing on green infrastructure, passive design, digital integration, and heritage preservation.
                     </div>
                 </div>
                 <div class="col-right">
                     <div class="img-large-wrap">
-                        <img src="../../assets/images/package2/Architecture/ARCHITECTURAL DESIGN/AD2.png" class="img-clickable" onclick="openLightbox(this.src)" alt="Master Plan AD2">
+                        <img src="../../assets/images/package2/Architecture/Architectural_Layout_Design/Masterplan.png" class="img-clickable" onclick="openLightbox(this.src)" alt="Master Plan AD2">
                     </div>
                 </div>
             </div>
@@ -296,18 +297,17 @@
         <div class="project-item" data-aos="fade-up">
             <div class="project-grid">
                 <div class="col-left">
-                    <h3 class="project-header-title">FRONT YARD</h3>
+                    <h3 class="project-header-title">MATERIAL LAYOUT PLAN </h3>
                     <div class="img-small-wrap">
-                        <img src="../../assets/images/package2/Architecture/ARCHITECTURAL DESIGN/AD3.png" class="img-clickable" onclick="openLightbox(this.src)" alt="Front Yard AD3">
+                        <img src="../../assets/images/package2/Architecture/Architectural_Layout_Design/ISO_Material_Layout_Plan.png" class="img-clickable" onclick="openLightbox(this.src)" alt="Front Yard AD3">
                     </div>
                     <div class="project-info">
-                        <b>External Integration</b>
-                        The Zero Pledge commitment, built upon two key pillars: #ReduceForMore and The initiative aspires for every individual to reconnect with nature.
+                        An essential component that focuses on implementing green and sustainable infrastructure solutions through carefully researched material selection. This includes the use of permeable and eco-friendly materials such as gravel and cubic paving bricks.
                     </div>
                 </div>
                 <div class="col-right">
                     <div class="img-large-wrap">
-                        <img src="../../assets/images/package2/Architecture/ARCHITECTURAL DESIGN/AD4.png" class="img-clickable" onclick="openLightbox(this.src)" alt="Front Yard AD4">
+                        <img src="../../assets/images/package2/Architecture/Architectural_Layout_Design/Material_Layout_Plan.png" class="img-clickable" onclick="openLightbox(this.src)" alt="Front Yard AD4">
                     </div>
                 </div>
             </div>
@@ -316,18 +316,17 @@
         <div class="project-item" data-aos="fade-up">
             <div class="project-grid">
                 <div class="col-left">
-                    <h3 class="project-header-title">SMART CAFE</h3>
+                    <h3 class="project-header-title">FRONT YARD & PARKING PLAN</h3>
                     <div class="img-small-wrap">
-                        <img src="../../assets/images/package2/Architecture/ARCHITECTURAL DESIGN/AD5.png" class="img-clickable" onclick="openLightbox(this.src)" alt="Smart Cafe AD5">
+                        <img src="../../assets/images/package2/Architecture/Architectural_Layout_Design/ISO_Frontyard_ParkingPLAN.jpg" class="img-clickable" onclick="openLightbox(this.src)" alt="Smart Cafe AD5">
                     </div>
                     <div class="project-info">
-                        <b>Social Interaction</b>
                         The Zero Pledge commitment, built upon two key pillars: #ReduceForMore and The initiative aspires for every individual.
                     </div>
                 </div>
                 <div class="col-right">
                     <div class="img-large-wrap">
-                        <img src="../../assets/images/package2/Architecture/ARCHITECTURAL DESIGN/AD6.png" class="img-clickable" onclick="openLightbox(this.src)" alt="Smart Cafe AD6">
+                        <img src="../../assets/images/package2/Architecture/Architectural_Layout_Design/Frontyard_ParkingPLAN.jpg" class="img-clickable" onclick="openLightbox(this.src)" alt="Smart Cafe AD6">
                     </div>
                 </div>
             </div>
@@ -336,18 +335,36 @@
         <div class="project-item" data-aos="fade-up">
             <div class="project-grid">
                 <div class="col-left">
-                    <h3 class="project-header-title">PARKING AND ACCESS</h3>
+                    <h3 class="project-header-title">COMMUNITY SPACE MASTER PLAN</h3>
                     <div class="img-small-wrap">
-                        <img src="../../assets/images/package2/Architecture/ARCHITECTURAL DESIGN/AD7.png" class="img-clickable" onclick="openLightbox(this.src)" alt="Parking AD7">
+                        <img src="../../assets/images/package2/Architecture/Architectural_Layout_Design/ISO_CommunitySpace.png" class="img-clickable" onclick="openLightbox(this.src)" alt="Parking AD7">
                     </div>
                     <div class="project-info">
-                        <b>Mobility & Reach</b>
                         The Zero Pledge commitment, built upon two key pillars: #ReduceForMore and The initiative aspires for every individual.
                     </div>
                 </div>
                 <div class="col-right">
                     <div class="img-large-wrap">
-                        <img src="../../assets/images/package2/Architecture/ARCHITECTURAL DESIGN/AD8.png" class="img-clickable" onclick="openLightbox(this.src)" alt="Parking AD8">
+                        <img src="../../assets/images/package2/Architecture/Architectural_Layout_Design/Community_Space.jpg" class="img-clickable" onclick="openLightbox(this.src)" alt="Parking AD8">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-item" data-aos="fade-up">
+            <div class="project-grid">
+                <div class="col-left">
+                    <h3 class="project-header-title">SMART CAFE MASTER PLAN</h3>
+                    <div class="img-small-wrap">
+                        <img src="../../assets/images/package2/Architecture/Architectural_Layout_Design/ISO_SmartCafe.jpg" class="img-clickable" onclick="openLightbox(this.src)" alt="Smart Cafe Master Plan ISO View">
+                    </div>
+                    <div class="project-info">
+                        The Smart Café is a space that includes a gravel courtyard and a relocated café, making room for a new multipurpose space. It serves drinks and food not only for students and lecturers but also for the surrounding community.
+                    </div>
+                </div>
+                <div class="col-right">
+                    <div class="img-large-wrap">
+                        <img src="../../assets/images/package2/Architecture/Architectural_Layout_Design/SmartCafe_Plan.jpg" class="img-clickable" onclick="openLightbox(this.src)" alt="Smart Cafe Master Plan">
                     </div>
                 </div>
             </div>
