@@ -32,25 +32,42 @@
         }
         img { display: block; max-width: 100%; }
 
-        /* ── 2. HEADER (transparent gradient, matches all pkg-2 sub-pages) ─── */
-        .header-wrapper {
-            position: absolute; top: 0; left: 0; width: 100%; z-index: 1000;
-            padding: clamp(18px,1.98vw,37px) clamp(20px,2.14vw,40px);
-            display: flex; align-items: center; gap: clamp(16px,2.14vw,40px);
-            background: linear-gradient(180deg, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0) 100%);
+        /* ── 2. HEADER ── */
+        .header-wrapper { 
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 2% 15px 2%; 
+            display: flex; 
+            flex-direction: column; 
+            background: transparent;
+            z-index: 1000;
         }
-        .logo-shll {
-            height: clamp(26px,2.29vw,43px); width: auto;
-            filter: drop-shadow(0 4px 4px rgba(0,0,0,0.18));
+        .header-top-frame { 
+            display: flex; 
+            align-items: center; 
+            gap: 20px; 
+            width: 100%; 
         }
-        .header-line { flex: 1; height: 1px; background: rgba(255,255,255,0.35); }
-        .header-nav {
-            display: flex; align-items: center; gap: clamp(8px,1.07vw,20px);
-            font-size: clamp(11px,0.75vw,14px); font-weight: 600;
+        .logo-left img { 
+            height: 30px; 
+            display: block; 
         }
-        .header-nav a { color: rgba(255,255,255,0.9); text-decoration: none; transition: opacity 0.2s; }
-        .header-nav a:hover { opacity: 0.75; }
-        .logo-ueh { height: clamp(24px,2.77vw,52px); width: auto; }
+        .header-middle { 
+            flex-grow: 1; 
+            display: flex; 
+            flex-direction: column; 
+        }
+        .horizontal-line { 
+            width: 100%; 
+            height: 1px; 
+            background-color: rgba(255, 255, 255, 0.15); 
+        }
+        .logo-right { 
+            display: flex;
+            align-items: center; 
+        }
 
         /* ── 3. HERO SECTION ────────────────────────────────────────────────── */
         /* Figma: botanical illustration (824×1160px) on left half,
@@ -267,23 +284,19 @@
 <body>
 
     <!-- ── HEADER ──────────────────────────────────────────────────────── -->
-    <header class="header-wrapper">
-        <a href="../../index.html">
-            <img class="logo-shll"
-                 src="../../assets/images/package2/figma/image_38.png"
-                 alt="smART Hub Living Labs">
-        </a>
-        <div class="header-line"></div>
-        <nav class="header-nav">
-            <a href="../../index.html">⌂ Home</a>
-            <a href="index.html">← Back</a>
-        </nav>
-        <a href="../../index.html">
-            <img class="logo-ueh"
-                 src="../../assets/images/package2/figma/logo_ueh_tr_ng_1.png"
-                 alt="UEH University">
-        </a>
-    </header>
+    <div class="header-wrapper">
+        <div class="header-top-frame">
+            <div class="logo-left">
+                <a href="../../index.html"><img src="../../assets/images/Logo_SHLL_long.png" alt="SHL Logo"></a>
+            </div>
+            <div class="header-middle">
+                <div class="horizontal-line"></div>
+            </div>
+            <div class="logo-right">
+                <a href="index.html"><img src="../../assets/images/index/logo1.png" alt="UEH" style="height: 30px; width: auto; display: block;"></a>
+            </div>
+        </div>
+    </div>
 
     <!-- ── HERO ─────────────────────────────────────────────────────────── -->
     <!-- Figma: botanical illustration (x=0, w=824, h=1160) fills left 44%.

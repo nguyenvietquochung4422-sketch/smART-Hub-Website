@@ -4,40 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Passive Interventions - smART Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <style>
+        /* ── 0. DESIGN TOKENS  (Figma node 319:396) ── */
         :root {
-            --pkg-blue: #0E3B66;
-            --pkg-gold: #C09553;
-            --bg-light: #f4f4f4;
+            --c-blue:   #5368a9;
+            --c-text:   #5368a6;   /* info-box text */
+            --c-body:   #000;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Montserrat', sans-serif; background: var(--bg-light); color: var(--pkg-blue); overflow-x: hidden; }
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+        html  { scroll-behavior:smooth; }
+        body  { font-family:'Inter',sans-serif; background:#fff; overflow-x:hidden; }
 
-        /* --- 1. HERO SECTION --- */
-        .hero-container {
-            width: 100%; height: 100vh; position: relative;
-            background-image: url('../../assets/images/package2/Architecture/bia2.png'); /* Hình nền bia 2 */
-            background-size: cover; background-position: center;
-            display: flex; flex-direction: column; justify-content: space-between;
-            padding: 80px 6%; color: #fff;
+        /* ── 1. HERO SECTION ─────────────────────────────────────────────── */
+        /* Figma: 1874×1176px canvas.  We map to 100vw × 100vh.             */
+        .hero-section {
+            position:relative; width:100vw; height:100vh; overflow:hidden;
         }
-        .hero-container::before {
-            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, rgba(14, 59, 102, 0.5) 0%, rgba(14, 59, 102, 0.2) 100%);
-            z-index: 1;
+        .hero-bg {
+            position:absolute; inset:0;
+            background: url('../../assets/images/package2/Architecture/bia2.png')
+                        no-repeat center / cover;
+        }
+        /* Figma gradient: rgba(255,255,255,0) at 47.024% → rgba(83,104,169,0.8) */
+        .hero-overlay {
+            position:absolute; inset:0;
+            background: linear-gradient(
+                to bottom,
+                rgba(255,255,255,0)   47%,
+                rgba(83,104,169,0.8) 100%
+            );
         }
 
-        /* --- 1. HEADER --- */
+        /* --- HEADER --- */
         .header-wrapper { 
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            padding: 40px 5% 20px 5%; 
+            padding: 20px 2% 15px 2%; 
             display: flex; 
             flex-direction: column; 
             background: transparent;
@@ -67,246 +75,375 @@
             display: flex;
             align-items: center; 
         }
-        .back-icon-btn { 
-            width: 35px; height: 35px; border-radius: 50%; display: flex; justify-content: center; align-items: center; 
-            color: #fff; background: rgba(255, 255, 255, 0.1); transition: 0.4s; text-decoration: none; 
-            border: 1px solid rgba(255, 255, 255, 0.2); font-size: 14px; font-weight: bold;
-        }
-        .back-icon-btn:hover { 
-            background: var(--pkg-gold); border-color: var(--pkg-gold); color: #fff; transform: scale(1.1); 
-        }
-        
-        .top-content { position: relative; z-index: 100; align-self: flex-end; text-align: right; margin-top: 60px;}
-        .top-content h1 { font-size: clamp(40px, 6vw, 85px); font-weight: 800; line-height: 1; color: transparent; -webkit-text-stroke: 1.5px #fff; text-transform: uppercase; }
-        .newsletter-tag { display: inline-block; margin-top: 15px; padding: 8px 25px; background: rgba(255,255,255,0.9); color: var(--pkg-blue); border-radius: 50px; font-size: 11px; font-weight: 700; text-decoration: none; }
 
-        .spatial-circle-wrapper { 
-            position: absolute; 
-            top: 55%; 
-            right: 2%; 
-            z-index: 50; 
-            width: 220px; height: 220px; 
-        }
-        .circle-image { width: 100%; height: 100%; border-radius: 50%; border: 2px solid #fff; overflow: hidden; background: url('../../assets/images/package2/Architecture/bia3.png'); background-size: cover; }
-        .circle-text { position: absolute; width: 100%; height: 100%; top: 0; left: 0; animation: rotateText 15s linear infinite; }
-        @keyframes rotateText { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        .circle-text svg { width: 100%; height: 100%; fill: #fff; }
-        .circle-text text { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 4px; }
-        
-        .hero-footer-title { position: relative; z-index: 100; font-size: 38px; font-weight: 700; text-transform: uppercase; }
-
-        /* --- 2. DETAILS SECTION --- */
-        .details-section { padding: 120px 8%; background: #fff; position: relative; z-index: 10; }
-        .project-item { margin-bottom: 220px; }
-
-        .project-grid {
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 60px; 
-            align-items: center;
+        /* Hero title "ARCHITECTURAL DESIGN"
+           Figma: Inter SemiBold 63px white, shadow -3px 1px 0 #5368a9
+           left=1001/1874=53.4%, top=169/1176=14.4%                          */
+        .hero-title {
+            position:absolute; left:53.4%; top:14.4%; width:31.2%;
+            font-size:clamp(22px,3.36vw,63px);
+            font-weight:600; color:#fff; line-height:1.45;
+            letter-spacing:-0.315px; text-transform:uppercase;
+            text-shadow:-3px 1px 0 var(--c-blue); z-index:20;
         }
 
-        .col-left { display: flex; flex-direction: column; gap: 25px; }
-        .project-header-title {
-            font-size: 34px; font-weight: 800; color: transparent;
-            -webkit-text-stroke: 1.2px var(--pkg-blue);
-            text-transform: uppercase;
+        /* Info box
+           Figma: left:999/1874=53.3%, top:796/1176=67.7%
+           w:634px=33.8vw, h:148px=12.6vh, radius:11px, border:#5368a9       */
+        .hero-infobox {
+            position:absolute;
+            left:53.3%; top:67.7%;
+            width:clamp(180px,33.8vw,634px);
+            padding: clamp(10px,1.07vw,20px) clamp(12px,1.17vw,22px);
+            background:#fff; border:1px solid var(--c-blue);
+            border-radius:11px; z-index:20;
+        }
+        /* Figma: Inter SemiBold 22px, #5368a6, tracking -0.11px              */
+        .hero-infobox p {
+            font-size:clamp(9px,1.17vw,22px);
+            font-weight:600; color:var(--c-text);
+            line-height:1.45; letter-spacing:-0.11px;
         }
 
-        .img-clickable { width: 100%; height: auto; object-fit: contain; cursor: zoom-in; transition: 0.4s; }
-        .img-clickable:hover { transform: scale(1.02); opacity: 0.9; }
-        .img-small-wrap { width: 90%; background: #f9f9f9; min-height: 200px; display: flex; align-items: center; justify-content: center; border-radius: 8px;}
-        
-        .project-info { font-family: 'Inter', sans-serif; font-size: 13px; line-height: 1.8; color: #555; text-align: justify; }
-        .project-info b { display: block; margin-bottom: 8px; color: var(--pkg-blue); font-size: 16px; }
-        .col-right { display: flex; justify-content: center; }
-        .img-large-wrap { width: 100%; background: #f9f9f9; min-height: 400px; display: flex; align-items: center; justify-content: center; border-radius: 8px;}
+        /* "PASSIVE INTERVENTIONS" label
+           Figma: left:43/1874=2.3%, top:981/1176=83.4%, h:127px
+           Inter Regular 40px white, shadow 0 -2px 0 #1d6bb6                  */
+        .hero-label {
+            position:absolute;
+            left:clamp(10px,2.29vw,43px); top:83.4%;
+            height:clamp(70px,10.8vh,127px);
+            display:flex; align-items:flex-end;
+            padding-bottom:clamp(4px,0.51vh,6px);
+            z-index:20;
+            font-size:clamp(16px,2.13vw,40px);
+            font-weight:400; color:#fff; line-height:1.45;
+            letter-spacing:-0.2px; text-transform:uppercase;
+            text-shadow:0 -2px 0 #1d6bb6;
+        }
 
+        /* Scroll cue */
+        .scroll-hint {
+            position:absolute; right:clamp(16px,2.14vw,40px); bottom:clamp(16px,4vh,48px);
+            z-index:20; color:#fff; opacity:0.65; font-size:clamp(18px,1.60vw,30px);
+            animation:bounce 2s ease-in-out infinite;
+        }
+        @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
 
+        /* ── 2. CONTENT SECTIONS ─────────────────────────────────────────── */
+        /* Figma left margin: 108/1874 = 5.76vw                              */
+        .pi-section {
+            padding: clamp(40px,5.34vw,100px) clamp(16px,5.76vw,108px);
+            background:#fff;
+        }
+        .pi-section + .pi-section {
+            border-top:1px solid rgba(83,104,169,0.12);
+        }
 
-        /* --- 4. LIGHTBOX --- */
+        /* Section title
+           Figma: Inter Regular 40px; on white bg the white+shadow becomes #5368a9 */
+        .pi-section-title {
+            font-size:clamp(18px,2.13vw,40px);
+            font-weight:400; color:var(--c-blue);
+            letter-spacing:-0.2px; text-transform:uppercase;
+            margin-bottom:clamp(24px,2.67vw,50px);
+        }
+
+        /* ── 3. SUN SHADING GRID ─────────────────────────────────────────── */
+        /* Figma left column: 0–1334px (71.2% of 1874); right: 431px (23%)   */
+        .ss-grid {
+            display:grid;
+            grid-template-columns: 74fr 23fr;   /* ~1334 : 431 within content */
+            gap:clamp(10px,1.28vw,24px);
+            align-items:start;
+        }
+        .ss-left { display:flex; flex-direction:column; gap:clamp(10px,1.28vw,24px); }
+
+        /* Top wide image (image239): h:309px, w:1200px — wide horizontal     */
+        .ss-wide-img {
+            width:100%; height:auto;
+            max-height:clamp(130px,16.5vw,309px);
+            object-fit:cover; display:block;
+            cursor:zoom-in; transition:opacity 0.25s;
+        }
+        .ss-wide-img:hover { opacity:0.88; }
+
+        /* Bottom row: body text (left) + portrait photo (right)              */
+        .ss-bottom-row {
+            display:grid;
+            grid-template-columns: 2fr 1fr;     /* ~616 : 294 */
+            gap:clamp(10px,1.28vw,24px);
+            align-items:start;
+        }
+        .ss-portrait-img {
+            width:100%; height:auto;
+            max-height:clamp(180px,26.5vw,496px);
+            object-fit:cover; display:block;
+            cursor:zoom-in; transition:opacity 0.25s;
+        }
+        .ss-portrait-img:hover { opacity:0.88; }
+
+        /* Tall right image (image241): h:762px                               */
+        .ss-tall-img {
+            width:100%; height:auto;
+            max-height:clamp(280px,40.7vw,762px);
+            object-fit:cover; display:block;
+            cursor:zoom-in; transition:opacity 0.25s;
+        }
+        .ss-tall-img:hover { opacity:0.88; }
+
+        /* Body copy: Figma Inter Medium 22px, black, text-justify            */
+        .pi-body {
+            font-size:clamp(10px,1.17vw,22px);
+            font-weight:500; color:var(--c-body);
+            line-height:1.5; letter-spacing:-0.11px;
+            text-align:justify;
+        }
+        .pi-body p + p { margin-top:0.7em; }
+
+        /* ── 4. WINDOWS GRID ────────────────────────────────────────────── */
+        /* Figma: image243 w:900 + image242 w:138 + annotation area w:704    */
+        .win-top-row {
+            display:grid;
+            grid-template-columns: 900fr 704fr;  /* wide plan + annotation area */
+            gap:clamp(16px,2.14vw,40px);
+            align-items:start;
+            margin-bottom:clamp(20px,2.67vw,50px);
+        }
+        .win-wide-img {
+            width:100%; height:auto;
+            max-height:clamp(180px,28.8vw,539px);
+            object-fit:cover; display:block;
+            cursor:zoom-in; transition:opacity 0.25s;
+        }
+        .win-wide-img:hover { opacity:0.88; }
+
+        /* Annotation area: text labels right of thin strip                  */
+        .win-annotations {
+            display:flex; flex-direction:column;
+            justify-content:space-between;
+            gap:clamp(12px,1.60vw,30px);
+            padding-top:clamp(4px,0.43vw,8px);
+        }
+        .win-annot-main {
+            font-size:clamp(9px,1.17vw,22px);
+            font-weight:500; color:var(--c-body);
+            line-height:1.5; letter-spacing:-0.11px;
+        }
+        .win-annot-label {
+            font-size:clamp(8px,1.17vw,22px);
+            font-weight:500; color:var(--c-body);
+            line-height:1.5; letter-spacing:-0.11px;
+            text-align:right;
+            padding-right:clamp(4px,0.53vw,10px);
+            border-right:2px solid var(--c-blue);
+        }
+
+        /* Bottom row: description text + large photo                        */
+        .win-bottom-row {
+            display:grid;
+            grid-template-columns: 616fr 695fr;
+            gap:clamp(16px,2.14vw,40px);
+            align-items:start;
+        }
+        .win-bottom-img {
+            width:100%; height:auto;
+            max-height:clamp(200px,28.9vw,541px);
+            object-fit:cover; display:block;
+            cursor:zoom-in; transition:opacity 0.25s;
+        }
+        .win-bottom-img:hover { opacity:0.88; }
+
+        /* ── 5. LIGHTBOX ──────────────────────────────────────────────────── */
         #lightbox {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(14, 59, 102, 0.95);
-            display: none; justify-content: center; align-items: center;
-            z-index: 10000; cursor: zoom-out; backdrop-filter: blur(10px);
+            position:fixed; inset:0; z-index:10000; cursor:zoom-out;
+            background:rgba(14,59,102,0.95); backdrop-filter:blur(10px);
+            display:none; justify-content:center; align-items:center;
         }
-        #lightbox img { max-width: 95%; max-height: 95%; object-fit: contain; animation: zoomAnim 0.3s ease-out; }
-        @keyframes zoomAnim { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-
-        @media (max-width: 992px) {
-            .project-grid { grid-template-columns: 1fr; }
-            .spatial-circle-wrapper { display: none; }
+        #lightbox img {
+            max-width:95%; max-height:95%; object-fit:contain;
+            animation:zoomIn 0.3s ease;
         }
+        @keyframes zoomIn { from{transform:scale(0.8);opacity:0} to{transform:scale(1);opacity:1} }
 
-        /* --- CONTACT FOOTER --- */
-        .footer-container { 
-            border-top: none;
-            padding: 40px 2% 60px 2%; 
-            margin-top: 40px;
-            position: relative;
-            z-index: 10;
-            background: transparent !important;
-            color: #333333;
-            width: 100%;
+        /* ── 6. FOOTER ──────────────────────────────────────────────────── */
+        .footer-container {
+            padding:40px clamp(16px,2.14vw,40px) 60px;
+            background:transparent;
         }
         .footer-contact-header {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 25px;
+            display:flex; align-items:center; gap:20px; margin-bottom:25px;
         }
         .footer-contact-title {
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--pkg-blue);
-            letter-spacing: 0.5px;
+            font-size:14px; font-weight:700; color:var(--c-blue); letter-spacing:0.5px;
         }
-        .footer-contact-line {
-            flex-grow: 1;
-            height: 1px;
-            background-color: rgba(14, 59, 102, 0.15);
-        }
+        .footer-rule { flex-grow:1; height:1px; background:rgba(83,104,169,0.2); }
         .footer-content-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            gap: 30px;
+            display:flex; justify-content:space-between;
+            align-items:flex-start; flex-wrap:wrap; gap:30px;
         }
-        .footer-left-col {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            text-align: left;
-            max-width: 50%;
-        }
-        .footer-left-col .info-text {
-            font-size: 11px;
-            font-style: italic;
-            color: #555555;
-            font-weight: 300;
-            line-height: 1.6;
-        }
-        .footer-left-col .email-link {
-            font-size: 11px;
-            color: var(--pkg-blue);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s ease;
-        }
-        .footer-left-col .email-link:hover {
-            color: #d76a28;
-            text-decoration: underline;
-        }
-        .footer-right-col {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            text-align: right;
-            max-width: 50%;
-        }
-        .footer-right-col .brand-text {
-            font-size: 11px;
-            font-weight: 600;
-            color: var(--pkg-blue);
-            letter-spacing: 0.5px;
-        }
-        .footer-right-col .address-text {
-            font-size: 11px;
-            color: #555555;
-            font-weight: 300;
-            line-height: 1.6;
-        }
-        @media (max-width: 768px) {
-            .footer-left-col, .footer-right-col {
-                max-width: 100%;
-            }
-            .footer-right-col {
-                text-align: left;
-            }
+        .footer-left  { display:flex; flex-direction:column; gap:10px; max-width:50%; }
+        .footer-right { display:flex; flex-direction:column; gap:10px; text-align:right; max-width:50%; }
+        .info-text    { font-size:11px; font-style:italic; color:#555; font-weight:300; line-height:1.6; }
+        .email-link   { font-size:11px; color:var(--c-blue); text-decoration:none; font-weight:500; transition:color 0.2s; }
+        .email-link:hover { color:#d76a28; text-decoration:underline; }
+        .brand-text   { font-size:11px; font-weight:600; color:var(--c-blue); letter-spacing:0.5px; }
+        .address-text { font-size:11px; color:#555; font-weight:300; line-height:1.6; }
+
+        /* ── 7. RESPONSIVE ──────────────────────────────────────────────── */
+        @media (max-width:900px) {
+            .ss-grid          { grid-template-columns:1fr; }
+            .ss-bottom-row    { grid-template-columns:1fr; }
+            .win-top-row      { grid-template-columns:1fr; }
+            .win-bottom-row   { grid-template-columns:1fr; }
+            .hero-title       { left:5%; width:90%; }
+            .hero-infobox     { left:5%; width:90%; }
+            .footer-left,
+            .footer-right     { max-width:100%; }
+            .footer-right     { text-align:left; }
         }
     </style>
 </head>
 <body>
 
-    <div id="lightbox" onclick="closeLightbox()">
-        <img id="lightbox-img" src="" alt="Zoomed Image">
+    <div id="lightbox" onclick="this.style.display='none'">
+        <img id="lb-img" src="" alt="">
     </div>
 
+    <!-- ── HERO ──────────────────────────────────────────────────────────── -->
+    <section class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
 
-
-    <div class="header-wrapper">
-        <div class="header-top-frame">
-            <div class="logo-left">
-                <a href="../../index.html"><img src="../../assets/images/Logo_SHLL_long.png" alt="SHL Logo"></a>
-            </div>
-            <div class="header-middle">
-                <div class="horizontal-line"></div>
-            </div>
-            <div class="logo-right">
-                <a href="architectural-design.html"><img src="../../assets/images/index/logo1.png" alt="UEH" style="height: 30px; width: auto; display: block;"></a>
+        <div class="header-wrapper">
+            <div class="header-top-frame">
+                <div class="logo-left">
+                    <a href="../../index.html"><img src="../../assets/images/Logo_SHLL_long.png" alt="SHL Logo"></a>
+                </div>
+                <div class="header-middle">
+                    <div class="horizontal-line"></div>
+                </div>
+                <div class="logo-right">
+                    <a href="architectural-design.html"><img src="../../assets/images/index/logo1.png" alt="UEH" style="height: 30px; width: auto; display: block;"></a>
+                </div>
             </div>
         </div>
-    </div>
 
-    <section class="hero-container">
-        <div class="top-content" data-aos="fade-left">
-            <h1>ARCHITECTURAL<br>DESIGN</h1>
-            <a href="#" class="newsletter-tag">Sent Us Your Newsletter</a>
+        <!-- Title at right — mirrors architectural-design.html context label -->
+        <!-- Figma: left:53.4%, top:14.4%; Inter SemiBold 63px, shadow -3px 1px 0 #5368a9 -->
+        <h1 class="hero-title">ARCHITECTURAL<br>DESIGN</h1>
+
+        <!-- Info box: white card with blue border
+             Figma: left:53.3%, top:67.7%, 634×148px, radius:11px, border:#5368a9 -->
+        <div class="hero-infobox">
+            <p>Climate-responsive design. It focuses on design solutions that harness natural elements to minimize the negative impacts of the tropical climate without relying on energy-intensive mechanical systems.</p>
         </div>
 
-        <div class="spatial-circle-wrapper" data-aos="zoom-in" data-aos-delay="500">
-            <div class="circle-text">
-                <svg viewBox="0 0 200 200">
-                    <path id="circlePath" d="M 100, 100 m -80, 0 a 80,80 0 1,1 160,0 a 80,80 0 1,1 -160,0" fill="transparent"/>
-                    <text><textPath href="#circlePath">SPATIAL EXPLORATION • SPATIAL EXPLORATION • </textPath></text>
-                </svg>
+        <!-- Sub-section label — bottom-left
+             Figma: left:2.3%, top:83.4%, Inter Regular 40px white, shadow 0 -2px 0 #1d6bb6 -->
+        <div class="hero-label">PASSIVE<br>INTERVENTIONS</div>
+
+        <div class="scroll-hint" aria-hidden="true">↓</div>
+    </section>
+
+    <!-- ── SECTION 1: SUN SHADING DESIGN CONCEPT ─────────────────────────── -->
+    <!--
+        Figma layout (1874px canvas, left margin 108px):
+        ┌──────────────────────────────────[wide img 1200px]─────────┬──[tall 431px]──┐
+        │  [body text 616px]   [portrait 294px]                      │  (image 241)   │
+        └────────────────────────────────────────────────────────────┴────────────────┘
+    -->
+    <section class="pi-section">
+        <h2 class="pi-section-title" data-aos="fade-up">Sun Shading Design Concept</h2>
+
+        <div class="ss-grid">
+
+            <!-- Left column: wide top + text + portrait row -->
+            <div class="ss-left">
+
+                <!-- image239: wide horizontal facade elevation (w:1200, h:309) -->
+                <img src="../../assets/images/package2/Architecture/Passive_Intervention/Sun_Shading1.jpg"
+                     class="ss-wide-img" onclick="openLB(this.src)"
+                     alt="Sun shading facade elevation" data-aos="fade-up">
+
+                <!-- Body text + portrait side by side -->
+                <div class="ss-bottom-row" data-aos="fade-up" data-aos-delay="100">
+                    <div class="pi-body">
+                        <p>Serves as a thermal adaptation and energy-saving strategy. The use of operable window apertures for natural ventilation is considered a typical passive architectural solution. However, this intervention goes beyond conventional natural ventilation by moving toward intelligent automation.</p>
+                        <p>A Digital Twin system will be implemented to automatically control the window openings based on real-time sensor data, including temperature, CO₂ levels, and humidity collected from the environmental sensor network.</p>
+                    </div>
+                    <!-- image237: portrait detail (w:294, h:496) -->
+                    <img src="../../assets/images/package2/Architecture/Passive_Intervention/Sun_Shading_Cuaso.jpg"
+                         class="ss-portrait-img" onclick="openLB(this.src)"
+                         alt="Operable awning window detail">
+                </div>
             </div>
-            <div class="circle-image"></div>
-        </div>
 
-        <div class="hero-footer-title" data-aos="fade-right">
-            <h2>PASSIVE<br>INTERVENTIONS</h2>
+            <!-- Right column: image241 tall photo (w:431, h:762) -->
+            <img src="../../assets/images/package2/Architecture/Passive_Intervention/Sun_Shading2.jpg"
+                 class="ss-tall-img" onclick="openLB(this.src)"
+                 alt="Shading panels on facade" data-aos="fade-up" data-aos-delay="150">
         </div>
     </section>
 
-    <section class="details-section" id="details">
-        
-        <!-- ITEM 1: Khung mẫu nội dung sẽ thêm sau -->
-        <div class="project-item" data-aos="fade-up">
-            <div class="project-grid">
-                <div class="col-left">
-                    <h3 class="project-header-title">SECTION TITLE</h3>
-                    <div class="img-small-wrap">
-                        <!-- Chỗ trống để thêm hình AD1 -->
-                        <p style="color:#ccc; font-size:10px; font-weight:700">IMAGE PLACEHOLDER</p>
-                    </div>
-                    <div class="project-info">
-                        <b>Information Title</b>
-                        Content will be updated here. This section is designed for passive architecture interventions and sustainable solutions.
-                    </div>
-                </div>
-                <div class="col-right">
-                    <div class="img-large-wrap">
-                        <!-- Chỗ trống để thêm hình AD2 -->
-                        <p style="color:#ccc; font-size:10px; font-weight:700">IMAGE PLACEHOLDER</p>
-                    </div>
-                </div>
+    <!-- ── SECTION 2: WINDOWS FOR NATURAL VENTILATION & AIRFLOW ──────────── -->
+    <!--
+        Figma layout (left margin 108px):
+        ┌────[wide plan 900px]────┬[thin 138]┬──[annotation area]──────────────┐
+        │                         │          │  "Extend the roof…"             │
+        │                         │          │  Café terrace canopy            │
+        │                         │          │  Rain Canopy                    │
+        │                         │          │  Trellis Structure              │
+        │                         │          │  Climbing Plants                │
+        └─────────────────────────┴──────────┴─────────────────────────────────┘
+        ┌──[body text 616px]──────────────────┬──[bottom photo 695px]──────────┐
+        │  Address severe thermal…            │                                 │
+        └─────────────────────────────────────┴─────────────────────────────────┘
+    -->
+    <section class="pi-section">
+        <h2 class="pi-section-title" data-aos="fade-up">Windows for Natural Ventilation &amp; Airflow</h2>
+
+        <!-- Top: wide plan image + annotation panel -->
+        <div class="win-top-row" data-aos="fade-up">
+            <!-- image243 (w:900, h:539) — wide architectural plan -->
+            <img src="../../assets/images/package2/Architecture/Passive_Intervention/Windows_for_Nature1.jpg"
+                 class="win-wide-img" onclick="openLB(this.src)"
+                 alt="Windows and airflow architectural plan">
+
+            <!-- Annotation labels (right of the plan image) -->
+            <div class="win-annotations">
+                <p class="win-annot-main">Extend the roof to align with the covered walkway canopy, ensuring continuous pedestrian circulation and protection from rain</p>
+                <p class="win-annot-label">Café terrace canopy</p>
+                <p class="win-annot-label">Rain Canopy</p>
+                <p class="win-annot-label">Trellis Structure</p>
+                <p class="win-annot-label">Climbing Plants</p>
             </div>
         </div>
 
+        <!-- Bottom: description text + large photo -->
+        <div class="win-bottom-row" data-aos="fade-up">
+            <div class="pi-body">
+                <p>Address severe thermal overheating issues at Campus V.</p>
+                <p>The shading design not only applies international standards but also integrates local knowledge of heat mitigation strategies suited to tropical climates.</p>
+            </div>
+            <!-- Bottom photo — last image in Figma section (w:695, h:541) -->
+            <img src="../../assets/images/package2/Architecture/Passive_Intervention/Windows_for_Nature2.jpg"
+                 class="win-bottom-img" onclick="openLB(this.src)"
+                 alt="Café terrace with climbing plants and trellis">
+        </div>
+    </section>
+
+    <!-- ── FOOTER ──────────────────────────────────────────────────────────── -->
     <footer class="footer-container">
         <div class="footer-contact-header">
             <span class="footer-contact-title">Contact</span>
-            <div class="footer-contact-line"></div>
+            <div class="footer-rule"></div>
         </div>
         <div class="footer-content-row">
-            <div class="footer-left-col">
+            <div class="footer-left">
                 <span class="info-text">For more information of the smART Hub Living Labs.</span>
                 <a href="mailto:smarthub@ueh.edu.vn" class="email-link">smarthub@ueh.edu.vn</a>
             </div>
-            <div class="footer-right-col">
+            <div class="footer-right">
                 <span class="brand-text">smART HUB Living Labs</span>
                 <span class="address-text">UEH, Campus V 232/6 Vo Thi Sau, Xuan Hoa Ward, Ho Chi Minh City.</span>
             </div>
@@ -315,21 +452,18 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 1000, once: true, offset: 100 });
+        AOS.init({ duration:900, once:true, offset:80, easing:'ease-in-out' });
 
-
-
-        function openLightbox(src) {
-            if(!src) return;
-            document.getElementById("lightbox-img").src = src;
-            document.getElementById("lightbox").style.display = "flex";
-            document.body.style.overflow = "hidden";
+        function openLB(src) {
+            if (!src) return;
+            document.getElementById('lb-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
         }
-
-        function closeLightbox() {
-            document.getElementById("lightbox").style.display = "none";
-            document.body.style.overflow = "auto";
-        }
+        document.getElementById('lightbox').addEventListener('click', function() {
+            this.style.display = 'none';
+            document.body.style.overflow = '';
+        });
     </script>
 </body>
 </html>

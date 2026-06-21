@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Check PNG Corners</title>
+</head>
+<body>
+    <script>
+        const imageDir = '../assets/images/About/vision/';
+        const files = [
+            'image 149.png', 'image 150.png', 'image 151.png', 'image 154.png',
+            'image 156.png', 'image 157.png', 'image 158.png', 'image 159.png',
+            'image 160.png', 'image 161.png', 'image 162.png', 'image 163.png',
+            'image 164.png', 'image 165.png', 'image 166.png', 'image 167.png',
+            'image 168.png', 'image 169.png', 'image 170.png', 'image 171.png',
+            'image 172.png'
+        ];
+
+        async function analyze() {
+            const results = [];
+            for (const file of files) {
+                try {
+                    const img = new Image();
+                    img.src = imageDir + file;
+                    await new Promise((resolve, reject) => {
+                        img.onload = resolve;
+                        img.onerror = () => reject(new Error("Failed to load"));
+                    });
+
+                    const canvas = document.createElement('canvas');
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0);
+
+                    // Check top-left corner (0,0) and top-right corner (width-1, 0)
+                    const topLeftData = ctx.getImageData(0, 0, 1, 1).data;
+                    const topRightData = ctx.getImageData(img.width - 1, 0, 1, 1).data;
+                    
+                    const tlAlpha = topLeftData[3];
+                    const trAlpha = topRightData[3];
+
+                    const isFlatTop = tlAlpha > 100 && trAlpha > 100;
+
+                    results.push({
+                        file,
+                        width: img.width,
+                        height: img.height,
+                        tlAlpha,
+                        trAlpha,
+                        isFlatTop
+                    });
+                } catch (e) {
+                    results.push({ file, error: e.message });
+                }
+            }
+            console.log("ANALYSIS_RESULTS:" + JSON.stringify(results));
+            
+            // Render text on screen to read easily if needed
+            const pre = document.createElement('pre');
+            pre.textContent = JSON.stringify(results, null, 2);
+            document.body.appendChild(pre);
+        }
+        analyze();
+    </script>
+</body>
+</html>

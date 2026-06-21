@@ -19,28 +19,41 @@
         body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--c-body); overflow-x:hidden; }
 
         /* ── 1. HEADER ── */
-        .header-wrapper {
-            position:absolute; top:0; left:0; width:100%; z-index:1000;
-            padding: clamp(18px,1.98vw,37px) clamp(20px,2.14vw,40px);
-            display:flex; align-items:center; gap:clamp(16px,2.14vw,40px);
-            background:linear-gradient(180deg,rgba(0,0,0,0.28) 0%,rgba(0,0,0,0) 100%);
+        .header-wrapper { 
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 2% 15px 2%; 
+            display: flex; 
+            flex-direction: column; 
+            background: transparent;
+            z-index: 1000;
         }
-        .logo-shll { height:clamp(26px,2.29vw,43px); width:auto; display:block; filter:drop-shadow(0 4px 4px rgba(0,0,0,0.18)); }
-        .header-line { flex:1; height:1px; background:rgba(255,255,255,0.35); }
-        .header-nav { display:flex; align-items:center; gap:clamp(4px,0.85vw,16px); flex-shrink:0; }
-        .nav-btn {
-            display:flex; align-items:center; justify-content:center;
-            padding: clamp(4px,0.27vw,5px) clamp(6px,0.53vw,10px);
-            border-radius:4px;
-            font-size:clamp(10px,1.33vw,25px);
-            font-weight:400; color:#f5f5f5;
-            text-decoration:none; white-space:nowrap;
-            filter:drop-shadow(0 4px 2px rgba(0,0,0,0.25));
-            transition:background 0.25s;
+        .header-top-frame { 
+            display: flex; 
+            align-items: center; 
+            gap: 20px; 
+            width: 100%; 
         }
-        .nav-btn:hover { background:rgba(255,255,255,0.15); }
-        .header-logos { display:flex; align-items:center; gap:clamp(6px,0.75vw,14px); flex-shrink:0; }
-        .header-logos img { height:clamp(28px,2.77vw,52px); width:auto; display:block; }
+        .logo-left img { 
+            height: 30px; 
+            display: block; 
+        }
+        .header-middle { 
+            flex-grow: 1; 
+            display: flex; 
+            flex-direction: column; 
+        }
+        .horizontal-line { 
+            width: 100%; 
+            height: 1px; 
+            background-color: rgba(255, 255, 255, 0.15); 
+        }
+        .logo-right { 
+            display: flex;
+            align-items: center; 
+        }
 
         /* ── 2. HERO ──
            Figma: image135 at left:0, top:0, w:1874, h:1431
@@ -269,18 +282,16 @@
 
 <!-- ── HEADER ──────────────────────────────────────────────────────── -->
 <div class="header-wrapper">
-    <a href="../../index.html">
-        <img src="../../assets/images/package2/figma/image_38.png" alt="smART Hub" class="logo-shll">
-    </a>
-    <div class="header-line"></div>
-    <nav class="header-nav">
-        <a href="../../index.html" class="nav-btn">Home</a>
-        <a href="index.html"        class="nav-btn">Back</a>
-    </nav>
-    <div class="header-logos">
-        <a href="../../index.html">
-            <img src="../../assets/images/package2/figma/logo_ueh_tr_ng_1.png" alt="UEH University">
-        </a>
+    <div class="header-top-frame">
+        <div class="logo-left">
+            <a href="../../index.html"><img src="../../assets/images/Logo_SHLL_long.png" alt="SHL Logo"></a>
+        </div>
+        <div class="header-middle">
+            <div class="horizontal-line"></div>
+        </div>
+        <div class="logo-right">
+            <a href="index.html"><img src="../../assets/images/index/logo1.png" alt="UEH" style="height: 30px; width: auto; display: block;"></a>
+        </div>
     </div>
 </div>
 
@@ -311,14 +322,12 @@
     </div>
     <div class="ld-master-grid">
         <div data-aos="fade-up">
-            <img src="../../assets/images/package2/Landscape/figma/landscape_01.png"
+            <img src="../../assets/images/package2/Landscape/landscape_01.png"
                  alt="Landscape master plan" class="ld-img zoom"
-                 onclick="openLightbox(this.src)">
         </div>
         <div data-aos="fade-up" data-aos-delay="150">
-            <img src="../../assets/images/package2/Landscape/figma/landscape_02.png"
+            <img src="../../assets/images/package2/Landscape/landscape_02.png"
                  alt="Master plan legend" class="ld-img-fit zoom"
-                 onclick="openLightbox(this.src)">
         </div>
     </div>
 </section>
@@ -327,13 +336,13 @@
 <section class="ld-sec">
     <h2 class="ld-sec-title" data-aos="fade-up">Habitat</h2>
     <div class="ld-habitat-row" data-aos="fade-up" data-aos-delay="80">
-        <div class="ld-habitat-thumb"><img src="../../assets/images/package2/Landscape/figma/landscape_03.png" alt="Habitat 1"></div>
-        <div class="ld-habitat-thumb"><img src="../../assets/images/package2/Landscape/figma/landscape_04.png" alt="Habitat 2"></div>
-        <div class="ld-habitat-thumb"><img src="../../assets/images/package2/Landscape/figma/landscape_05.png" alt="Habitat 3"></div>
-        <div class="ld-habitat-thumb"><img src="../../assets/images/package2/Landscape/figma/landscape_06.png" alt="Habitat 4"></div>
-        <div class="ld-habitat-thumb"><img src="../../assets/images/package2/Landscape/figma/landscape_07.png" alt="Habitat 5"></div>
-        <div class="ld-habitat-thumb"><img src="../../assets/images/package2/Landscape/figma/landscape_08.png" alt="Habitat 6"></div>
-        <div class="ld-habitat-thumb"><img src="../../assets/images/package2/Landscape/figma/landscape_09.png" alt="Habitat 7"></div>
+        <div class="ld-habitat-thumb"><img src="../../assets/images/package2/Landscape/Landscape_03.png" alt="Habitat 1"></div>
+        <div class="ld-habitat-thumb"><img src="../../assets/images/package2/Landscape/landscape_04.png" alt="Habitat 2"></div>
+        <div class="ld-habitat-thumb"><img src="../../assets/images/package2/Landscape/landscape_05.png" alt="Habitat 3"></div>
+        <div class="ld-habitat-thumb"><img src="../../assets/images/package2/Landscape/landscape_06.png" alt="Habitat 4"></div>
+        <div class="ld-habitat-thumb"><img src="../../assets/images/package2/Landscape/landscape_07.png" alt="Habitat 5"></div>
+        <div class="ld-habitat-thumb"><img src="../../assets/images/package2/Landscape/landscape_08.png" alt="Habitat 6"></div>
+        <div class="ld-habitat-thumb"><img src="../../assets/images/package2/Landscape/landscape_09.png" alt="Habitat 7"></div>
     </div>
 </section>
 
@@ -342,7 +351,7 @@
     <h2 class="ld-sec-title" data-aos="fade-up">Planting Elevation UEH Hotel</h2>
     <div class="ld-plant-top">
         <div data-aos="fade-up">
-            <img src="../../assets/images/package2/Landscape/figma/landscape_10.png"
+            <img src="../../assets/images/package2/Landscape/landscape_10.png"
                  alt="Planting elevation photo" class="ld-img zoom"
                  onclick="openLightbox(this.src)">
         </div>
