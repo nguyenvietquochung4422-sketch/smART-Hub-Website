@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>smART Hub - 8 Scenes Loop Animation</title>
+    <style>
+        /* GIỮ NGUYÊN CODE FONT VÀ BODY CỦA BẠN */
+        body {
+            background-color: #1e1e1e;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .container {
+            position: relative;
+            width: 500px;
+            height: 500px;
+        }
+
+        /* --------------------------------------------------- */
+        /* CẤU HÌNH CHUNG CHO 10 HÌNH CHỮ NHẬT                 */
+        /* --------------------------------------------------- */
+        .rect-box {
+            position: absolute;
+            background-color: #FFFFFF;
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px;
+            z-index: 2;
+            /* Tất cả cùng chạy 1 kịch bản 24 giây, lặp vô hạn (infinite) */
+            animation-duration: 24s;
+            animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            animation-iteration-count: infinite;
+        }
+
+        /* Gắn ảnh và gọi tên Kịch bản (Animation) cho từng khối */
+        .rect-99  { background-image: url('image1/Rectangle 99.png');  animation-name: anim99; }
+        .rect-100 { background-image: url('image1/Rectangle 100.png'); animation-name: anim100; }
+        .rect-101 { background-image: url('image1/Rectangle 101.png'); animation-name: anim101; }
+        .rect-102 { background-image: url('image1/Rectangle 102.png'); animation-name: anim102; }
+        .rect-103 { background-image: url('image1/Rectangle 103.png'); animation-name: anim103; }
+        .rect-104 { background-image: url('image1/Rectangle 104.png'); animation-name: anim104; }
+        .rect-105 { background-image: url('image1/Rectangle 105.png'); animation-name: anim105; }
+        .rect-106 { background-image: url('image1/Rectangle 106.png'); animation-name: anim106; }
+        .rect-107 { background-image: url('image1/Rectangle 107.png'); animation-name: anim107; }
+        .rect-108 { background-image: url('image1/Rectangle 108.png'); animation-name: anim108; }
+
+        /* --------------------------------------------------- */
+        /* KỊCH BẢN CHUYỂN ĐỘNG CHO TỪNG KHỐI (8 CẢNH)         */
+        /* --------------------------------------------------- */
+        
+        @keyframes anim99 {
+            0%, 3%, 100% { width: 92px; height: 93px; left: 242px; top: 109px; transform: rotate(0deg); }   /* S1 */
+            12.5%, 15.5% { width: 92px; height: 93px; left: 183px; top: 121px; transform: rotate(0deg); }   /* S2 */
+            25%, 28%     { width: 91px; height: 92px; left: 210px; top: 121px; transform: rotate(90deg); }  /* S3 */
+            37.5%, 40.5% { width: 92px; height: 91px; left: 171px; top: 252px; transform: rotate(-90deg); } /* S4 */
+            50%, 53%     { width: 90px; height: 91px; left: 244px; top: 189px; transform: rotate(-90deg); } /* S5 */
+            62.5%, 65.5% { width: 93px; height: 94px; left: 153px; top: 250px; transform: rotate(-90deg); } /* S6 */
+            75%, 78%     { width: 94px; height: 94px; left: 186px; top: 155px; transform: rotate(-90deg); } /* S7 */
+            87.5%, 90.5% { width: 92px; height: 92px; left: 186px; top: 58px;  transform: rotate(-90deg); } /* S8 */
+        }
+
+        @keyframes anim100 {
+            0%, 3%, 100% { width: 91px; height: 92px; left: 185px; top: 213px; transform: rotate(90deg); }
+            12.5%, 15.5% { width: 92px; height: 93px; left: 120px; top: 121px; transform: rotate(90deg); }
+            25%, 28%     { width: 91px; height: 93px; left: 0px;   top: 120px; transform: rotate(0deg); }
+            37.5%, 40.5% { width: 92px; height: 92px; left: 143px; top: 252px; transform: rotate(90deg); }
+            50%, 53%     { width: 91px; height: 92px; left: 244px; top: 149px; transform: rotate(90deg); }
+            62.5%, 65.5% { width: 94px; height: 95px; left: 132px; top: 250px; transform: rotate(90deg); }
+            75%, 78%     { width: 94px; height: 96px; left: 247px; top: -2px;  transform: rotate(90deg); }
+            87.5%, 90.5% { width: 92px; height: 93px; left: 185px; top: 118px; transform: rotate(90deg); }
+        }
+
+        @keyframes anim101 {
+            0%, 3%, 100% { width: 92px; height: 92px; left: 0px;  top: 242px; transform: rotate(90deg); }
+            12.5%, 15.5% { width: 92px; height: 92px; left: 61px; top: 243px; transform: rotate(90deg); }
+            25%, 28%     { width: 91px; height: 92px; left: 0px;  top: 243px; transform: rotate(0deg); }
+            37.5%, 40.5% { width: 91px; height: 89px; left: 33px; top: 194px; transform: rotate(90deg); }
+            50%, 53%     { width: 91px; height: 90px; left: 74px; top: 243px; transform: rotate(90deg); }
+            62.5%, 65.5% { width: 94px; height: 93px; left: 33px; top: 190px; transform: rotate(90deg); }
+            75%, 78%     { width: 94px; height: 95px; left: -2px; top: 190px; transform: rotate(90deg); }
+            87.5%, 90.5% { width: 92px; height: 93px; left: 56px; top: 178px; transform: rotate(90deg); }
+        }
+
+        @keyframes anim102 {
+            0%, 3%, 100% { width: 91px; height: 93px; left: 242px; top: 242px; transform: rotate(-90deg); }
+            12.5%, 15.5% { width: 91px; height: 93px; left: 182px; top: 182px; transform: rotate(-90deg); }
+            25%, 28%     { width: 91px; height: 93px; left: 150px; top: 182px; transform: rotate(-90deg); }
+            37.5%, 40.5% { width: 89px; height: 90px; left: 33px;  top: 65px;  transform: rotate(180deg); }
+            50%, 53%     { width: 89px; height: 90px; left: 33px;  top: 65px;  transform: rotate(180deg); }
+            62.5%, 65.5% { width: 93px; height: 92px; left: 33px;  top: 67px;  transform: rotate(180deg); }
+            75%, 78%     { width: 91px; height: 92px; left: 126px; top: 35px;  transform: rotate(180deg); }
+            87.5%, 90.5% { width: 92px; height: 93px; left: 186px; top: 243px; transform: rotate(180deg); }
+        }
+
+        @keyframes anim103 {
+            0%, 3%, 100% { width: 92px; height: 92px; left: 60px;  top: 242px; transform: rotate(-90deg); }
+            12.5%, 15.5% { width: 92px; height: 92px; left: 121px; top: 243px; transform: rotate(-90deg); }
+            25%, 28%     { width: 92px; height: 92px; left: 242px; top: 243px; transform: rotate(0deg); }
+            37.5%, 40.5% { width: 92px; height: 91px; left: 97px;  top: 252px; transform: rotate(-90deg); }
+            50%, 53%     { width: 92px; height: 91px; left: 244px; top: 148px; transform: rotate(-90deg); }
+            62.5%, 65.5% { width: 94px; height: 94px; left: 167px; top: 250px; transform: rotate(-90deg); }
+            75%, 78%     { width: 94px; height: 94px; left: 123px; top: 250px; transform: rotate(-90deg); }
+            87.5%, 90.5% { width: 92px; height: 93px; left: 56px;  top: 244px; transform: rotate(-90deg); }
+        }
+
+        @keyframes anim104 {
+            0%, 3%, 100% { width: 92px; height: 89px; left: 242px; top: 0px;  transform: rotate(0deg); }
+            12.5%, 15.5% { width: 91px; height: 90px; left: 182px; top: 0px;  transform: rotate(0deg); }
+            25%, 28%     { width: 92px; height: 90px; left: 242px; top: 0px;  transform: rotate(0deg); }
+            37.5%, 40.5% { width: 89px; height: 88px; left: 33px;  top: 31px; transform: rotate(0deg); }
+            50%, 53%     { width: 89px; height: 88px; left: 33px;  top: 31px; transform: rotate(0deg); }
+            62.5%, 65.5% { width: 93px; height: 91px; left: 33px;  top: 32px; transform: rotate(0deg); }
+            75%, 78%     { width: 91px; height: 91px; left: 126px; top: -1px; transform: rotate(0deg); }
+            87.5%, 90.5% { width: 92px; height: 91px; left: 186px; top: -5px; transform: rotate(0deg); }
+        }
+
+        @keyframes anim105 {
+            0%, 3%, 100% { width: 91px; height: 89px; left: 0px;  top: 0px;  transform: rotate(0deg); }
+            12.5%, 15.5% { width: 91px; height: 90px; left: 61px; top: 0px;  transform: rotate(0deg); }
+            25%, 28%     { width: 91px; height: 90px; left: 0px;  top: 0px;  transform: rotate(0deg); }
+            37.5%, 40.5% { width: 91px; height: 89px; left: 33px; top: -2px; transform: rotate(0deg); }
+            50%, 53%     { width: 91px; height: 89px; left: 33px; top: -2px; transform: rotate(90deg); }
+            62.5%, 65.5% { width: 94px; height: 93px; left: 33px; top: -2px; transform: rotate(90deg); }
+            75%, 78%     { width: 94px; height: 93px; left: -1px; top: -2px; transform: rotate(90deg); }
+            87.5%, 90.5% { width: 92px; height: 91px; left: 56px; top: 54px; transform: rotate(90deg); }
+        }
+
+        @keyframes anim106 {
+            0%, 3%, 100% { width: 91px; height: 91px; left: 61px;  top: 63px;  transform: rotate(0deg); }
+            12.5%, 15.5% { width: 91px; height: 90px; left: 61px;  top: 64px;  transform: rotate(0deg); }
+            25%, 28%     { width: 91px; height: 90px; left: 93px;  top: 64px;  transform: rotate(0deg); }
+            37.5%, 40.5% { width: 90px; height: 90px; left: 127px; top: 254px; transform: rotate(0deg); }
+            50%, 53%     { width: 90px; height: 90px; left: 182px; top: -2px;  transform: rotate(0deg); }
+            62.5%, 65.5% { width: 93px; height: 93px; left: 33px;  top: 127px; transform: rotate(0deg); }
+            75%, 78%     { width: 94px; height: 93px; left: 32px;  top: 127px; transform: rotate(0deg); }
+            87.5%, 90.5% { width: 92px; height: 92px; left: 122px; top: 118px; transform: rotate(0deg); }
+        }
+
+        @keyframes anim107 {
+            0%, 3%, 100% { width: 91px; height: 90px; left: 0px;  top: 181px; transform: rotate(0deg); }
+            12.5%, 15.5% { width: 92px; height: 90px; left: 118px;top: 0px;   transform: rotate(0deg); }
+            25%, 28%     { width: 92px; height: 90px; left: 30px; top: 0px;   transform: rotate(0deg); }
+            37.5%, 40.5% { width: 89px; height: 89px; left: 33px; top: 106px; transform: rotate(0deg); }
+            50%, 53%     { width: 89px; height: 89px; left: 30px; top: 181px; transform: rotate(0deg); }
+            62.5%, 65.5% { width: 93px; height: 94px; left: 97px; top: 250px; transform: rotate(0deg); }
+            75%, 78%     { width: 94px; height: 92px; left: -2px; top: 192px; transform: rotate(0deg); }
+            87.5%, 90.5% { width: 92px; height: 90px; left: 56px; top: 124px; transform: rotate(0deg); }
+        }
+
+        @keyframes anim108 {
+            0%, 3%, 100% { width: 91px; height: 90px; left: 0px;  top: -1px;  transform: rotate(0deg); }
+            12.5%, 15.5% { width: 92px; height: 90px; left: 136px;top: 0px;   transform: rotate(0deg); }
+            25%, 28%     { width: 91px; height: 90px; left: 210px;top: 0px;   transform: rotate(0deg); }
+            37.5%, 40.5% { width: 89px; height: 90px; left: 33px; top: 155px; transform: rotate(0deg); }
+            50%, 53%     { width: 92px; height: 90px; left: 181px;top: 120px; transform: rotate(0deg); }
+            62.5%, 65.5% { width: 94px; height: 93px; left: 136px;top: 250px; transform: rotate(0deg); }
+            75%, 78%     { width: 94px; height: 94px; left: 249px;top: 155px; transform: rotate(0deg); }
+            87.5%, 90.5% { width: 92px; height: 91px; left: 186px;top: 178px; transform: rotate(0deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="rect-box rect-99"></div>
+        <div class="rect-box rect-100"></div>
+        <div class="rect-box rect-101"></div>
+        <div class="rect-box rect-102"></div>
+        <div class="rect-box rect-103"></div>
+        <div class="rect-box rect-104"></div>
+        <div class="rect-box rect-105"></div>
+        <div class="rect-box rect-106"></div>
+        <div class="rect-box rect-107"></div>
+        <div class="rect-box rect-108"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>smART Hub - Interactive Background</title>
+    <style>
+        body {
+            background-color: #1e1e1e; 
+            margin: 0;
+            min-height: 100vh;
+            overflow-x: auto; 
+            font-family: 'Helvetica Neue', Arial, sans-serif; /* Font chuẩn UI của bạn */
+        }
+
+        .container {
+            position: relative;
+            left: 200px; 
+            top: 50px;
+            width: 2500px; 
+            height: 800px;
+            /* Thêm viền mờ để bạn dễ nhận biết vùng cần đưa chuột vào */
+            border: 1px dashed rgba(255,255,255,0.1); 
+        }
+
+        /* --------------------------------------------------- */
+        /* THUỘC TÍNH CHUNG & HIỆU ỨNG CHUYỂN ĐỘNG (ANIMATION) */
+        /* --------------------------------------------------- */
+        .img-box {
+            position: absolute;
+            background-size: cover;
+            background-position: center;
+            /* Thời gian chuyển động từ Vị trí 1 sang Vị trí 2 là 0.8 giây, mượt mà */
+            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1); 
+        }
+
+        /* Giữ nguyên chiều lật cho các ảnh bị lật */
+        .flipped {
+            transform: matrix(-1, 0, 0, 1, 0, 0);
+        }
+
+        /* --------------------------------------------------- */
+        /* VỊ TRÍ BAN ĐẦU (STATE 1 - KHI CHƯA ĐƯA CHUỘT VÀO)   */
+        /* --------------------------------------------------- */
+        
+        .image-149 { width: 158px; height: 450px; left: 103px; top: 0px; background-image: url('image/image 149.png'); }
+        .image-150 { width: 436px; height: 424px; left: 1677px; top: 59px; background-image: url('image/image 150.png'); }
+        .image-151 { width: 617px; height: 255px; left: 1216px; top: 270px; background-image: url('image/image 151.png'); }
+        .image-154 { width: 159px; height: 187px; left: 1344px; top: 73px; background-image: url('image/image 154.png'); }
+        .image-156 { width: 153px; height: 247px; left: 1073px; top: 0px; background-image: url('image/image 156.png'); }
+        .image-157 { width: 377px; height: 259px; left: 643px; top: 268px; background-image: url('image/image 157.png'); }
+        .image-158 { width: 355px; height: 280px; left: 103px; top: 247px; background-image: url('image/image 158.png'); }
+        .image-159 { width: 344px; height: 247px; left: 292px; top: 0px; background-image: url('image/image 159.png'); }
+        .image-160 { width: 162px; height: 162px; left: -107px; top: 85px; background-image: url('image/image 160.png'); }
+        .image-161 { width: 355px; height: 166px; left: 459px; top: 188px; background-image: url('image/image 161.png'); }
+        .image-162 { width: 265px; height: 166px; left: -209px; top: 188px; background-image: url('image/image 162.png'); }
+        .image-163 { width: 92px; height: 107px; left: 716px; top: 87px; background-image: url('image/image 163.png'); }
+        .image-164 { width: 92px; height: 107px; left: 2367px; top: 219px; background-image: url('image/image 164.png'); }
+        .image-165 { width: 92px; height: 107px; left: 1067px; top: 333px; background-image: url('image/image 165.png'); }
+        .image-166 { width: 92px; height: 107px; left: 2275px; top: 420px; background-image: url('image/image 166.png'); }
+        .image-167 { width: 92px; height: 107px; left: 2128px; top: 159px; background-image: url('image/image 167.png'); }
+        
+        /* Nhóm Flipped */
+        .image-168 { width: 92px; height: 107px; left: 1566px; top: 85px; background-image: url('image/image 168.png'); }
+        .image-169 { width: 92px; height: 107px; left: -436px; top: 217px; background-image: url('image/image 169.png'); }
+        .image-170 { width: 92px; height: 107px; left: -25px; top: 418px; background-image: url('image/image 170.png'); }
+        .image-171 { width: 92px; height: 107px; left: 464px; top: 343px; background-image: url('image/image 171.png'); }
+        .image-172 { width: 92px; height: 107px; left: 927px; top: 157px; background-image: url('image/image 172.png'); }
+
+        /* --------------------------------------------------- */
+        /* VỊ TRÍ THỨ 2 (STATE 2 - KHI ĐƯA CHUỘT VÀO CONTAINER)*/
+        /* --------------------------------------------------- */
+        
+        .container:hover .image-149 { left: 997px; top: 4px; }
+        .container:hover .image-150 { left: 991px; top: 59px; }
+        .container:hover .image-151 { left: 996px; top: 270px; }
+        .container:hover .image-154 { width: 159px; height: 450px; left: 1268px; top: 7px; } /* Đổi cả chiều cao */
+        .container:hover .image-156 { width: 144px; height: 247px; left: 826px; top: 0px; } /* Đổi cả chiều rộng */
+        .container:hover .image-157 { left: 600px; top: 268px; }
+        .container:hover .image-158 { left: 252px; top: 247px; }
+        .container:hover .image-159 { left: 252px; top: 0px; }
+        .container:hover .image-160 { left: 615px; top: 85px; }
+        .container:hover .image-161 { width: 355px; height: 143px; left: 617px; top: 188px; } /* Đổi cả chiều cao */
+        .container:hover .image-162 { left: 331px; top: 184px; }
+        .container:hover .image-163 { left: 1679px; top: 85px; }
+        .container:hover .image-164 { left: 1778px; top: 217px; }
+        .container:hover .image-165 { left: 1686px; top: 331px; }
+        .container:hover .image-166 { left: 1798px; top: 418px; }
+        .container:hover .image-167 { left: 1880px; top: 157px; }
+        
+        /* Nhóm Flipped (vẫn di chuyển nhưng giữ nguyên thuộc tính transform flipped của class chung) */
+        .container:hover .image-168 { left: 94px; top: 85px; }
+        .container:hover .image-169 { left: -5px; top: 217px; }
+        .container:hover .image-170 { left: -25px; top: 418px; } /* Hình này giữ nguyên vị trí theo đúng code của bạn */
+        .container:hover .image-171 { left: 87px; top: 331px; }
+        .container:hover .image-172 { left: -107px; top: 157px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="img-box image-149"></div>
+        <div class="img-box image-150"></div>
+        <div class="img-box image-151"></div>
+        <div class="img-box image-154"></div>
+        <div class="img-box image-156"></div>
+        <div class="img-box image-157"></div>
+        <div class="img-box image-158"></div>
+        <div class="img-box image-159"></div>
+        <div class="img-box image-160"></div>
+        <div class="img-box image-161"></div>
+        <div class="img-box image-162"></div>
+        <div class="img-box image-163"></div>
+        <div class="img-box image-164"></div>
+        <div class="img-box image-165"></div>
+        <div class="img-box image-166"></div>
+        <div class="img-box image-167"></div>
+        
+        <div class="img-box flipped image-168"></div>
+        <div class="img-box flipped image-169"></div>
+        <div class="img-box flipped image-170"></div>
+        <div class="img-box flipped image-171"></div>
+        <div class="img-box flipped image-172"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+/* image 169 */
+        .image-169 {
+            width: 92px;
+            height: 107px;
+            left: -436px;
+            top: 217px;
+            background-image: url('image-169.png'); 
+            background-color: red; /* THÊM DÒNG NÀY */
+            transform: matrix(-1, 0, 0, 1, 0, 0);
+        }
+
+        /* image 162 */
+        .image-162 {
+            width: 265px;
+            height: 166px;
+            left: -209px;
+            top: 188px;
+            background-image: url('image-162.png');
+            background-color: blue; /* THÊM DÒNG NÀY */
+        }
+        
+        /* Làm tương tự thêm màu green, yellow cho image 160 và 170 nhé */
