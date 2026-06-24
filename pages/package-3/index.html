@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
@@ -32,41 +32,45 @@
         .LogoUehTrNg1 { display: none !important; }   /* embedded UEH logo */
         .LogoSu1      { display: none !important; }   /* embedded SU logo */
 
-        /* ===== NEW HEADER — identical to Package 1 ===== */
+                        /* ===== HEADER ===== */
         .header-wrapper {
             position: fixed; top: 0; left: 0; width: 100%;
-            padding: 20px 2% 15px 2%;
-            display: flex; flex-direction: column;
-            z-index: 1000;
-            background: transparent !important;
-            backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
+            padding: 14px 2% 6px 2%;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            grid-template-rows: auto auto;
+            grid-template-areas: 'logo-l line logo-r' '. nav .';
+            align-items: center;
+            column-gap: 16px;
+            z-index: 1000; background: transparent;
             font-family: 'Inter', sans-serif;
         }
-        .header-top-frame { display: flex; align-items: center; gap: 20px; width: 100%; }
-        .logo-left img {
-            height: 30px; display: block;
-            filter: drop-shadow(0px 1px 5px rgba(255,255,255,0.35));
+        .logo-left { grid-area: logo-l; }
+        .logo-left img { height: 30px; display: block; filter: drop-shadow(0px 1px 5px rgba(255,255,255,0.35)); }
+        .header-line-wrap { grid-area: line; height: 1px; background: rgba(255,255,255,0.9); }
+        .logo-right { grid-area: logo-r; display: flex; align-items: center; }
+        .header-nav { grid-area: nav; display: flex; justify-content: flex-end; gap: 2px; align-items: center; padding: 3px 0 0; }
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 13.5px; font-weight: 400;
+            padding: 4px 10px; border-radius: 4px;
+            white-space: nowrap;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.45);
+            transition: background 0.2s;
         }
-        .header-middle { flex-grow: 1; display: flex; flex-direction: column; }
-        .horizontal-line { width: 100%; height: 1px; background-color: rgba(255,255,255,0.18); }
-        .logo-right { display: flex; align-items: center; }
+        .nav-link:hover { background: rgba(255,255,255,0.15); }
     </style>
 </head>
 <body>
 
-    <!-- HEADER — Package 1 standard, adapted for dark background -->
-    <div class="header-wrapper">
-        <div class="header-top-frame">
-            <div class="logo-left">
-                <a href="../../index.html"><img src="../../assets/images/Logo_SHLL_long.png" alt="SHL Logo"></a>
-            </div>
-            <div class="header-middle">
-                <div class="horizontal-line"></div>
-            </div>
-            <div class="logo-right">
-                <a href="../../index.html"><img src="../../assets/images/index/logo1.png" alt="UEH" style="height: 30px; width: auto; display: block; filter: drop-shadow(0px 1px 5px rgba(255,255,255,0.35));"></a>
-            </div>
-        </div>
+        <!-- HEADER — smART Hub standard -->
+        <div class="header-wrapper">
+        <div class="logo-left"><a href="../../index.html"><img src="../../assets/images/Logo_SHLL_long.png" alt="SHL Logo"></a></div>
+        <div class="header-line-wrap"></div>
+        <div class="logo-right"><a href="../../index.html"><img src="../../assets/images/index/logo1.png" alt="UEH" style="height:30px;width:auto;display:block;filter: drop-shadow(0px 1px 5px rgba(255,255,255,0.35));"></a></div>
+        <nav class="header-nav"><a href="../../index.html" style="text-decoration: none;"><div data-layer="Home" class="Home" style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 25px; font-family: Inter; font-weight: 400; line-height: 36.25px; word-wrap: break-word">Home</div></a><a href="#" style="text-decoration: none;"><div data-layer="News" class="News" style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 25px; font-family: Inter; font-weight: 400; line-height: 36.25px; word-wrap: break-word">News</div></a><a href="../../pages/about.html" style="text-decoration: none;"><div data-layer="About SHLL" class="AboutShll" style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 25px; font-family: Inter; font-weight: 400; line-height: 36.25px; word-wrap: break-word">About SHLL</div></a></nav>
     </div>
 
     <!-- PROPORTIONAL SCALE CONTAINER -->

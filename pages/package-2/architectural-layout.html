@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Architectural Layout Design - smART Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         :root {
@@ -15,89 +15,79 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Montserrat', sans-serif; background: var(--bg-light); color: var(--pkg-blue); overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-light); color: var(--pkg-blue); overflow-x: hidden; }
 
         /* --- 1. HERO SECTION --- */
         .hero-container {
             width: 100%; height: 100vh; position: relative;
-            background-image: url('../../assets/images/package2/Architecture/bia1.png');
+            background-image: url('../../assets/images/package2/Architecture/Architectural_Layout_Design/Bia1.jpg');
             background-size: cover; background-position: center;
             display: flex; flex-direction: column; justify-content: space-between;
             padding: 80px 6%; color: #fff;
         }
         .hero-container::before {
             content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, rgba(14, 59, 102, 0.5) 0%, rgba(14, 59, 102, 0.2) 100%);
+            background: linear-gradient(135deg, rgba(100, 150, 190, 0.35) 0%, rgba(100, 150, 190, 0.15) 100%);
             z-index: 1;
         }
 
-        /* --- 1. HEADER --- */
-        .header-wrapper { 
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 40px 5% 20px 5%; 
-            display: flex; 
-            flex-direction: column; 
-            background: transparent !important;
-            z-index: 1000;
+                /* --- 1. HEADER --- */
+        .header-wrapper {
+            position: fixed; top: 0; left: 0; width: 100%;
+            padding: 14px 2% 6px 2%;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            grid-template-rows: auto auto;
+            grid-template-areas: 'logo-l line logo-r' '. nav .';
+            align-items: center;
+            column-gap: 16px;
+            z-index: 1000; background: transparent;
+            font-family: 'Inter', sans-serif;
+        }
+        .logo-left { grid-area: logo-l; }
+        .logo-left img { height: 30px; display: block; filter: drop-shadow(0px 1px 5px rgba(255,255,255,0.35)); }
+        .header-line-wrap { grid-area: line; height: 1px; background: rgba(255,255,255,0.9); }
+        .logo-right { grid-area: logo-r; display: flex; align-items: center; }
+        .header-nav { grid-area: nav; display: flex; justify-content: flex-end; gap: 2px; align-items: center; padding: 3px 0 0; }
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 13.5px; font-weight: 400;
+            padding: 4px 10px; border-radius: 4px;
+            white-space: nowrap;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.45);
+            transition: background 0.2s;
+        }
+        .nav-link:hover { background: rgba(255,255,255,0.15); }
         
-            background: transparent !important;
-            backdrop-filter: none !important;
-            -webkit-backdrop-filter: none !important;
-        }
-        .header-top-frame { 
-            display: flex; 
-            align-items: center; 
-            gap: 20px; 
-            width: 100%; 
-        }
-        .logo-left img { 
-            height: 30px; 
-            display: block; 
-        }
-        .header-middle { 
-            flex-grow: 1; 
-            display: flex; 
-            flex-direction: column; 
-        }
-        .horizontal-line { 
-            width: 100%; 
-            height: 1px; 
-            background-color: rgba(255, 255, 255, 0.15); 
-        }
-        .logo-right { 
-            display: flex;
-            align-items: center; 
-        }
-        .back-icon-btn { 
-            width: 35px; height: 35px; border-radius: 50%; display: flex; justify-content: center; align-items: center; 
-            color: #fff; background: rgba(255, 255, 255, 0.1); transition: 0.4s; text-decoration: none; 
-            border: 1px solid rgba(255, 255, 255, 0.2); font-size: 14px; font-weight: bold;
-        }
-        .back-icon-btn:hover { 
-            background: var(--pkg-gold); border-color: var(--pkg-gold); color: #fff; transform: scale(1.1); 
-        }
-        
-        .top-content { position: relative; z-index: 100; align-self: flex-end; text-align: right; }
-        .top-content h1 { font-size: clamp(40px, 6vw, 85px); font-weight: 800; line-height: 1; color: transparent; -webkit-text-stroke: 1.5px #fff; text-transform: uppercase; }
+        .top-content { position: absolute; z-index: 100; top: 14.4%; right: 6%; text-align: right; width: 31.2%; }
+        .top-content h1 { font-size: clamp(22px, 3.36vw, 63px); font-weight: 600; line-height: 1.45; color: #fff; letter-spacing: -0.315px; text-transform: uppercase; text-shadow: -3px 1px 0 #5368a9; }
         .newsletter-tag { display: inline-block; margin-top: 15px; padding: 8px 25px; background: rgba(255,255,255,0.9); color: var(--pkg-blue); border-radius: 50px; font-size: 11px; font-weight: 700; text-decoration: none; }
 
-        .spatial-circle-wrapper { 
-            position: absolute; 
-            top: 55%; 
-            right: 2%; 
-            z-index: 50; 
-            width: 220px; height: 220px; 
+        .hero-footer-title { position: absolute; z-index: 100; bottom: 80px; left: 6%; font-size: clamp(28px, 4vw, 48px); font-weight: 700; text-transform: uppercase; color: rgba(255, 255, 255, 0.95); }
+
+        .hero-info-box {
+            position: absolute;
+            bottom: 60px;
+            right: 6%;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(14, 59, 102, 0.2);
+            border-radius: 12px;
+            padding: 24px;
+            max-width: 320px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
         }
-        .circle-image { width: 100%; height: 100%; border-radius: 50%; border: 2px solid #fff; overflow: hidden; background: url('../../assets/images/package2/Architecture/bia3.png'); background-size: cover; }
-        .circle-text { position: absolute; width: 100%; height: 100%; top: 0; left: 0; animation: rotateText 15s linear infinite; }
-        @keyframes rotateText { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        .circle-text svg { width: 100%; height: 100%; fill: #fff; }
-        .circle-text text { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 4px; }
-        
-        .hero-footer-title { position: relative; z-index: 100; font-size: 38px; font-weight: 700; text-transform: uppercase; }
+        .hero-info-box p {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            line-height: 1.7;
+            color: var(--pkg-blue);
+            margin: 0;
+            text-align: left;
+        }
 
         /* --- 2. DETAILS SECTION --- */
         .details-section { padding: 120px 8%; background: #fff; position: relative; z-index: 10; }
@@ -143,85 +133,27 @@
             .spatial-circle-wrapper { display: none; }
         }
 
-        /* --- CONTACT FOOTER --- */
-        .footer-container { 
-            border-top: none;
-            padding: 40px 2% 60px 2%; 
+                /* --- CONTACT FOOTER --- */
+        .footer-container {
+            padding: 40px 2% 60px 2%;
             margin-top: 40px;
-            position: relative;
-            z-index: 10;
-            background: transparent !important;
-            color: #333333;
-            width: 100%;
+            position: relative; z-index: 10;
+            background: transparent;
+            color: #333; width: 100%;
+            font-family: 'Inter', sans-serif;
         }
-        .footer-contact-header {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 25px;
-        }
-        .footer-contact-title {
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--pkg-blue);
-            letter-spacing: 0.5px;
-        }
-        .footer-contact-line {
-            flex-grow: 1;
-            height: 1px;
-            background-color: rgba(14, 59, 102, 0.15);
-        }
-        .footer-content-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            gap: 30px;
-        }
-        .footer-left-col {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            text-align: left;
-            max-width: 50%;
-        }
-        .footer-left-col .info-text {
-            font-size: 11px;
-            font-style: italic;
-            color: #555555;
-            font-weight: 300;
-            line-height: 1.6;
-        }
-        .footer-left-col .email-link {
-            font-size: 11px;
-            color: var(--pkg-blue);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s ease;
-        }
-        .footer-left-col .email-link:hover {
-            color: #d76a28;
-            text-decoration: underline;
-        }
-        .footer-right-col {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            text-align: right;
-            max-width: 50%;
-        }
-        .footer-right-col .brand-text {
-            font-size: 11px;
-            font-weight: 600;
-            color: var(--pkg-blue);
-            letter-spacing: 0.5px;
-        }
-        .footer-right-col .address-text {
-            font-size: 11px;
-            color: #555555;
-            font-weight: 300;
-            line-height: 1.6;
-        }
+        .footer-contact-header { display: flex; align-items: center; gap: 20px; margin-bottom: 20px; }
+        .footer-contact-title { font-size: 16px; font-weight: 700; color: var(--pkg-blue, #0E3B66); white-space: nowrap; }
+        .footer-contact-line { flex-grow: 1; height: 1px; background-color: rgba(14,59,102,0.18); }
+        .footer-content-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 30px; }
+        .footer-left-col { flex: 0 1 38%; }
+        .footer-left-col .info-text { font-size: 11px; font-style: italic; color: #666; font-weight: 300; line-height: 1.7; }
+        .footer-right-col { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+        .footer-right-top { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; }
+        .brand-text { font-size: 11px; font-weight: 600; color: var(--pkg-blue, #0E3B66); letter-spacing: 0.4px; }
+        .email-link { font-size: 11px; color: var(--pkg-blue, #0E3B66); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+        .email-link:hover { color: #d76a28; text-decoration: underline; }
+        .address-text { font-size: 11px; color: #666; font-weight: 300; line-height: 1.6; }
         @media (max-width: 768px) {
             .footer-left-col, .footer-right-col {
                 max-width: 100%;
@@ -240,38 +172,24 @@
 
 
 
-    <div class="header-wrapper">
-        <div class="header-top-frame">
-            <div class="logo-left">
-                <a href="../../index.html"><img src="../../assets/images/Logo_SHLL_long.png" alt="SHL Logo"></a>
-            </div>
-            <div class="header-middle">
-                <div class="horizontal-line"></div>
-            </div>
-            <div class="logo-right">
-                <a href="architectural-design.html"><img src="../../assets/images/index/logo1.png" alt="UEH" style="height: 30px; width: auto; display: block;"></a>
-            </div>
-        </div>
+        <div class="header-wrapper">
+        <div class="logo-left"><a href="../../index.html"><img src="../../assets/images/Logo_SHLL_long.png" alt="SHL Logo"></a></div>
+        <div class="header-line-wrap"></div>
+        <div class="logo-right"><a href="../../index.html"><img src="../../assets/images/index/logo1.png" alt="UEH" style="height:30px;width:auto;display:block;filter: drop-shadow(0px 1px 5px rgba(255,255,255,0.35));"></a></div>
+        <nav class="header-nav"><a href="../../index.html" style="text-decoration: none;"><div data-layer="Home" class="Home" style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 25px; font-family: Inter; font-weight: 400; line-height: 36.25px; word-wrap: break-word">Home</div></a><a href="index.html" style="text-decoration: none;"><div data-layer="Back" class="Back" style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 25px; font-family: Inter; font-weight: 400; line-height: 36.25px; word-wrap: break-word">Back</div></a><a href="../../pages/about.html" style="text-decoration: none;"><div data-layer="About SHLL" class="AboutShll" style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 25px; font-family: Inter; font-weight: 400; line-height: 36.25px; word-wrap: break-word">About SHLL</div></a></nav>
     </div>
 
     <section class="hero-container">
         <div class="top-content" data-aos="fade-left">
             <h1>ARCHITECTURAL<br>DESIGN</h1>
-            <a href="#" class="newsletter-tag">Sent Us Your Newsletter</a>
-        </div>
-
-        <div class="spatial-circle-wrapper" data-aos="zoom-in" data-aos-delay="500">
-            <div class="circle-text">
-                <svg viewBox="0 0 200 200">
-                    <path id="circlePath" d="M 100, 100 m -80, 0 a 80,80 0 1,1 160,0 a 80,80 0 1,1 -160,0" fill="transparent"/>
-                    <text><textPath href="#circlePath">SPATIAL EXPLORATION • SPATIAL EXPLORATION • </textPath></text>
-                </svg>
-            </div>
-            <div class="circle-image"></div>
         </div>
 
         <div class="hero-footer-title" data-aos="fade-right">
-            <h2>ARCHITECTURAL<br>LAYOUT DESIGN</h2>
+            ARCHITECTURAL<br>LAYOUT DESIGN
+        </div>
+
+        <div class="hero-info-box" data-aos="fade-up" data-aos-delay="200">
+            <p>Architectural Layout Design is a key component focused on translating adaptive solutions into detailed technical drawings and spatial diagrams at Campus V.</p>
         </div>
     </section>
 
@@ -282,16 +200,15 @@
                 <div class="col-left">
                     <h3 class="project-header-title">MASTER PLAN</h3>
                     <div class="img-small-wrap">
-                        <img src="../../assets/images/package2/Architecture/ARCHITECTURAL DESIGN/AD1.png" class="img-clickable" onclick="openLightbox(this.src)" alt="Master Plan AD1">
+                        <img src="../../assets/images/package2/Architecture/Architectural_Layout_Design/ISO_Masterplan.png" class="img-clickable" onclick="openLightbox(this.src)" alt="Master Plan AD1">
                     </div>
                     <div class="project-info">
-                        <b>Spatial Strategy</b>
-                        The Zero Pledge commitment, built upon two key pillars: #ReduceForMore and The initiative aspires for every individual to engage in a sustainable campus ecosystem.
+                        International design standards are harmonized with local knowledge through a Research-by-Design approach to address key spatial bottlenecks, focusing on green infrastructure, passive design, digital integration, and heritage preservation.
                     </div>
                 </div>
                 <div class="col-right">
                     <div class="img-large-wrap">
-                        <img src="../../assets/images/package2/Architecture/ARCHITECTURAL DESIGN/AD2.png" class="img-clickable" onclick="openLightbox(this.src)" alt="Master Plan AD2">
+                        <img src="../../assets/images/package2/Architecture/Architectural_Layout_Design/Masterplan.png" class="img-clickable" onclick="openLightbox(this.src)" alt="Master Plan AD2">
                     </div>
                 </div>
             </div>
@@ -300,18 +217,17 @@
         <div class="project-item" data-aos="fade-up">
             <div class="project-grid">
                 <div class="col-left">
-                    <h3 class="project-header-title">FRONT YARD</h3>
+                    <h3 class="project-header-title">MATERIAL LAYOUT PLAN </h3>
                     <div class="img-small-wrap">
-                        <img src="../../assets/images/package2/Architecture/ARCHITECTURAL DESIGN/AD3.png" class="img-clickable" onclick="openLightbox(this.src)" alt="Front Yard AD3">
+                        <img src="../../assets/images/package2/Architecture/Architectural_Layout_Design/ISO_Material_Layout_Plan.png" class="img-clickable" onclick="openLightbox(this.src)" alt="Front Yard AD3">
                     </div>
                     <div class="project-info">
-                        <b>External Integration</b>
-                        The Zero Pledge commitment, built upon two key pillars: #ReduceForMore and The initiative aspires for every individual to reconnect with nature.
+                        An essential component that focuses on implementing green and sustainable infrastructure solutions through carefully researched material selection. This includes the use of permeable and eco-friendly materials such as gravel and cubic paving bricks.
                     </div>
                 </div>
                 <div class="col-right">
                     <div class="img-large-wrap">
-                        <img src="../../assets/images/package2/Architecture/ARCHITECTURAL DESIGN/AD4.png" class="img-clickable" onclick="openLightbox(this.src)" alt="Front Yard AD4">
+                        <img src="../../assets/images/package2/Architecture/Architectural_Layout_Design/Material_Layout_Plan.png" class="img-clickable" onclick="openLightbox(this.src)" alt="Front Yard AD4">
                     </div>
                 </div>
             </div>
@@ -320,18 +236,17 @@
         <div class="project-item" data-aos="fade-up">
             <div class="project-grid">
                 <div class="col-left">
-                    <h3 class="project-header-title">SMART CAFE</h3>
+                    <h3 class="project-header-title">FRONT YARD & PARKING PLAN</h3>
                     <div class="img-small-wrap">
-                        <img src="../../assets/images/package2/Architecture/ARCHITECTURAL DESIGN/AD5.png" class="img-clickable" onclick="openLightbox(this.src)" alt="Smart Cafe AD5">
+                        <img src="../../assets/images/package2/Architecture/Architectural_Layout_Design/ISO_Frontyard_ParkingPLAN.jpg" class="img-clickable" onclick="openLightbox(this.src)" alt="Smart Cafe AD5">
                     </div>
                     <div class="project-info">
-                        <b>Social Interaction</b>
                         The Zero Pledge commitment, built upon two key pillars: #ReduceForMore and The initiative aspires for every individual.
                     </div>
                 </div>
                 <div class="col-right">
                     <div class="img-large-wrap">
-                        <img src="../../assets/images/package2/Architecture/ARCHITECTURAL DESIGN/AD6.png" class="img-clickable" onclick="openLightbox(this.src)" alt="Smart Cafe AD6">
+                        <img src="../../assets/images/package2/Architecture/Architectural_Layout_Design/Frontyard_ParkingPLAN.jpg" class="img-clickable" onclick="openLightbox(this.src)" alt="Smart Cafe AD6">
                     </div>
                 </div>
             </div>
@@ -340,24 +255,42 @@
         <div class="project-item" data-aos="fade-up">
             <div class="project-grid">
                 <div class="col-left">
-                    <h3 class="project-header-title">PARKING AND ACCESS</h3>
+                    <h3 class="project-header-title">COMMUNITY SPACE MASTER PLAN</h3>
                     <div class="img-small-wrap">
-                        <img src="../../assets/images/package2/Architecture/ARCHITECTURAL DESIGN/AD7.png" class="img-clickable" onclick="openLightbox(this.src)" alt="Parking AD7">
+                        <img src="../../assets/images/package2/Architecture/Architectural_Layout_Design/ISO_CommunitySpace.png" class="img-clickable" onclick="openLightbox(this.src)" alt="Parking AD7">
                     </div>
                     <div class="project-info">
-                        <b>Mobility & Reach</b>
                         The Zero Pledge commitment, built upon two key pillars: #ReduceForMore and The initiative aspires for every individual.
                     </div>
                 </div>
                 <div class="col-right">
                     <div class="img-large-wrap">
-                        <img src="../../assets/images/package2/Architecture/ARCHITECTURAL DESIGN/AD8.png" class="img-clickable" onclick="openLightbox(this.src)" alt="Parking AD8">
+                        <img src="../../assets/images/package2/Architecture/Architectural_Layout_Design/Community_Space.jpg" class="img-clickable" onclick="openLightbox(this.src)" alt="Parking AD8">
                     </div>
                 </div>
             </div>
         </div>
 
-    <footer class="footer-container">
+        <div class="project-item" data-aos="fade-up">
+            <div class="project-grid">
+                <div class="col-left">
+                    <h3 class="project-header-title">SMART CAFE MASTER PLAN</h3>
+                    <div class="img-small-wrap">
+                        <img src="../../assets/images/package2/Architecture/Architectural_Layout_Design/ISO_SmartCafe.jpg" class="img-clickable" onclick="openLightbox(this.src)" alt="Smart Cafe Master Plan ISO View">
+                    </div>
+                    <div class="project-info">
+                        The Smart Café is a space that includes a gravel courtyard and a relocated café, making room for a new multipurpose space. It serves drinks and food not only for students and lecturers but also for the surrounding community.
+                    </div>
+                </div>
+                <div class="col-right">
+                    <div class="img-large-wrap">
+                        <img src="../../assets/images/package2/Architecture/Architectural_Layout_Design/SmartCafe_Plan.jpg" class="img-clickable" onclick="openLightbox(this.src)" alt="Smart Cafe Master Plan">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer-container">
         <div class="footer-contact-header">
             <span class="footer-contact-title">Contact</span>
             <div class="footer-contact-line"></div>
@@ -365,10 +298,12 @@
         <div class="footer-content-row">
             <div class="footer-left-col">
                 <span class="info-text">For more information of the smART Hub Living Labs.</span>
-                <a href="mailto:smarthub@ueh.edu.vn" class="email-link">smarthub@ueh.edu.vn</a>
             </div>
             <div class="footer-right-col">
-                <span class="brand-text">smART HUB Living Labs</span>
+                <div class="footer-right-top">
+                    <span class="brand-text">smART HUB Living Labs</span>
+                    <a href="mailto:smarthub@ueh.edu.vn" class="email-link">smarthub@ueh.edu.vn</a>
+                </div>
                 <span class="address-text">UEH, Campus V 232/6 Vo Thi Sau, Xuan Hoa Ward, Ho Chi Minh City.</span>
             </div>
         </div>

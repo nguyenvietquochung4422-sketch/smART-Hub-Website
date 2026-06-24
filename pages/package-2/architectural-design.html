@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
@@ -26,8 +26,6 @@
             background: transparent !important;
             z-index: 1000;
             transition: opacity 0.5s ease;
-        
-            background: transparent !important;
             backdrop-filter: none !important;
             -webkit-backdrop-filter: none !important;
         }
@@ -54,14 +52,6 @@
         .logo-right { 
             display: flex;
             align-items: center; 
-        }
-        .back-icon-btn { 
-            width: 35px; height: 35px; border-radius: 50%; display: flex; justify-content: center; align-items: center; 
-            color: #fff; background: rgba(255, 255, 255, 0.1); transition: 0.4s; text-decoration: none; 
-            border: 1px solid rgba(255, 255, 255, 0.2); font-size: 14px; font-weight: bold;
-        }
-        .back-icon-btn:hover { 
-            background: #d76a28; border-color: #d76a28; color: #fff; transform: scale(1.1); 
         }
 
         /* --- 2. SPLIT LAYOUT --- */
@@ -91,7 +81,7 @@
         .design-column:hover .column-bg { transform: scale(1.05); }
         .design-column:hover::after { background: rgba(14, 59, 102, 0.2); }
 
-        /* Trạng thái khi click để chuyển page */
+        /* Trạng thái mở rộng khi click chuyển cảnh */
         .design-column.expanded {
             position: fixed;
             top: 0; left: 0;
@@ -101,7 +91,7 @@
             flex: none;
         }
 
-        /* --- 3. TEXT & CONTENT --- */
+        /* --- 3. TEXT CỘT BÊN DƯỚI --- */
         .column-content {
             position: absolute; bottom: 80px; left: 40px; right: 40px;
             z-index: 10; color: #fff; pointer-events: none;
@@ -112,41 +102,42 @@
             line-height: 1.2; text-transform: uppercase; letter-spacing: 2px;
         }
 
-        /* TIÊU ĐỀ TRUNG TÂM */
-        .main-overlay-title {
-            position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%);
-            z-index: 20; text-align: center; pointer-events: none; width: 100%;
+        /* KHỐI LAYOUT HERO TRUNG TÂM */
+        .hero-container {
+            position: absolute; 
+            top: 38%; 
+            left: 50%; 
+            transform: translate(-50%, -50%);
+            z-index: 20; 
+            text-align: center; 
+            pointer-events: none; 
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             transition: opacity 0.5s ease;
         }
 
-        .main-overlay-title h1 {
-            font-size: clamp(40px, 9vw, 110px); font-weight: 800;
-            color: transparent; -webkit-text-stroke: 1.5px rgba(255,255,255,0.7);
-            text-transform: uppercase; line-height: 0.85;
-            animation: floating 4s ease-in-out infinite;
-        }
-
-        @keyframes floating {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
         .newsletter-btn {
-            display: inline-block; margin-top: 40px;
-            padding: 14px 40px; border-radius: 50px; background: #fff;
+            display: inline-block; margin-top: 25px;
+            padding: 12px 35px; border-radius: 50px; background: #fff;
             color: var(--pkg-blue); font-weight: 700; font-size: 13px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.3); pointer-events: auto;
             text-decoration: none; transition: 0.4s;
         }
         .newsletter-btn:hover { background: var(--pkg-gold); color: #fff; transform: translateY(-5px); }
 
-        /* Hiệu ứng ẩn khi bắt đầu chuyển cảnh */
+        /* Hiệu ứng ẩn khi đang load chuyển cảnh */
         body.is-switching .header-wrapper, 
-        body.is-switching .main-overlay-title,
+        body.is-switching .hero-container,
         body.is-switching .column-content {
             opacity: 0;
         }
 
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
     </style>
 </head>
 <body>
@@ -165,10 +156,14 @@
         </div>
     </div>
 
-    <div class="main-overlay-title">
-        <h1>ARCHITECTURAL<br>DESIGN</h1>
+    <section class="hero-container">
+        <div class="top-content" data-aos="fade-left" style="animation: floating 4s ease-in-out infinite;">
+            <h1 style="width: 700px; max-width: 90%; margin: 0 auto; color: white; font-size: 63px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 600; line-height: 1.1; letter-spacing: 1px; word-wrap: break-word; text-shadow: -3px 1px 0px rgba(83, 104, 169, 1.00); text-transform: uppercase;">
+                ARCHITECTURAL<br>DESIGN
+            </h1>
+        </div>
         <a href="#" class="newsletter-btn">Sent Us Your Newsletter</a>
-    </div>
+    </section>
 
     <main class="architecture-container">
         
