@@ -10,7 +10,8 @@
         body { overflow-x: hidden; font-family: 'Inter', sans-serif; background: black; }
 
         /* ===== PROPORTIONAL SCALE WRAPPER ===== */
-        #scaleContainer { width: 100vw; overflow: hidden; position: relative; }
+        #scaleContainer { width: 100vw; overflow: hidden; position: relative; top: 0 !important; margin-top: 0 !important; }
+        body { padding-top: 0 !important; }
         #scaleWrapper { width: 1874px; height: 3111px; transform-origin: top left; }
 
         /* Collapse the 2064px section container to match the inner 1874px design frame */
@@ -34,7 +35,7 @@
 
                         /* ===== HEADER ===== */
         .header-wrapper {
-            position: relative; width: 100%;
+            position: absolute; top: 0; left: 0; right: 0; width: 100%;
             padding: 14px 2% 6px 2%;
             display: grid;
             grid-template-columns: auto 1fr auto;

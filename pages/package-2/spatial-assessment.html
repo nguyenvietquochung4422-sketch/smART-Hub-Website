@@ -16,7 +16,8 @@
 
         *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
         html  { scroll-behavior:smooth; }
-        body  { font-family:'Inter',sans-serif; background:#fff; overflow-x:hidden; }
+        body  { font-family:'Inter',sans-serif; background:#fff; overflow-x:hidden; padding-top:0 !important; }
+        body::before { content:''; position:fixed; inset:0; background-image:var(--page-bg); background-size:cover; background-position:center; background-repeat:no-repeat; z-index:-1; }
 
         /* ── 1. HERO SECTION ─────────────────────────────────────────────── */
         .hero-section {
@@ -37,7 +38,7 @@
 
                         /* --- 1. HEADER --- */
         .header-wrapper {
-            position: relative; width: 100%;
+            position: absolute; top: 0; left: 0; right: 0; width: 100%;
             padding: 14px 2% 6px 2%;
             display: grid;
             grid-template-columns: auto 1fr auto;
@@ -326,23 +327,22 @@
         }
     </style>
 </head>
-<body>
+<body style="--page-bg: url('../../assets/images/package2/Architecture/bia3.png');">
 
     <div id="lightbox" onclick="this.style.display='none'">
         <img id="lb-img" src="" alt="">
     </div>
 
-    <!-- ── HERO ──────────────────────────────────────────────────────────── -->
-    <section class="hero-section">
-        <div class="hero-bg"></div>
-        <div class="hero-overlay"></div>
-
-                <div class="header-wrapper">
+    <div class="header-wrapper">
         <div class="logo-left"><a href="../../index.html"><img src="../../assets/images/Logo_SHLL_long.png" alt="SHL Logo"></a></div>
         <div class="header-line-wrap"></div>
         <div class="logo-right"><a href="../../index.html"><img src="../../assets/images/index/logo/logo1.png" alt="UEH" style="height:30px;width:auto;display:block;filter: drop-shadow(0px 1px 5px rgba(255,255,255,0.35));"></a></div>
         <nav class="header-nav"><a href="../../index.html" class="nav-link">Home</a><a href="index.html" class="nav-link">Back</a><a href="../../pages/about.html" class="nav-link">About SHLL</a></nav>
     </div>
+
+    <!-- ── HERO ──────────────────────────────────────────────────────────── -->
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
 
         <!-- Title: same context label as other architectural sub-pages         -->
         <!-- Figma: left:53.4%, top:14.4%; Inter SemiBold 63px, -3px 1px 0 shadow -->

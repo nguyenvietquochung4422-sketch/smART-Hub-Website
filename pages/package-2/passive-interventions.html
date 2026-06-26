@@ -17,7 +17,8 @@
 
         *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
         html  { scroll-behavior:smooth; }
-        body  { font-family:'Inter',sans-serif; background:#fff; overflow-x:hidden; }
+        body  { font-family:'Inter',sans-serif; background:#fff; overflow-x:hidden; padding-top:0 !important; }
+        body::before { content:''; position:fixed; inset:0; background-image:var(--page-bg); background-size:cover; background-position:center; background-repeat:no-repeat; z-index:-1; }
 
         /* ── 1. HERO SECTION ─────────────────────────────────────────────── */
         /* Figma: 1874×1176px canvas.  We map to 100vw × 100vh.             */
@@ -39,7 +40,7 @@
 
                         /* --- 1. HEADER --- */
         .header-wrapper {
-            position: relative; width: 100%;
+            position: absolute; top: 0; left: 0; right: 0; width: 100%;
             padding: 14px 2% 6px 2%;
             display: grid;
             grid-template-columns: auto 1fr auto;
@@ -67,6 +68,18 @@
             transition: background 0.2s;
         }
         .nav-link:hover { opacity: 0.7; }
+
+        /* "ARCHITECTURAL DESIGN" title
+           Figma: left:1001/1874=53.4%, top:169/1176=14.4%
+           Inter SemiBold 63px white, shadow -3px 1px 0 #5368a9 */
+        .hero-title {
+            position:absolute; left:53.4%; top:14.4%; width:31.2%;
+            font-size:clamp(22px,3.36vw,63px);
+            font-weight:600; color:#fff; line-height:1.45;
+            letter-spacing:-0.315px; text-transform:uppercase;
+            text-shadow:-3px 1px 0 #5368a9;
+            z-index:20;
+        }
 
         /* Info box
            Figma: left:999/1874=53.3%, top:796/1176=67.7%
@@ -274,23 +287,22 @@
         }
     </style>
 </head>
-<body>
+<body style="--page-bg: url('../../assets/images/package2/Architecture/bia2.png');">
 
     <div id="lightbox" onclick="this.style.display='none'">
         <img id="lb-img" src="" alt="">
     </div>
 
-    <!-- ── HERO ──────────────────────────────────────────────────────────── -->
-    <section class="hero-section">
-        <div class="hero-bg"></div>
-        <div class="hero-overlay"></div>
-
-                <div class="header-wrapper">
+    <div class="header-wrapper">
         <div class="logo-left"><a href="../../index.html"><img src="../../assets/images/Logo_SHLL_long.png" alt="SHL Logo"></a></div>
         <div class="header-line-wrap"></div>
         <div class="logo-right"><a href="../../index.html"><img src="../../assets/images/index/logo/logo1.png" alt="UEH" style="height:30px;width:auto;display:block;filter: drop-shadow(0px 1px 5px rgba(255,255,255,0.35));"></a></div>
         <nav class="header-nav"><a href="../../index.html" class="nav-link">Home</a><a href="index.html" class="nav-link">Back</a><a href="../../pages/about.html" class="nav-link">About SHLL</a></nav>
     </div>
+
+    <!-- ── HERO ──────────────────────────────────────────────────────────── -->
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
 
         <!-- Title at right — mirrors architectural-design.html context label -->
         <!-- Figma: left:53.4%, top:14.4%; Inter SemiBold 63px, shadow -3px 1px 0 #5368a9 -->

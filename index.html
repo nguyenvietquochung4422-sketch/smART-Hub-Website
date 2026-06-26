@@ -11,7 +11,8 @@
         #parallax-master-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-image: var(--page-bg); background-size: cover; background-position: center center; background-repeat: no-repeat; z-index: -1; }
 
         /* ===== PROPORTIONAL SCALE WRAPPER ===== */
-        #scaleContainer { width: 100vw; overflow: hidden; position: relative; }
+        #scaleContainer { width: 100vw; overflow: hidden; position: relative; top: 0 !important; margin-top: 0 !important; }
+        body { padding-top: 0 !important; }
         #scaleWrapper   { width: 1874px; height: 1996px; transform-origin: top left; }
 
         /* Collapse the 2064×2196 Figma section to the 1874×1996 inner frame */
@@ -31,7 +32,7 @@
         [data-layer="Frame 13"] { display: none !important; }
 
         /* Bring intro paragraph closer to the header line */
-        [data-layer^="On its journey to becoming"] { top: 40px !important; }
+        [data-layer^="On its journey to becoming"] { top: 80px !important; }
 
         /* ===== HIDE EMBEDDED CANVAS HEADER ELEMENTS ===== */
         [data-layer="image 38"]         { display: none !important; }
@@ -41,7 +42,7 @@
 
                 /* ===== HEADER ===== */
         .header-wrapper {
-            position: relative; width: 100%;
+            position: absolute; top: 0; left: 0; right: 0; width: 100%;
             padding: 14px 2% 6px 2%;
             display: grid;
             grid-template-columns: auto 1fr auto;
@@ -123,6 +124,17 @@
             padding: 1.5px 0 1.5px 8px;
         }
         .Component16 .shift-anim { transition: transform 0.38s cubic-bezier(0.4,0,0.2,1); }
+
+        /* ── UNIFORM PACKAGE ICONS — same bounding box for all 4 ── */
+        .MockupTuiGiay,
+        .GlocalDesign,
+        .VCampusXRay,
+        .ArtforAll {
+            width: 375px !important;
+            height: 270px !important;
+            top: 168px !important;
+            object-fit: contain !important;
+        }
     </style>
 </head>
 <body style="--page-bg: url('assets/images/index/gradient_noise_website.jpg');">

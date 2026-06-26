@@ -29,12 +29,13 @@
             background: var(--c-bg);
             color: var(--c-desc);
             overflow-x: hidden;
+            padding-top: 0 !important;
         }
         img { display: block; max-width: 100%; }
 
                         /* --- 1. HEADER --- */
         .header-wrapper {
-            position: relative; width: 100%;
+            position: absolute; top: 0; left: 0; right: 0; width: 100%;
             padding: 14px 2% 6px 2%;
             display: grid;
             grid-template-columns: auto 1fr auto;

@@ -15,7 +15,7 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg-light); color: var(--pkg-blue); overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-light); color: var(--pkg-blue); overflow-x: hidden; padding-top: 0 !important; }
         body::before { content: ''; position: fixed; inset: 0; background-image: url('../../assets/images/package2/Architecture/Architectural_Layout_Design/Bia1.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; z-index: -1; }
 
         /* --- 1. HERO SECTION --- */
@@ -32,7 +32,7 @@
 
                 /* --- 1. HEADER --- */
         .header-wrapper {
-            position: relative; width: 100%;
+            position: absolute; top: 0; left: 0; right: 0; width: 100%;
             padding: 14px 2% 6px 2%;
             display: grid;
             grid-template-columns: auto 1fr auto;
