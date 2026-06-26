@@ -15,13 +15,12 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg-light); color: var(--pkg-blue); overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-light); color: var(--pkg-blue); overflow-x: hidden; }
+        body::before { content: ''; position: fixed; inset: 0; background-image: url('../../assets/images/package2/Architecture/Architectural_Layout_Design/Bia1.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; z-index: -1; }
 
         /* --- 1. HERO SECTION --- */
         .hero-container {
             width: 100%; height: 100vh; position: relative;
-            background-image: url('../../assets/images/package2/Architecture/Architectural_Layout_Design/Bia1.jpg');
-            background-size: cover; background-position: center;
             display: flex; flex-direction: column; justify-content: space-between;
             padding: 80px 6%; color: #fff;
         }
@@ -33,7 +32,7 @@
 
                 /* --- 1. HEADER --- */
         .header-wrapper {
-            position: fixed; top: 0; left: 0; width: 100%;
+            position: relative; width: 100%;
             padding: 14px 2% 6px 2%;
             display: grid;
             grid-template-columns: auto 1fr auto;
@@ -41,25 +40,25 @@
             grid-template-areas: 'logo-l line logo-r' '. nav .';
             align-items: center;
             column-gap: 16px;
-            z-index: 1000; background: transparent;
+            z-index: 1000; background: transparent !important;
             font-family: 'Inter', sans-serif;
         }
-        .logo-left { grid-area: logo-l; }
+        .logo-left { grid-area: logo-l; background: none !important; }
         .logo-left img { height: 30px; display: block; filter: drop-shadow(0px 1px 5px rgba(255,255,255,0.35)); }
         .header-line-wrap { grid-area: line; height: 1px; background: rgba(255,255,255,0.9); }
-        .logo-right { grid-area: logo-r; display: flex; align-items: center; }
-        .header-nav { grid-area: nav; display: flex; justify-content: flex-end; gap: 2px; align-items: center; padding: 3px 0 0; }
+        .logo-right { grid-area: logo-r; display: flex; align-items: center; background: none !important; }
+        .header-nav { grid-area: nav; display: flex; justify-content: flex-end; gap: 2px; align-items: center; padding: 3px 0 0; background: none !important; }
         .nav-link {
             color: white;
             text-decoration: none;
             font-family: 'Inter', sans-serif;
-            font-size: 13.5px; font-weight: 400;
+            font-size: 15px; font-weight: 400;
             padding: 4px 10px; border-radius: 4px;
             white-space: nowrap;
             text-shadow: 0 1px 3px rgba(0,0,0,0.45);
             transition: background 0.2s;
         }
-        .nav-link:hover { background: rgba(255,255,255,0.15); }
+        .nav-link:hover { opacity: 0.7; }
         
         .top-content { position: absolute; z-index: 100; top: 14.4%; right: 6%; text-align: right; width: 31.2%; }
         .top-content h1 { font-size: clamp(22px, 3.36vw, 63px); font-weight: 600; line-height: 1.45; color: #fff; letter-spacing: -0.315px; text-transform: uppercase; text-shadow: -3px 1px 0 #5368a9; }
@@ -138,7 +137,7 @@
             padding: 40px 2% 60px 2%;
             margin-top: 40px;
             position: relative; z-index: 10;
-            background: transparent;
+            background: transparent !important;
             color: #333; width: 100%;
             font-family: 'Inter', sans-serif;
         }
@@ -175,8 +174,8 @@
         <div class="header-wrapper">
         <div class="logo-left"><a href="../../index.html"><img src="../../assets/images/Logo_SHLL_long.png" alt="SHL Logo"></a></div>
         <div class="header-line-wrap"></div>
-        <div class="logo-right"><a href="../../index.html"><img src="../../assets/images/index/logo1.png" alt="UEH" style="height:30px;width:auto;display:block;filter: drop-shadow(0px 1px 5px rgba(255,255,255,0.35));"></a></div>
-        <nav class="header-nav"><a href="../../index.html" style="text-decoration: none;"><div data-layer="Home" class="Home" style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 25px; font-family: Inter; font-weight: 400; line-height: 36.25px; word-wrap: break-word">Home</div></a><a href="index.html" style="text-decoration: none;"><div data-layer="Back" class="Back" style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 25px; font-family: Inter; font-weight: 400; line-height: 36.25px; word-wrap: break-word">Back</div></a><a href="../../pages/about.html" style="text-decoration: none;"><div data-layer="About SHLL" class="AboutShll" style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 25px; font-family: Inter; font-weight: 400; line-height: 36.25px; word-wrap: break-word">About SHLL</div></a></nav>
+        <div class="logo-right"><a href="../../index.html"><img src="../../assets/images/index/logo/logo1.png" alt="UEH" style="height:30px;width:auto;display:block;filter: drop-shadow(0px 1px 5px rgba(255,255,255,0.35));"></a></div>
+        <nav class="header-nav"><a href="../../index.html" class="nav-link">Home</a><a href="index.html" class="nav-link">Back</a><a href="../../pages/about.html" class="nav-link">About SHLL</a></nav>
     </div>
 
     <section class="hero-container">

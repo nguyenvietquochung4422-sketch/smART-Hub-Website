@@ -17,18 +17,16 @@ body {
 
 /* Lớp Background Noise Parallax */
 #parallax-master-bg {
-    position: fixed; 
-    top: -5vh; 
-    left: -5vw; 
-    width: 110vw; 
-    height: 130vh;
-    background-image: url('../images/index/gradient_noise_website.png'); 
-    background-size: cover; 
-    background-position: center; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: var(--page-bg); 
+    background-size: cover;
+    background-position: center center;
     background-repeat: no-repeat;
-    z-index: -2; 
-    will-change: transform; 
-    transition: transform 0.15s ease-out;
+    z-index: -1;
 }
 
 /* Lớp phủ làm tối background thêm một chút */
@@ -55,7 +53,7 @@ body {
 .main-container { display: grid; grid-template-columns: 1fr 1fr; gap: 200px; padding: 20px 2% 40px 2%; align-items: start; }
 .left-grid-system { display: grid; grid-template-columns: 1fr 1.2fr 0.4fr; column-gap: 35px; row-gap: 50px; }
 .section-title { font-size: 17px; font-weight: 700; margin-bottom: 15px; display: inline-block; width: 100%; }
-.content-p { font-size: 11px; font-weight: 300; line-height: 1.5; margin-bottom: 12px; text-align: left; opacity: 0.95; }
+.content-p { font-size: 11px; font-weight: 300; line-height: 1.5; margin-bottom: 12px; text-align: justify; opacity: 0.95; }
 .bullet-list { list-style: none; margin-bottom: 15px; }
 .bullet-list li { font-size: 11px; font-weight: 300; margin-bottom: 5px; padding-left: 15px; position: relative; }
 .bullet-list li::before { content: "•"; position: absolute; left: 0; color: rgba(255,255,255,0.7); }
