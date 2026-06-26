@@ -1,0 +1,92 @@
+/* ═══════════════════════════════════════════
+   smART Hub — Entrance & Scroll Animations
+   ═══════════════════════════════════════════ */
+
+/* ── Keyframes ── */
+@keyframes shll-header-in {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes shll-fade-up {
+    from { opacity: 0; transform: translateY(32px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes shll-fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+@keyframes shll-logo-in {
+    from { opacity: 0; transform: scale(0.9); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+/* ── Header: slides in from top (all pages) ── */
+.header-wrapper {
+    animation: shll-header-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ── Logo mark in header ── */
+.logo-left {
+    animation: shll-logo-in 0.5s 0.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.logo-right {
+    animation: shll-fade-in 0.5s 0.2s ease both;
+}
+.header-nav {
+    animation: shll-fade-in 0.5s 0.25s ease both;
+}
+
+/* ── Figma canvas container: fades up (canvas pages) ── */
+#scaleContainer {
+    animation: shll-fade-up 0.75s 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ── Footer fades up with a slight delay ── */
+.footer-container,
+.mit-footer {
+    animation: shll-fade-up 0.6s 0.5s ease both;
+}
+
+/* ─────────────────────────────────────────────────
+   Scroll-reveal utility (IntersectionObserver adds
+   .is-visible via animations.js)
+   ───────────────────────────────────────────────── */
+.shll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.shll-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.shll-reveal-left {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.shll-reveal-left.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.shll-reveal-right {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.shll-reveal-right.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Stagger delay helpers (add data-delay="N" to element) */
+[data-delay="1"] { transition-delay: 0.1s; }
+[data-delay="2"] { transition-delay: 0.2s; }
+[data-delay="3"] { transition-delay: 0.3s; }
+[data-delay="4"] { transition-delay: 0.4s; }
+[data-delay="5"] { transition-delay: 0.5s; }

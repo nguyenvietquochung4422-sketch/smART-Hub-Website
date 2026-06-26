@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Towards Net Zero - smART Hub Living Labs</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/animations.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { overflow-x: hidden; font-family: 'Inter', sans-serif; background: black; }
@@ -704,6 +705,47 @@
             document.addEventListener('DOMContentLoaded', initHotspots);
         } else {
             initHotspots();
+        }
+    }());
+    </script>
+    <script src="../../assets/js/animations.js"></script>
+    <script>
+    /* Canvas section scroll reveals */
+    (function () {
+        if (!window.IntersectionObserver) return;
+        var obs = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+                if (!e.isIntersecting) return;
+                var el = e.target;
+                var d = parseInt(el.dataset.revealDelay, 10) || 0;
+                setTimeout(function () {
+                    el.style.transition = 'opacity 0.65s cubic-bezier(0.22,1,0.36,1), transform 0.65s cubic-bezier(0.22,1,0.36,1)';
+                    el.style.opacity = '1';
+                    el.style.transform = 'none';
+                }, d);
+                obs.unobserve(el);
+            });
+        }, { threshold: 0.12 });
+
+        function setupReveal(sel, delay) {
+            var el = document.querySelector(sel);
+            if (!el) return;
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(28px)';
+            el.dataset.revealDelay = String(delay);
+            obs.observe(el);
+        }
+
+        function init() {
+            setupReveal('.DigitalTwins', 0);
+            setupReveal('.SensorInformation', 80);
+            setupReveal('.Information', 0);
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
         }
     }());
     </script>
