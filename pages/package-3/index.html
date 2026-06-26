@@ -515,49 +515,70 @@
     </script>
 
     <style>
-        /* === DIGITAL TWIN HOTSPOT GLOW === */
-        .dt-hotspot-glow .Ellipse2 svg {
-            filter:
-                drop-shadow(0 0 3px rgba(180, 230, 255, 1))
-                drop-shadow(0 0 8px rgba(100, 190, 255, 0.8))
-                drop-shadow(0 0 18px rgba(60, 160, 255, 0.5));
-            animation: dtGlow 2.2s ease-in-out infinite;
+        /* ── Sensor hotspot: visible glowing dot (injected by JS) ── */
+        .dt-dot {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(100, 210, 255, 0.92);
+            box-shadow:
+                0 0 0 3px rgba(100, 190, 255, 0.3),
+                0 0 10px rgba(100, 190, 255, 0.8),
+                0 0 22px rgba(60, 160, 255, 0.5);
+            animation: dtPulse 2.2s ease-in-out infinite;
+            pointer-events: none;
+            cursor: pointer;
         }
-        @keyframes dtGlow {
-            0%,100% { filter: drop-shadow(0 0 3px rgba(180,230,255,1)) drop-shadow(0 0 8px rgba(100,190,255,0.8)) drop-shadow(0 0 18px rgba(60,160,255,0.5)); }
-            50%      { filter: drop-shadow(0 0 5px rgba(220,240,255,1)) drop-shadow(0 0 14px rgba(140,210,255,1)) drop-shadow(0 0 28px rgba(80,180,255,0.7)); }
+        @keyframes dtPulse {
+            0%,100% {
+                box-shadow: 0 0 0 3px rgba(100,190,255,0.3), 0 0 10px rgba(100,190,255,0.8), 0 0 22px rgba(60,160,255,0.5);
+                transform: translate(-50%,-50%) scale(1);
+            }
+            50% {
+                box-shadow: 0 0 0 6px rgba(100,190,255,0.1), 0 0 18px rgba(140,210,255,1), 0 0 36px rgba(80,180,255,0.7);
+                transform: translate(-50%,-50%) scale(1.18);
+            }
         }
 
-        /* Hotspot pointer & overflow fix */
-        .DigitalTwinEffect, .Frame195, .Frame196, .Frame197,
-        .Frame198, .Frame199, .Frame200, .Frame201 {
+        /* ── Hotspot wrapper: must be hoverable and overflow-visible ── */
+        .dt-hotspot {
             cursor: pointer !important;
             overflow: visible !important;
+            position: absolute !important;
             z-index: 20 !important;
         }
+        .dt-hotspot:hover { z-index: 300 !important; }
 
-        /* === POPUP CARD === */
+        /* ── Popup card ── */
         .dt-popup {
             position: absolute;
             left: 22px;
             bottom: 10px;
-            width: 200px;
+            width: 210px;
             background: rgba(8, 16, 28, 0.95);
             border: 1px solid rgba(100, 190, 255, 0.4);
             border-radius: 10px;
             padding: 12px 14px 10px;
-            display: none;
+            opacity: 0;
             pointer-events: none;
+            transform: translateY(6px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
             z-index: 200;
             box-shadow: 0 0 20px rgba(60, 160, 255, 0.25), 0 4px 20px rgba(0,0,0,0.7);
             backdrop-filter: blur(6px);
             font-family: 'Inter', sans-serif;
         }
-        .dt-popup.dt-popup-open { display: block; }
-        .dt-popup-flip {
-            left: auto !important;
-            right: 22px;
+        .dt-popup.dt-popup-open {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
         }
+        .dt-popup-flip { left: auto !important; right: 22px; }
+
         .dt-popup-title {
             font-size: 13px;
             font-weight: 700;
@@ -574,17 +595,8 @@
             align-items: center;
             margin-top: 5px;
         }
-        .dt-sensor-label {
-            font-size: 10px;
-            color: rgba(180,210,255,0.7);
-            letter-spacing: 0.3px;
-        }
-        .dt-sensor-value {
-            font-size: 11px;
-            font-weight: 600;
-            color: rgba(160,220,255,1);
-            letter-spacing: 0.2px;
-        }
+        .dt-sensor-label { font-size: 10px; color: rgba(180,210,255,0.7); letter-spacing: 0.3px; }
+        .dt-sensor-value { font-size: 11px; font-weight: 600; color: rgba(160,220,255,1); letter-spacing: 0.2px; }
         .dt-live-dot {
             display: inline-block;
             width: 5px; height: 5px;
@@ -598,33 +610,33 @@
     </style>
 
     <script>
-    (function() {
-        // Sensor data keyed by "left_top" canvas position
+    (function () {
+        /* ── Sensor data keyed by canvas "left_top" ── */
         var SENSOR_DATA = {
-            '1175_1722': { temp:'28.4 °C', humidity:'72.1 %', co2:'410 ppm', tvoc:'15 ppb', pm25:'8.2 μg/m³', noise:'42 dB' },
-            '963_1557' : { temp:'27.8 °C', humidity:'68.5 %', co2:'385 ppm', tvoc:'8 ppb',  pm25:'6.1 μg/m³', noise:'65 dB' },
-            '1372_1737': { temp:'29.1 °C', humidity:'71.3 %', co2:'420 ppm', tvoc:'12 ppb', pm25:'9.4 μg/m³', noise:'38 dB' },
-            '1414_1416': { temp:'26.9 °C', humidity:'65.2 %', co2:'510 ppm', tvoc:'18 ppb', pm25:'12.1 μg/m³',noise:'58 dB' },
-            '1311_1322': { temp:'32.4 °C', humidity:'78.6 %', co2:'480 ppm', tvoc:'22 ppb', pm25:'15.3 μg/m³',noise:'52 dB' },
-            '1330_1573': { temp:'25.6 °C', humidity:'81.2 %', co2:'360 ppm', tvoc:'3 ppb',  pm25:'4.7 μg/m³', noise:'45 dB' },
-            '1268_1445': { temp:'29.2 °C', humidity:'70.6 %', co2:'400 ppm', tvoc:'0 ppb',  pm25:'7.5 μg/m³', noise:'35 dB' },
-            '1682_1523': { temp:'28.8 °C', humidity:'69.4 %', co2:'415 ppm', tvoc:'6 ppb',  pm25:'8.8 μg/m³', noise:'40 dB' }
+            '1175_1722': { label:'Sod Culture', temp:'28.4 °C', humidity:'72.1 %', co2:'410 ppm', tvoc:'15 ppb',  pm25:'8.2 μg/m³',  noise:'42 dB' },
+            '963_1557' : { label:'Lobby',       temp:'27.8 °C', humidity:'68.5 %', co2:'385 ppm', tvoc:'8 ppb',   pm25:'6.1 μg/m³',  noise:'65 dB' },
+            '1372_1737': { label:'AI Trash Bin',temp:'29.1 °C', humidity:'71.3 %', co2:'420 ppm', tvoc:'12 ppb',  pm25:'9.4 μg/m³',  noise:'38 dB' },
+            '1414_1416': { label:'Cafe',         temp:'26.9 °C', humidity:'65.2 %', co2:'510 ppm', tvoc:'18 ppb',  pm25:'12.1 μg/m³', noise:'58 dB' },
+            '1311_1322': { label:'Kitchen',      temp:'32.4 °C', humidity:'78.6 %', co2:'480 ppm', tvoc:'22 ppb',  pm25:'15.3 μg/m³', noise:'52 dB' },
+            '1330_1573': { label:'Bancony',      temp:'25.6 °C', humidity:'81.2 %', co2:'360 ppm', tvoc:'3 ppb',   pm25:'4.7 μg/m³',  noise:'45 dB' },
+            '1268_1445': { label:'StudioLab',    temp:'29.2 °C', humidity:'70.6 %', co2:'400 ppm', tvoc:'0 ppb',   pm25:'7.5 μg/m³',  noise:'35 dB' },
+            '1682_1523': { label:'Testbed',      temp:'28.8 °C', humidity:'69.4 %', co2:'415 ppm', tvoc:'6 ppb',   pm25:'8.8 μg/m³',  noise:'40 dB' }
         };
 
-        function buildPopup(label, data, flipLeft) {
+        /* ── Build tooltip card ── */
+        function buildPopup(sensorData, flipLeft) {
             var popup = document.createElement('div');
             popup.className = 'dt-popup' + (flipLeft ? ' dt-popup-flip' : '');
-
             var rows = [
-                ['Temperature', data.temp],
-                ['Humidity',    data.humidity],
-                ['CO₂',    data.co2],
-                ['TVOC',        data.tvoc],
-                ['PM2.5',       data.pm25],
-                ['Noise',       data.noise]
+                ['Temperature', sensorData.temp],
+                ['Humidity',    sensorData.humidity],
+                ['CO₂',         sensorData.co2],
+                ['TVOC',        sensorData.tvoc],
+                ['PM2.5',       sensorData.pm25],
+                ['Noise',       sensorData.noise]
             ];
-            var html = '<div class="dt-popup-title"><span class="dt-live-dot"></span>' + label + '</div>';
-            rows.forEach(function(r) {
+            var html = '<div class="dt-popup-title"><span class="dt-live-dot"></span>' + sensorData.label + '</div>';
+            rows.forEach(function (r) {
                 html += '<div class="dt-popup-row">'
                       + '<span class="dt-sensor-label">' + r[0] + '</span>'
                       + '<span class="dt-sensor-value">' + r[1] + '</span>'
@@ -634,89 +646,100 @@
             return popup;
         }
 
+        /* ── Inject hotspot circle + tooltip for a single wrapper element ── */
+        function initWrapper(wrapper, sensorData, flipLeft) {
+            /* Hide all Figma-exported sub-elements (pills, label text) */
+            Array.from(wrapper.children).forEach(function (child) {
+                child.style.display = 'none';
+            });
+
+            /* Add visible glowing dot */
+            var dot = document.createElement('div');
+            dot.className = 'dt-dot';
+            wrapper.appendChild(dot);
+
+            /* Add tooltip card */
+            var popup = buildPopup(sensorData, flipLeft);
+            wrapper.appendChild(popup);
+
+            /* Mark as interactive hotspot */
+            wrapper.classList.add('dt-hotspot');
+
+            /* Hover with grace-period delay so mouse can travel to the card */
+            var hideTimer = null;
+
+            function showPopup() {
+                clearTimeout(hideTimer);
+                popup.classList.add('dt-popup-open');
+            }
+            function hidePopup() {
+                hideTimer = setTimeout(function () {
+                    popup.classList.remove('dt-popup-open');
+                }, 160);
+            }
+
+            wrapper.addEventListener('mouseenter', showPopup);
+            wrapper.addEventListener('mouseleave', hidePopup);
+            /* Keep card open when mouse moves from dot onto card */
+            popup.addEventListener('mouseenter', showPopup);
+            popup.addEventListener('mouseleave', hidePopup);
+        }
+
+        /* ── Main init ── */
         function initHotspots() {
             var canvas = document.querySelector('.BATowardsNetZero');
-            if (!canvas) return;
+            if (!canvas) { console.warn('[DT] .BATowardsNetZero not found'); return; }
 
-            // All 8 hotspot wrappers are direct 19x18px children of the canvas
-            var wrappers = Array.from(canvas.children).filter(function(el) {
-                return el.style.width === '19px' && el.style.height === '18px';
-            });
+            var found = 0;
 
-            var activePopup = null;
+            /* Strategy 1: match by data-layer attribute for the named hotspot components */
+            var LAYER_NAMES = [
+                'Digital Twin Effect',
+                'Frame 195', 'Frame 196', 'Frame 197',
+                'Frame 198', 'Frame 199', 'Frame 200', 'Frame 201'
+            ];
+            LAYER_NAMES.forEach(function (name) {
+                /* querySelectorAll to find any element in the canvas with this data-layer */
+                var els = canvas.querySelectorAll('[data-layer="' + name + '"]');
+                els.forEach(function (el) {
+                    /* Only pick up the wrapper (≤25px) not inner pill children (~46px) */
+                    var w = parseFloat(el.style.width);
+                    var h = parseFloat(el.style.height);
+                    if (w > 25 || h > 25) return;
 
-            wrappers.forEach(function(wrapper) {
-                var left = parseInt(wrapper.style.left, 10);
-                var top  = parseInt(wrapper.style.top,  10);
-                var key  = left + '_' + top;
+                    var left = parseInt(el.style.left, 10);
+                    var top  = parseInt(el.style.top,  10);
+                    var key  = left + '_' + top;
+                    var data = SENSOR_DATA[key];
+                    if (!data) return;
 
-                // Extract label from embedded .Studiolab text element
-                var labelEl = wrapper.querySelector('.Studiolab');
-                var label = labelEl ? labelEl.textContent.trim() : 'Sensor';
-
-                var data = SENSOR_DATA[key] || { temp:'—', humidity:'—', co2:'—', tvoc:'—', pm25:'—', noise:'—' };
-
-                // --- Surgically hide broken sub-elements ---
-                Array.from(wrapper.children).forEach(function(child) {
-                    // Frame18 = the 1081px-padded label bg pill
-                    if (child.classList.contains('Frame18')) {
-                        child.style.display = 'none';
-                        return;
-                    }
-                    // Studiolab label div (we replace it with popup)
-                    if (child.classList.contains('Studiolab')) {
-                        child.style.display = 'none';
-                        return;
-                    }
-                    // Data tooltip pills: left ~39-41px, border-radius 15px
-                    var cl = parseFloat(child.style.left);
-                    var br = child.style.borderRadius;
-                    if (!isNaN(cl) && cl >= 35 && cl <= 45 && br && br.indexOf('15') !== -1) {
-                        child.style.display = 'none';
-                    }
-                });
-
-                // --- Add glow class to trigger CSS animation ---
-                wrapper.classList.add('dt-hotspot-glow');
-                wrapper.style.overflow = 'visible';
-                wrapper.style.zIndex   = '20';
-                wrapper.style.cursor   = 'pointer';
-
-                // Flip popup to the left for right-side hotspots
-                var flipLeft = left > 1400;
-
-                // Build and attach popup
-                var popup = buildPopup(label, data, flipLeft);
-                wrapper.appendChild(popup);
-
-                // --- Click toggle ---
-                wrapper.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    if (activePopup && activePopup !== popup) {
-                        activePopup.classList.remove('dt-popup-open');
-                        activePopup.parentElement.style.zIndex = '20';
-                    }
-                    var isOpen = popup.classList.contains('dt-popup-open');
-                    if (isOpen) {
-                        popup.classList.remove('dt-popup-open');
-                        wrapper.style.zIndex = '20';
-                        activePopup = null;
-                    } else {
-                        popup.classList.add('dt-popup-open');
-                        wrapper.style.zIndex = '300';
-                        activePopup = popup;
-                    }
+                    var flipLeft = left > 1400;
+                    initWrapper(el, data, flipLeft);
+                    found++;
                 });
             });
 
-            // Click anywhere else → close active popup
-            document.addEventListener('click', function() {
-                if (activePopup) {
-                    activePopup.classList.remove('dt-popup-open');
-                    if (activePopup.parentElement) activePopup.parentElement.style.zIndex = '20';
-                    activePopup = null;
-                }
-            });
+            /* Strategy 2 fallback — scan ALL direct children for 19×18px wrappers */
+            if (found < 8) {
+                Array.from(canvas.children).forEach(function (el) {
+                    if (el.classList.contains('dt-hotspot')) return; // already handled
+                    var w = parseFloat(el.style.width);
+                    var h = parseFloat(el.style.height);
+                    if (w < 14 || w > 25 || h < 14 || h > 25) return;
+
+                    var left = parseInt(el.style.left, 10);
+                    var top  = parseInt(el.style.top,  10);
+                    var key  = left + '_' + top;
+                    var data = SENSOR_DATA[key];
+                    if (!data) return;
+
+                    var flipLeft = left > 1400;
+                    initWrapper(el, data, flipLeft);
+                    found++;
+                });
+            }
+
+            console.log('[DT] Sensor hotspots initialised:', found);
         }
 
         if (document.readyState === 'loading') {
@@ -724,7 +747,7 @@
         } else {
             initHotspots();
         }
-    })();
+    }());
     </script>
 </body>
 </html>
