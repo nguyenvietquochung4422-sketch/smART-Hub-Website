@@ -515,98 +515,87 @@
     </script>
 
     <style>
-        /* ── Sensor hotspot: visible glowing dot (injected by JS) ── */
-        .dt-dot {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background: rgba(100, 210, 255, 0.92);
-            box-shadow:
-                0 0 0 3px rgba(100, 190, 255, 0.3),
-                0 0 10px rgba(100, 190, 255, 0.8),
-                0 0 22px rgba(60, 160, 255, 0.5);
-            animation: dtPulse 2.2s ease-in-out infinite;
-            pointer-events: none;
-            cursor: pointer;
-        }
-        @keyframes dtPulse {
-            0%,100% {
-                box-shadow: 0 0 0 3px rgba(100,190,255,0.3), 0 0 10px rgba(100,190,255,0.8), 0 0 22px rgba(60,160,255,0.5);
-                transform: translate(-50%,-50%) scale(1);
-            }
-            50% {
-                box-shadow: 0 0 0 6px rgba(100,190,255,0.1), 0 0 18px rgba(140,210,255,1), 0 0 36px rgba(80,180,255,0.7);
-                transform: translate(-50%,-50%) scale(1.18);
-            }
-        }
-
-        /* ── Hotspot wrapper: must be hoverable and overflow-visible ── */
-        .dt-hotspot {
+        /* ── Sensor hotspot wrapper ── */
+        .sensor-hotspot {
             cursor: pointer !important;
             overflow: visible !important;
             position: absolute !important;
             z-index: 20 !important;
         }
-        .dt-hotspot:hover { z-index: 300 !important; }
+        .sensor-hotspot:hover { z-index: 300 !important; }
 
-        /* ── Popup card ── */
-        .dt-popup {
+        /* ── Hub: solid white dot → hollow wireframe ring on hover ── */
+        .white-dot-hub {
             position: absolute;
-            left: 22px;
-            bottom: 10px;
-            width: 210px;
-            background: rgba(8, 16, 28, 0.95);
-            border: 1px solid rgba(100, 190, 255, 0.4);
-            border-radius: 10px;
-            padding: 12px 14px 10px;
+            top: 0;
+            left: 0;
+            width: 10px;
+            height: 10px;
+            background-color: #ffffff;
+            border: 1.5px solid #ffffff;
+            border-radius: 50%;
+            transition: width 0.35s ease, height 0.35s ease,
+                        background-color 0.35s ease, border-color 0.35s ease,
+                        transform 0.35s ease;
+            pointer-events: none;
+        }
+        .sensor-hotspot:hover .white-dot-hub {
+            width: 80px;
+            height: 80px;
+            background-color: transparent;
+            border-color: rgba(255, 255, 255, 0.55);
+            transform: translate(-35px, -35px); /* keeps ring center on original dot */
+        }
+
+        /* ── Location label (always visible, fades out on hover) ── */
+        .hotspot-label {
+            position: absolute;
+            top: -1px;
+            left: 14px;
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            color: white;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+            white-space: nowrap;
+            pointer-events: none;
+            line-height: 12px;
+            transition: opacity 0.2s ease;
+        }
+        .sensor-hotspot:hover .hotspot-label { opacity: 0; }
+
+        /* ── Metric pill satellites (hidden by default, orbit ring on hover) ── */
+        .metric-pill-satellite {
+            position: absolute;
+            top: 0;
+            left: 0;
             opacity: 0;
             pointer-events: none;
-            transform: translateY(6px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            z-index: 200;
-            box-shadow: 0 0 20px rgba(60, 160, 255, 0.25), 0 4px 20px rgba(0,0,0,0.7);
-            backdrop-filter: blur(6px);
             font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 400;
+            color: white;
+            white-space: nowrap;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.9);
+            background: rgba(10, 10, 14, 0.55);
+            border-radius: 12px;
+            padding: 3px 10px;
+            transform: translate(0px, 0px);
+            transition: opacity 0.3s ease 0.15s, transform 0.35s ease 0.1s;
         }
-        .dt-popup.dt-popup-open {
-            opacity: 1;
-            pointer-events: auto;
-            transform: translateY(0);
-        }
-        .dt-popup-flip { left: auto !important; right: 22px; }
+        .sensor-hotspot:hover .metric-pill-satellite { opacity: 1; }
 
-        .dt-popup-title {
-            font-size: 13px;
-            font-weight: 700;
-            color: #fff;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-            padding-bottom: 7px;
-            border-bottom: 1px solid rgba(100,190,255,0.25);
-        }
-        .dt-popup-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 5px;
-        }
-        .dt-sensor-label { font-size: 10px; color: rgba(180,210,255,0.7); letter-spacing: 0.3px; }
-        .dt-sensor-value { font-size: 11px; font-weight: 600; color: rgba(160,220,255,1); letter-spacing: 0.2px; }
-        .dt-live-dot {
-            display: inline-block;
-            width: 5px; height: 5px;
-            background: #4fc;
-            border-radius: 50%;
-            margin-right: 5px;
-            animation: dtBlink 1.4s ease-in-out infinite;
-            vertical-align: middle;
-        }
-        @keyframes dtBlink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+        /* Normal orbit positions: 2 right, 2 left of ring */
+        .sensor-hotspot:hover .metric-1 { transform: translate(50px, -22px); }
+        .sensor-hotspot:hover .metric-2 { transform: translate(50px, 18px);  }
+        .sensor-hotspot:hover .metric-3 { transform: translate(-90px, -22px); }
+        .sensor-hotspot:hover .metric-4 { transform: translate(-90px, 18px);  }
+
+        /* Flipped: for hotspots near the right canvas edge */
+        .sensor-hotspot.flip-left:hover .metric-1 { transform: translate(-90px, -22px); }
+        .sensor-hotspot.flip-left:hover .metric-2 { transform: translate(-90px, 18px);  }
+        .sensor-hotspot.flip-left:hover .metric-3 { transform: translate(50px, -22px);  }
+        .sensor-hotspot.flip-left:hover .metric-4 { transform: translate(50px, 18px);   }
     </style>
 
     <script>
@@ -623,72 +612,41 @@
             '1682_1523': { label:'Testbed',      temp:'28.8 °C', humidity:'69.4 %', co2:'415 ppm', tvoc:'6 ppb',   pm25:'8.8 μg/m³',  noise:'40 dB' }
         };
 
-        /* ── Build tooltip card ── */
-        function buildPopup(sensorData, flipLeft) {
-            var popup = document.createElement('div');
-            popup.className = 'dt-popup' + (flipLeft ? ' dt-popup-flip' : '');
-            var rows = [
-                ['Temperature', sensorData.temp],
-                ['Humidity',    sensorData.humidity],
-                ['CO₂',         sensorData.co2],
-                ['TVOC',        sensorData.tvoc],
-                ['PM2.5',       sensorData.pm25],
-                ['Noise',       sensorData.noise]
-            ];
-            var html = '<div class="dt-popup-title"><span class="dt-live-dot"></span>' + sensorData.label + '</div>';
-            rows.forEach(function (r) {
-                html += '<div class="dt-popup-row">'
-                      + '<span class="dt-sensor-label">' + r[0] + '</span>'
-                      + '<span class="dt-sensor-value">' + r[1] + '</span>'
-                      + '</div>';
-            });
-            popup.innerHTML = html;
-            return popup;
-        }
-
-        /* ── Inject hotspot circle + tooltip for a single wrapper element ── */
+        /* ── Inject expanding hub + orbiting metric satellites ── */
         function initWrapper(wrapper, sensorData, flipLeft) {
-            /* Hide all Figma-exported sub-elements (pills, label text) */
+            /* Hide all Figma-exported sub-elements (concentric circles, label pills) */
             Array.from(wrapper.children).forEach(function (child) {
                 child.style.display = 'none';
             });
 
-            /* Add visible glowing dot */
-            var dot = document.createElement('div');
-            dot.className = 'dt-dot';
-            wrapper.appendChild(dot);
+            /* Hub circle: solid dot → hollow ring on hover */
+            var hub = document.createElement('span');
+            hub.className = 'white-dot-hub';
+            wrapper.appendChild(hub);
 
-            /* Add tooltip card */
-            var popup = buildPopup(sensorData, flipLeft);
-            wrapper.appendChild(popup);
+            /* Location label (visible at rest, fades on hover) */
+            var labelEl = document.createElement('span');
+            labelEl.className = 'hotspot-label';
+            labelEl.textContent = sensorData.label;
+            wrapper.appendChild(labelEl);
 
-            /* Mark as interactive hotspot */
-            wrapper.classList.add('dt-hotspot');
+            /* 4 orbiting metric pill satellites */
+            [sensorData.co2, sensorData.temp, sensorData.humidity, sensorData.tvoc].forEach(function (val, i) {
+                var pill = document.createElement('div');
+                pill.className = 'metric-pill-satellite metric-' + (i + 1);
+                pill.textContent = val;
+                wrapper.appendChild(pill);
+            });
 
-            /* Hover with grace-period delay so mouse can travel to the card */
-            var hideTimer = null;
-
-            function showPopup() {
-                clearTimeout(hideTimer);
-                popup.classList.add('dt-popup-open');
-            }
-            function hidePopup() {
-                hideTimer = setTimeout(function () {
-                    popup.classList.remove('dt-popup-open');
-                }, 160);
-            }
-
-            wrapper.addEventListener('mouseenter', showPopup);
-            wrapper.addEventListener('mouseleave', hidePopup);
-            /* Keep card open when mouse moves from dot onto card */
-            popup.addEventListener('mouseenter', showPopup);
-            popup.addEventListener('mouseleave', hidePopup);
+            /* Mark as interactive hotspot; flip orbit for right-edge hotspots */
+            wrapper.classList.add('sensor-hotspot');
+            if (flipLeft) wrapper.classList.add('flip-left');
         }
 
         /* ── Main init ── */
         function initHotspots() {
-            var canvas = document.querySelector('.BATowardsNetZero');
-            if (!canvas) { console.warn('[DT] .BATowardsNetZero not found'); return; }
+            var canvas = document.querySelector('.TowardsNetZero') || document.querySelector('.BATowardsNetZero');
+            if (!canvas) { console.warn('[DT] canvas not found'); return; }
 
             var found = 0;
 
@@ -722,7 +680,7 @@
             /* Strategy 2 fallback — scan ALL direct children for 19×18px wrappers */
             if (found < 8) {
                 Array.from(canvas.children).forEach(function (el) {
-                    if (el.classList.contains('dt-hotspot')) return; // already handled
+                    if (el.classList.contains('sensor-hotspot')) return; // already handled
                     var w = parseFloat(el.style.width);
                     var h = parseFloat(el.style.height);
                     if (w < 14 || w > 25 || h < 14 || h > 25) return;
