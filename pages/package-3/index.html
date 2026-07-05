@@ -90,6 +90,25 @@
         .footer-right-col { flex: 1; display: flex; flex-direction: column; gap: 4px; text-align: right; }
         .brand-text { font-size: 11px; font-weight: 700; color: white; letter-spacing: 0.4px; }
         .address-text { font-size: 11px; color: rgba(255,255,255,0.75); font-weight: 300; line-height: 1.6; }
+
+        /* ===== MOBILE ===== */
+        @media (max-width: 768px) {
+            .header-wrapper { position: relative; }
+            #scaleContainer { display: none !important; }
+            /* Package 3 mobile theme: light text on the black page bg */
+            .m-p3 {
+                --m-fg: #ffffff;
+                --m-muted: rgba(255,255,255,0.78);
+                --m-accent: #7fd4c1;
+                --m-line: rgba(255,255,255,0.20);
+                --m-card: rgba(255,255,255,0.06);
+                --m-cardbd: rgba(255,255,255,0.14);
+            }
+            .m-p3 .m-figure { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 8px; }
+            .m-p3 .m-stats { gap: 14px 12px; }
+            .m-p3 .m-stat { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 14px; }
+            .m-p3 .m-stat-num { color: #7fd4c1; font-size: 24px; }
+        }
     </style>
     <link rel="stylesheet" href="../../assets/css/responsive.css">
 </head>
@@ -101,6 +120,43 @@
         <div class="header-line-wrap"></div>
         <div class="logo-right"><a href="../../index.html"><img src="../../assets/images/index/logo/logo1.webp" alt="UEH" style="height:30px;width:auto;display:block;filter: drop-shadow(0px 1px 5px rgba(255,255,255,0.35));"></a></div>
         <nav class="header-nav"><a href="../../index.html" class="nav-link">Home</a><a href="#" class="nav-link">News</a><a href="../../pages/about.html" class="nav-link">About SHLL</a></nav>
+    </div>
+
+    <!-- ============ MOBILE LAYOUT (phones only; canvas hidden ≤768px) ============ -->
+    <div class="m-only m-p3">
+        <section class="m-section">
+            <p class="m-eyebrow">Package 3</p>
+            <h1 class="m-title">Towards<br>Net Zero</h1>
+            <p class="m-body">Developing a Digital Twin of Campus V. Through a real-time data dashboard powered by a sensor network and a sustainable audit system, the project enables intelligent energy and emissions management while providing feedback loops to inform and optimize design solutions.</p>
+        </section>
+
+        <section class="m-section">
+            <figure class="m-figure">
+                <img src="../../assets/images/package3/white_model.webp" alt="V-Campus digital twin wireframe model" decoding="async">
+            </figure>
+        </section>
+
+        <section class="m-section">
+            <p class="m-eyebrow">Live Sensor Readings</p>
+            <div class="m-stats">
+                <div class="m-stat"><div class="m-stat-num">29.2°C</div><div class="m-stat-label">Temperature</div></div>
+                <div class="m-stat"><div class="m-stat-num">70.6%</div><div class="m-stat-label">Humidity</div></div>
+                <div class="m-stat"><div class="m-stat-num">400<span style="font-size:14px"> ppm</span></div><div class="m-stat-label">CO₂ / PM2.5</div></div>
+                <div class="m-stat"><div class="m-stat-num">0<span style="font-size:14px"> ppb</span></div><div class="m-stat-label">TVOC / Noise</div></div>
+            </div>
+        </section>
+
+        <section class="m-section">
+            <p class="m-eyebrow">Digital Twins</p>
+            <p class="m-body">This package corresponds to the <strong style="color:var(--m-fg)">M – Measurement for Improvement</strong> component of the SMART strategy, ensuring that spatial design adjustments and operational decisions are informed by empirical evidence.</p>
+        </section>
+
+        <section class="m-section">
+            <a class="m-card m-card--cta" href="../../index.html">
+                <span class="m-card-text"><span class="m-card-kicker">Back to</span><span class="m-card-title">4 Package Workspace</span></span>
+                <span class="m-card-arrow">&rsaquo;</span>
+            </a>
+        </section>
     </div>
 
     <!-- PROPORTIONAL SCALE CONTAINER -->

@@ -143,10 +143,23 @@
             }
             .design-column:hover { flex: 1; } /* hover-grow is a desktop affordance */
             .column-content { bottom: 24px; left: 20px; right: 20px; }
-            .hero-container { top: 42%; padding: 0 16px; box-sizing: border-box; }
-            .hero-container h1 { font-size: clamp(30px, 8vw, 63px) !important; }
+            .hero-container { top: 42%; padding: 0 16px; box-sizing: border-box; width: 100% !important; }
+            .top-content { width: auto !important; max-width: 100% !important; }
+            .hero-container h1, .top-content h1 {
+                width: auto !important; max-width: 86vw !important;
+                font-size: 30px !important; white-space: normal !important;
+                margin: 0 auto; word-break: break-word; line-height: 1.1;
+            }
         }
+    </style>
     <link rel="stylesheet" href="../../assets/css/responsive.css">
+    <style>
+    @media (max-width: 768px) {
+        html, body { overflow-x: hidden !important; max-width: 100% !important; }
+        .header-wrapper { position: relative !important; background: #2f4149 !important; padding: 12px 5% !important; z-index: 2000; }
+        .header-line-wrap { background: rgba(255,255,255,0.4) !important; }
+    }
+    </style>
 </head>
 <body>
 

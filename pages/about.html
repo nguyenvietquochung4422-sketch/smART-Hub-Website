@@ -586,6 +586,57 @@
             .footer-right-col {
                 text-align: left;
             }
+
+            /* Hide the 7500px canvas; show the reflowed mobile article */
+            .about-clip, .About { display: none !important; }
+            body { background: #f4f6f4 !important; }
+
+            /* Header becomes a solid dark bar so the white logo/nav stay legible
+               over the light article, and sits in-flow above the content. */
+            .header-wrapper {
+                position: relative !important;
+                background: #0E3B66 !important;
+                padding: 12px 5% !important;
+            }
+            .header-line-wrap { background: rgba(255,255,255,0.4) !important; }
+
+            .m-about {
+                background: #ffffff;
+                border-radius: 16px 16px 0 0;
+                margin-top: 6px;
+                padding-bottom: 10px;
+                box-shadow: 0 -2px 20px rgba(0,0,0,0.06);
+            }
+            .m-about .m-lead {
+                font-size: 18px; font-weight: 500; color: #2a2a2a; line-height: 1.55;
+            }
+            .m-timeline { list-style: none; margin: 4px 0 0; padding: 0; }
+            .m-timeline li {
+                position: relative; padding: 0 0 16px 20px;
+                font-size: 14.5px; line-height: 1.6; color: #555;
+                border-left: 2px solid rgba(14,59,102,0.18); margin-left: 4px;
+            }
+            .m-timeline li:last-child { padding-bottom: 0; }
+            .m-timeline li::before {
+                content: ""; position: absolute; left: -7px; top: 4px;
+                width: 12px; height: 12px; border-radius: 50%;
+                background: #0E3B66; border: 2px solid #fff;
+            }
+            .m-tl-tag { display: block; font-weight: 700; color: #0E3B66; font-size: 14px; margin-bottom: 2px; }
+            .m-about .m-figure {
+                background: #f7f8f9; border: 1px solid rgba(0,0,0,0.06);
+                border-radius: 12px; padding: 10px; overflow: hidden;
+            }
+            .m-about .m-figure img { display: block; width: 100%; height: auto; }
+
+            /* Footer sits on white now → switch its white text to dark */
+            .footer-container { background: #ffffff !important; border-top: 1px solid rgba(0,0,0,0.08); }
+            .footer-container .footer-contact-title,
+            .footer-container .brand-text { color: #0E3B66 !important; background-color: transparent !important; }
+            .footer-container .info-text,
+            .footer-container .address-text { color: #555 !important; }
+            .footer-container .email-link { color: #0E3B66 !important; }
+            .footer-container .footer-contact-line { background-color: rgba(0,0,0,0.12) !important; }
         }
 </style>
     <link rel="stylesheet" href="../assets/css/responsive.css">
@@ -597,6 +648,59 @@
         <div class="logo-right"><a href="../index.html"><img src="../assets/images/index/logo/logo1.webp" alt="UEH" style="height:30px;width:auto;display:block;filter: drop-shadow(0px 1px 5px rgba(255,255,255,0.35));"></a></div>
         <nav class="header-nav"><a href="../index.html" class="nav-link">Home</a><a href="#" class="nav-link">News</a></nav>
     </div>
+
+<!-- ============ MOBILE LAYOUT (phones only; canvas hidden ≤768px) ============ -->
+<div class="m-only m-about">
+    <section class="m-section">
+        <p class="m-eyebrow">Our Vision</p>
+        <p class="m-body m-lead">A vibrant cultural hub that promotes art, design, and innovation in a smart way while embodying sustainability and community engagement towards Net Zero.</p>
+    </section>
+
+    <hr class="m-divider">
+
+    <section class="m-section">
+        <p class="m-eyebrow">Our Mission</p>
+        <p class="m-body">smART Hub is a Living Labs ecosystem — an intersection where the boldest ideas in technology, policy, and art are taken off the page to "live" and "breathe" in the real world.</p>
+        <p class="m-body">A coordinating hub for Living Labs and urban environmental policy experimentation across the entire UEH system.</p>
+    </section>
+
+    <hr class="m-divider">
+
+    <section class="m-section">
+        <p class="m-eyebrow">Our History</p>
+        <ul class="m-timeline">
+            <li><span class="m-tl-tag">French Villa</span> Biệt thự Pháp — the historic origin of the site.</li>
+            <li><span class="m-tl-tag">Fulbright Economics</span> Chương trình Kinh tế Fulbright.</li>
+            <li><span class="m-tl-tag">Establishment of UII</span> UII thành lập.</li>
+            <li><span class="m-tl-tag">ISCM &amp; UEH Hotel</span> ISCM, UEH Hotel thành lập.</li>
+            <li><span class="m-tl-tag">Giving to UEH</span> Organizations, individuals & alumni give and get — expanding knowledge for community and social service.</li>
+        </ul>
+    </section>
+
+    <hr class="m-divider">
+
+    <section class="m-section">
+        <p class="m-eyebrow">Living Lab Procedure</p>
+        <figure class="m-figure">
+            <img src="../assets/images/About/Living_lab_procedure.webp" alt="Living Lab procedure diagram" decoding="async">
+        </figure>
+    </section>
+
+    <section class="m-section">
+        <p class="m-eyebrow">Co-Creation &amp; Package Model</p>
+        <p class="m-body">Where actions for "Co-creation for Net Zero campus" take place — the coordinating campus for living labs and experimentation for urban environmental policy.</p>
+        <figure class="m-figure">
+            <img src="../assets/images/About/Model_Living_labs.webp" alt="Living Labs co-creation model diagram" decoding="async">
+        </figure>
+    </section>
+
+    <section class="m-section">
+        <a class="m-card m-card--cta" href="../index.html">
+            <span class="m-card-text"><span class="m-card-kicker">Explore</span><span class="m-card-title">4 Package Workspace</span></span>
+            <span class="m-card-arrow">&rsaquo;</span>
+        </a>
+    </section>
+</div>
 
 <div class="about-clip"></div>
 <div data-layer="/About" class="About" style="width: 100%; height: 0; position: absolute; left: 0; top: 0; background: transparent">
@@ -944,7 +1048,7 @@
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-  AOS.init({ duration: 1000, once: true, offset: 80, easing: 'ease-in-out' });
+  AOS.init({ disable: function(){ return window.innerWidth < 768; }, duration: 1000, once: true, offset: 80, easing: 'ease-in-out' });
   (function () {
     var clip   = document.querySelector('.about-clip');
     var canvas = document.querySelector('.Model');

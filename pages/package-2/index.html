@@ -228,6 +228,36 @@
                 gap: 44px;
             }
             .about-title-main { margin-bottom: 36px; }
+
+            /* Guard against horizontal scroll */
+            html, body { overflow-x: hidden !important; max-width: 100% !important; }
+
+            /* Header in flow with a legible dark bar (hero bg is very light) */
+            .header-wrapper { position: relative !important; background: #2f4149 !important; padding: 12px 5% !important; }
+            .header-line-wrap { background: rgba(255,255,255,0.4) !important; }
+
+            /* Hero: stack title above the illustration, no empty space */
+            .hero-section { height: auto !important; min-height: 0 !important; padding: 30px 0 10px !important; }
+            .hero-title-container {
+                flex-direction: column !important; align-items: center !important;
+                padding: 0 !important; gap: 6px;
+            }
+            .hero-title {
+                position: relative !important; z-index: 2; order: 1;
+                font-size: 46px !important; gap: 0 14px !important; margin: 0 0 6px !important;
+                letter-spacing: -1px !important; line-height: 1.0 !important;
+                max-width: 100% !important; flex-wrap: wrap; justify-content: center;
+            }
+            .hero-bg-overlay {
+                position: relative !important; bottom: auto !important;
+                order: 2; width: 100% !important; margin: 0 !important;
+            }
+            .char:hover { transform: none !important; }
+
+            /* Text/design/about sections comfortable padding */
+            .content-container, .design-section { padding: 0 20px !important; }
+            #about-us { padding: 60px 20px !important; }
+            .design-item img { max-height: 220px; }
         }
 
     </style>
@@ -334,7 +364,7 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 1000, once: true, offset: 120, easing: 'ease-in-out' });
+        AOS.init({ disable: function(){ return window.innerWidth < 768; }, duration: 1000, once: true, offset: 120, easing: 'ease-in-out' });
 
 
     </script>

@@ -63,3 +63,111 @@
     .logo-right img { height: 19px !important; }
     .nav-link { font-size: 12px !important; padding: 10px 7px !important; }
 }
+
+/* ============================================================
+   MOBILE CONTENT SYSTEM  (.m-only blocks)
+   ------------------------------------------------------------
+   Canvas pages (fixed 1874px Figma exports) cannot reflow, so
+   on phones we hide the scaled canvas and show a purpose-built
+   .m-only block instead. These are the shared building blocks;
+   each page supplies its own .m-only markup + theme colors.
+
+   Theme via CSS variables (set per page on the .m-only element):
+     --m-fg     main text        --m-muted  secondary text
+     --m-accent headings/labels  --m-line   hairline/border
+     --m-card   card background   --m-cardbd card border
+   Defaults below suit a light background (dark text).
+   ============================================================ */
+.m-only { display: none; }
+
+@media (max-width: 768px) {
+    .m-only {
+        display: block;
+        --m-fg: #1a1a1a;
+        --m-muted: #555;
+        --m-accent: #0E3B66;
+        --m-line: rgba(0,0,0,0.12);
+        --m-card: rgba(0,0,0,0.03);
+        --m-cardbd: rgba(0,0,0,0.10);
+        font-family: 'Inter', sans-serif;
+        width: 100%;
+        box-sizing: border-box;
+        color: var(--m-fg);
+        position: relative;
+        z-index: 1;
+    }
+    .m-only * { box-sizing: border-box; }
+
+    /* Section rhythm */
+    .m-section { padding: 30px 20px; }
+    .m-section + .m-section { padding-top: 4px; }
+
+    /* Typography */
+    .m-eyebrow {
+        font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+        text-transform: uppercase; color: var(--m-accent);
+        margin: 0 0 14px; display: flex; align-items: center; gap: 12px;
+    }
+    .m-eyebrow::after { content: ""; flex: 1; height: 1px; background: var(--m-line); }
+
+    .m-title {
+        font-size: clamp(24px, 7.5vw, 32px); font-weight: 800;
+        line-height: 1.15; letter-spacing: -0.01em; margin: 0 0 14px;
+        color: var(--m-fg); text-transform: uppercase;
+    }
+    .m-subtitle {
+        font-size: 17px; font-weight: 700; color: var(--m-accent);
+        margin: 0 0 8px; line-height: 1.3;
+    }
+    .m-body {
+        font-size: 15px; line-height: 1.7; color: var(--m-muted);
+        margin: 0 0 14px; text-align: left;
+    }
+    .m-body:last-child { margin-bottom: 0; }
+
+    /* Hero image (full-bleed illustration) */
+    .m-hero-img {
+        display: block; width: 100%; height: auto; margin: 0;
+    }
+
+    /* Package / content cards */
+    .m-cards { display: flex; flex-direction: column; gap: 14px; }
+    .m-card {
+        display: flex; align-items: center; gap: 14px;
+        padding: 14px; border-radius: 14px;
+        background: var(--m-card); border: 1px solid var(--m-cardbd);
+        text-decoration: none; color: var(--m-fg);
+        transition: transform 0.15s ease, background 0.15s ease;
+    }
+    .m-card:active { transform: scale(0.98); }
+    .m-card-img {
+        flex: 0 0 76px; width: 76px; height: 60px;
+        object-fit: contain; border-radius: 8px;
+        background: rgba(0,0,0,0.16); padding: 4px;
+    }
+    .m-card-text { flex: 1 1 auto; min-width: 0; display: block; }
+    .m-card-kicker {
+        display: block;
+        font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+        text-transform: uppercase; color: var(--m-accent); margin: 0 0 3px;
+    }
+    .m-card-title {
+        display: block;
+        font-size: 15px; font-weight: 700; line-height: 1.25;
+        color: var(--m-fg); margin: 0;
+    }
+    .m-card-arrow { flex: 0 0 auto; font-size: 20px; color: var(--m-accent); opacity: 0.6; }
+
+    /* Simple stat row */
+    .m-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 12px; }
+    .m-stat-num { font-size: 26px; font-weight: 800; color: var(--m-accent); line-height: 1.1; }
+    .m-stat-label { font-size: 11px; font-weight: 600; color: var(--m-muted); text-transform: uppercase; letter-spacing: 0.04em; margin-top: 2px; }
+
+    /* Image list (stacked figures) */
+    .m-figure { margin: 0 0 18px; }
+    .m-figure img { width: 100%; height: auto; border-radius: 10px; display: block; }
+    .m-figure figcaption { font-size: 13px; color: var(--m-muted); margin-top: 8px; text-align: center; }
+
+    /* Divider */
+    .m-divider { height: 1px; background: var(--m-line); border: 0; margin: 8px 20px; }
+}

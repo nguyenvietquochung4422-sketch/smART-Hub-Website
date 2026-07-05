@@ -268,6 +268,27 @@
         }
     </style>
     <link rel="stylesheet" href="../../assets/css/responsive.css">
+    <style>
+    @media (max-width: 768px) {
+        html, body { overflow-x: hidden !important; max-width: 100% !important; }
+        .header-wrapper { position: relative !important; background: #2f4149 !important; padding: 12px 5% !important; z-index: 2000; }
+        .header-line-wrap { background: rgba(255,255,255,0.4) !important; }
+
+        /* Hero: title in-flow at top over the fixed botanical body::before bg.
+           (.ld-hero-bg is an empty positioned layer — hide its flow spacer) */
+        .ld-hero { height: auto !important; min-height: 40vh !important; padding: 40px 20px 24px !important; display: flex; align-items: flex-end; }
+        .ld-hero-bg { display: none !important; }
+        .ld-hero-title {
+            position: relative !important; right: auto !important; top: auto !important;
+            text-align: left !important;
+        }
+        .t-landscape { font-size: 40px !important; line-height: 1.05 !important; }
+        .t-design { font-size: 34px !important; line-height: 1.05 !important; }
+
+        /* Readability: give body text a soft backdrop over the busy bg */
+        .ld-sec, .ld-philosophy { background: rgba(246,243,238,0.72); }
+    }
+    </style>
 </head>
 <body>
 
@@ -505,7 +526,7 @@
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-    AOS.init({ duration: 1000, once: true });
+    AOS.init({ disable: function(){ return window.innerWidth < 768; }, duration: 1000, once: true });
 
     function openLightbox(src) {
         document.getElementById('lb-img').src = src;

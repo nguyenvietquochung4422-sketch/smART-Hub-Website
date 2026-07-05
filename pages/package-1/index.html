@@ -499,6 +499,80 @@
             }
             .platform-mockup img { height: auto !important; }
         }
+
+        /* ===== PHONE POLISH ===== */
+        @media (max-width: 768px) {
+            /* Guard against any single element forcing horizontal scroll */
+            html, body { overflow-x: hidden !important; max-width: 100% !important; }
+            .footer-container [style*="nowrap"],
+            .footer-container .info-text,
+            .footer-container .address-text,
+            .footer-container .brand-text { white-space: normal !important; }
+
+            /* Header: keep in flow, dark bar so white nav stays legible */
+            .header-wrapper { position: relative !important; background: #6b4a2a !important; padding: 12px 5% !important; }
+            .header-line-wrap { background: rgba(255,255,255,0.4) !important; }
+
+            /* Title fits on small screens */
+            .title-section { padding: 34px 4% 20px !important; }
+            .hero-title {
+                font-size: 26px !important; line-height: 1.25 !important;
+                -webkit-text-stroke-width: 1px !important;
+                max-width: 100% !important; word-break: break-word;
+                text-shadow: -3px 1px 0 rgba(0,0,0,0.42) !important;
+            }
+            .intro-section { padding-bottom: 40px !important; }
+            .intro-text { font-size: 15px !important; max-width: 100% !important; text-align: left; }
+
+            /* Consistent comfortable side padding across content sections */
+            .title-section, .intro-section, .achievements-section,
+            .event-series-section, .action-section { padding-left: 20px !important; padding-right: 20px !important; }
+
+            /* Achievements → 2-column stat grid that always fits */
+            .achievements-section { padding-bottom: 40px !important; }
+            .section-heading { font-size: 22px !important; margin-bottom: 24px !important; }
+            .stats-row {
+                display: grid !important; grid-template-columns: 1fr 1fr;
+                gap: 22px 14px !important; max-width: 340px; margin: 0 auto;
+            }
+            .stat-block { min-width: 0 !important; }
+            .stat-number { font-size: 30px !important; }
+            .stat-label { font-size: 11.5px !important; }
+
+            /* Event photos: unfan the absolute stack → vertical gallery */
+            .event-series-section { padding-bottom: 48px !important; }
+            .event-photos { width: 100% !important; height: auto !important; display: flex; flex-direction: column; gap: 12px; }
+            .event-photos img.ep-photo {
+                position: static !important; width: 100% !important; height: auto !important;
+                transform: none !important; border-radius: 12px;
+            }
+            /* keep hover-fan from re-applying on touch */
+            .event-photos:hover img.ep-photo { position: static !important; transform: none !important; width: 100% !important; left: auto !important; }
+            .event-description { text-align: left !important; }
+
+            /* 9 Action: wrap the icon strip into a 3-col grid */
+            .action-section { padding-bottom: 48px !important; }
+            .Group188 { flex-wrap: wrap !important; justify-content: center !important; gap: 10px !important; }
+            .Group188 img { width: 28% !important; max-width: 96px !important; }
+
+            /* AI / Trash / Platform blocks: force true single column (the
+               inline flex row was pushing text off-screen and clipping it) */
+            .ai-block-inner { padding: 0 4% !important; }
+            .trash-block-inner, .platform-inner {
+                flex-direction: column !important; align-items: stretch !important;
+                gap: 20px !important; width: 100% !important; padding: 0 4% !important;
+            }
+            .trash-text, .platform-text {
+                flex: none !important; width: 100% !important;
+                align-items: flex-start !important; text-align: left !important;
+            }
+            .trash-title, .trash-body, .platform-title, .platform-body {
+                text-align: left !important; max-width: 100% !important;
+            }
+            .trash-image, .platform-image { width: 100% !important; justify-content: flex-start !important; }
+            .trash-image img, .platform-image img { max-width: 100% !important; height: auto !important; }
+            .qr-row, .platform-qr-row { flex-wrap: wrap; }
+        }
     </style>
     <link rel="stylesheet" href="../../assets/css/responsive.css">
 </head>
@@ -703,7 +777,7 @@
 <script src="../../assets/js/animations.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-    AOS.init({ duration: 1000, once: true, offset: 120, easing: 'ease-in-out' });
+    AOS.init({ disable: function(){ return window.innerWidth < 768; }, duration: 1000, once: true, offset: 120, easing: 'ease-in-out' });
 </script>
 </body>
 </html>

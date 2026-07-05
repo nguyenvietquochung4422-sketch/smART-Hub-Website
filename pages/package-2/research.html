@@ -270,6 +270,13 @@
         }
     </style>
     <link rel="stylesheet" href="../../assets/css/responsive.css">
+    <style>
+    @media (max-width: 768px) {
+        html, body { overflow-x: hidden !important; max-width: 100% !important; }
+        .header-wrapper { position: relative !important; background: #2f4149 !important; padding: 12px 5% !important; z-index: 2000; }
+        .header-line-wrap { background: rgba(255,255,255,0.4) !important; }
+    }
+    </style>
 </head>
 <body>
 
@@ -578,7 +585,7 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 1000, once: true, offset: 80, easing: 'ease-in-out' });
+        AOS.init({ disable: function(){ return window.innerWidth < 768; }, duration: 1000, once: true, offset: 80, easing: 'ease-in-out' });
     </script>
 <script src="../../assets/js/animations.js"></script>
 </body>

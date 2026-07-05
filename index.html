@@ -74,10 +74,30 @@
 
         /* ===== MOBILE ===== */
         @media (max-width: 768px) {
-            /* On phones the scaled canvas shrinks a lot vertically; an
-               absolutely-positioned header would overlap its content.
-               Put the header in normal flow so it pushes the canvas down. */
+            /* On phones the 1874px canvas scales to ~20% and is unreadable,
+               so we hide it entirely and show the purpose-built .m-home block. */
             .header-wrapper { position: relative; }
+            #scaleContainer { display: none !important; }
+
+            /* Homepage mobile theme: light text over the dark green page bg */
+            .m-home {
+                --m-fg: #ffffff;
+                --m-muted: rgba(255,255,255,0.92);
+                --m-accent: #ffffff;
+                --m-line: rgba(255,255,255,0.30);
+                --m-card: rgba(255,255,255,0.10);
+                --m-cardbd: rgba(255,255,255,0.20);
+            }
+            .m-home .m-body { text-shadow: 0 1px 3px rgba(0,0,0,0.4); }
+            .m-home-hero { padding-top: 24px; padding-bottom: 10px; }
+            .m-home-hero .m-title {
+                font-size: clamp(30px, 9vw, 40px);
+                text-transform: none; letter-spacing: -0.02em;
+                text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            }
+            .m-card--cta { justify-content: space-between; }
+            /* footer already stacks via responsive.css; add a top divider on mobile */
+            .footer-container { border-top: 1px solid rgba(255,255,255,0.18); margin-top: 8px; }
         }
 
         /* ===== HIDE FIGMA CANVAS FOOTER ELEMENTS ===== */
@@ -164,6 +184,53 @@
         <div class="header-line-wrap"></div>
         <div class="logo-right"><a href="index.html"><img src="assets/images/index/logo/logo1.webp" alt="UEH" style="height:30px;width:auto;display:block;filter: drop-shadow(0px 1px 5px rgba(255,255,255,0.35));"></a></div>
         <nav class="header-nav"><a href="#" class="nav-link">News</a><a href="pages/about.html" class="nav-link">About SHLL</a></nav>
+    </div>
+
+    <!-- ============ MOBILE LAYOUT (phones only; canvas hidden ≤768px) ============ -->
+    <div class="m-only m-home">
+        <section class="m-section m-home-hero">
+            <h1 class="m-title">smART Hub<br>Living Labs</h1>
+            <p class="m-body">On its journey to becoming a multidisciplinary and sustainable university, UEH established the smART Hub Living Labs as a declaration of transformation — an operational ecosystem where technology, art, and urban environmental policy live and breathe together.</p>
+        </section>
+
+        <section class="m-section">
+            <p class="m-eyebrow">About smART Hub</p>
+            <p class="m-body">smART Hub Living Labs at Campus V is a vibrant socio-technical nexus where technology and artistic expression converge to drive smart innovation. Positioned as a "regulatory sandbox," it transforms a historic site into an experimental hub to validate sustainability policies through evidence-based co-creation.</p>
+            <p class="m-body">Following the S.M.A.R.T. Framework, the project integrates AI-driven sorting, Digital Twin monitoring, and adaptive "Glocal" design to achieve a Net Zero Campus by 2026.</p>
+        </section>
+
+        <section class="m-section">
+            <p class="m-eyebrow">4 Package Workspace</p>
+            <div class="m-cards">
+                <a class="m-card" href="./pages/package-1/index.html">
+                    <img class="m-card-img" src="assets/images/index/package-icon/thumb/package-1.webp" alt="Package 1" loading="lazy" decoding="async">
+                    <span class="m-card-text"><span class="m-card-kicker">Package 1</span><span class="m-card-title">No Single-use Plastic Journey</span></span>
+                    <span class="m-card-arrow">&rsaquo;</span>
+                </a>
+                <a class="m-card" href="./pages/package-2/index.html">
+                    <img class="m-card-img" src="assets/images/index/package-icon/thumb/package-2.webp" alt="Package 2" loading="lazy" decoding="async">
+                    <span class="m-card-text"><span class="m-card-kicker">Package 2</span><span class="m-card-title">Glocal Design</span></span>
+                    <span class="m-card-arrow">&rsaquo;</span>
+                </a>
+                <a class="m-card" href="./pages/package-3/index.html">
+                    <img class="m-card-img" src="assets/images/index/package-icon/thumb/package-3.webp" alt="Package 3" loading="lazy" decoding="async">
+                    <span class="m-card-text"><span class="m-card-kicker">Package 3</span><span class="m-card-title">Towards Net Zero</span></span>
+                    <span class="m-card-arrow">&rsaquo;</span>
+                </a>
+                <a class="m-card" href="./pages/package-4/index.html">
+                    <img class="m-card-img" src="assets/images/index/package-icon/thumb/package-4.webp" alt="Package 4" loading="lazy" decoding="async">
+                    <span class="m-card-text"><span class="m-card-kicker">Package 4</span><span class="m-card-title">Art For All</span></span>
+                    <span class="m-card-arrow">&rsaquo;</span>
+                </a>
+            </div>
+        </section>
+
+        <section class="m-section">
+            <a class="m-card m-card--cta" href="./pages/about.html">
+                <span class="m-card-text"><span class="m-card-kicker">Learn more</span><span class="m-card-title">About smART Hub Living Labs</span></span>
+                <span class="m-card-arrow">&rsaquo;</span>
+            </a>
+        </section>
     </div>
 
     <!-- PROPORTIONAL SCALE CONTAINER -->

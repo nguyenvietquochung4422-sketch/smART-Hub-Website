@@ -113,6 +113,37 @@
         .brand-text { font-size: 11px; font-weight: 700; color: white; letter-spacing: 0.4px; }
         .address-text { font-size: 11px; color: rgba(255,255,255,0.75); font-weight: 300; line-height: 1.6; }
 
+        /* ===== MOBILE ===== */
+        @media (max-width: 768px) {
+            .header-wrapper { position: relative; }
+            #scaleContainer { display: none !important; }
+            /* Package 4 mobile theme: light text on the dark-green page bg */
+            .m-p4 {
+                --m-fg: #ffffff;
+                --m-muted: rgba(255,255,255,0.80);
+                --m-accent: #e8c07a;
+                --m-line: rgba(255,255,255,0.20);
+                --m-card: rgba(255,255,255,0.07);
+                --m-cardbd: rgba(255,255,255,0.16);
+            }
+            .m-p4 .m-infobar {
+                display: flex; justify-content: space-between; align-items: center;
+                gap: 10px; padding: 14px 16px; border-radius: 12px;
+                background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.16);
+                margin-bottom: 12px;
+            }
+            .m-p4 .m-infobar .k { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #e8c07a; }
+            .m-p4 .m-infobar .v { font-size: 14px; color: #fff; text-align: right; }
+            .m-p4 .m-eventlist { list-style: none; margin: 0; padding: 0; }
+            .m-p4 .m-eventlist li {
+                padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.14);
+                display: flex; flex-direction: column; gap: 3px;
+            }
+            .m-p4 .m-eventlist li:last-child { border-bottom: 0; }
+            .m-p4 .m-ev-name { font-size: 15px; font-weight: 700; color: #fff; }
+            .m-p4 .m-ev-meta { font-size: 12.5px; color: rgba(255,255,255,0.7); }
+        }
+
     </style>
     <link rel="stylesheet" href="../../assets/css/responsive.css">
 </head>
@@ -124,6 +155,53 @@
         <div class="header-line-wrap"></div>
         <div class="logo-right"><a href="../../index.html"><img src="../../assets/images/index/logo/logo1.webp" alt="UEH" style="height:30px;width:auto;display:block;filter: drop-shadow(0px 1px 5px rgba(255,255,255,0.35));"></a></div>
         <nav class="header-nav"><a href="../../index.html" class="nav-link">Home</a><a href="#" class="nav-link">News</a><a href="../../pages/about.html" class="nav-link">About SHLL</a></nav>
+    </div>
+
+    <!-- ============ MOBILE LAYOUT (phones only; canvas hidden ≤768px) ============ -->
+    <div class="m-only m-p4">
+        <section class="m-section">
+            <p class="m-eyebrow">Package 4</p>
+            <h1 class="m-title">Art for<br>Inspiration</h1>
+            <p class="m-body">Serves as the emotional touchpoint and key communication platform within the SMART framework of the SHLL. Its primary objective is to transform technical environmental data into engaging community experiences, fostering long-term stakeholder engagement.</p>
+            <p class="m-body">Major outputs include visual storytelling layouts for different campus areas, providing qualitative evidence of community co-creation and place-based interventions across Campus V.</p>
+        </section>
+
+        <section class="m-section">
+            <p class="m-eyebrow">Visit Us</p>
+            <div class="m-infobar">
+                <span class="k">Sun – Fri</span>
+                <span class="v">8:00 am – 6:00 pm</span>
+            </div>
+            <div class="m-infobar">
+                <span class="k">Saturday</span>
+                <span class="v">10:00 am – 6:00 pm</span>
+            </div>
+        </section>
+
+        <section class="m-section">
+            <p class="m-eyebrow">Programme</p>
+            <ul class="m-eventlist">
+                <li><span class="m-ev-name">Current Exhibitions</span><span class="m-ev-meta">On view now at Campus V — visual storytelling across campus areas</span></li>
+                <li><span class="m-ev-name">Coming Events</span><span class="m-ev-meta">Hologram exhibitions & Acting Labs bridging art and environment</span></li>
+                <li><span class="m-ev-name">Past Events</span><span class="m-ev-meta">An archive of community co-creation moments</span></li>
+            </ul>
+        </section>
+
+        <section class="m-section">
+            <p class="m-eyebrow">Newsletter</p>
+            <p class="m-body">Art &amp; ideas into your inbox — send us your details to stay connected.</p>
+            <a class="m-card m-card--cta" href="mailto:smarthub@ueh.edu.vn">
+                <span class="m-card-text"><span class="m-card-kicker">Email us</span><span class="m-card-title">smarthub@ueh.edu.vn</span></span>
+                <span class="m-card-arrow">&rsaquo;</span>
+            </a>
+        </section>
+
+        <section class="m-section">
+            <a class="m-card m-card--cta" href="../../index.html">
+                <span class="m-card-text"><span class="m-card-kicker">Back to</span><span class="m-card-title">4 Package Workspace</span></span>
+                <span class="m-card-arrow">&rsaquo;</span>
+            </a>
+        </section>
     </div>
 
     <!-- PROPORTIONAL SCALE CONTAINER -->
