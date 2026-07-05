@@ -93,7 +93,7 @@
         /* --- 5. ABOUT US --- */
         #about-us { 
             position: relative;
-            background: url('../../assets/images/package2/background2_package2.png') no-repeat center center; 
+            background: url('../../assets/images/package2/background2_package2.webp') no-repeat center center; 
             background-size: cover; 
             padding: 120px 8%; 
             display: flex; 
@@ -207,9 +207,31 @@
             .footer-right-col {
                 text-align: left;
             }
+
+            /* Collapse the 3-column layouts to a single readable column */
+            .content-container {
+                grid-template-columns: 1fr;
+                gap: 28px;
+                margin: 60px auto;
+                padding: 0 24px;
+            }
+            .text-column { font-size: 13px; }
+            .design-section {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                margin: 0 auto 80px;
+                padding: 0 24px;
+            }
+            .design-item img { height: auto; max-height: 280px; }
+            .about-minimal-grid {
+                grid-template-columns: 1fr;
+                gap: 44px;
+            }
+            .about-title-main { margin-bottom: 36px; }
         }
 
     </style>
+    <link rel="stylesheet" href="../../assets/css/responsive.css">
 </head>
 <body>
 
@@ -218,15 +240,15 @@
 
 
     <div class="header-wrapper">
-        <div class="logo-left"><a href="../../index.html"><img src="../../assets/images/Logo_SHLL_long.png" alt="SHL Logo"></a></div>
+        <div class="logo-left"><a href="../../index.html"><img src="../../assets/images/Logo_SHLL_long.webp" alt="SHL Logo"></a></div>
         <div class="header-line-wrap"></div>
-        <div class="logo-right"><a href="../../index.html"><img src="../../assets/images/index/logo/logo1.png" alt="UEH" style="height:30px;width:auto;display:block;filter:drop-shadow(0px 1px 5px rgba(255,255,255,0.35));"></a></div>
+        <div class="logo-right"><a href="../../index.html"><img src="../../assets/images/index/logo/logo1.webp" alt="UEH" style="height:30px;width:auto;display:block;filter:drop-shadow(0px 1px 5px rgba(255,255,255,0.35));"></a></div>
         <nav class="header-nav"><a href="../../index.html" class="nav-link">Home</a><a href="#" class="nav-link">News</a><a href="../../pages/about.html" class="nav-link">About SHLL</a></nav>
     </div>
 
     <section class="hero-section" id="hero">
         <div class="hero-title-container" data-aos="zoom-out" data-aos-duration="2000">
-            <img src="../../assets/images/package2/backgound_package2.png" alt="Background" class="hero-bg-overlay">
+            <img src="../../assets/images/package2/backgound_package2.webp" alt="Background" class="hero-bg-overlay">
             <h1 class="hero-title" data-aos="fade-up" data-aos-delay="300">
                 <!-- Chữ G đã được đổi màu style="color: #8fa0a3" -->
                 <div class="word"><span class="char" style="color: #8fa0a3;">G</span><span class="char">L</span><span class="char">O</span><span class="char">C</span><span class="char">A</span><span class="char">L</span></div>
@@ -276,21 +298,21 @@
 
     <section class="design-section" id="design">
         <a href="architectural-design.html" class="design-item" data-aos="fade-up" data-aos-delay="100">
-            <img src="../../assets/images/package2/icon1_package2.png" alt="Architectural Design">
+            <img loading="lazy" decoding="async" src="../../assets/images/package2/icon1_package2.webp" alt="Architectural Design">
             <p class="design-label">Architectural Design</p>
         </a>
         <a href="landscape-design.html" class="design-item" data-aos="fade-up" data-aos-delay="200">
-            <img src="../../assets/images/package2/icon2_package2.png" alt="Landscape Design">
+            <img loading="lazy" decoding="async" src="../../assets/images/package2/icon2_package2.webp" alt="Landscape Design">
             <p class="design-label">Landscape Design</p>
         </a>
         <a href="research.html" class="design-item" data-aos="fade-up" data-aos-delay="300">
-            <img src="../../assets/images/package2/icon3_package2.png" alt="Research">
+            <img loading="lazy" decoding="async" src="../../assets/images/package2/icon3_package2.webp" alt="Research">
             <p class="design-label">Research</p>
         </a>
     </section>
 
     <div class="bottom-image-section">
-        <img src="../../assets/images/package2/background2_package2.png" alt="Glocal Design">
+        <img loading="lazy" decoding="async" src="../../assets/images/package2/background2_package2.webp" alt="Glocal Design">
     </div>
 
     <footer class="footer-container">

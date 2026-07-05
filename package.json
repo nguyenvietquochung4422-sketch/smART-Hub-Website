@@ -1,0 +1,30 @@
+{
+  "name": "smart-hub-website",
+  "version": "1.0.0",
+  "description": "smART Hub Living Labs — static multi-package showcase website",
+  "scripts": {
+    "dev": "serve -l 3000 .",
+    "start": "serve -l 3000 .",
+    "images:check": "node scripts/optimize-images.mjs --dry-run",
+    "images:convert": "node scripts/optimize-images.mjs",
+    "images:rewrite": "node scripts/rewrite-image-refs.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nguyenvietquochung4422-sketch/smART-Hub-Website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/nguyenvietquochung4422-sketch/smART-Hub-Website/issues"
+  },
+  "homepage": "https://github.com/nguyenvietquochung4422-sketch/smART-Hub-Website#readme",
+  "dependencies": {
+    "sharp": "^0.35.3"
+  },
+  "devDependencies": {
+    "serve": "^14.2.6"
+  }
+}

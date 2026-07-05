@@ -27,7 +27,7 @@ if (customStyleEndIndex === -1) {
 const newCustomStyles = `/* ── CUSTOM REFACTOR STYLES ── */
         /* Set background_about.jpg as background image on body so it flows under the footer */
         body {
-            background-image: url('../assets/images/About/background_about.jpg') !important;
+            background-image: url('../assets/images/About/background_about.webp') !important;
             background-size: 100% 100% !important;
             background-position: center !important;
             background-repeat: no-repeat !important;

@@ -261,7 +261,7 @@ const headerHtml = `
     <div class="header-wrapper">
         <div class="header-top-frame">
             <div class="logo-left">
-                <a href="../index.html"><img src="../assets/images/Logo_SHLL_long.png" alt="SHL Logo"></a>
+                <a href="../index.html"><img src="../assets/images/Logo_SHLL_long.webp" alt="SHL Logo"></a>
             </div>
             <div class="header-middle">
                 <div class="horizontal-line"></div>

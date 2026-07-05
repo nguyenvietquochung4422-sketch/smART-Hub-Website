@@ -127,14 +127,33 @@
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-20px); }
         }
-    </style>
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            /* Stack the three door-columns vertically; each stays tappable */
+            .architecture-container {
+                flex-direction: column;
+                height: auto;
+                min-height: 100vh;
+            }
+            .design-column {
+                min-height: 33vh;
+                border-right: none;
+                border-bottom: 1px solid rgba(255,255,255,0.05);
+            }
+            .design-column:hover { flex: 1; } /* hover-grow is a desktop affordance */
+            .column-content { bottom: 24px; left: 20px; right: 20px; }
+            .hero-container { top: 42%; padding: 0 16px; box-sizing: border-box; }
+            .hero-container h1 { font-size: clamp(30px, 8vw, 63px) !important; }
+        }
+    <link rel="stylesheet" href="../../assets/css/responsive.css">
 </head>
 <body>
 
     <div class="header-wrapper">
-        <div class="logo-left"><a href="../../index.html"><img src="../../assets/images/Logo_SHLL_long.png" alt="SHL Logo"></a></div>
+        <div class="logo-left"><a href="../../index.html"><img src="../../assets/images/Logo_SHLL_long.webp" alt="SHL Logo"></a></div>
         <div class="header-line-wrap"></div>
-        <div class="logo-right"><a href="../../index.html"><img src="../../assets/images/index/logo/logo1.png" alt="UEH" style="height:30px;width:auto;display:block;filter:drop-shadow(0px 1px 5px rgba(255,255,255,0.35));"></a></div>
+        <div class="logo-right"><a href="../../index.html"><img src="../../assets/images/index/logo/logo1.webp" alt="UEH" style="height:30px;width:auto;display:block;filter:drop-shadow(0px 1px 5px rgba(255,255,255,0.35));"></a></div>
         <nav class="header-nav"><a href="../../index.html" class="nav-link">Home</a><a href="index.html" class="nav-link">Back</a><a href="../../pages/about.html" class="nav-link">About SHLL</a></nav>
     </div>
 
@@ -150,21 +169,21 @@
     <main class="architecture-container">
         
         <a href="architectural-layout.html" class="design-column" onclick="transitionPage(event, this)">
-            <div class="column-bg" style="background-image: url('../../assets/images/package2/Architecture/bia1.png');"></div>
+            <div class="column-bg" style="background-image: url('../../assets/images/package2/Architecture/bia1.webp');"></div>
             <div class="column-content">
                 <h2>ARCHITECTURAL<br>LAYOUT DESIGN</h2>
             </div>
         </a>
 
         <a href="passive-interventions.html" class="design-column" onclick="transitionPage(event, this)">
-            <div class="column-bg" style="background-image: url('../../assets/images/package2/Architecture/bia2.png');"></div>
+            <div class="column-bg" style="background-image: url('../../assets/images/package2/Architecture/bia2.webp');"></div>
             <div class="column-content">
                 <h2>PASSIVE<br>INTERVENTIONS</h2>
             </div>
         </a>
 
         <a href="spatial-assessment.html" class="design-column" onclick="transitionPage(event, this)">
-            <div class="column-bg" style="background-image: url('../../assets/images/package2/Architecture/bia3.png');"></div>
+            <div class="column-bg" style="background-image: url('../../assets/images/package2/Architecture/bia3.webp');"></div>
             <div class="column-content">
                 <h2>BEFORE - AFTER<br>SPATIAL ASSESSMENT</h2>
             </div>

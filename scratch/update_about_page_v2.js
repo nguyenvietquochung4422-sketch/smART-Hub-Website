@@ -27,7 +27,7 @@ if (customStyleEndIndex === -1) {
 const newCustomStyles = `/* ── CUSTOM REFACTOR STYLES ── */
         /* Set background_about.jpg as background image for the page */
         .Model {
-            background-image: url('../assets/images/About/background_about.jpg') !important;
+            background-image: url('../assets/images/About/background_about.webp') !important;
             background-size: cover !important;
             background-position: center !important;
             background-repeat: no-repeat !important;
@@ -311,7 +311,7 @@ while (openDivs > 0 && pos < html.length) {
 const newHeaderHtml = `    <div class="header-wrapper">
         <div class="header-top-frame">
             <div class="logo-left">
-                <a href="../index.html"><img src="../assets/images/Logo_SHLL_long.png" alt="SHL Logo"></a>
+                <a href="../index.html"><img src="../assets/images/Logo_SHLL_long.webp" alt="SHL Logo"></a>
             </div>
             <div class="header-middle">
                 <div class="horizontal-line"></div>

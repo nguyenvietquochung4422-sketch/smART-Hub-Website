@@ -485,32 +485,45 @@
             .footer-content-row { flex-direction: column; }
             .footer-left-col { flex: none; width: 100%; }
             .footer-right-top { flex-direction: column; gap: 4px; }
+
+            /* Footer: cancel the 480px right-padding reserved for the
+               wooden-stand mockup and bring the mockup into normal flow */
+            .footer-wrapper { margin-top: 120px !important; }
+            .footer-container { padding-right: 5% !important; padding-left: 5% !important; }
+            .platform-mockup {
+                position: static !important;
+                width: min(240px, 65%) !important;
+                height: auto !important;
+                margin: 20px auto 0 !important;
+            }
+            .platform-mockup img { height: auto !important; }
         }
     </style>
+    <link rel="stylesheet" href="../../assets/css/responsive.css">
 </head>
 <body>
 
     <!-- HEADER -->
     <div class="header-wrapper">
         <div class="logo-left">
-            <a href="../../index.html"><img src="../../assets/images/Logo_SHLL_long.png" alt="SHL Logo"></a>
+            <a href="../../index.html"><img src="../../assets/images/Logo_SHLL_long.webp" alt="SHL Logo"></a>
         </div>
         <div class="header-line-wrap"></div>
         <div class="logo-right">
-            <a href="../../index.html"><img src="../../assets/images/index/logo/logo1.png" alt="UEH" style="height:30px;width:auto;display:block;filter:drop-shadow(0px 1px 5px rgba(255,255,255,0.35));"></a>
+            <a href="../../index.html"><img src="../../assets/images/index/logo/logo1.webp" alt="UEH" style="height:30px;width:auto;display:block;filter:drop-shadow(0px 1px 5px rgba(255,255,255,0.35));"></a>
         </div>
         <nav class="header-nav"><a href="../../index.html" class="nav-link">Home</a><a href="#" class="nav-link">News</a><a href="../../pages/about.html" class="nav-link">About SHLL</a></nav>
     </div>
 
     <!-- HERO — campus illustration fills full width at natural aspect ratio (1874:1128) -->
     <section class="hero-section">
-        <img src="../../assets/images/package1/Tranh_Campus_A.png"
+        <img src="../../assets/images/package1/Tranh_Campus_A.webp"
              alt="Campus A illustration" class="hero-image">
     </section>
 
     <!-- TITLE — sits 9.71vw below hero bottom (Figma gap 182px / 1874px) -->
     <section class="title-section" style="width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-        <h1 class="hero-title" style="color: #FFFFFF; -webkit-text-stroke: 2px #C8812B; font-family: 'Inter', sans-serif; font-size: 81px; font-weight: 700; line-height: 117.45px; text-align: center; word-wrap: break-word; text-shadow: -6px 1px 0px rgba(0, 0, 0, 0.42); margin: 0;">
+        <h1 class="hero-title" style="color: #FFFFFF; -webkit-text-stroke: 2px #C8812B; font-family: 'Inter', sans-serif; font-size: clamp(36px, 4.4vw, 81px); font-weight: 700; line-height: 1.45; text-align: center; word-wrap: break-word; text-shadow: -6px 1px 0px rgba(0, 0, 0, 0.42); margin: 0;">
             NO SINGLE-USE<br/>PLASTIC JOURNEY
         </h1>
     </section>
@@ -559,11 +572,11 @@
         
             <!-- Xấp ảnh lúc này sẽ tự động rớt xuống dưới và nằm chính giữa -->
             <div class="event-photos XPNh" data-layer="Xấp ảnh" data-property-1="Variant3">
-                <img data-layer="image 26" class="Image26 ep-photo ep-5" src="../../assets/images/package1/01.Event_Series/social5.png" alt="Social Project Package 1-5">
-                <img data-layer="image 25" class="Image25 ep-photo ep-4" src="../../assets/images/package1/01.Event_Series/social4.png" alt="Social Project Package 1-4">
-                <img data-layer="image 23" class="Image23 ep-photo ep-3" src="../../assets/images/package1/01.Event_Series/social3.png" alt="Social Project Package 1-3">
-                <img data-layer="image 24" class="Image24 ep-photo ep-2" src="../../assets/images/package1/01.Event_Series/social2.png" alt="Social Project Package 1-2">
-                <img data-layer="image 22" class="Image22 ep-photo ep-1" src="../../assets/images/package1/01.Event_Series/social1.png" alt="Social Project Package 1-1">
+                <img loading="lazy" decoding="async" data-layer="image 26" class="Image26 ep-photo ep-5" src="../../assets/images/package1/01.Event_Series/social5.webp" alt="Social Project Package 1-5">
+                <img loading="lazy" decoding="async" data-layer="image 25" class="Image25 ep-photo ep-4" src="../../assets/images/package1/01.Event_Series/social4.webp" alt="Social Project Package 1-4">
+                <img loading="lazy" decoding="async" data-layer="image 23" class="Image23 ep-photo ep-3" src="../../assets/images/package1/01.Event_Series/social3.webp" alt="Social Project Package 1-3">
+                <img loading="lazy" decoding="async" data-layer="image 24" class="Image24 ep-photo ep-2" src="../../assets/images/package1/01.Event_Series/social2.webp" alt="Social Project Package 1-2">
+                <img loading="lazy" decoding="async" data-layer="image 22" class="Image22 ep-photo ep-1" src="../../assets/images/package1/01.Event_Series/social1.webp" alt="Social Project Package 1-1">
             </div>
 
         </div>
@@ -577,15 +590,15 @@
         <!-- Khung chứa sử dụng Flexbox để tự động co giãn theo chiều rộng màn hình -->
         <div data-layer="Group 188" data-property-1="Default" class="Group188" style="width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 0.5%; padding: 10px 0; box-sizing: border-box;">
         
-            <img data-layer="image 29" class="Image29" style="width: 10.6%; height: auto; max-width: 176px;" src="../../assets/images/package1/02.9_Action/1@3x.png" alt="Action 1">    
-            <img data-layer="image 30" class="Image30" style="width: 10.6%; height: auto; max-width: 176px;" src="../../assets/images/package1/02.9_Action/2@3x.png" alt="Action 2">
-            <img data-layer="image 31" class="Image31" style="width: 10.6%; height: auto; max-width: 176px;" src="../../assets/images/package1/02.9_Action/3@3x.png" alt="Action 3">    
-            <img data-layer="image 32" class="Image32" style="width: 10.6%; height: auto; max-width: 176px;" src="../../assets/images/package1/02.9_Action/4@3x.png" alt="Action 4">
-            <img data-layer="image 33" class="Image33" style="width: 10.6%; height: auto; max-width: 176px;" src="../../assets/images/package1/02.9_Action/5@3x.png" alt="Action 5">
-            <img data-layer="image 34" class="Image34" style="width: 10.6%; height: auto; max-width: 176px;" src="../../assets/images/package1/02.9_Action/6@3x.png" alt="Action 6">    
-            <img data-layer="image 35" class="Image35" style="width: 10.6%; height: auto; max-width: 176px;" src="../../assets/images/package1/02.9_Action/7@3x.png" alt="Action 7">
-            <img data-layer="image 36" class="Image36" style="width: 10.6%; height: auto; max-width: 176px;" src="../../assets/images/package1/02.9_Action/8@3x.png" alt="Action 8">
-            <img data-layer="image 37" class="Image37" style="width: 10.5%; height: auto; max-width: 175px;" src="../../assets/images/package1/02.9_Action/9@3x.png" alt="Action 9">
+            <img loading="lazy" decoding="async" data-layer="image 29" class="Image29" style="width: 10.6%; height: auto; max-width: 176px;" src="../../assets/images/package1/02.9_Action/1@3x.webp" alt="Action 1">    
+            <img loading="lazy" decoding="async" data-layer="image 30" class="Image30" style="width: 10.6%; height: auto; max-width: 176px;" src="../../assets/images/package1/02.9_Action/2@3x.webp" alt="Action 2">
+            <img loading="lazy" decoding="async" data-layer="image 31" class="Image31" style="width: 10.6%; height: auto; max-width: 176px;" src="../../assets/images/package1/02.9_Action/3@3x.webp" alt="Action 3">    
+            <img loading="lazy" decoding="async" data-layer="image 32" class="Image32" style="width: 10.6%; height: auto; max-width: 176px;" src="../../assets/images/package1/02.9_Action/4@3x.webp" alt="Action 4">
+            <img loading="lazy" decoding="async" data-layer="image 33" class="Image33" style="width: 10.6%; height: auto; max-width: 176px;" src="../../assets/images/package1/02.9_Action/5@3x.webp" alt="Action 5">
+            <img loading="lazy" decoding="async" data-layer="image 34" class="Image34" style="width: 10.6%; height: auto; max-width: 176px;" src="../../assets/images/package1/02.9_Action/6@3x.webp" alt="Action 6">    
+            <img loading="lazy" decoding="async" data-layer="image 35" class="Image35" style="width: 10.6%; height: auto; max-width: 176px;" src="../../assets/images/package1/02.9_Action/7@3x.webp" alt="Action 7">
+            <img loading="lazy" decoding="async" data-layer="image 36" class="Image36" style="width: 10.6%; height: auto; max-width: 176px;" src="../../assets/images/package1/02.9_Action/8@3x.webp" alt="Action 8">
+            <img loading="lazy" decoding="async" data-layer="image 37" class="Image37" style="width: 10.5%; height: auto; max-width: 175px;" src="../../assets/images/package1/02.9_Action/9@3x.webp" alt="Action 9">
         
         </div>
     </section>
@@ -597,7 +610,7 @@
             <div class="ai-title">UEHGC - ZEEN AI SCAN</div>
             <p class="ai-body">"UEHGC - Zeen AI Scan" is an application (App) that identifies, classifies, and provides educational information about waste using Artificial Intelligence (AI). This tool is designed to educate on consumer responsibility and facilitate quick and efficient waste segregation at the source.</p>
             <div class="qr-row" style="display: flex; align-items: flex-end; gap: 15px;">                
-                <img src="../../assets/images/package1/QR_zeen_ai_scan.png" alt="QR Code - Zeen AI Scan">
+                <img loading="lazy" decoding="async" src="../../assets/images/package1/QR_zeen_ai_scan.png" alt="QR Code - Zeen AI Scan">
                 <div class="qr-links">
                     Link: <a href="https://green-campus.ueh.edu.vn/" target="_blank">UEH Green Campus</a><br>
                     Mail: <a href="mailto:smarthub@ueh.edu.vn">smarthub@ueh.edu.vn</a>
@@ -618,7 +631,7 @@
             </div>
 
             <div class="trash-image" style="flex: 1; display: flex; justify-content: flex-end;">
-                <img src="../../assets/images/package1/AI_Trash_Bin.png" alt="AI Trash Bin device" style="max-width: 100%; height: auto; display: block;">
+                <img loading="lazy" decoding="async" src="../../assets/images/package1/AI_Trash_Bin.webp" alt="AI Trash Bin device" style="max-width: 100%; height: auto; display: block;">
             </div>
         </div>
     </div>
@@ -627,14 +640,14 @@
     <section class="platform-section">
         <div class="platform-inner">
             <div class="platform-image">
-                <img src="../../assets/images/package1/Platform_For_Green_Fair/Platform_Doido.png"
+                <img loading="lazy" decoding="async" src="../../assets/images/package1/Platform_For_Green_Fair/Platform_Doido.webp"
                      alt="Platform for Green Fair exchange event">
             </div>
             <div class="platform-text">
                 <div class="platform-title">PLATFORM FOR GREEN FAIR</div>
                 <p class="platform-body">The Platform for Green Fair is a space for students to exchange used items, promoting reuse habits to reduce waste generation. This is a practical circular economy initiative that enables the student community to actively participate and co-create solutions to achieve the Net Zero Campus 2026 goal.</p>
                 <div class="platform-qr-row">
-                    <img src="../../assets/images/package1/QR_Form_dang_ky.png" alt="QR Code - Green Fair registration">
+                    <img loading="lazy" decoding="async" src="../../assets/images/package1/QR_Form_dang_ky.webp" alt="QR Code - Green Fair registration">
                     <div class="platform-contact">
                         UEH, Campus V<br>
                         <a href="mailto:smarthub@ueh.edu.vn">smarthub@ueh.edu.vn</a>
@@ -659,28 +672,28 @@
             <div class="footer-contact-line" style="flex: 1; height: 1px; background-color: #E0E0E0; margin-left: 15px;"></div>
         </div>
         
-        <div class="footer-content-row" style="display: flex !important; flex-direction: row !important; justify-content: flex-start !important; align-items: flex-start !important; width: 100% !important; gap: 80px !important; margin-top: 15px !important;">
-            
-            <div class="footer-left-col" style="flex: 0 0 auto !important;">
-                <span class="info-text" style="font-size: 11px !important; color: #666 !important; font-style: italic !important; display: block; white-space: nowrap !important;">For more information of the smART Hub Living Labs.</span>
+        <div class="footer-content-row" style="display: flex; flex-direction: row; justify-content: flex-start; align-items: flex-start; width: 100%; gap: 80px; margin-top: 15px;">
+
+            <div class="footer-left-col" style="flex: 0 0 auto;">
+                <span class="info-text" style="font-size: 11px; color: #666; font-style: italic; display: block; white-space: nowrap;">For more information of the smART Hub Living Labs.</span>
             </div>
-            
-            <div class="footer-center-col" style="flex: 0 0 auto !important; display: flex !important; flex-direction: column !important; gap: 2px !important;">
-                <span class="brand-text" style="font-weight: 700 !important; font-size: 11px !important; color: #002060 !important; display: block; white-space: nowrap !important;">smART HUB Living Labs</span>
-                <span class="address-text" style="font-size: 11px !important; color: #666 !important; display: block; white-space: nowrap !important;">UEH, Campus V 232/6 Vo Thi Sau, Xuan Hoa Ward, Ho Chi Minh City.</span>
+
+            <div class="footer-center-col" style="flex: 0 0 auto; display: flex; flex-direction: column; gap: 2px;">
+                <span class="brand-text" style="font-weight: 700; font-size: 11px; color: #002060; display: block; white-space: nowrap;">smART HUB Living Labs</span>
+                <span class="address-text" style="font-size: 11px; color: #666; display: block; white-space: nowrap;">UEH, Campus V 232/6 Vo Thi Sau, Xuan Hoa Ward, Ho Chi Minh City.</span>
             </div>
-            
-            <div class="footer-right-col" style="flex: 0 0 auto !important; text-align: left !important; display: block !important;">
-                <a href="mailto:smarthub@ueh.edu.vn" class="email-link" style="font-size: 11px !important; color: #002060 !important; text-decoration: underline !important; display: inline-block !important; white-space: nowrap !important;">smarthub@ueh.edu.vn</a>
+
+            <div class="footer-right-col" style="flex: 0 0 auto; text-align: left; display: block;">
+                <a href="mailto:smarthub@ueh.edu.vn" class="email-link" style="font-size: 11px; color: #002060; text-decoration: underline; display: inline-block; white-space: nowrap;">smarthub@ueh.edu.vn</a>
             </div>
-            
+
         </div>
     </footer>
 
     <div class="platform-mockup" style="position: absolute; right: 10px; bottom: 0px; z-index: 10; width: 325px; height: 472px; margin-bottom: 0px;">
-        <img data-layer="Free_Wooden_Stand_Mockup_1 1" 
+        <img loading="lazy" decoding="async" data-layer="Free_Wooden_Stand_Mockup_1 1" 
              class="FreeWoodenStandMockup11" 
-             src="../../assets/images/package1/Platform_For_Green_Fair/Free_Wooden_Stand_Mockup_1.png"
+             src="../../assets/images/package1/Platform_For_Green_Fair/Free_Wooden_Stand_Mockup_1.webp"
              alt="Green Fair stand mockup"
              style="width: 100%; height: 100%; object-fit: contain; display: block; margin-bottom: 0px;">
     </div>

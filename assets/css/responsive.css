@@ -1,0 +1,65 @@
+/* ============================================================
+   responsive.css — shared mobile/tablet rules for ALL pages.
+   Loaded AFTER each page's inline <style> so it wins ties.
+   Scope: only the unified 2-row header + footer chrome and
+   generic touch ergonomics. Page-specific content rules live
+   in each page's own @media block.
+   ============================================================ */
+
+/* ---------- Tablet & below ---------- */
+@media (max-width: 900px) {
+    /* Slightly tighter header so the hairline never collapses */
+    .header-wrapper { column-gap: 12px; }
+}
+
+/* ---------- Phones ---------- */
+@media (max-width: 768px) {
+
+    /* — Header chrome (unified 2-row pattern on every page) — */
+    .header-wrapper {
+        padding: 10px 4% 6px 4% !important;
+        column-gap: 10px !important;
+    }
+    .logo-left img  { height: 22px !important; }
+    .logo-right img { height: 22px !important; }
+
+    /* Nav: readable size + comfortable tap targets (~40px high) */
+    .header-nav {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 0 !important;
+    }
+    .nav-link {
+        font-size: 13px !important;
+        padding: 10px 9px !important;
+        line-height: 1.2;
+    }
+
+    /* — Footer chrome: stack the two columns — */
+    .footer-container { padding: 24px 5% 32px 5% !important; }
+    .footer-content-row {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 16px !important;
+    }
+    .footer-left-col,
+    .footer-center-col,
+    .footer-right-col {
+        flex: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        text-align: left !important;
+    }
+    .footer-content-row [style*="nowrap"],
+    .footer-content-row .info-text { white-space: normal !important; }
+
+    /* Email links are primary actions — keep them easily tappable */
+    .email-link { display: inline-block; padding: 6px 0; }
+}
+
+/* ---------- Small phones ---------- */
+@media (max-width: 400px) {
+    .logo-left img  { height: 19px !important; }
+    .logo-right img { height: 19px !important; }
+    .nav-link { font-size: 12px !important; padding: 10px 7px !important; }
+}
