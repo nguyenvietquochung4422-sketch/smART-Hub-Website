@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Art for All - smART Hub Living Labs</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="../../assets/css/animations.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -159,14 +160,14 @@
 
     <!-- ============ MOBILE LAYOUT (phones only; canvas hidden ≤768px) ============ -->
     <div class="m-only m-p4">
-        <section class="m-section">
+        <section class="m-section" data-aos="fade-up">
             <p class="m-eyebrow">Package 4</p>
             <h1 class="m-title">Art for<br>Inspiration</h1>
             <p class="m-body">Serves as the emotional touchpoint and key communication platform within the SMART framework of the SHLL. Its primary objective is to transform technical environmental data into engaging community experiences, fostering long-term stakeholder engagement.</p>
             <p class="m-body">Major outputs include visual storytelling layouts for different campus areas, providing qualitative evidence of community co-creation and place-based interventions across Campus V.</p>
         </section>
 
-        <section class="m-section">
+        <section class="m-section" data-aos="fade-up">
             <p class="m-eyebrow">Visit Us</p>
             <div class="m-infobar">
                 <span class="k">Sun – Fri</span>
@@ -178,7 +179,7 @@
             </div>
         </section>
 
-        <section class="m-section">
+        <section class="m-section" data-aos="fade-up">
             <p class="m-eyebrow">Programme</p>
             <ul class="m-eventlist">
                 <li><span class="m-ev-name">Current Exhibitions</span><span class="m-ev-meta">On view now at Campus V — visual storytelling across campus areas</span></li>
@@ -187,7 +188,7 @@
             </ul>
         </section>
 
-        <section class="m-section">
+        <section class="m-section" data-aos="fade-up">
             <p class="m-eyebrow">Newsletter</p>
             <p class="m-body">Art &amp; ideas into your inbox — send us your details to stay connected.</p>
             <a class="m-card m-card--cta" href="mailto:smarthub@ueh.edu.vn">
@@ -196,7 +197,7 @@
             </a>
         </section>
 
-        <section class="m-section">
+        <section class="m-section" data-aos="fade-up">
             <a class="m-card m-card--cta" href="../../index.html">
                 <span class="m-card-text"><span class="m-card-kicker">Back to</span><span class="m-card-title">4 Package Workspace</span></span>
                 <span class="m-card-arrow">&rsaquo;</span>
@@ -332,5 +333,9 @@
         updateScale();
     </script>
     <script src="../../assets/js/animations.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1400, once: true, offset: 80, easing: 'ease-in-out' });
+    </script>
 </body>
 </html>

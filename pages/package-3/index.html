@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Towards Net Zero - smART Hub Living Labs</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="../../assets/css/animations.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -124,19 +125,19 @@
 
     <!-- ============ MOBILE LAYOUT (phones only; canvas hidden ≤768px) ============ -->
     <div class="m-only m-p3">
-        <section class="m-section">
+        <section class="m-section" data-aos="fade-up">
             <p class="m-eyebrow">Package 3</p>
             <h1 class="m-title">Towards<br>Net Zero</h1>
             <p class="m-body">Developing a Digital Twin of Campus V. Through a real-time data dashboard powered by a sensor network and a sustainable audit system, the project enables intelligent energy and emissions management while providing feedback loops to inform and optimize design solutions.</p>
         </section>
 
-        <section class="m-section">
+        <section class="m-section" data-aos="fade-up">
             <figure class="m-figure">
                 <img src="../../assets/images/package3/white_model.webp" alt="V-Campus digital twin wireframe model" decoding="async">
             </figure>
         </section>
 
-        <section class="m-section">
+        <section class="m-section" data-aos="fade-up">
             <p class="m-eyebrow">Live Sensor Readings</p>
             <div class="m-stats">
                 <div class="m-stat"><div class="m-stat-num">29.2°C</div><div class="m-stat-label">Temperature</div></div>
@@ -146,12 +147,12 @@
             </div>
         </section>
 
-        <section class="m-section">
+        <section class="m-section" data-aos="fade-up">
             <p class="m-eyebrow">Digital Twins</p>
             <p class="m-body">This package corresponds to the <strong style="color:var(--m-fg)">M – Measurement for Improvement</strong> component of the SMART strategy, ensuring that spatial design adjustments and operational decisions are informed by empirical evidence.</p>
         </section>
 
-        <section class="m-section">
+        <section class="m-section" data-aos="fade-up">
             <a class="m-card m-card--cta" href="../../index.html">
                 <span class="m-card-text"><span class="m-card-kicker">Back to</span><span class="m-card-title">4 Package Workspace</span></span>
                 <span class="m-card-arrow">&rsaquo;</span>
@@ -766,6 +767,10 @@
     }());
     </script>
     <script src="../../assets/js/animations.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1400, once: true, offset: 80, easing: 'ease-in-out' });
+    </script>
     <script>
     /* Canvas section scroll reveals */
     (function () {

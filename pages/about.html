@@ -651,14 +651,14 @@
 
 <!-- ============ MOBILE LAYOUT (phones only; canvas hidden ≤768px) ============ -->
 <div class="m-only m-about">
-    <section class="m-section">
+    <section class="m-section" data-aos="fade-up">
         <p class="m-eyebrow">Our Vision</p>
         <p class="m-body m-lead">A vibrant cultural hub that promotes art, design, and innovation in a smart way while embodying sustainability and community engagement towards Net Zero.</p>
     </section>
 
     <hr class="m-divider">
 
-    <section class="m-section">
+    <section class="m-section" data-aos="fade-up">
         <p class="m-eyebrow">Our Mission</p>
         <p class="m-body">smART Hub is a Living Labs ecosystem — an intersection where the boldest ideas in technology, policy, and art are taken off the page to "live" and "breathe" in the real world.</p>
         <p class="m-body">A coordinating hub for Living Labs and urban environmental policy experimentation across the entire UEH system.</p>
@@ -666,7 +666,7 @@
 
     <hr class="m-divider">
 
-    <section class="m-section">
+    <section class="m-section" data-aos="fade-up">
         <p class="m-eyebrow">Our History</p>
         <ul class="m-timeline">
             <li><span class="m-tl-tag">French Villa</span> Biệt thự Pháp — the historic origin of the site.</li>
@@ -679,14 +679,14 @@
 
     <hr class="m-divider">
 
-    <section class="m-section">
+    <section class="m-section" data-aos="fade-up">
         <p class="m-eyebrow">Living Lab Procedure</p>
         <figure class="m-figure">
             <img src="../assets/images/About/Living_lab_procedure.webp" alt="Living Lab procedure diagram" decoding="async">
         </figure>
     </section>
 
-    <section class="m-section">
+    <section class="m-section" data-aos="fade-up">
         <p class="m-eyebrow">Co-Creation &amp; Package Model</p>
         <p class="m-body">Where actions for "Co-creation for Net Zero campus" take place — the coordinating campus for living labs and experimentation for urban environmental policy.</p>
         <figure class="m-figure">
@@ -694,7 +694,7 @@
         </figure>
     </section>
 
-    <section class="m-section">
+    <section class="m-section" data-aos="fade-up">
         <a class="m-card m-card--cta" href="../index.html">
             <span class="m-card-text"><span class="m-card-kicker">Explore</span><span class="m-card-title">4 Package Workspace</span></span>
             <span class="m-card-arrow">&rsaquo;</span>
@@ -1048,7 +1048,7 @@
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-  AOS.init({ disable: function(){ return window.innerWidth < 768; }, duration: 1400, once: true, offset: 80, easing: 'ease-in-out' });
+  AOS.init({ duration: 1400, once: true, offset: 80, easing: 'ease-in-out' });
   (function () {
     var clip   = document.querySelector('.about-clip');
     var canvas = document.querySelector('.Model');
