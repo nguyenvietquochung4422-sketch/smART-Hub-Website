@@ -459,11 +459,16 @@
         .ep-4 { width: 384px; height: 481px; left: 1px;  top: 29px; z-index: 2; }
         .ep-5 { width: 358px; height: 448px; left: 13px; top: 58px; z-index: 1; }
 
-        /* Hover: unroll into horizontal row */
-        .event-photos:hover { width: min(1060px, 90vw); height: 270px; }
+        /* Hover: unroll into horizontal row.
+           Keep the container HEIGHT unchanged (530px) so the hover target
+           never shrinks under the cursor — shrinking it caused a
+           hover-lost → collapse → re-hover flicker ("shake"). Width only
+           grows, and it grows symmetrically (centered), so the cursor is
+           always still inside. The row is vertically centred in the box. */
+        .event-photos:hover { width: min(1060px, 90vw); height: 530px; }
         .event-photos:hover .ep-photo {
             height: 250px;
-            top: 10px;
+            top: 140px;
             transform: none;
             transform-origin: center;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
