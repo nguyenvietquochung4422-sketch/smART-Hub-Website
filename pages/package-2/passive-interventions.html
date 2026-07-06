@@ -73,13 +73,21 @@
         /* "ARCHITECTURAL DESIGN" title
            Figma: left:1001/1874=53.4%, top:169/1176=14.4%
            Inter SemiBold 63px white, shadow -3px 1px 0 #5368a9 */
+        /* Title synced with architectural-design/-layout: two-tier hierarchy,
+           right-aligned upper-right. White (dark hero image). */
         .hero-title {
-            position:absolute; left:53.4%; top:14.4%; width:31.2%;
-            font-size:clamp(22px,3.36vw,63px);
-            font-weight:600; color:#fff; line-height:1.45;
-            letter-spacing:-0.315px; text-transform:uppercase;
-            text-shadow:-3px 1px 0 #5368a9;
-            z-index:20;
+            position:absolute; right:6%; top:14.4%; left:auto; width:auto;
+            text-align:right; z-index:20; margin:0;
+        }
+        .hero-title .t-arch {
+            display:block; font-size:clamp(30px,4.6vw,66px); font-weight:600;
+            color:#fff; line-height:1.12; letter-spacing:-0.005em; text-transform:uppercase;
+            text-shadow:0 2px 12px rgba(14,32,66,0.55);
+        }
+        .hero-title .t-design {
+            display:block; font-size:clamp(24px,3.6vw,52px); font-weight:600;
+            color:rgba(255,255,255,0.92); line-height:1.15; letter-spacing:-0.005em; text-transform:uppercase;
+            text-shadow:0 2px 12px rgba(14,32,66,0.55);
         }
 
         /* Info box
@@ -280,7 +288,7 @@
             .ss-bottom-row    { grid-template-columns:1fr; }
             .win-top-row      { grid-template-columns:1fr; }
             .win-bottom-row   { grid-template-columns:1fr; }
-            .hero-title       { left:5%; width:90%; }
+            .hero-title       { right:5%; left:auto; width:auto; }
             .hero-infobox     { left:5%; width:90%; }
             .footer-left,
             .footer-right     { max-width:100%; }
@@ -293,6 +301,11 @@
         html, body { overflow-x: hidden !important; max-width: 100% !important; }
         .header-wrapper { position: relative !important; background: #2f4149 !important; padding: 12px 5% !important; z-index: 2000; }
         .header-line-wrap { background: rgba(255,255,255,0.4) !important; }
+
+        /* Title: left-aligned near top, shrunk to fit (matches architectural pages) */
+        .hero-title { top: 12% !important; right: auto !important; left: 6% !important; width: 88% !important; text-align: left !important; }
+        .hero-title .t-arch { font-size: clamp(22px, 7vw, 36px) !important; }
+        .hero-title .t-design { font-size: clamp(20px, 5.8vw, 30px) !important; }
     }
     </style>
 </head>
@@ -315,7 +328,7 @@
 
         <!-- Title at right — mirrors architectural-design.html context label -->
         <!-- Figma: left:53.4%, top:14.4%; Inter SemiBold 63px, shadow -3px 1px 0 #5368a9 -->
-        <h1 class="hero-title">ARCHITECTURAL<br>DESIGN</h1>
+        <h1 class="hero-title"><span class="t-arch">ARCHITECTURAL</span><span class="t-design">DESIGN</span></h1>
 
         <!-- Info box: white card with blue border
              Figma: left:53.3%, top:67.7%, 634×148px, radius:11px, border:#5368a9 -->
