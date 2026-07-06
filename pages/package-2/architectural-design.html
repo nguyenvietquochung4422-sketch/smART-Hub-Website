@@ -111,23 +111,15 @@
             align-items: flex-end;
             transition: opacity 0.5s ease;
         }
-        /* Two-tier size hierarchy (matches landscape-design). White here —
-           landscape's blue is unreadable over these dark blue door images —
-           with a soft shadow so it lifts off the busy illustration. */
-        .top-content h1 { margin: 0; }
-        .top-content .t-arch {
-            display: block;
-            font-size: clamp(30px, 4.6vw, 66px);
-            font-weight: 600; color: #ffffff;
-            line-height: 1.12; letter-spacing: -0.005em; text-transform: uppercase;
-            text-shadow: 0 2px 12px rgba(14,32,66,0.55);
-        }
-        .top-content .t-design {
-            display: block;
-            font-size: clamp(24px, 3.6vw, 52px);
-            font-weight: 600; color: rgba(255,255,255,0.92);
-            line-height: 1.15; letter-spacing: -0.005em; text-transform: uppercase;
-            text-shadow: 0 2px 12px rgba(14,32,66,0.55);
+        /* ARCHITECTURAL DESIGN — original Figma style (uniform 63px) */
+        .top-content h1 {
+            margin: 0;
+            font-size: clamp(28px, 4vw, 63px);
+            font-family: 'Inter', sans-serif;
+            font-weight: 600; color: #fff;
+            line-height: 1.45;
+            text-transform: uppercase; word-wrap: break-word;
+            text-shadow: -3px 1px 0px rgba(83, 104, 169, 1.00);
         }
 
         .newsletter-btn {
@@ -175,9 +167,7 @@
                 box-sizing: border-box;
             }
             .top-content { width: 100% !important; max-width: 100% !important; }
-            .top-content h1 { width: 100% !important; max-width: 100% !important; margin: 0; }
-            .top-content .t-arch { font-size: clamp(22px, 7vw, 36px) !important; }
-            .top-content .t-design { font-size: clamp(20px, 5.8vw, 30px) !important; }
+            .top-content h1 { width: 100% !important; max-width: 100% !important; margin: 0; font-size: clamp(24px, 8vw, 40px) !important; }
             .newsletter-btn { font-size: 12px !important; padding: 10px 24px !important; }
         }
     </style>
@@ -201,7 +191,7 @@
 
     <section class="hero-container">
         <div class="top-content" data-aos="fade-left">
-            <h1><span class="t-arch">ARCHITECTURAL</span><span class="t-design">DESIGN</span></h1>
+            <h1>ARCHITECTURAL<br>DESIGN</h1>
         </div>
         <a href="#" class="newsletter-btn">Sent Us Your Newsletter</a>
     </section>

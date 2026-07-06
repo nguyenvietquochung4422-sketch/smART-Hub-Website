@@ -64,19 +64,15 @@
         .nav-link:hover { opacity: 0.7; }
         
         .top-content { position: absolute; z-index: 100; top: 14.4%; right: 6%; text-align: right; width: auto; }
-        /* Landscape-page title treatment: solid blue, two-tier size hierarchy */
-        .top-content h1 { margin: 0; }
-        .top-content .t-arch {
-            display: block;
-            font-size: clamp(30px, 4.6vw, 66px);
-            font-weight: 600; color: #5368a9;
-            line-height: 1.12; letter-spacing: -0.005em; text-transform: uppercase;
-        }
-        .top-content .t-design {
-            display: block;
-            font-size: clamp(24px, 3.6vw, 52px);
-            font-weight: 600; color: #5368a6;
-            line-height: 1.15; letter-spacing: -0.005em; text-transform: uppercase;
+        /* ARCHITECTURAL DESIGN — original Figma style (uniform 63px) */
+        .top-content h1 {
+            margin: 0;
+            font-size: clamp(28px, 4vw, 63px);
+            font-family: 'Inter', sans-serif;
+            font-weight: 600; color: #fff;
+            line-height: 1.45;
+            text-transform: uppercase; word-wrap: break-word;
+            text-shadow: -3px 1px 0px rgba(83, 104, 169, 1.00);
         }
         .newsletter-tag { display: inline-block; margin-top: 15px; padding: 8px 25px; background: rgba(255,255,255,0.9); color: var(--pkg-blue); border-radius: 50px; font-size: 11px; font-weight: 700; text-decoration: none; }
 
@@ -201,8 +197,7 @@
 
         /* Title: fit on small screens (landscape-style, left-aligned near top) */
         .top-content { top: 6% !important; right: auto !important; left: 6% !important; width: 88% !important; text-align: left !important; }
-        .top-content .t-arch { font-size: clamp(22px, 7vw, 36px) !important; }
-        .top-content .t-design { font-size: clamp(20px, 5.8vw, 30px) !important; }
+        .top-content h1 { font-size: clamp(24px, 8vw, 40px) !important; }
     }
     </style>
 </head>
@@ -224,7 +219,7 @@
     <section class="hero-container">
         <a href="architectural-design.html" class="hero-back-cover" aria-label="Back to Architectural Design"><span class="hbc-hint">‹ Architectural Design</span></a>
         <div class="top-content" data-aos="fade-left">
-            <h1><span class="t-arch">ARCHITECTURAL</span><span class="t-design">DESIGN</span></h1>
+            <h1>ARCHITECTURAL<br>DESIGN</h1>
         </div>
 
         <div class="hero-footer-title" data-aos="fade-right">
