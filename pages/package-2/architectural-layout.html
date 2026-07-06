@@ -80,6 +80,19 @@
         }
         .newsletter-tag { display: inline-block; margin-top: 15px; padding: 8px 25px; background: rgba(255,255,255,0.9); color: var(--pkg-blue); border-radius: 50px; font-size: 11px; font-weight: 700; text-decoration: none; }
 
+        /* Cover click = Back to Architectural Design (the door in reverse) */
+        .hero-back-cover { position:absolute; inset:0; z-index:5; cursor:pointer; display:block; text-decoration:none; }
+        .hbc-hint {
+            position:absolute; left:clamp(16px,2.29vw,43px); top:clamp(72px,11vh,120px);
+            display:inline-flex; align-items:center; gap:7px;
+            padding:9px 18px; border-radius:50px;
+            background:rgba(20,40,70,0.42); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+            border:1px solid rgba(255,255,255,0.35);
+            color:#fff; font:600 12px/1 'Inter',sans-serif; letter-spacing:0.03em; text-transform:uppercase; white-space:nowrap;
+            opacity:0; transform:translateX(-6px); transition:opacity .3s ease, transform .3s ease; pointer-events:none;
+        }
+        .hero-back-cover:hover .hbc-hint { opacity:1; transform:translateX(0); }
+
         .hero-footer-title { position: absolute; z-index: 100; bottom: 80px; left: 6%; font-size: clamp(28px, 4vw, 48px); font-weight: 700; text-transform: uppercase; color: rgba(255, 255, 255, 0.95); }
 
         .hero-info-box {
@@ -209,6 +222,7 @@
     </div>
 
     <section class="hero-container">
+        <a href="architectural-design.html" class="hero-back-cover" aria-label="Back to Architectural Design"><span class="hbc-hint">‹ Architectural Design</span></a>
         <div class="top-content" data-aos="fade-left">
             <h1><span class="t-arch">ARCHITECTURAL</span><span class="t-design">DESIGN</span></h1>
         </div>
