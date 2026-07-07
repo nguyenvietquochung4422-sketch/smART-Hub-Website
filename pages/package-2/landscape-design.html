@@ -85,6 +85,10 @@
         /* ── 3. SHARED SECTION CHROME ── */
         .ld-sec {
             padding: clamp(40px,5.3vw,100px) clamp(20px,4.76vw,89px);
+            background: #fff;
+        }
+        .ld-bottom-deco {
+            background: #fff;
         }
         .ld-sec-title {
             font-size:clamp(20px,2.13vw,40px);
@@ -249,15 +253,14 @@
         }
 
                 /* ── FOOTER ── */
-        .footer-container { padding:40px 2% 60px 2%; background:transparent !important; backdrop-filter:none !important; -webkit-backdrop-filter:none !important; color:#333; width:100%; font-family:'Inter',sans-serif; }
+        .footer-container { padding:40px 2% 60px 2%; background:#fff !important; backdrop-filter:none !important; -webkit-backdrop-filter:none !important; color:#333; width:100%; font-family:'Inter',sans-serif; }
         .footer-contact-header { display:flex; align-items:center; gap:20px; margin-bottom:20px; }
         .footer-contact-title { font-size:16px; font-weight:700; color:var(--c-blue,var(--pkg-blue,#0E3B66)); white-space:nowrap; }
         .footer-contact-line, .footer-rule { flex-grow:1; height:1px; background:rgba(14,59,102,0.18); }
         .footer-content-row { display:flex; justify-content:space-between; align-items:flex-start; gap:30px; }
-        .footer-left-col, .footer-left { flex:0 1 38%; }
+        .footer-left-col, .footer-left { flex:0 1 38%; display:flex; flex-direction:column; gap:4px; }
         .info-text { font-size:11px; font-style:italic; color:#666; font-weight:300; line-height:1.7; }
-        .footer-right-col, .footer-right { flex:1; display:flex; flex-direction:column; gap:4px; }
-        .footer-right-top { display:flex; justify-content:space-between; align-items:baseline; gap:20px; }
+        .footer-right-col, .footer-right { flex:1; display:flex; flex-direction:column; gap:4px; align-items:flex-end; text-align:right; }
         .brand-text { font-size:11px; font-weight:600; color:var(--c-blue,var(--pkg-blue,#0E3B66)); letter-spacing:0.4px; }
         .email-link { font-size:11px; color:var(--c-blue,var(--pkg-blue,#0E3B66)); text-decoration:none; font-weight:500; transition:color 0.2s; }
         .email-link:hover { color:#d76a28; text-decoration:underline; }
@@ -315,13 +318,15 @@
 </section>
 
 <!-- ── OUR PHILOSOPHY ──────────────────────────────────────────────── -->
-<section class="ld-sec ld-philosophy" data-aos="fade-up">
-    <h2 class="ld-phil-title">OUR PHILOSOPHY</h2>
-    <p class="ld-phil-text">
-        The project positions landscape design as a "knowledge bridge"
-        that adapts international urban design standards to local knowledge,
-        the tropical climate, and the cultural context of Ho Chi Minh City.
-    </p>
+<section class="ld-sec ld-philosophy">
+    <div data-aos="fade-up">
+        <h2 class="ld-phil-title">OUR PHILOSOPHY</h2>
+        <p class="ld-phil-text">
+            The project positions landscape design as a "knowledge bridge"
+            that adapts international urban design standards to local knowledge,
+            the tropical climate, and the cultural context of Ho Chi Minh City.
+        </p>
+    </div>
 </section>
 
 <!-- ── LANDSCAPE MASTER PLAN ──────────────────────────────────────── -->
@@ -514,12 +519,10 @@
     <div class="footer-content-row">
         <div class="footer-left-col">
             <span class="info-text">For more information of the smART Hub Living Labs.</span>
+            <a href="mailto:smarthub@ueh.edu.vn" class="email-link">smarthub@ueh.edu.vn</a>
         </div>
         <div class="footer-right-col">
-            <div class="footer-right-top">
-                <span class="brand-text">smART HUB Living Labs</span>
-                <a href="mailto:smarthub@ueh.edu.vn" class="email-link">smarthub@ueh.edu.vn</a>
-            </div>
+            <span class="brand-text">smART HUB Living Labs</span>
             <span class="address-text">UEH, Campus V 232/6 Vo Thi Sau, Xuan Hoa Ward, Ho Chi Minh City.</span>
         </div>
     </div>
