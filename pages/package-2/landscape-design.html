@@ -188,7 +188,7 @@
         .ld-plant-text-col {
             position:relative;
             z-index:2;
-            width:52%;
+            width:26%;
         }
         .ld-plant-11-bg {
             position:absolute;
@@ -198,6 +198,11 @@
             top:0;
             z-index:1;
             object-fit:cover;
+        }
+        .ld-plant-bot img[src*="landscape_12.webp"] {
+            max-height: 15vw;
+            width: auto;
+            object-fit: contain;
         }
         .ld-plant-bot {
             display:grid; grid-template-columns:30fr 68fr;
@@ -211,7 +216,7 @@
         */
         .ld-green-grid {
             display:grid; grid-template-columns:60fr 38fr;
-            gap:clamp(12px,2.14vw,40px); align-items:flex-start;
+            gap:clamp(12px,2.14vw,40px); align-items:flex-end;
         }
         .ld-green-right { display:flex; flex-direction:column; gap:clamp(14px,1.5vw,28px); }
 
@@ -472,7 +477,7 @@
                  alt="Green roof campus gate" class="ld-img zoom"
                  onclick="openLightbox(this.src)">
         </div>
-        <div class="ld-green-right" data-aos="fade-up" data-aos-delay="120" style="display: grid; grid-template-columns: 1fr 2.5fr; gap: 20px; align-items: center;">
+        <div class="ld-green-right" data-aos="fade-up" data-aos-delay="120" style="display: grid; grid-template-columns: 1.4fr 2.1fr; gap: 20px; align-items: flex-end;">
             <div style="display: flex; flex-direction: column;">
                 <p class="ld-legend" style="margin-bottom: 12px;">Legend</p>
                 <img loading="lazy" decoding="async" src="../../assets/images/package2/Landscape/landscape_16.webp"
@@ -515,7 +520,7 @@
 <!-- ── BIORETENTION SWALE ──────────────────────────────────────────── -->
 <section class="ld-sec">
     <h2 class="ld-sec-title" data-aos="fade-up">BioRetention Swale</h2>
-    <div class="ld-sod-grid">
+    <div class="ld-bio-top">
         <div data-aos="fade-up">
             <img loading="lazy" decoding="async" src="../../assets/images/package2/Landscape/landscape_19.webp"
                  alt="BioRetention swale photo" class="ld-img zoom"
@@ -559,7 +564,8 @@
                 <p class="ld-legend">Legend</p>
                 <img loading="lazy" decoding="async" src="../../assets/images/package2/Landscape/landscape_24.webp"
                      alt="Background legend" class="ld-img-fit zoom"
-                     onclick="openLightbox(this.src)">
+                     onclick="openLightbox(this.src)"
+                     style="max-width: 50%; height: auto; display: block;">
             </div>
         </div>
     </div>
