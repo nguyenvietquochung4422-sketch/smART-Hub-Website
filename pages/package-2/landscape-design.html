@@ -167,24 +167,26 @@
            Bottom row: legend (w:207→487=280px) vs plan (w:960) → 23 : 77 ratio
         */
         .ld-plant-top {
-            display:grid; grid-template-columns:28fr 72fr;
-            gap:clamp(12px,2.14vw,40px); align-items:center;
-        }
-        .ld-plant-right {
+            display:grid; grid-template-columns:45fr 52fr;
+            gap:clamp(12px,2.14vw,40px); align-items:flex-start;
             position:relative;
-            display:flex;
-            align-items:center;
-            width:100%;
         }
-        .ld-plant-text {
-            position:absolute;
-            left:10%;
-            width:42%;
+        .ld-plant-10-wrapper {
+            position:relative;
             z-index:2;
-            pointer-events:none;
         }
-        .ld-plant-text .ld-body {
-            pointer-events:auto;
+        .ld-plant-text-col {
+            position:relative;
+            z-index:2;
+        }
+        .ld-plant-11-bg {
+            position:absolute;
+            right:calc(-1 * clamp(20px, 4.76vw, 89px));
+            top:50%;
+            transform:translateY(-50%);
+            width:75vw;
+            height:auto;
+            z-index:1;
         }
         .ld-plant-bot {
             display:grid; grid-template-columns:30fr 68fr;
@@ -265,16 +267,26 @@
                 flex:0 0 clamp(70px,22vw,130px);
                 height:clamp(70px,22vw,130px);
             }
-            .ld-plant-right {
+            .ld-plant-top {
+                display: flex;
                 flex-direction: column;
-                align-items: stretch;
             }
-            .ld-plant-text {
+            .ld-plant-10-wrapper {
+                order: 1;
+            }
+            .ld-plant-text-col {
+                order: 2;
+                margin-top: clamp(14px,1.5vw,28px);
+            }
+            .ld-plant-11-bg {
                 position: relative !important;
-                left: 0 !important;
+                right: auto !important;
+                top: auto !important;
+                transform: none !important;
                 width: 100% !important;
-                order: -1;
-                margin-bottom: clamp(14px,1.5vw,28px);
+                z-index: auto !important;
+                order: 3;
+                margin-top: clamp(14px,1.5vw,28px);
             }
         }
 
@@ -391,23 +403,21 @@
 <section class="ld-sec">
     <h2 class="ld-sec-title" data-aos="fade-up">Planting Elevation UEH Hotel</h2>
     <div class="ld-plant-top">
-        <div data-aos="fade-up">
+        <img loading="lazy" decoding="async" src="../../assets/images/package2/Landscape/landscape_11.webp"
+             alt="Campus planting elevation plan" class="ld-plant-11-bg zoom"
+             onclick="openLightbox(this.src)">
+        <div data-aos="fade-up" class="ld-plant-10-wrapper">
             <img loading="lazy" decoding="async" src="../../assets/images/package2/Landscape/landscape_10.webp"
                  alt="Planting elevation photo" class="ld-img zoom"
                  onclick="openLightbox(this.src)">
         </div>
-        <div class="ld-plant-right" data-aos="fade-up" data-aos-delay="120">
-            <img loading="lazy" decoding="async" src="../../assets/images/package2/Landscape/landscape_11.webp"
-                 alt="Campus planting elevation plan" class="ld-img zoom"
-                 onclick="openLightbox(this.src)">
-            <div class="ld-plant-text">
-                <p class="ld-body">
-                    In addition to developing green spaces at ground level, the project also introduces
-                    vertical greenery on building facades to increase shaded areas throughout the campus.
-                    Native fruit-bearing plants are integrated to create a balance between a global spatial
-                    identity and the preservation of local vegetation systems.
-                </p>
-            </div>
+        <div class="ld-plant-text-col" data-aos="fade-up" data-aos-delay="120">
+            <p class="ld-body">
+                In addition to developing green spaces at ground level, the project also introduces
+                vertical greenery on building facades to increase shaded areas throughout the campus.
+                Native fruit-bearing plants are integrated to create a balance between a global spatial
+                identity and the preservation of local vegetation systems.
+            </p>
         </div>
     </div>
     <div class="ld-plant-bot">
