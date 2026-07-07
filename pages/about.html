@@ -590,54 +590,69 @@
 
             /* Hide the 7500px canvas; show the reflowed mobile article */
             .about-clip, .About { display: none !important; }
-            body { background: #f4f6f4 !important; }
 
-            /* Header becomes a solid dark bar so the white logo/nav stay legible
-               over the light article, and sits in-flow above the content. */
+            /* Keep the same green gradient background as desktop */
+            body {
+                background: url('../assets/images/index/gradient_noise_website.png') no-repeat center center fixed !important;
+                background-size: cover !important;
+            }
+
+            /* Header stays transparent over the green background — same as desktop */
             .header-wrapper {
                 position: relative !important;
-                background: #0E3B66 !important;
+                background: transparent !important;
                 padding: 12px 5% !important;
             }
-            .header-line-wrap { background: rgba(255,255,255,0.4) !important; }
+            .header-line-wrap { background: rgba(255,255,255,0.6) !important; }
 
             .m-about {
-                background: #ffffff;
-                border-radius: 16px 16px 0 0;
-                margin-top: 6px;
+                background: transparent;
+                border-radius: 0;
+                margin-top: 0;
                 padding-bottom: 10px;
-                box-shadow: 0 -2px 20px rgba(0,0,0,0.06);
+                box-shadow: none;
             }
+
+            /* All text white over green background */
+            .m-about .m-eyebrow {
+                color: rgba(255,255,255,0.80) !important;
+            }
+            .m-about .m-eyebrow::after {
+                background: rgba(255,255,255,0.30) !important;
+            }
+            .m-about .m-title,
+            .m-about .m-body,
             .m-about .m-lead {
-                font-size: 18px; font-weight: 500; color: #2a2a2a; line-height: 1.55;
+                color: #ffffff !important;
             }
-            .m-timeline { list-style: none; margin: 4px 0 0; padding: 0; }
-            .m-timeline li {
-                position: relative; padding: 0 0 16px 20px;
-                font-size: 14.5px; line-height: 1.6; color: #555;
-                border-left: 2px solid rgba(14,59,102,0.18); margin-left: 4px;
+            .m-about .m-card {
+                background: rgba(255,255,255,0.12) !important;
+                border-color: rgba(255,255,255,0.25) !important;
+                color: #ffffff !important;
             }
-            .m-timeline li:last-child { padding-bottom: 0; }
-            .m-timeline li::before {
-                content: ""; position: absolute; left: -7px; top: 4px;
-                width: 12px; height: 12px; border-radius: 50%;
-                background: #0E3B66; border: 2px solid #fff;
-            }
-            .m-tl-tag { display: block; font-weight: 700; color: #0E3B66; font-size: 14px; margin-bottom: 2px; }
+            .m-about .m-card-kicker { color: rgba(255,255,255,0.70) !important; }
+            .m-about .m-card-title { color: #ffffff !important; }
+            .m-about .m-card-arrow { color: #ffffff !important; }
+            .m-divider { background: rgba(255,255,255,0.20) !important; }
+
+            /* Timeline in white */
+            .m-timeline li { color: rgba(255,255,255,0.90) !important; border-left-color: rgba(255,255,255,0.30) !important; }
+            .m-timeline li::before { background: #ffffff !important; border-color: rgba(255,255,255,0.40) !important; }
+            .m-tl-tag { color: rgba(255,255,255,0.70) !important; }
+
+            /* Figures on green background */
             .m-about .m-figure {
-                background: #f7f8f9; border: 1px solid rgba(0,0,0,0.06);
+                background: rgba(255,255,255,0.08) !important;
+                border: 1px solid rgba(255,255,255,0.15) !important;
                 border-radius: 12px; padding: 10px; overflow: hidden;
             }
             .m-about .m-figure img { display: block; width: 100%; height: auto; }
 
-            /* Footer sits on white now → switch its white text to dark */
-            .footer-container { background: #ffffff !important; border-top: 1px solid rgba(0,0,0,0.08); }
-            .footer-container .footer-contact-title,
-            .footer-container .brand-text { color: #0E3B66 !important; background-color: transparent !important; }
-            .footer-container .info-text,
-            .footer-container .address-text { color: #555 !important; }
-            .footer-container .email-link { color: #0E3B66 !important; }
-            .footer-container .footer-contact-line { background-color: rgba(0,0,0,0.12) !important; }
+            /* Footer stays consistent with green background */
+            .footer-container {
+                background: transparent !important;
+                border-top: 1px solid rgba(255,255,255,0.18) !important;
+            }
         }
 </style>
     <link rel="stylesheet" href="../assets/css/responsive.css">
