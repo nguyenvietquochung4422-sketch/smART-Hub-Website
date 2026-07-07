@@ -100,6 +100,50 @@
             .m-card--cta { justify-content: space-between; }
             /* footer already stacks via responsive.css; add a top divider on mobile */
             .footer-container { border-top: 1px solid rgba(255,255,255,0.18); margin-top: 8px; }
+            .m-pkg-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 24px 16px;
+                margin-top: 16px;
+            }
+            .m-pkg-card {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                text-decoration: none;
+                color: #ffffff;
+            }
+            .m-pkg-img {
+                width: 100%;
+                height: 110px;
+                object-fit: contain;
+                margin-bottom: 12px;
+                transition: transform 0.2s ease;
+            }
+            .m-pkg-card:active .m-pkg-img {
+                transform: scale(0.95);
+            }
+            .m-pkg-info {
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+            }
+            .m-pkg-kicker {
+                display: block;
+                font-size: 11px;
+                font-weight: 700;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                color: rgba(255, 255, 255, 0.7);
+            }
+            .m-pkg-title {
+                display: block;
+                font-size: 13px;
+                font-weight: 700;
+                line-height: 1.35;
+                color: #ffffff;
+            }
         }
 
         /* ===== HIDE FIGMA CANVAS FOOTER ELEMENTS ===== */
@@ -203,26 +247,34 @@
 
         <section class="m-section" data-aos="fade-up">
             <p class="m-eyebrow">4 Package Workspace</p>
-            <div class="m-cards">
-                <a class="m-card" href="./pages/package-1/index.html">
-                    <img class="m-card-img" src="assets/images/index/package-icon/thumb/package-1.webp" alt="Package 1" loading="lazy" decoding="async">
-                    <span class="m-card-text"><span class="m-card-kicker">Package 1</span><span class="m-card-title">No Single-use Plastic Journey</span></span>
-                    <span class="m-card-arrow">&rsaquo;</span>
+            <div class="m-pkg-grid">
+                <a class="m-pkg-card" href="./pages/package-1/index.html">
+                    <img class="m-pkg-img" src="assets/images/index/package-icon/package-1.webp" alt="Package 1" loading="lazy" decoding="async">
+                    <div class="m-pkg-info">
+                        <span class="m-pkg-kicker">Package 1</span>
+                        <span class="m-pkg-title">No Single-use Plastic Journey</span>
+                    </div>
                 </a>
-                <a class="m-card" href="./pages/package-2/index.html">
-                    <img class="m-card-img" src="assets/images/index/package-icon/thumb/package-2.webp" alt="Package 2" loading="lazy" decoding="async">
-                    <span class="m-card-text"><span class="m-card-kicker">Package 2</span><span class="m-card-title">Glocal Design</span></span>
-                    <span class="m-card-arrow">&rsaquo;</span>
+                <a class="m-pkg-card" href="./pages/package-2/index.html">
+                    <img class="m-pkg-img" src="assets/images/index/package-icon/package-2.webp" alt="Package 2" loading="lazy" decoding="async">
+                    <div class="m-pkg-info">
+                        <span class="m-pkg-kicker">Package 2</span>
+                        <span class="m-pkg-title">Glocal Design</span>
+                    </div>
                 </a>
-                <a class="m-card" href="./pages/package-3/index.html">
-                    <img class="m-card-img" src="assets/images/index/package-icon/thumb/package-3.webp" alt="Package 3" loading="lazy" decoding="async">
-                    <span class="m-card-text"><span class="m-card-kicker">Package 3</span><span class="m-card-title">Towards Net Zero</span></span>
-                    <span class="m-card-arrow">&rsaquo;</span>
+                <a class="m-pkg-card" href="./pages/package-3/index.html">
+                    <img class="m-pkg-img" src="assets/images/index/package-icon/package-3.webp" alt="Package 3" loading="lazy" decoding="async">
+                    <div class="m-pkg-info">
+                        <span class="m-pkg-kicker">Package 3</span>
+                        <span class="m-pkg-title">Towards Net Zero</span>
+                    </div>
                 </a>
-                <a class="m-card" href="./pages/package-4/index.html">
-                    <img class="m-card-img" src="assets/images/index/package-icon/thumb/package-4.webp" alt="Package 4" loading="lazy" decoding="async">
-                    <span class="m-card-text"><span class="m-card-kicker">Package 4</span><span class="m-card-title">Art For All</span></span>
-                    <span class="m-card-arrow">&rsaquo;</span>
+                <a class="m-pkg-card" href="./pages/package-4/index.html">
+                    <img class="m-pkg-img" src="assets/images/index/package-icon/package-4.webp" alt="Package 4" loading="lazy" decoding="async">
+                    <div class="m-pkg-info">
+                        <span class="m-pkg-kicker">Package 4</span>
+                        <span class="m-pkg-title">Art For All</span>
+                    </div>
                 </a>
             </div>
         </section>
