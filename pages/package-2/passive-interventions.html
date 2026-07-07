@@ -89,17 +89,18 @@
         /* Info box
            Figma: left:999/1874=53.3%, top:796/1176=67.7%
            w:634px=33.8vw, h:148px=12.6vh, radius:11px, border:#5368a9       */
+        /* Info box — right:6% aligns its right edge with the ARCHITECTURAL DESIGN title column */
         .hero-infobox {
             position:absolute;
-            left:53.3%; top:67.7%;
-            width:clamp(180px,33.8vw,634px);
-            padding: clamp(10px,1.07vw,20px) clamp(12px,1.17vw,22px);
+            right:6%; left:auto; top:67.7%;
+            width:clamp(200px,27vw,440px);
+            padding: clamp(12px,1.1vw,20px) clamp(14px,1.2vw,22px);
             background:#fff; border:1px solid var(--c-blue);
             border-radius:11px; z-index:20;
         }
-        /* Figma: Inter SemiBold 22px, #5368a6, tracking -0.11px              */
+        /* Inter SemiBold, #5368a6, tracking -0.11px (a touch smaller than before) */
         .hero-infobox p {
-            font-size:clamp(9px,1.17vw,22px);
+            font-size:clamp(9px,1.0vw,18px);
             font-weight:600; color:var(--c-text);
             line-height:1.45; letter-spacing:-0.11px;
         }
@@ -288,7 +289,7 @@
             .win-top-row      { grid-template-columns:1fr; }
             .win-bottom-row   { grid-template-columns:1fr; }
             .hero-title       { right:5%; left:auto; width:auto; }
-            .hero-infobox     { left:5%; width:90%; }
+            .hero-infobox     { left:5%; right:auto; width:90%; }
             .footer-left,
             .footer-right     { max-width:100%; }
             .footer-right     { text-align:left; }

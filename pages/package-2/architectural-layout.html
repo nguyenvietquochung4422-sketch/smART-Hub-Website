@@ -92,24 +92,25 @@
         /* Cover click = Back to Architectural Design (the door in reverse) */
         .hero-back-cover { position:absolute; inset:0; z-index:5; cursor:pointer; display:block; text-decoration:none; }
 
+        /* Info box — right:6% aligns its right edge with the ARCHITECTURAL DESIGN
+           title column; text style synced with passive-interventions (a touch smaller). */
         .hero-info-box {
             position: absolute;
-            bottom: 60px;
-            right: 6%;
-            z-index: 100;
-            background: rgba(255, 255, 255, 0.95);
-            border: 1px solid rgba(14, 59, 102, 0.2);
-            border-radius: 12px;
-            padding: 24px;
-            max-width: 320px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
+            top: 67.7%; right: 6%; left: auto;
+            z-index: 20;
+            width: clamp(200px, 27vw, 440px);
+            padding: clamp(12px,1.1vw,20px) clamp(14px,1.2vw,22px);
+            background: #fff;
+            border: 1px solid #5368a9;
+            border-radius: 11px;
         }
         .hero-info-box p {
             font-family: 'Inter', sans-serif;
-            font-size: 13px;
-            line-height: 1.7;
-            color: var(--pkg-blue);
+            font-size: clamp(9px, 1.0vw, 18px);
+            font-weight: 600;
+            line-height: 1.45;
+            letter-spacing: -0.11px;
+            color: #5368a6;
             margin: 0;
             text-align: left;
         }
@@ -186,6 +187,7 @@
             .footer-right-col {
                 text-align: left;
             }
+            .hero-info-box { left: 5%; right: auto; width: 90%; max-width: none; }
         }
     </style>
     <link rel="stylesheet" href="../../assets/css/responsive.css">
