@@ -167,26 +167,37 @@
            Bottom row: legend (w:207→487=280px) vs plan (w:960) → 23 : 77 ratio
         */
         .ld-plant-top {
-            display:grid; grid-template-columns:45fr 52fr;
-            gap:clamp(12px,2.14vw,40px); align-items:flex-start;
+            display:flex;
+            align-items:center;
+            justify-content:flex-start;
+            gap:clamp(20px, 4vw, 80px);
             position:relative;
+            width:100%;
+            height:25vw;
         }
         .ld-plant-10-wrapper {
             position:relative;
             z-index:2;
+            height:80%;
+        }
+        .ld-plant-10-wrapper img {
+            height:100%;
+            width:auto;
+            display:block;
         }
         .ld-plant-text-col {
             position:relative;
             z-index:2;
+            width:52%;
         }
         .ld-plant-11-bg {
             position:absolute;
-            right:calc(-1 * clamp(20px, 4.76vw, 89px));
-            top:50%;
-            transform:translateY(-50%);
-            width:75vw;
-            height:auto;
+            left:calc(-1 * clamp(20px, 4.76vw, 89px));
+            width:100vw;
+            height:100%;
+            top:0;
             z-index:1;
+            object-fit:cover;
         }
         .ld-plant-bot {
             display:grid; grid-template-columns:30fr 68fr;
@@ -268,25 +279,36 @@
                 height:clamp(70px,22vw,130px);
             }
             .ld-plant-top {
-                display: flex;
-                flex-direction: column;
+                display: flex !important;
+                flex-direction: column !important;
+                height: auto !important;
             }
             .ld-plant-10-wrapper {
-                order: 1;
+                order: 1 !important;
+                height: auto !important;
+                margin-left: 0 !important;
+            }
+            .ld-plant-10-wrapper img {
+                width: 100% !important;
+                height: auto !important;
             }
             .ld-plant-text-col {
-                order: 2;
-                margin-top: clamp(14px,1.5vw,28px);
+                order: 2 !important;
+                width: 100% !important;
+                margin-top: clamp(14px,1.5vw,28px) !important;
             }
             .ld-plant-11-bg {
                 position: relative !important;
+                left: auto !important;
                 right: auto !important;
                 top: auto !important;
                 transform: none !important;
                 width: 100% !important;
+                height: auto !important;
                 z-index: auto !important;
-                order: 3;
-                margin-top: clamp(14px,1.5vw,28px);
+                order: 3 !important;
+                margin-top: clamp(14px,1.5vw,28px) !important;
+                object-fit: contain !important;
             }
         }
 
