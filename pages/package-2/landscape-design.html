@@ -189,6 +189,7 @@
             position:relative;
             z-index:2;
             width:26%;
+            margin-left:4vw;
         }
         .ld-plant-11-bg {
             position:absolute;
@@ -200,13 +201,20 @@
             object-fit:cover;
         }
         .ld-plant-bot img[src*="landscape_12.webp"] {
-            max-height: 15vw;
+            height: calc(0.3145 * (100vw - 2 * clamp(20px, 4.76vw, 89px)));
             width: auto;
             object-fit: contain;
+            display: block;
+        }
+        .ld-plant-bot img[src*="landscape_13.webp"] {
+            height: calc(0.3145 * (100vw - 2 * clamp(20px, 4.76vw, 89px)));
+            width: auto;
+            object-fit: contain;
+            display: block;
         }
         .ld-plant-bot {
             display:grid; grid-template-columns:30fr 68fr;
-            gap:clamp(12px,2.14vw,40px); align-items:flex-start;
+            gap:clamp(12px,2.14vw,40px); align-items:flex-end;
             margin-top:clamp(20px,2.14vw,40px);
         }
 
@@ -216,7 +224,7 @@
         */
         .ld-green-grid {
             display:grid; grid-template-columns:60fr 38fr;
-            gap:clamp(12px,2.14vw,40px); align-items:flex-end;
+            gap:clamp(12px,2.14vw,40px); align-items:stretch;
         }
         .ld-green-right { display:flex; flex-direction:column; gap:clamp(14px,1.5vw,28px); }
 
@@ -301,6 +309,7 @@
                 order: 2 !important;
                 width: 100% !important;
                 margin-top: clamp(14px,1.5vw,28px) !important;
+                margin-left: 0 !important;
             }
             .ld-plant-11-bg {
                 position: relative !important;
@@ -314,6 +323,11 @@
                 order: 3 !important;
                 margin-top: clamp(14px,1.5vw,28px) !important;
                 object-fit: contain !important;
+            }
+            .ld-plant-bot img[src*="landscape_12.webp"],
+            .ld-plant-bot img[src*="landscape_13.webp"] {
+                height: auto !important;
+                width: 100% !important;
             }
         }
 
@@ -477,8 +491,8 @@
                  alt="Green roof campus gate" class="ld-img zoom"
                  onclick="openLightbox(this.src)">
         </div>
-        <div class="ld-green-right" data-aos="fade-up" data-aos-delay="120" style="display: grid; grid-template-columns: 1.4fr 2.1fr; gap: 20px; align-items: flex-end;">
-            <div style="display: flex; flex-direction: column;">
+        <div class="ld-green-right" data-aos="fade-up" data-aos-delay="120" style="display: grid; grid-template-columns: 2.2fr 1.8fr; gap: 20px; align-items: stretch;">
+            <div style="display: flex; flex-direction: column; justify-content: flex-end; height: 100%;">
                 <p class="ld-legend" style="margin-bottom: 12px;">Legend</p>
                 <img loading="lazy" decoding="async" src="../../assets/images/package2/Landscape/landscape_16.webp"
                      alt="Green roof legend" class="ld-img-fit zoom"
@@ -486,7 +500,8 @@
             </div>
             <img loading="lazy" decoding="async" src="../../assets/images/package2/Landscape/landscape_15.webp"
                  alt="Green roof render" class="ld-img zoom"
-                 onclick="openLightbox(this.src)">
+                 onclick="openLightbox(this.src)"
+                 style="height: 100%; width: 100%; object-fit: cover; display: block;">
         </div>
     </div>
 </section>
