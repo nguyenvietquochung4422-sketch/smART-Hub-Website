@@ -85,10 +85,10 @@
         /* ── 3. SHARED SECTION CHROME ── */
         .ld-sec {
             padding: clamp(40px,5.3vw,100px) clamp(20px,4.76vw,89px);
-            background: #fff;
+            background: #F6F3EE;
         }
         .ld-bottom-deco {
-            background: #fff;
+            background: #F6F3EE;
         }
         .ld-sec-title {
             font-size:clamp(20px,2.13vw,40px);
@@ -167,10 +167,25 @@
            Bottom row: legend (w:207→487=280px) vs plan (w:960) → 23 : 77 ratio
         */
         .ld-plant-top {
-            display:grid; grid-template-columns:45fr 52fr;
-            gap:clamp(12px,2.14vw,40px); align-items:flex-start;
+            display:grid; grid-template-columns:28fr 72fr;
+            gap:clamp(12px,2.14vw,40px); align-items:center;
         }
-        .ld-plant-right { display:flex; flex-direction:column; gap:clamp(14px,1.5vw,28px); }
+        .ld-plant-right {
+            position:relative;
+            display:flex;
+            align-items:center;
+            width:100%;
+        }
+        .ld-plant-text {
+            position:absolute;
+            left:10%;
+            width:42%;
+            z-index:2;
+            pointer-events:none;
+        }
+        .ld-plant-text .ld-body {
+            pointer-events:auto;
+        }
         .ld-plant-bot {
             display:grid; grid-template-columns:30fr 68fr;
             gap:clamp(12px,2.14vw,40px); align-items:flex-start;
@@ -250,10 +265,21 @@
                 flex:0 0 clamp(70px,22vw,130px);
                 height:clamp(70px,22vw,130px);
             }
+            .ld-plant-right {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .ld-plant-text {
+                position: relative !important;
+                left: 0 !important;
+                width: 100% !important;
+                order: -1;
+                margin-bottom: clamp(14px,1.5vw,28px);
+            }
         }
 
                 /* ── FOOTER ── */
-        .footer-container { padding:40px 2% 60px 2%; background:#fff !important; backdrop-filter:none !important; -webkit-backdrop-filter:none !important; color:#333; width:100%; font-family:'Inter',sans-serif; }
+        .footer-container { padding:40px 2% 60px 2%; background:#F6F3EE !important; backdrop-filter:none !important; -webkit-backdrop-filter:none !important; color:#333; width:100%; font-family:'Inter',sans-serif; }
         .footer-contact-header { display:flex; align-items:center; gap:20px; margin-bottom:20px; }
         .footer-contact-title { font-size:16px; font-weight:700; color:var(--c-blue,var(--pkg-blue,#0E3B66)); white-space:nowrap; }
         .footer-contact-line, .footer-rule { flex-grow:1; height:1px; background:rgba(14,59,102,0.18); }
@@ -371,15 +397,17 @@
                  onclick="openLightbox(this.src)">
         </div>
         <div class="ld-plant-right" data-aos="fade-up" data-aos-delay="120">
-            <p class="ld-body">
-                In addition to developing green spaces at ground level, the project also introduces
-                vertical greenery on building facades to increase shaded areas throughout the campus.
-                Native fruit-bearing plants are integrated to create a balance between a global spatial
-                identity and the preservation of local vegetation systems.
-            </p>
             <img loading="lazy" decoding="async" src="../../assets/images/package2/Landscape/landscape_11.webp"
                  alt="Campus planting elevation plan" class="ld-img zoom"
                  onclick="openLightbox(this.src)">
+            <div class="ld-plant-text">
+                <p class="ld-body">
+                    In addition to developing green spaces at ground level, the project also introduces
+                    vertical greenery on building facades to increase shaded areas throughout the campus.
+                    Native fruit-bearing plants are integrated to create a balance between a global spatial
+                    identity and the preservation of local vegetation systems.
+                </p>
+            </div>
         </div>
     </div>
     <div class="ld-plant-bot">
