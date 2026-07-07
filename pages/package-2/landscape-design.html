@@ -221,40 +221,14 @@
         }
 
         .ld-green-grid {
-            display:flex;
-            align-items:center;
-            justify-content:space-between;
-            position:relative;
-            width:100%;
-            height:28vw;
-        }
-        .ld-green-14-wrapper {
-            position:relative;
-            z-index:2;
-            height:70%;
-        }
-        .ld-green-14-wrapper img {
-            height:100%;
-            width:auto;
-            display:block;
-        }
-        .ld-green-text-col {
-            position:absolute;
-            left:50%;
-            top:50%;
-            transform:translate(-50%, -50%);
-            z-index:2;
-            width:26%;
+            display:grid; grid-template-columns:60fr 38fr;
+            gap:clamp(12px,2.14vw,40px); align-items:flex-end;
         }
         .ld-green-right {
             display:grid;
             grid-template-columns:2.2fr 1.8fr;
             gap:20px;
-            align-items:stretch;
-            width:38%;
-            height:100%;
-            position:relative;
-            z-index:2;
+            align-items:flex-end;
         }
 
         /* ── 9. SOD CULTURE ──
@@ -361,35 +335,6 @@
             .ld-plant-bot img[src*="landscape_13.webp"] {
                 height: auto !important;
                 width: 100% !important;
-            }
-            .ld-green-grid {
-                display: flex !important;
-                flex-direction: column !important;
-                height: auto !important;
-            }
-            .ld-green-14-wrapper {
-                height: auto !important;
-                width: 100% !important;
-            }
-            .ld-green-14-wrapper img {
-                width: 100% !important;
-                height: auto !important;
-            }
-            .ld-green-text-col {
-                position: relative !important;
-                left: auto !important;
-                top: auto !important;
-                transform: none !important;
-                width: 100% !important;
-                order: -1 !important;
-                margin-bottom: clamp(14px,1.5vw,28px) !important;
-            }
-            .ld-green-right {
-                display: flex !important;
-                flex-direction: column !important;
-                width: 100% !important;
-                height: auto !important;
-                gap: clamp(14px,1.5vw,28px) !important;
             }
         }
 
@@ -542,23 +487,19 @@
 <section class="ld-sec">
     <h2 class="ld-sec-title" data-aos="fade-up">Green Roof</h2>
     <div class="ld-green-grid">
-        <div data-aos="fade-up" class="ld-green-14-wrapper">
-            <img loading="lazy" decoding="async" src="../../assets/images/package2/Landscape/landscape_14.webp"
-                 alt="Green roof campus gate" class="ld-img zoom"
-                 onclick="openLightbox(this.src)">
-        </div>
-        
-        <div class="ld-green-text-col" data-aos="fade-up" data-aos-delay="100">
-            <p class="ld-body">
+        <div data-aos="fade-up">
+            <p class="ld-body" style="margin-bottom: 20px;">
                 The new gate proposal — featuring a green roof — not only increases shaded areas
                 for the campus, but also promotes sustainable landscape development, expands diverse
                 planting areas, and preserves native vegetation to help reduce heat across the
                 university campus.
             </p>
+            <img loading="lazy" decoding="async" src="../../assets/images/package2/Landscape/landscape_14.webp"
+                 alt="Green roof campus gate" class="ld-img zoom"
+                 onclick="openLightbox(this.src)">
         </div>
-        
         <div class="ld-green-right" data-aos="fade-up" data-aos-delay="120">
-            <div style="display: flex; flex-direction: column; justify-content: flex-end; height: 100%;">
+            <div style="display: flex; flex-direction: column;">
                 <p class="ld-legend" style="margin-bottom: 12px;">Legend</p>
                 <img loading="lazy" decoding="async" src="../../assets/images/package2/Landscape/landscape_16.webp"
                      alt="Green roof legend" class="ld-img-fit zoom"
@@ -567,8 +508,7 @@
             </div>
             <img loading="lazy" decoding="async" src="../../assets/images/package2/Landscape/landscape_15.webp"
                  alt="Green roof render" class="ld-img zoom"
-                 onclick="openLightbox(this.src)"
-                 style="height: 100%; width: 100%; object-fit: cover; display: block;">
+                 onclick="openLightbox(this.src)">
         </div>
     </div>
 </section>
