@@ -102,6 +102,18 @@
             .m-card--cta { justify-content: space-between; }
             /* footer already stacks via responsive.css; add a top divider on mobile */
             .footer-container { border-top: 1px solid rgba(255,255,255,0.18); margin-top: 8px; }
+
+            /* NO card borders/backgrounds on homepage mobile */
+            .m-home .m-card {
+                background: transparent !important;
+                border: none !important;
+                border-radius: 0 !important;
+                padding: 0 !important;
+            }
+            .m-home .m-card-kicker { color: rgba(255,255,255,0.70) !important; }
+            .m-home .m-card-title { color: #ffffff !important; font-size: 16px !important; }
+            .m-home .m-card-arrow { color: rgba(255,255,255,0.50) !important; }
+
             .m-pkg-grid {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
@@ -115,6 +127,8 @@
                 text-align: center;
                 text-decoration: none;
                 color: #ffffff;
+                background: transparent;
+                border: none;
             }
             .m-pkg-img {
                 width: 100%;
@@ -145,6 +159,24 @@
                 font-weight: 700;
                 line-height: 1.35;
                 color: #ffffff;
+            }
+
+            /* Co-Creation formula line */
+            .m-formula {
+                font-size: 15px;
+                font-weight: 700;
+                color: #ffffff;
+                margin: 10px 0 14px;
+                line-height: 1.4;
+            }
+
+            /* Learn more inline link */
+            .m-learn-link {
+                color: #ffffff;
+                font-weight: 700;
+                text-decoration: underline;
+                font-size: 15px;
+                display: inline;
             }
         }
 
@@ -245,6 +277,14 @@
             <p class="m-eyebrow">About smART Hub</p>
             <p class="m-body">smART Hub Living Labs at Campus V is a vibrant socio-technical nexus where technology and artistic expression converge to drive smart innovation. Positioned as a "regulatory sandbox," it transforms a historic site into an experimental hub to validate sustainability policies through evidence-based co-creation.</p>
             <p class="m-body">Following the S.M.A.R.T. Framework, the project integrates AI-driven sorting, Digital Twin monitoring, and adaptive "Glocal" design to achieve a Net Zero Campus by 2026.</p>
+        </section>
+
+        <section class="m-section" data-aos="fade-up">
+            <p class="m-eyebrow">Co-Creation Platform</p>
+            <p class="m-body">smART Hub is the experimental “heart” of the UEH Living Labs network, where a distinctive operational formula is established:</p>
+            <p class="m-formula">smART Hub = Living Labs + Art + Net Zero Campus</p>
+            <p class="m-body">smART Hub Living Labs is not just a project, but an ecosystem operated under the Quadruple Helix model. Our journey toward a Net Zero Campus by 2026 is made possible thanks to the enthusiastic contributions of Academia, Government, Industry, and the Community.</p>
+            <p class="m-body"><a class="m-learn-link" href="./pages/about.html">Learn more →</a>&nbsp;&nbsp;We welcome experts and researchers to contribute their professional knowledge to the project’s core working groups.</p>
         </section>
 
         <section class="m-section" data-aos="fade-up">
